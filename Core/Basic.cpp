@@ -12,6 +12,7 @@ See file license.txt for more information
 #ifndef UBGRAPHICS_BASIC_CPP
 #define UBGRAPHICS_BASIC_CPP
 
-#include "Basic_lite.cpp"
+#include "Basic_lite.cpp"    
+#include "UBAColorConvert.cpp"
 
 #endif

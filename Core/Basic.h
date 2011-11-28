@@ -12,7 +12,8 @@ See file license.txt for more information
 #ifndef UBGRAPHICS_BASIC_H
 #define UBGRAPHICS_BASIC_H
 
-#include "Basic_lite.h"
+#include "Basic_lite.h" 
+#include "UBAColorConvert.h"
 
 #endif                  
 
