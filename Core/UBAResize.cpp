@@ -76,7 +76,7 @@ UBAResizeEdges* UBAResizeEdges::New(void)
 
 bool UBAResize::PLACalculate(UBitmap **input, UBitmap **output, int num_inputs, int num_outputs)
 {
-  return BCalculate(*input[InputTable[0]], *output[OutputTable[0]]);
+  return BCalculate(*input[0], *output[0]);
 }
 
 bool UBAResize::BCalculate(UBitmap &input, int width, int height)
