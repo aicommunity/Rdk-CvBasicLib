@@ -11,8 +11,9 @@ See file license.txt for more information
 #ifndef UBAColorConvert_CPP
 #define UBAColorConvert_CPP
 
-#include "UBAColorConvert.h"
 #include <math.h>
+#include "UBAColorConvert.h"
+#include "../../UGraphicsBinarySerialize.h"
 
 namespace RDK {
 
