@@ -22,7 +22,7 @@ namespace RDK {
 // ---------------------
 UBAColorConvert::UBAColorConvert(void)
 {
- AddLookupProperty("NewColorModel",new UVProperty<UBMColorModel,UBAColorConvert>(this,&UBAColorConvert::SetNewColorModel,&UBAColorConvert::GetNewColorModel));
+ AddLookupProperty("NewColorModel",ptPubParameter, new UVProperty<UBMColorModel,UBAColorConvert>(this,&UBAColorConvert::SetNewColorModel,&UBAColorConvert::GetNewColorModel));
 }
 UBAColorConvert::~UBAColorConvert(void)
 {
