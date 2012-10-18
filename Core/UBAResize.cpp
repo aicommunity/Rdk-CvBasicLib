@@ -17,7 +17,7 @@ See file license.txt for more information
 
 namespace RDK {
 
-UBAResizeEdges UBResizeEdges;
+//UBAResizeEdges UBResizeEdges;
 
 // ---------------------
 // Конструкторы и деструкторы

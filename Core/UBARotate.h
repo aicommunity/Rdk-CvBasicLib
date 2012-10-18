@@ -81,7 +81,7 @@ bool BCalculate(UBitmap &input, UBitmap &output);
 // ---------------------
 };
 
-extern UBARotateSimple UBRotateSimple;
+//extern UBARotateSimple UBRotateSimple;
 }
 //---------------------------------------------------------------------------
 #endif

@@ -16,7 +16,7 @@ See file license.txt for more information
 
 namespace RDK {
 
-UBARotateSimple UBRotateSimple;
+//UBARotateSimple UBRotateSimple;
 
 // ---------------------
 // Конструкторы и деструкторы

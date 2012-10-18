@@ -76,7 +76,7 @@ bool BCalculate(UBitmap &input, UBitmap &output);
 // ---------------------
 };
 
-extern UBAResizeEdges UBResizeEdges;
+//extern UBAResizeEdges UBResizeEdges;
 }
 //---------------------------------------------------------------------------
 #endif
