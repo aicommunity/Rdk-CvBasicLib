@@ -16,15 +16,22 @@ See file license.txt for more information
 
 namespace RDK {
 
-// Базовый класс поворота изображения
+/// Базовый класс поворота изображения
 class UBARotate: public UBAbstract
 {
 protected: // Параметры
-// Угол поворота (градусы)
+/// Угол поворота (градусы)
 float Angle;
 
-// Флаг расширения
+/// Флаг расширения
 bool Enlarge;
+
+protected: // Входные и выходные данные
+/// Входное изображение
+UEPtr<UBitmap> Input;
+
+/// Выходное изображение
+UEPtr<UBitmap> Output;
 
 protected: // Временные переменные
 UBitmap Buffer;
@@ -40,22 +47,13 @@ virtual ~UBARotate(void);
 // ---------------------
 // Методы управления параметрами
 // ---------------------
-// Угол поворота (градусы)
+/// Угол поворота (градусы)
 float GetAngle(void) const;
 bool SetAngle(float angle);
 
-// Флаг расширения
+/// Флаг расширения
 bool GetEnlarge(void) const;
 bool SetEnlarge(bool enlarge);
-// ---------------------
-
-// ---------------------
-// Методы счета
-// ---------------------
-virtual bool PLACalculate(UBitmap **input, UBitmap **output, int num_inputs=1, int num_outputs=1);
-virtual bool BCalculate(UBitmap &input, UBitmap &output)=0;
-bool BCalculate(UBitmap &input, UBitmap &output, float angle, bool enlarge=false);
-bool BCalculate(UBitmap &input, float angle, bool enlarge=false);
 // ---------------------
 
 // ---------------------
@@ -63,25 +61,83 @@ bool BCalculate(UBitmap &input, float angle, bool enlarge=false);
 // ---------------------
 bool operator () (UBitmap &input, UBitmap &output);
 bool operator () (UBitmap &input, UBitmap &output, float angle, bool enlarge=false);
-bool operator () (UBitmap &input, float angle, bool enlarge=false);
 // ---------------------
+
+// --------------------------
+// Скрытые методы управления счетом
+// --------------------------
+protected:
+/// Восстановление настроек по умолчанию и сброс процесса счета
+virtual bool AFDefault(void);
+
+/// Обеспечивает сборку внутренней структуры объекта
+/// после настройки параметров
+/// Автоматически вызывает метод Reset() и выставляет Ready в true
+/// в случае успешной сборки
+virtual bool AFBuild(void);
+
+/// Сброс процесса счета.
+virtual bool AFReset(void);
+
+/// Выполняет расчет этого объекта
+virtual bool AFCalculate(void);
+// --------------------------
+
+// --------------------------
+// Скрытые методы управления счетом трекинга
+// --------------------------
+protected:
+/// Восстановление настроек по умолчанию и сброс процесса счета
+virtual bool AFCDefault(void)=0;
+
+/// Обеспечивает сборку внутренней структуры объекта
+/// после настройки параметров
+/// Автоматически вызывает метод Reset() и выставляет Ready в true
+/// в случае успешной сборки
+virtual bool AFCBuild(void)=0;
+
+/// Сброс процесса счета.
+virtual bool AFCReset(void)=0;
+
+/// Выполняет расчет этого объекта
+virtual bool AFCCalculate(void)=0;
+// --------------------------
 };
 
-// Поворачивает изображение на заданный угол
+/// Поворачивает изображение на заданный угол
 class UBARotateSimple: public UBARotate
 {
 public: // Методы
 // ---------------------
 // Методы счета
 // ---------------------
-// Создание новой копии этого объекта
+/// Создание новой копии этого объекта
 virtual UBARotateSimple* New(void);
 
 bool BCalculate(UBitmap &input, UBitmap &output);
 // ---------------------
+
+// --------------------------
+// Скрытые методы управления счетом трекинга
+// --------------------------
+protected:
+/// Восстановление настроек по умолчанию и сброс процесса счета
+virtual bool AFCDefault(void);
+
+/// Обеспечивает сборку внутренней структуры объекта
+/// после настройки параметров
+/// Автоматически вызывает метод Reset() и выставляет Ready в true
+/// в случае успешной сборки
+virtual bool AFCBuild(void);
+
+/// Сброс процесса счета.
+virtual bool AFCReset(void);
+
+/// Выполняет расчет этого объекта
+virtual bool AFCCalculate(void);
+// --------------------------
 };
 
-//extern UBARotateSimple UBRotateSimple;
 }
 //---------------------------------------------------------------------------
 #endif

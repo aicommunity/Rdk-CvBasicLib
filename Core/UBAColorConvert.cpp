@@ -56,58 +56,7 @@ UBAColorConvert* UBAColorConvert::New(void)
 {
  return new UBAColorConvert;
 }
-
-//не менял, вопрос
-bool UBAColorConvert::PLACalculate(UBitmap **input, UBitmap **output, int num_inputs, int num_outputs)
-{
- output[0]->SetColorModel(NewColorModel,false);
- return BCalculate(*input[0], *output[0]);
-}
-
-bool UBAColorConvert::BCalculate(UBitmap &input, UBitmap &output)
-{
- input.ConvertTo(output);
- return true;
-}
-
-bool UBAColorConvert::BCalculate(UBitmap &input, UBMColorModel color_model)
-{
- // Тут проверка на совпадение размеров
- if(input.GetColorModel() == color_model)
-  return true;
-
- SetNewColorModel(color_model);
- input.SetColorModel(NewColorModel);
- return true;
-}
-
-bool UBAColorConvert::BCalculate(UBitmap &input, UBitmap &output, UBMColorModel color_model)
-{
- SetNewColorModel(color_model);
- output.SetColorModel(color_model,false);
- return BCalculate(input,output);
-}
 // ---------------------
-
-// ---------------------
-// Операторы
-// ---------------------
-bool UBAColorConvert::operator () (UBitmap &input, UBitmap &output)
-{
- return BCalculate(input,output);
-}
-
-bool UBAColorConvert::operator () (UBitmap &input, UBMColorModel color_model)
-{
- return BCalculate(input,color_model);
-}
-
-bool UBAColorConvert::operator () (UBitmap &input, UBitmap &output, UBMColorModel color_model)
-{
- return BCalculate(input,output, color_model);
-}
-// ---------------------
-
 
 // --------------------------
 // Скрытые методы управления счетом фильтров
@@ -116,6 +65,32 @@ bool UBAColorConvert::operator () (UBitmap &input, UBitmap &output, UBMColorMode
 bool UBAColorConvert::AFDefault(void)
 {
  NewColorModel=ubmY8;
+ return true;
+}
+
+// Обеспечивает сборку внутренней структуры объекта
+// после настройки параметров
+// Автоматически вызывает метод Reset() и выставляет Ready в true
+// в случае успешной сборки
+bool UBAColorConvert::AFBuild(void)
+{
+ return true;
+}
+
+// Сброс процесса счета без потери настроек
+bool UBAColorConvert::AFReset(void)
+{
+ return true;
+}
+
+// Выполняет расчет этого объекта
+bool UBAColorConvert::AFCalculate(void)
+{
+ if(Outputs.GetSize()<1 || Inputs.GetSize()<1)
+  return true;
+
+ Outputs[0]->SetColorModel(NewColorModel,false);
+ Inputs[0]->ConvertTo(*Outputs[0]);
  return true;
 }
 // --------------------------

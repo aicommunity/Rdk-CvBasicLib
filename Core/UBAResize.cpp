@@ -65,6 +65,47 @@ bool UBAResize::SetNewHeight(int value)
 }
 // ---------------------
 
+
+// --------------------------
+// Скрытые методы управления счетом трекинга
+// --------------------------
+// Восстановление настроек по умолчанию и сброс процесса счета
+bool UBAResize::AFDefault(void)
+{
+ return AFCDefault();
+}
+
+// Обеспечивает сборку внутренней структуры объекта
+// после настройки параметров
+// Автоматически вызывает метод Reset() и выставляет Ready в true
+// в случае успешной сборки
+bool UBAResize::AFBuild(void)
+{
+ return AFCBuild();
+}
+
+// Сброс процесса счета.
+bool UBAResize::AFReset(void)
+{
+ return AFCReset();
+}
+
+// Выполняет расчет этого объекта
+bool UBAResize::AFCalculate(void)
+{
+ if(Inputs.GetSize()>0)
+  Input=Inputs[0];
+
+ if(Outputs.GetSize()>0)
+  Output=Outputs[0];
+
+ if(!Input || !Output)
+  return true;
+
+ return AFCCalculate();
+}
+// --------------------------
+
 // ---------------------
 // Методы счета
 // ---------------------
@@ -72,11 +113,6 @@ bool UBAResize::SetNewHeight(int value)
 UBAResizeEdges* UBAResizeEdges::New(void)
 {
  return new UBAResizeEdges;
-}
-
-bool UBAResize::PLACalculate(UBitmap **input, UBitmap **output, int num_inputs, int num_outputs)
-{
-  return BCalculate(*input[0], *output[0]);
 }
 
 bool UBAResize::BCalculate(UBitmap &input, int width, int height)
@@ -255,6 +291,39 @@ bool UBAResizeEdges::BCalculate(UBitmap &input, UBitmap &output)
  return true;
 }
 // ---------------------
+
+
+// --------------------------
+// Скрытые методы управления счетом трекинга
+// --------------------------
+// Восстановление настроек по умолчанию и сброс процесса счета
+bool UBAResizeEdges::AFCDefault(void)
+{
+ return true;
+}
+
+// Обеспечивает сборку внутренней структуры объекта
+// после настройки параметров
+// Автоматически вызывает метод Reset() и выставляет Ready в true
+// в случае успешной сборки
+bool UBAResizeEdges::AFCBuild(void)
+{
+ return true;
+}
+
+// Сброс процесса счета.
+bool UBAResizeEdges::AFCReset(void)
+{
+ return true;
+}
+
+// Выполняет расчет этого объекта
+bool UBAResizeEdges::AFCCalculate(void)
+{
+ return BCalculate(*Input, *Output);
+}
+// --------------------------
+
 
 }
 //---------------------------------------------------------------------------

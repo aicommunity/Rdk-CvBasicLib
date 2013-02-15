@@ -16,15 +16,11 @@ See file license.txt for more information
 
 namespace RDK {
 
-//UBARotateSimple UBRotateSimple;
-
 // ---------------------
 // Конструкторы и деструкторы
 // ---------------------
 UBARotate::UBARotate(void)
 {
- Angle=0;
- Enlarge=false;
 }
 
 UBARotate::~UBARotate(void)
@@ -67,50 +63,76 @@ bool UBARotate::SetEnlarge(bool enlarge)
 // ---------------------
 
 // ---------------------
-// Методы счета
-// ---------------------
-bool UBARotate::PLACalculate(UBitmap **input, UBitmap **output, int num_inputs, int num_outputs)
-{
- return BCalculate(*input[0], *output[0]);
-}
-
-bool UBARotate::BCalculate(UBitmap &input, UBitmap &output, float angle, bool enlarge)
-{
- SetAngle(angle);
- SetEnlarge(enlarge);
-
- return BCalculate(input,output);
-}
-
-bool UBARotate::BCalculate(UBitmap &input, float angle, bool enlarge)
-{
- if(BCalculate(input,Buffer,angle,enlarge))
- {
-  input.SetImage(Buffer.GetWidth(),Buffer.GetHeight(),Buffer.DetachBuffer(),Buffer.GetColorModel());
-  return true;
- }
- return false;
-}
-// ---------------------
-
-// ---------------------
 // Операторы
 // ---------------------
 bool UBARotate::operator () (UBitmap &input, UBitmap &output)
 {
- return BCalculate(input,output);
+ Input=&input;
+ Output=&output;
+ bool res=AFCCalculate();
+ Input=0;
+ Output=0;
+
+ return res;
 }
 
 bool UBARotate::operator () (UBitmap &input, UBitmap &output, float angle, bool enlarge)
 {
- return BCalculate(input,output,angle,enlarge);
-}
+ Input=&input;
+ Output=&output;
+ Angle=angle;
+ Enlarge=enlarge;
+ bool res=AFCCalculate();
+ Input=0;
+ Output=0;
 
-bool UBARotate::operator () (UBitmap &input, float angle, bool enlarge)
-{
- return BCalculate(input,angle,enlarge);
+ return res;
 }
 // ---------------------
+
+
+// --------------------------
+// Скрытые методы управления счетом трекинга
+// --------------------------
+// Восстановление настроек по умолчанию и сброс процесса счета
+bool UBARotate::AFDefault(void)
+{
+ Angle=0;
+ Enlarge=false;
+ return AFCDefault();
+}
+
+// Обеспечивает сборку внутренней структуры объекта
+// после настройки параметров
+// Автоматически вызывает метод Reset() и выставляет Ready в true
+// в случае успешной сборки
+bool UBARotate::AFBuild(void)
+{
+ return AFCBuild();
+}
+
+// Сброс процесса счета.
+bool UBARotate::AFReset(void)
+{
+ return AFCReset();
+}
+
+// Выполняет расчет этого объекта
+bool UBARotate::AFCalculate(void)
+{
+ if(Inputs.GetSize()>0)
+  Input=Inputs[0];
+
+ if(Outputs.GetSize()>0)
+  Output=Outputs[0];
+
+ if(!Input || !Output)
+  return true;
+
+ return AFCCalculate();
+}
+// --------------------------
+
 
 
 // Поворачивает изображение на заданный угол
@@ -328,6 +350,37 @@ bool UBARotateSimple::BCalculate(UBitmap &input, UBitmap &output)
 }
 // ---------------------
 
+
+// --------------------------
+// Скрытые методы управления счетом трекинга
+// --------------------------
+// Восстановление настроек по умолчанию и сброс процесса счета
+bool UBARotateSimple::AFCDefault(void)
+{
+ return true;
+}
+
+// Обеспечивает сборку внутренней структуры объекта
+// после настройки параметров
+// Автоматически вызывает метод Reset() и выставляет Ready в true
+// в случае успешной сборки
+bool UBARotateSimple::AFCBuild(void)
+{
+ return true;
+}
+
+// Сброс процесса счета.
+bool UBARotateSimple::AFCReset(void)
+{
+ return true;
+}
+
+// Выполняет расчет этого объекта
+bool UBARotateSimple::AFCCalculate(void)
+{
+ return BCalculate(*Input, *Output);
+}
+// --------------------------
 }
 //---------------------------------------------------------------------------
 

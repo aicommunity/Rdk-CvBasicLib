@@ -15,11 +15,11 @@ See file license.txt for more information
 
 namespace RDK {
 
-// Базовый класс масштабирования изображения
+/// Класс преобразования цветовых моделей изображения
 class UBAColorConvert: public UBAbstract
 {
 protected: // Параметры
-// Новый режим изображения
+/// Новый режим изображения
 UBMColorModel NewColorModel;
 
 protected: // Временные переменные
@@ -36,7 +36,7 @@ virtual ~UBAColorConvert(void);
 // ---------------------
 // Методы управления параметрами
 // ---------------------
-// Новый режим изображения
+/// Новый режим изображения
 UBMColorModel GetNewColorModel(void) const;
 bool SetNewColorModel(UBMColorModel value);
 // ---------------------
@@ -45,26 +45,26 @@ bool SetNewColorModel(UBMColorModel value);
 // Методы счета
 // ---------------------
 UBAColorConvert* New(void);
-virtual bool PLACalculate(UBitmap **input, UBitmap **output, int num_inputs=1, int num_outputs=1);
-virtual bool BCalculate(UBitmap &input, UBitmap &output);
-bool BCalculate(UBitmap &input, UBMColorModel color_model);
-bool BCalculate(UBitmap &input, UBitmap &output, UBMColorModel color_model);
-// ---------------------
-
-// ---------------------
-// Операторы
-// ---------------------
-bool operator () (UBitmap &input, UBitmap &output);
-bool operator () (UBitmap &input, UBMColorModel color_model);
-bool operator () (UBitmap &input, UBitmap &output, UBMColorModel color_model);  //?
 // ---------------------
 
 // --------------------------
 // Скрытые методы управления счетом фильтров
 // --------------------------
 protected:
-// Восстановление настроек по умолчанию и сброс процесса счета
+/// Восстановление настроек по умолчанию и сброс процесса счета
 virtual bool AFDefault(void);
+
+/// Обеспечивает сборку внутренней структуры объекта
+/// после настройки параметров
+/// Автоматически вызывает метод Reset() и выставляет Ready в true
+/// в случае успешной сборки
+virtual bool AFBuild(void);
+
+/// Сброс процесса счета без потери настроек
+virtual bool AFReset(void);
+
+/// Выполняет расчет этого объекта
+virtual bool AFCalculate(void);
 // --------------------------
 };
 }
