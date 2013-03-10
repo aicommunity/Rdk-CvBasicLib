@@ -33,12 +33,12 @@ UBAColorConvert::~UBAColorConvert(void)
 // Методы управления параметрами
 // ---------------------
 // Новый режим изображения
-UBMColorModel UBAColorConvert::GetNewColorModel(void) const
+const UBMColorModel& UBAColorConvert::GetNewColorModel(void) const
 {
  return NewColorModel;
 }
 
-bool UBAColorConvert::SetNewColorModel(UBMColorModel value)
+bool UBAColorConvert::SetNewColorModel(const UBMColorModel &value)
 {
  if(NewColorModel == value)
   return true;

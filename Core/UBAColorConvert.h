@@ -37,8 +37,8 @@ virtual ~UBAColorConvert(void);
 // Методы управления параметрами
 // ---------------------
 /// Новый режим изображения
-UBMColorModel GetNewColorModel(void) const;
-bool SetNewColorModel(UBMColorModel value);
+const UBMColorModel& GetNewColorModel(void) const;
+bool SetNewColorModel(const UBMColorModel &value);
 // ---------------------
 
 // ---------------------
