@@ -12,8 +12,36 @@ See file license.txt for more information
 #ifndef UBGRAPHICS_BASIC_H
 #define UBGRAPHICS_BASIC_H
 
-#include "Basic_lite.h" 
+#include "../../../Engine/ULibrary.h"
+#include "Basic_lite.h"
 #include "UBAColorConvert.h"
+//#include "UBAResize.h"
+//#include "UBARotate.h"
 
-#endif                  
+namespace RDK{
+
+class Basic : public ULibrary
+{
+public: // Методы
+// --------------------------
+// Конструкторы и деструкторы
+// --------------------------
+Basic(void);
+// --------------------------
+
+// --------------------------
+// Методы заполенения бибилиотеки
+// --------------------------
+// Заполняет массив ClassSamples готовыми экземплярами образцов и их именами.
+// Не требуется предварительная очистка массива и уборка памяти.
+virtual void CreateClassSamples(UStorage *storage);
+// --------------------------
+};
+
+extern Basic BasicLibrary;
+
+}
+
+
+#endif
 
