@@ -13,10 +13,13 @@ See file license.txt for more information
 #define UBGRAPHICS_BASIC_H
 
 #include "../../../Engine/ULibrary.h"
-#include "Basic_lite.h"
 #include "UBAColorConvert.h"
-//#include "UBAResize.h"
-//#include "UBARotate.h"
+#include "../../UBAModel.h"
+#include "../../UBAReceiver.h"
+#include "../../UBPipeline.h"
+#include "../../UBASource.h"
+#include "UBAResize.h"
+#include "UBARotate.h"
 
 namespace RDK{
 

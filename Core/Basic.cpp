@@ -13,10 +13,9 @@ See file license.txt for more information
 #define UBGRAPHICS_BASIC_CPP
 
 #include "Basic.h"
-#include "Basic_lite.cpp"
 #include "UBAColorConvert.cpp"
-//#include "UBAResize.cpp"
-//#include "UBARotate.cpp"
+#include "UBAResize.cpp"
+#include "UBARotate.cpp"
 
 
 namespace RDK{
@@ -54,6 +53,31 @@ void Basic::CreateClassSamples(UStorage *storage)
  cont->SetName("RotateSimple");
  cont->Default();
  UploadClass("RotateSimple",cont);
+
+ cont=new UBAModel;
+ cont->SetName("Model");
+ cont->Default();
+ UploadClass("Model",cont);
+
+ cont=new UBPipeline;
+ cont->SetName("Pipeline");
+ cont->Default();
+ UploadClass("Pipeline",cont);
+
+ cont=new UBParallelPipeline;
+ cont->SetName("ParallelPipeline");
+ cont->Default();
+ UploadClass("ParallelPipeline",cont);
+
+ cont=new UBASource;
+ cont->SetName("Source");
+ cont->Default();
+ UploadClass("Source",cont);
+
+ cont=new UBAReceiver;
+ cont->SetName("Receiver");
+ cont->Default();
+ UploadClass("Receiver",cont);
 }
 // --------------------------
 
