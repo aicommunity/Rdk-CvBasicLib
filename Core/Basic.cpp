@@ -43,17 +43,17 @@ void Basic::CreateClassSamples(UStorage *storage)
  cont=new UBAColorConvert;
  cont->SetName("ColorConvert");
  cont->Default();
- UploadClass("UBAColorConvert",cont);
+ UploadClass("ColorConvert",cont);
 
  cont=new UBAResizeEdges;
  cont->SetName("ResizeEdges");
  cont->Default();
- UploadClass("UBAResizeEdges",cont);
+ UploadClass("ResizeEdges",cont);
 
  cont=new UBARotateSimple;
  cont->SetName("RotateSimple");
  cont->Default();
- UploadClass("UBARotateSimple",cont);
+ UploadClass("RotateSimple",cont);
 }
 // --------------------------
 
