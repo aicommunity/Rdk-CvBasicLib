@@ -20,6 +20,8 @@ namespace RDK {
 // Конструкторы и деструкторы
 // ---------------------
 UBARotate::UBARotate(void)
+: Input("Input",this,0),
+  Output("Output",this,0)
 {
 }
 
@@ -67,24 +69,20 @@ bool UBARotate::SetEnlarge(bool enlarge)
 // ---------------------
 bool UBARotate::operator () (UBitmap &input, UBitmap &output)
 {
- Input=&input;
- Output=&output;
+ *Input=input;
  bool res=AFCCalculate();
- Input=0;
- Output=0;
+ output=*Output;
 
  return res;
 }
 
 bool UBARotate::operator () (UBitmap &input, UBitmap &output, float angle, bool enlarge)
 {
- Input=&input;
- Output=&output;
+ *Input=input;
  Angle=angle;
  Enlarge=enlarge;
  bool res=AFCCalculate();
- Input=0;
- Output=0;
+ output=*Output;
 
  return res;
 }
@@ -95,7 +93,7 @@ bool UBARotate::operator () (UBitmap &input, UBitmap &output, float angle, bool 
 // Скрытые методы управления счетом трекинга
 // --------------------------
 // Восстановление настроек по умолчанию и сброс процесса счета
-bool UBARotate::AFDefault(void)
+bool UBARotate::ADefault(void)
 {
  Angle=0;
  Enlarge=false;
@@ -106,29 +104,20 @@ bool UBARotate::AFDefault(void)
 // после настройки параметров
 // Автоматически вызывает метод Reset() и выставляет Ready в true
 // в случае успешной сборки
-bool UBARotate::AFBuild(void)
+bool UBARotate::ABuild(void)
 {
  return AFCBuild();
 }
 
 // Сброс процесса счета.
-bool UBARotate::AFReset(void)
+bool UBARotate::AReset(void)
 {
  return AFCReset();
 }
 
 // Выполняет расчет этого объекта
-bool UBARotate::AFCalculate(void)
+bool UBARotate::ACalculate(void)
 {
- if(Inputs.GetSize()>0)
-  Input=Inputs[0];
-
- if(Outputs.GetSize()>0)
-  Output=Outputs[0];
-
- if(!Input || !Output)
-  return true;
-
  return AFCCalculate();
 }
 // --------------------------

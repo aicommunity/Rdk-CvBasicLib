@@ -12,12 +12,14 @@ See file license.txt for more information
 
 #ifndef UBAResizeH
 #define UBAResizeH
-#include "../../UBAbstract.h"
+
+#include "../../../Engine/UNet.h"
+#include "../../UBitmap.h"
 
 namespace RDK {
 
 /// Базовый класс масштабирования изображения
-class UBAResize: public UBAbstract
+class UBAResize: public UNet
 {
 protected: // Параметры
 /// Новый размер
@@ -25,10 +27,10 @@ int NewWidth,NewHeight;
 
 protected: // Входные и выходные данные
 /// Входное изображение
-UEPtr<UBitmap> Input;
+UPropertyInputData<UBitmap, UBAResize> Input;
 
 /// Выходное изображение
-UEPtr<UBitmap> Output;
+UPropertyInputData<UBitmap, UBAResize> Output;
 
 protected: // Временные переменные
 UBitmap Buffer;
@@ -72,19 +74,19 @@ bool operator () (UBitmap &input, UBitmap &output, int width, int height);
 // --------------------------
 protected:
 /// Восстановление настроек по умолчанию и сброс процесса счета
-virtual bool AFDefault(void);
+virtual bool ADefault(void);
 
 /// Обеспечивает сборку внутренней структуры объекта
 /// после настройки параметров
 /// Автоматически вызывает метод Reset() и выставляет Ready в true
 /// в случае успешной сборки
-virtual bool AFBuild(void);
+virtual bool ABuild(void);
 
 /// Сброс процесса счета.
-virtual bool AFReset(void);
+virtual bool AReset(void);
 
 /// Выполняет расчет этого объекта
-virtual bool AFCalculate(void);
+virtual bool ACalculate(void);
 // --------------------------
 
 // --------------------------

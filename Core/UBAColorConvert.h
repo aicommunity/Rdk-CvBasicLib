@@ -11,16 +11,22 @@ See file license.txt for more information
 
 #ifndef UBAColorConvertH
 #define UBAColorConvertH
-#include "../../UBAbstract.h"
+#include "../../../Engine/UNet.h"
+#include "../../UBitmap.h"
 
 namespace RDK {
 
 /// Класс преобразования цветовых моделей изображения
-class UBAColorConvert: public UBAbstract
+class UBAColorConvert: public UNet
 {
 protected: // Параметры
 /// Новый режим изображения
 UBMColorModel NewColorModel;
+
+protected: // Входы и выходы
+UPropertyInputData<UBitmap, UBAColorConvert> Input;
+
+UPropertyOutputData<UBitmap, UBAColorConvert> Output;
 
 protected: // Временные переменные
 UBitmap Buffer;   //?
@@ -52,19 +58,19 @@ UBAColorConvert* New(void);
 // --------------------------
 protected:
 /// Восстановление настроек по умолчанию и сброс процесса счета
-virtual bool AFDefault(void);
+virtual bool ADefault(void);
 
 /// Обеспечивает сборку внутренней структуры объекта
 /// после настройки параметров
 /// Автоматически вызывает метод Reset() и выставляет Ready в true
 /// в случае успешной сборки
-virtual bool AFBuild(void);
+virtual bool ABuild(void);
 
 /// Сброс процесса счета без потери настроек
-virtual bool AFReset(void);
+virtual bool AReset(void);
 
 /// Выполняет расчет этого объекта
-virtual bool AFCalculate(void);
+virtual bool ACalculate(void);
 // --------------------------
 };
 }

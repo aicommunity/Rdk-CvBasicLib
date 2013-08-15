@@ -12,12 +12,13 @@ See file license.txt for more information
 
 #ifndef UBARotateH
 #define UBARotateH
-#include "../../UBAbstract.h"
+#include "../../../Engine/UNet.h"
+#include "../../UBitmap.h"
 
 namespace RDK {
 
 /// Базовый класс поворота изображения
-class UBARotate: public UBAbstract
+class UBARotate: public UNet
 {
 protected: // Параметры
 /// Угол поворота (градусы)
@@ -28,10 +29,10 @@ bool Enlarge;
 
 protected: // Входные и выходные данные
 /// Входное изображение
-UEPtr<UBitmap> Input;
+UPropertyInputData<UBitmap, UBARotate> Input;
 
 /// Выходное изображение
-UEPtr<UBitmap> Output;
+UPropertyOutputData<UBitmap, UBARotate> Output;
 
 protected: // Временные переменные
 UBitmap Buffer;
@@ -68,19 +69,19 @@ bool operator () (UBitmap &input, UBitmap &output, float angle, bool enlarge=fal
 // --------------------------
 protected:
 /// Восстановление настроек по умолчанию и сброс процесса счета
-virtual bool AFDefault(void);
+virtual bool ADefault(void);
 
 /// Обеспечивает сборку внутренней структуры объекта
 /// после настройки параметров
 /// Автоматически вызывает метод Reset() и выставляет Ready в true
 /// в случае успешной сборки
-virtual bool AFBuild(void);
+virtual bool ABuild(void);
 
 /// Сброс процесса счета.
-virtual bool AFReset(void);
+virtual bool AReset(void);
 
 /// Выполняет расчет этого объекта
-virtual bool AFCalculate(void);
+virtual bool ACalculate(void);
 // --------------------------
 
 // --------------------------

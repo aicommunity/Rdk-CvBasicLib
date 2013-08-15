@@ -23,6 +23,8 @@ namespace RDK {
 // Конструкторы и деструкторы
 // ---------------------
 UBAResize::UBAResize(void)
+: Input("Input",this,0),
+  Output("Output",this,0)
 {
  NewWidth=1;
  NewHeight=1;
@@ -70,7 +72,7 @@ bool UBAResize::SetNewHeight(int value)
 // Скрытые методы управления счетом трекинга
 // --------------------------
 // Восстановление настроек по умолчанию и сброс процесса счета
-bool UBAResize::AFDefault(void)
+bool UBAResize::ADefault(void)
 {
  return AFCDefault();
 }
@@ -79,29 +81,20 @@ bool UBAResize::AFDefault(void)
 // после настройки параметров
 // Автоматически вызывает метод Reset() и выставляет Ready в true
 // в случае успешной сборки
-bool UBAResize::AFBuild(void)
+bool UBAResize::ABuild(void)
 {
  return AFCBuild();
 }
 
 // Сброс процесса счета.
-bool UBAResize::AFReset(void)
+bool UBAResize::AReset(void)
 {
  return AFCReset();
 }
 
 // Выполняет расчет этого объекта
-bool UBAResize::AFCalculate(void)
+bool UBAResize::ACalculate(void)
 {
- if(Inputs.GetSize()>0)
-  Input=Inputs[0];
-
- if(Outputs.GetSize()>0)
-  Output=Outputs[0];
-
- if(!Input || !Output)
-  return true;
-
  return AFCCalculate();
 }
 // --------------------------
