@@ -16,6 +16,7 @@ See file license.txt for more information
 #include "UBAColorConvert.cpp"
 #include "UBAResize.cpp"
 #include "UBARotate.cpp"
+#include "UBACrop.cpp"
 
 
 namespace RDK{
@@ -78,6 +79,11 @@ void Basic::CreateClassSamples(UStorage *storage)
  cont->SetName("Receiver");
  cont->Default();
  UploadClass("Receiver",cont);
+
+ cont=new UBACrop;
+ cont->SetName("Crop");
+ cont->Default();
+ UploadClass("Crop",cont);
 }
 // --------------------------
 
