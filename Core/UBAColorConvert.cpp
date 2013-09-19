@@ -91,9 +91,6 @@ bool UBAColorConvert::ACalculate(void)
 // if(Outputs.GetSize()<1 || Inputs.GetSize()<1)
 //  return true;
 
- if(!Input || !Output)
-  return true;
-
  Output->SetColorModel(NewColorModel,false);
  Input->ConvertTo(*Output);
  return true;
