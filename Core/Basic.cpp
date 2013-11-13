@@ -17,6 +17,7 @@ See file license.txt for more information
 #include "UBAResize.cpp"
 #include "UBARotate.cpp"
 #include "UBACrop.cpp"
+#include "UBAReduce.cpp"
 
 
 namespace RDK{
@@ -84,6 +85,11 @@ void Basic::CreateClassSamples(UStorage *storage)
  cont->SetName("Crop");
  cont->Default();
  UploadClass("Crop",cont);
+
+ cont=new UBAReduce;
+ cont->SetName("Reduce");
+ cont->Default();
+ UploadClass("Reduce",cont);
 }
 // --------------------------
 
