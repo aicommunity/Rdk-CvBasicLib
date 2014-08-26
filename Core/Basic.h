@@ -20,6 +20,8 @@ See file license.txt for more information
 #include "../../UBASource.h"
 #include "UBAResize.h"
 #include "UBARotate.h"
+#include "UBACrop.h"
+#include "UBAReduce.h"
 
 namespace RDK{
 

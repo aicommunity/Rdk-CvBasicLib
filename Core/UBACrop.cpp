@@ -8,11 +8,11 @@ File License:       New BSD License
 Project License:    New BSD License
 See file license.txt for more information
 *********************************************************** */
-#ifndef UBAColorConvert_CPP
-#define UBAColorConvert_CPP
+#ifndef UBACrop_CPP
+#define UBACrop_CPP
 
 #include <math.h>
-#include "UBAColorConvert.h"
+#include "UBACrop.h"
 #include "../../UGraphicsBinarySerialize.h"
 
 namespace RDK {
@@ -20,13 +20,13 @@ namespace RDK {
 // ---------------------
 // Конструкторы и деструкторы
 // ---------------------
-UBAColorConvert::UBAColorConvert(void)
+UBACrop::UBACrop(void)
 : Input("Input",this,0),
+  CropRect("CropRect",this,1),
   Output("Output",this,0)
 {
- AddLookupProperty("NewColorModel",ptPubParameter, new UVProperty<UBMColorModel,UBAColorConvert>(this,&UBAColorConvert::SetNewColorModel,&UBAColorConvert::GetNewColorModel));
 }
-UBAColorConvert::~UBAColorConvert(void)
+UBACrop::~UBACrop(void)
 {
 }
 // ---------------------
@@ -34,29 +34,16 @@ UBAColorConvert::~UBAColorConvert(void)
 // ---------------------
 // Методы управления параметрами
 // ---------------------
-// Новый режим изображения
-const UBMColorModel& UBAColorConvert::GetNewColorModel(void) const
-{
- return NewColorModel;
-}
 
-bool UBAColorConvert::SetNewColorModel(const UBMColorModel &value)
-{
- if(NewColorModel == value)
-  return true;
-
- NewColorModel=value;
- return true;
-}
 // ---------------------
 
 // ---------------------
 // Методы счета
 // ---------------------
 // Создание новой копии этого объекта
-UBAColorConvert* UBAColorConvert::New(void)
+UBACrop* UBACrop::New(void)
 {
- return new UBAColorConvert;
+ return new UBACrop;
 }
 // ---------------------
 
@@ -64,9 +51,8 @@ UBAColorConvert* UBAColorConvert::New(void)
 // Скрытые методы управления счетом фильтров
 // --------------------------
 // Восстановление настроек по умолчанию и сброс процесса счета
-bool UBAColorConvert::ADefault(void)
+bool UBACrop::ADefault(void)
 {
- NewColorModel=ubmY8;
  return true;
 }
 
@@ -74,25 +60,25 @@ bool UBAColorConvert::ADefault(void)
 // после настройки параметров
 // Автоматически вызывает метод Reset() и выставляет Ready в true
 // в случае успешной сборки
-bool UBAColorConvert::ABuild(void)
+bool UBACrop::ABuild(void)
 {
  return true;
 }
 
 // Сброс процесса счета без потери настроек
-bool UBAColorConvert::AReset(void)
+bool UBACrop::AReset(void)
 {
  return true;
 }
 
 // Выполняет расчет этого объекта
-bool UBAColorConvert::ACalculate(void)
+bool UBACrop::ACalculate(void)
 {
-// if(Outputs.GetSize()<1 || Inputs.GetSize()<1)
-//  return true;
+ if(!Input || !Output)
+  return true;
 
- Output->SetColorModel(NewColorModel,false);
- Input->ConvertTo(*Output);
+ Output->SetRes(CropRect->Width, CropRect->Height, Input->GetColorModel());
+ Input->GetRect(CropRect->X,CropRect->Y, *Output);
  return true;
 }
 // --------------------------
