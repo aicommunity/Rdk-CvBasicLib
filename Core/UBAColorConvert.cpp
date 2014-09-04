@@ -21,8 +21,8 @@ namespace RDK {
 // Конструкторы и деструкторы
 // ---------------------
 UBAColorConvert::UBAColorConvert(void)
-: Input("Input",this,0),
-  Output("Output",this,0)
+: Input("Input",this),
+  Output("Output",this)
 {
  AddLookupProperty("NewColorModel",ptPubParameter, new UVProperty<UBMColorModel,UBAColorConvert>(this,&UBAColorConvert::SetNewColorModel,&UBAColorConvert::GetNewColorModel));
 }
