@@ -23,7 +23,7 @@ protected: // Параметры
 /// Новый режим изображения
 UBMColorModel NewColorModel;
 
-protected: // Входы и выходы
+public: // Входы и выходы
 UPropertyInputData<UBitmap, UBAColorConvert> Input;
 
 UPropertyOutputData<UBitmap, UBAColorConvert> Output;
