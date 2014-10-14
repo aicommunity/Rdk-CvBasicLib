@@ -7,7 +7,7 @@
 namespace RDK {
 
 /// Базовый класс масштабирования изображения
-class UBAReduce: public UNet
+class RDK_LIB_TYPE UBAReduce: public UNet
 {
 protected: // Параметры
 /// Номер столбца и строки для сохранения

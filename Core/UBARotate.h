@@ -18,7 +18,7 @@ See file license.txt for more information
 namespace RDK {
 
 /// Базовый класс поворота изображения
-class UBARotate: public UNet
+class RDK_LIB_TYPE UBARotate: public UNet
 {
 protected: // Параметры
 /// Угол поворота (градусы)
@@ -106,7 +106,7 @@ virtual bool AFCCalculate(void)=0;
 };
 
 /// Поворачивает изображение на заданный угол
-class UBARotateSimple: public UBARotate
+class RDK_LIB_TYPE UBARotateSimple: public UBARotate
 {
 public: // Методы
 // ---------------------

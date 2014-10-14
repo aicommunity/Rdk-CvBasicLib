@@ -17,7 +17,7 @@ See file license.txt for more information
 namespace RDK {
 
 /// Класс преобразования цветовых моделей изображения
-class UBAColorConvert: public UNet
+class RDK_LIB_TYPE UBAColorConvert: public UNet
 {
 protected: // Параметры
 /// Новый режим изображения
