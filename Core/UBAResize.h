@@ -19,7 +19,7 @@ See file license.txt for more information
 namespace RDK {
 
 /// Базовый класс масштабирования изображения
-class UBAResize: public UNet
+class RDK_LIB_TYPE UBAResize: public UNet
 {
 protected: // Параметры
 /// Новый размер
@@ -112,7 +112,7 @@ virtual bool AFCCalculate(void)=0;
 };
 
 /// Изменяет размер изображения по четырем угловым точкам
-class UBAResizeEdges: public UBAResize
+class RDK_LIB_TYPE UBAResizeEdges: public UBAResize
 {
 public: // Методы
 // ---------------------

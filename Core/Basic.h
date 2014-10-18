@@ -25,7 +25,7 @@ See file license.txt for more information
 
 namespace RDK{
 
-class Basic : public ULibrary
+class RDK_LIB_TYPE Basic : public ULibrary
 {
 public: // Ìועמהû
 // --------------------------

@@ -17,7 +17,7 @@ See file license.txt for more information
 namespace RDK {
 
 /// Класс преобразования цветовых моделей изображения
-class UBACrop: public UNet
+class RDK_LIB_TYPE UBACrop: public UNet
 {
 protected: // Параметры
 
