@@ -43,7 +43,7 @@ virtual void CreateClassSamples(UStorage *storage);
 // --------------------------
 };
 
-extern Basic BasicLibrary;
+extern RDK_LIB_TYPE Basic BasicLibrary;
 
 }
 
