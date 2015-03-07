@@ -68,6 +68,8 @@ bool operator () (UBitmap &input, UBitmap &output, float angle, bool enlarge=fal
 // Скрытые методы управления счетом
 // --------------------------
 protected:
+virtual bool BCalculate(UBitmap &input, UBitmap &output)=0;
+
 /// Восстановление настроек по умолчанию и сброс процесса счета
 virtual bool ADefault(void);
 
@@ -115,7 +117,7 @@ public: // Методы
 /// Создание новой копии этого объекта
 virtual UBARotateSimple* New(void);
 
-bool BCalculate(UBitmap &input, UBitmap &output);
+virtual bool BCalculate(UBitmap &input, UBitmap &output);
 // ---------------------
 
 // --------------------------
