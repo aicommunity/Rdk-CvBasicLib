@@ -69,22 +69,19 @@ bool UBARotate::SetEnlarge(bool enlarge)
 // ---------------------
 bool UBARotate::operator () (UBitmap &input, UBitmap &output)
 {
- *Input=input;
- bool res=AFCCalculate();
- output=*Output;
-
- return res;
+ //*Input=input;
+ //bool res=AFCCalculate();
+ //output=*Output;
+ BCalculate(input, output);
+ return true;
 }
 
 bool UBARotate::operator () (UBitmap &input, UBitmap &output, float angle, bool enlarge)
 {
- *Input=input;
  Angle=angle;
  Enlarge=enlarge;
- bool res=AFCCalculate();
- output=*Output;
-
- return res;
+ BCalculate(input, output);
+ return true;
 }
 // ---------------------
 
@@ -160,18 +157,23 @@ bool UBARotateSimple::BCalculate(UBitmap &input, UBitmap &output)
  else
  if(angle == 90)
  {
+  if(input.GetWidth() == 0 || input.GetHeight() == 0)
+  {
+   output.SetRes(input.GetHeight(),input.GetWidth(),input.GetColorModel());
+   return true;
+  }
 /*  if(enlarge)
   {
    UBColor *indata=input.GetData();
    UBColor *outdata=output.GetData();
    for(int j=0;j<input.GetHeight();j++)
    {
-    for(int i=0;i<input.GetWidth();i++)
-    {
-     memcpy(outdata+i*output.GetLineByteLength()+j*output.GetPixelByteLength(),
-            indata,input.GetPixelByteLength());
-     indata+=input.GetPixelByteLength();
-    }
+	for(int i=0;i<input.GetWidth();i++)
+	{
+	 memcpy(outdata+i*output.GetLineByteLength()+j*output.GetPixelByteLength(),
+			indata,input.GetPixelByteLength());
+	 indata+=input.GetPixelByteLength();
+	}
    }
   }
   else
@@ -244,9 +246,9 @@ bool UBARotateSimple::BCalculate(UBitmap &input, UBitmap &output)
    else
    {
     in_xstart=0;
-    in_xstop=input.GetWidth();
+    in_xstop=input.GetWidth()-1;
     in_ystart=(input.GetHeight()-input.GetWidth())/2;
-    in_ystop=in_ystart+input.GetWidth();
+	in_ystop=in_ystart+input.GetWidth()-1;
 //    out_xstart=in_ystart;
 //    out_xstop=in_ystop;
 //    out_ystart=in_xstart;
@@ -269,6 +271,12 @@ bool UBARotateSimple::BCalculate(UBitmap &input, UBitmap &output)
  else
  if(angle == 180)
  {
+  if(input.GetWidth() == 0 || input.GetHeight() == 0)
+  {
+   output.SetRes(input.GetWidth(),input.GetHeight(),input.GetColorModel());
+   return true;
+  }
+
   output=input;
   output.ReflectionX();
   output.ReflectionY();
@@ -276,6 +284,12 @@ bool UBARotateSimple::BCalculate(UBitmap &input, UBitmap &output)
  else
  if(angle == 270)
  {
+  if(input.GetWidth() == 0 || input.GetHeight() == 0)
+  {
+   output.SetRes(input.GetHeight(),input.GetWidth(),input.GetColorModel());
+   return true;
+  }
+
   if(Enlarge)
   {
    UBColor *indata=input.GetData();
@@ -308,9 +322,9 @@ bool UBARotateSimple::BCalculate(UBitmap &input, UBitmap &output)
    else
    {
     in_xstart=0;
-    in_xstop=input.GetWidth();
-    in_ystart=(input.GetHeight()-input.GetWidth())/2;
-    in_ystop=in_ystart+input.GetWidth();
+	in_xstop=input.GetWidth()-1;
+	in_ystart=(input.GetHeight()-input.GetWidth())/2;
+	in_ystop=in_ystart+input.GetWidth()-1;
 //    out_xstart=in_ystart;
 //    out_xstop=in_ystop;
 //    out_ystart=in_xstart;
