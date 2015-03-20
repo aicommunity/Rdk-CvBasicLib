@@ -21,9 +21,9 @@ namespace RDK {
 // Конструкторы и деструкторы
 // ---------------------
 UBACrop::UBACrop(void)
-: Input("Input",this,0),
-  CropRect("CropRect",this,1),
-  Output("Output",this,0)
+: Input("Input",this),
+  CropRect("CropRect",this),
+  Output("Output",this)
 {
 }
 UBACrop::~UBACrop(void)

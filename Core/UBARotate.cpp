@@ -20,8 +20,8 @@ namespace RDK {
 // Конструкторы и деструкторы
 // ---------------------
 UBARotate::UBARotate(void)
-: Input("Input",this,0),
-  Output("Output",this,0)
+: Input("Input",this),
+  Output("Output",this)
 {
 }
 

@@ -10,8 +10,8 @@ namespace RDK {
 // Конструкторы и деструкторы
 // ---------------------
 UBAReduce::UBAReduce(void)
-: Input("Input",this,0),
-  Output("Output",this,0)
+: Input("Input",this),
+  Output("Output",this)
 {
  AddLookupProperty("NumCols",ptPubParameter, new UVProperty<int,UBAReduce>(this,&UBAReduce::SetNumCols,&UBAReduce::GetNumCols));
  AddLookupProperty("NumRows",ptPubParameter, new UVProperty<int,UBAReduce>(this,&UBAReduce::SetNumRows,&UBAReduce::GetNumRows));

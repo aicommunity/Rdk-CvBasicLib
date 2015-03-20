@@ -23,8 +23,8 @@ namespace RDK {
 // Конструкторы и деструкторы
 // ---------------------
 UBAResize::UBAResize(void)
-: Input("Input",this,0),
-  Output("Output",this,0)
+: Input("Input",this),
+  Output("Output",this)
 {
  NewWidth=1;
  NewHeight=1;
