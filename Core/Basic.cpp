@@ -18,6 +18,10 @@ See file license.txt for more information
 #include "UBARotate.cpp"
 #include "UBACrop.cpp"
 #include "UBAReduce.cpp"
+#include "UBAModel.cpp"
+#include "UBPipeline.cpp"
+#include "UBASource.cpp"
+#include "UBAReceiver.cpp"
 
 
 namespace RDK{
