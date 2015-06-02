@@ -13,7 +13,7 @@ See file license.txt for more information
 #ifndef UBASOURCE_H
 #define UBASOURCE_H
 
-#include "rdk.h"
+#include "../../../Rdk/Deploy/Include/rdk.h"
 
 namespace RDK {
 

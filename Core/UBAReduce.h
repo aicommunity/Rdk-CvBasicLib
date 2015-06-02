@@ -1,8 +1,9 @@
 #ifndef UBA_REDUCE_H
 #define UBA_REDUCE_H
 
-#include "../../../Engine/UNet.h"
-#include "../../UBitmap.h"
+//#include "../../../Engine/UNet.h"
+//#include "../../UBitmap.h"
+#include "../../../Rdk/Deploy/Include/rdk.h"
 
 namespace RDK {
 

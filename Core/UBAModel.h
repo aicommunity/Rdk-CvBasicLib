@@ -13,7 +13,8 @@ See file license.txt for more information
 #ifndef UBAMODEL_H
 #define UBAMODEL_H
 
-#include "../Engine/UNet.h"
+//#include "../Engine/UNet.h"
+#include "../../../Rdk/Deploy/Include/rdk.h"
 
 namespace RDK {
 

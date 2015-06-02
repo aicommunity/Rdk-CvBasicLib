@@ -13,8 +13,9 @@ See file license.txt for more information
 #ifndef UBAResizeH
 #define UBAResizeH
 
-#include "../../../Engine/UNet.h"
-#include "../../UBitmap.h"
+//#include "../../../Engine/UNet.h"
+//#include "../../UBitmap.h"
+#include "../../../Rdk/Deploy/Include/rdk.h"
 
 namespace RDK {
 

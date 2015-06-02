@@ -11,8 +11,10 @@ See file license.txt for more information
 
 #ifndef UBAColorConvertH
 #define UBAColorConvertH
-#include "../../../Engine/UNet.h"
-#include "../../UBitmap.h"
+
+#include "../../../Rdk/Deploy/Include/rdk.h"
+//#include "../../../Engine/UNet.h"
+//#include "../../UBitmap.h"
 
 namespace RDK {
 

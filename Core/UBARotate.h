@@ -12,8 +12,9 @@ See file license.txt for more information
 
 #ifndef UBARotateH
 #define UBARotateH
-#include "../../../Engine/UNet.h"
-#include "../../UBitmap.h"
+//#include "../../../Engine/UNet.h"
+//#include "../../UBitmap.h"
+#include "../../../Rdk/Deploy/Include/rdk.h"
 
 namespace RDK {
 

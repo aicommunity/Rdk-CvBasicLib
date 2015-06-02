@@ -13,15 +13,15 @@ See file license.txt for more information
 #define UBGRAPHICS_BASIC_CPP
 
 #include "Basic.h"
-#include "UBAColorConvert.cpp"
-#include "UBAResize.cpp"
-#include "UBARotate.cpp"
-#include "UBACrop.cpp"
-#include "UBAReduce.cpp"
-#include "UBAModel.cpp"
-#include "UBPipeline.cpp"
-#include "UBASource.cpp"
-#include "UBAReceiver.cpp"
+//#include "UBAColorConvert.cpp"
+//#include "UBAResize.cpp"
+//#include "UBARotate.cpp"
+//#include "UBACrop.cpp"
+//#include "UBAReduce.cpp"
+//#include "UBAModel.cpp"
+//#include "UBPipeline.cpp"
+//#include "UBASource.cpp"
+//#include "UBAReceiver.cpp"
 
 
 namespace RDK{
