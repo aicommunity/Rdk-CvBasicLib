@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{149112E9-B343-4E81-A5F5-B4853AE7E8FB}</ProjectGuid>
+    <ProjectGuid>{EAE98158-5506-4ED6-9159-42440B178A51}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>RdkBasicLib</RootNamespace>
   </PropertyGroup>
@@ -51,7 +51,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions);LIBRDK_LIBRARY_EXPORT;RDK_UNICODE_RUN</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions);RDK_UNICODE_RUN</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
@@ -75,7 +75,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);LIBRDK_LIBRARY_EXPORT;RDK_UNICODE_RUN</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);RDK_UNICODE_RUN</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
