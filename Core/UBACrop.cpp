@@ -14,7 +14,7 @@ See file license.txt for more information
 #include <math.h>
 #include "UBACrop.h"
 //#include "../../UGraphicsBinarySerialize.h"
-#include "rdk.h"
+#include "../../../Rdk/Deploy/Include/rdk.h"
 
 namespace RDK {
 
