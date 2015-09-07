@@ -21,12 +21,12 @@ namespace RDK {
 /// Базовый класс поворота изображения
 class RDK_LIB_TYPE UBARotate: public UNet
 {
-protected: // Параметры
+public: // Параметры
 /// Угол поворота (градусы)
-float Angle;
+ULProperty<float, UBARotate> Angle;
 
 /// Флаг расширения
-bool Enlarge;
+ULProperty<bool, UBARotate> Enlarge;
 
 protected: // Входные и выходные данные
 /// Входное изображение
@@ -51,11 +51,11 @@ virtual ~UBARotate(void);
 // ---------------------
 /// Угол поворота (градусы)
 float GetAngle(void) const;
-bool SetAngle(float angle);
+bool SetAngle(const float &angle);
 
 /// Флаг расширения
 bool GetEnlarge(void) const;
-bool SetEnlarge(bool enlarge);
+bool SetEnlarge(const bool &enlarge);
 // ---------------------
 
 // ---------------------
