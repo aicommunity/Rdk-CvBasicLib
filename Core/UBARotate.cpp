@@ -152,22 +152,56 @@ bool UBARotateSimple::BCalculate(UBitmap &input, UBitmap &output)
 
   if(Enlarge)
   {
- // Выбираем размер результирующего изображения
    output.SetRes(input.GetHeight(),input.GetWidth(),input.GetColorModel());
    int pixel_byte_length=input.GetPixelByteLength();
    int output_line_byte_length=output.GetLineByteLength();
 
    UBColor *indata=input.GetData()+input.GetByteLength();
    UBColor *outdata=output.GetData();
-   for(int j=input.GetHeight()-1;j>=0;j--)
+   switch(input.GetColorModel())
    {
-	UBColor* poutdata=outdata+j*pixel_byte_length;
-	for(int i=0;i<input.GetWidth();i++)
+   case ubmY8:
+	// Выбираем размер результирующего изображения
+	for(int j=input.GetHeight()-1;j>=0;j--)
 	{
-	 memcpy(poutdata,indata,pixel_byte_length);
-	 poutdata+=i*output_line_byte_length;
-	 indata-=pixel_byte_length;
+	 UBColor* poutdata=outdata+j;
+	 for(int i=0;i<input.GetWidth();i++)
+	 {
+	  *poutdata=*indata;
+	  poutdata+=output_line_byte_length;
+	  --indata;
+	 }
+    }
+   break;
+
+   case ubmRGB24:
+	// Выбираем размер результирующего изображения
+	for(int j=input.GetHeight()-1;j>=0;j--)
+	{
+	 UBColor* poutdata=outdata+j*pixel_byte_length;
+	 for(int i=0;i<input.GetWidth();i++)
+	 {
+	  *poutdata=*indata;
+	  *(poutdata+1)=*(indata+1);
+	  *(poutdata+2)=*(indata+2);
+	  poutdata+=output_line_byte_length;
+	  indata-=pixel_byte_length;
+	 }
 	}
+   break;
+
+   default:
+	// Выбираем размер результирующего изображения
+	for(int j=input.GetHeight()-1;j>=0;j--)
+	{
+	 UBColor* poutdata=outdata+j*pixel_byte_length;
+	 for(int i=0;i<input.GetWidth();i++)
+	 {
+	  memcpy(poutdata,indata,pixel_byte_length);
+	  poutdata+=output_line_byte_length;
+	  indata-=pixel_byte_length;
+	 }
+    }
    }
   }
   else
@@ -237,14 +271,52 @@ bool UBARotateSimple::BCalculate(UBitmap &input, UBitmap &output)
    output.SetRes(input.GetHeight(),input.GetWidth(),input.GetColorModel());
    UBColor *indata=input.GetData()+input.GetByteLength();;
    UBColor *outdata=output.GetData();
-   for(int j=input.GetHeight()-1;j>=0;j--)
+   int pixel_byte_length=input.GetPixelByteLength();
+   int output_line_byte_length=output.GetLineByteLength();
+
+   switch(input.GetColorModel())
    {
-    for(int i=0;i<input.GetWidth();i++)
-    {
-     memcpy(outdata+i*output.GetLineByteLength()+j*output.GetPixelByteLength(),
-            indata,input.GetPixelByteLength());
-     indata-=input.GetPixelByteLength();
-    }
+   case ubmY8:
+	for(int j=input.GetHeight()-1;j>=0;j--)
+	{
+	 UBColor *poutdata=outdata+j;
+	 for(int i=0;i<input.GetWidth();i++)
+	 {
+//	  memcpy(poutdata,indata,pixel_byte_length);
+	  *poutdata=*indata;
+	  poutdata+=output_line_byte_length;
+	  --indata;
+	 }
+	}
+   break;
+
+   case ubmRGB24:
+	for(int j=input.GetHeight()-1;j>=0;j--)
+	{
+	 UBColor *poutdata=outdata+j*pixel_byte_length;
+	 for(int i=0;i<input.GetWidth();i++)
+	 {
+//	  memcpy(poutdata,indata,pixel_byte_length);
+	  *poutdata=*indata;
+	  *(poutdata+1)=*(indata+1);
+	  *(poutdata+2)=*(indata+2);
+	  poutdata+=output_line_byte_length;
+	  indata-=pixel_byte_length;
+	 }
+	}
+   break;
+
+   default:
+	for(int j=input.GetHeight()-1;j>=0;j--)
+	{
+	 UBColor *poutdata=outdata+j*pixel_byte_length;
+	 for(int i=0;i<input.GetWidth();i++)
+	 {
+	  memcpy(poutdata,indata,pixel_byte_length);
+	  poutdata+=output_line_byte_length;
+	  indata-=pixel_byte_length;
+	 }
+	}
    }
   }
   else
