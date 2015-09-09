@@ -21,10 +21,11 @@ namespace RDK {
 // ---------------------
 UBARotate::UBARotate(void)
 : Angle("Angle",this, &UBARotate::SetAngle),
-  Enlarge("Enlarge",this, &UBARotate::SetEnlarge),
+//  Enlarge("Enlarge",this, &UBARotate::SetEnlarge),
   Input("Input",this),
   Output("Output",this)
 {
+ Enlarge=true;
 }
 
 UBARotate::~UBARotate(void)
@@ -89,7 +90,7 @@ bool UBARotate::operator () (UBitmap &input, UBitmap &output, float angle, bool 
 bool UBARotate::ADefault(void)
 {
  Angle=0;
- Enlarge=false;
+// Enlarge=false;
  return AFCDefault();
 }
 
@@ -141,7 +142,7 @@ bool UBARotateSimple::BCalculate(UBitmap &input, UBitmap &output)
   output=input;
  }
  else
- if(angle == 90)
+ if(angle == 270)
  {
   if(input.GetWidth() == 0 || input.GetHeight() == 0)
   {
@@ -154,15 +155,15 @@ bool UBARotateSimple::BCalculate(UBitmap &input, UBitmap &output)
  // Выбираем размер результирующего изображения
    output.SetRes(input.GetHeight(),input.GetWidth(),input.GetColorModel());
 
-   UBColor *indata=input.GetData();
+   UBColor *indata=input.GetData()+input.GetByteLength();
    UBColor *outdata=output.GetData();
-   for(int j=0;j<input.GetHeight();j++)
+   for(int j=input.GetHeight()-1;j>=0;j--)
    {
 	for(int i=0;i<input.GetWidth();i++)
 	{
 	 memcpy(outdata+i*output.GetLineByteLength()+j*output.GetPixelByteLength(),
 			indata,input.GetPixelByteLength());
-	 indata+=input.GetPixelByteLength();
+	 indata-=input.GetPixelByteLength();
 	}
    }
   }
@@ -216,12 +217,11 @@ bool UBARotateSimple::BCalculate(UBitmap &input, UBitmap &output)
    return true;
   }
 
-  output=input;
-  output.ReflectionX();
+  input.ReflectionX(&output);
   output.ReflectionY();
  }
  else
- if(angle == 270)
+ if(angle == 90)
  {
   if(input.GetWidth() == 0 || input.GetHeight() == 0)
   {
@@ -232,15 +232,15 @@ bool UBARotateSimple::BCalculate(UBitmap &input, UBitmap &output)
   if(Enlarge)
   {
    output.SetRes(input.GetHeight(),input.GetWidth(),input.GetColorModel());
-   UBColor *indata=input.GetData();
+   UBColor *indata=input.GetData()+input.GetByteLength();;
    UBColor *outdata=output.GetData();
-   for(int j=0;j<input.GetHeight();j++)
+   for(int j=input.GetHeight()-1;j>=0;j--)
    {
     for(int i=0;i<input.GetWidth();i++)
     {
      memcpy(outdata+i*output.GetLineByteLength()+j*output.GetPixelByteLength(),
             indata,input.GetPixelByteLength());
-     indata+=input.GetPixelByteLength();
+     indata-=input.GetPixelByteLength();
     }
    }
   }

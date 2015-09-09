@@ -21,6 +21,7 @@ See file license.txt for more information
 #include "UBASource.h"
 #include "UBAResize.h"
 #include "UBARotate.h"
+#include "UBAFlipImage.h"
 #include "UBACrop.h"
 #include "UBAReduce.h"
 

@@ -94,6 +94,13 @@ void Basic::CreateClassSamples(UStorage *storage)
  cont->SetName("Reduce");
  cont->Default();
  UploadClass("Reduce",cont);
+
+ cont=new UBAFlipImageSimple;
+ cont->SetName("FlipImage");
+ cont->Default();
+ UploadClass("UBAFlipImageSimple",cont);
+
+
 }
 // --------------------------
 

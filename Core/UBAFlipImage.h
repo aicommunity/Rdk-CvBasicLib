@@ -10,8 +10,8 @@ Project License:    New BSD License
 See file license.txt for more information
 *********************************************************** */
 
-#ifndef UBARotateH
-#define UBARotateH
+#ifndef UBAFlipImageH
+#define UBAFlipImageH
 //#include "../../../Engine/UNet.h"
 //#include "../../UBitmap.h"
 #include "../../../Rdk/Deploy/Include/rdk.h"
@@ -19,22 +19,21 @@ See file license.txt for more information
 namespace RDK {
 
 /// Базовый класс поворота изображения
-class RDK_LIB_TYPE UBARotate: public UNet
+class RDK_LIB_TYPE UBAFlipImage: public UNet
 {
 public: // Параметры
-/// Угол поворота (градусы)
-ULProperty<float, UBARotate> Angle;
-
-/// Флаг расширения изображения (временно отменен, расширение всегда!)
-//ULProperty<bool, UBARotate> Enlarge;
-bool Enlarge;
+/// Способ отражения
+/// 0 - не отражать
+/// 1 - вокруг горизонтальной оси
+/// 2 - вокруг вертикальной оси
+ULProperty<int, UBAFlipImage> Mode;
 
 protected: // Входные и выходные данные
 /// Входное изображение
-UPropertyInputData<UBitmap, UBARotate> Input;
+UPropertyInputData<UBitmap, UBAFlipImage> Input;
 
 /// Выходное изображение
-UPropertyOutputData<UBitmap, UBARotate> Output;
+UPropertyOutputData<UBitmap, UBAFlipImage> Output;
 
 protected: // Временные переменные
 UBitmap Buffer;
@@ -43,27 +42,8 @@ public: // Методы
 // ---------------------
 // Конструкторы и деструкторы
 // ---------------------
-UBARotate(void);
-virtual ~UBARotate(void);
-// ---------------------
-
-// ---------------------
-// Методы управления параметрами
-// ---------------------
-/// Угол поворота (градусы)
-float GetAngle(void) const;
-bool SetAngle(const float &angle);
-
-/// Флаг расширения
-bool GetEnlarge(void) const;
-bool SetEnlarge(const bool &enlarge);
-// ---------------------
-
-// ---------------------
-// Операторы
-// ---------------------
-bool operator () (UBitmap &input, UBitmap &output);
-bool operator () (UBitmap &input, UBitmap &output, float angle, bool enlarge=false);
+UBAFlipImage(void);
+virtual ~UBAFlipImage(void);
 // ---------------------
 
 // --------------------------
@@ -110,14 +90,14 @@ virtual bool AFCCalculate(void)=0;
 };
 
 /// Поворачивает изображение на заданный угол
-class RDK_LIB_TYPE UBARotateSimple: public UBARotate
+class RDK_LIB_TYPE UBAFlipImageSimple: public UBAFlipImage
 {
 public: // Методы
 // ---------------------
 // Методы счета
 // ---------------------
 /// Создание новой копии этого объекта
-virtual UBARotateSimple* New(void);
+virtual UBAFlipImageSimple* New(void);
 
 virtual bool BCalculate(UBitmap &input, UBitmap &output);
 // ---------------------
