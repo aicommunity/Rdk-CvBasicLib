@@ -154,16 +154,19 @@ bool UBARotateSimple::BCalculate(UBitmap &input, UBitmap &output)
   {
  // Выбираем размер результирующего изображения
    output.SetRes(input.GetHeight(),input.GetWidth(),input.GetColorModel());
+   int pixel_byte_length=input.GetPixelByteLength();
+   int output_line_byte_length=output.GetLineByteLength();
 
    UBColor *indata=input.GetData()+input.GetByteLength();
    UBColor *outdata=output.GetData();
    for(int j=input.GetHeight()-1;j>=0;j--)
    {
+	UBColor* poutdata=outdata+j*pixel_byte_length;
 	for(int i=0;i<input.GetWidth();i++)
 	{
-	 memcpy(outdata+i*output.GetLineByteLength()+j*output.GetPixelByteLength(),
-			indata,input.GetPixelByteLength());
-	 indata-=input.GetPixelByteLength();
+	 memcpy(poutdata,indata,pixel_byte_length);
+	 poutdata+=i*output_line_byte_length;
+	 indata-=pixel_byte_length;
 	}
    }
   }
@@ -174,7 +177,7 @@ bool UBARotateSimple::BCalculate(UBitmap &input, UBitmap &output)
   // int out_xstart,out_xstop/*,out_ystart,out_ystop*/;
    if(input.GetWidth()>input.GetHeight())
    {
-    in_xstart=(input.GetWidth()-input.GetHeight())/2;
+	in_xstart=(input.GetWidth()-input.GetHeight())/2;
     in_xstop=in_xstart+input.GetHeight()-1;
     in_ystart=0;
     in_ystop=input.GetHeight()-1;
