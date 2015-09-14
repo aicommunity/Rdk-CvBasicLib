@@ -54,6 +54,7 @@ UBACrop* UBACrop::New(void)
 // Восстановление настроек по умолчанию и сброс процесса счета
 bool UBACrop::ADefault(void)
 {
+ CropRect->Assign(1,4,0);
  return true;
 }
 
@@ -78,8 +79,31 @@ bool UBACrop::ACalculate(void)
  if(!Input || !Output)
   return true;
 
- Output->SetRes(CropRect->Width, CropRect->Height, Input->GetColorModel());
- Input->GetRect(CropRect->X,CropRect->Y, *Output);
+ MDMatrix<int> &crop_rect=*CropRect;
+
+ if(crop_rect.FindMinValue()<0)
+ {
+  Output->Clear();
+  return true;
+ }
+
+ if(crop_rect.GetRows() == 0 || crop_rect.GetCols() == 0)
+ {
+  Output->Clear();
+  return true;
+ }
+
+ int width=Input->GetWidth()-crop_rect(0,0)-crop_rect(0,2);
+ int height=Input->GetHeight()-crop_rect(0,1)-crop_rect(0,3);
+
+ if(width<0 || height<0)
+ {
+  Output->Clear();
+  return true;
+ }
+
+ Output->SetRes(width, height, Input->GetColorModel());
+ Input->GetRect(crop_rect(0,0), crop_rect(0,1), *Output);
  return true;
 }
 // --------------------------

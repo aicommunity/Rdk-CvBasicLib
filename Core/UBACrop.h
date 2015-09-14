@@ -22,12 +22,13 @@ class RDK_LIB_TYPE UBACrop: public UNet
 {
 protected: // Параметры
 
-protected: // Входы и выходы
+public: // Входы и выходы
 UPropertyInputData<UBitmap, UBACrop> Input;
 
 /// Прямоугольник, описывающий область выходного изображения во входном
-/// (применяется, при заданном InputSample
-UPropertyInputData<UBRect, UBACrop, ptPubInput | ptState> CropRect;
+/// матрица содержит одну строку, с количеством пикселей обрезки с каждой стороны
+/// <left, top, right, bottom>.
+UPropertyInputData<MDMatrix<int>, UBACrop, ptPubInput | ptParameter> CropRect;
 
 UPropertyOutputData<UBitmap, UBACrop> Output;
 
