@@ -80,6 +80,16 @@ void Basic::CreateClassSamples(UStorage *storage)
  cont->Default();
  UploadClass("Source",cont);
 
+ cont=new UBASourceFile;
+ cont->SetName("Source");
+ cont->Default();
+ UploadClass("SourceFile",cont);
+
+ cont=new UBASourceMultiFile;
+ cont->SetName("Source");
+ cont->Default();
+ UploadClass("SourceMultiFile",cont);
+
  cont=new UBAReceiver;
  cont->SetName("Receiver");
  cont->Default();

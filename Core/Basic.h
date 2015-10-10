@@ -19,6 +19,8 @@ See file license.txt for more information
 #include "UBAReceiver.h"
 #include "UBPipeline.h"
 #include "UBASource.h"
+#include "UBASourceFile.h"
+#include "UBASourceMultiFile.h"
 #include "UBAResize.h"
 #include "UBARotate.h"
 #include "UBAFlipImage.h"
