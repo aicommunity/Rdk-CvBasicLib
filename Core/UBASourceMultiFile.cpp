@@ -130,7 +130,8 @@ bool UBASourceMultiFile::ACalculate(void)
 	{
 	 if(LoadBitmapFromFile((*FileNames)[j].c_str(), **DynamicOutputs[j]))
 	  LoadFlags[j]=true;
-    }
+	 (*DynamicOutputs[j])->ReflectionX();
+	}
    }
    LoadFlag&=LoadFlags[j];
   }

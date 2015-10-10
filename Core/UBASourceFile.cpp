@@ -96,7 +96,8 @@ bool UBASourceFile::ACalculate(void)
   if(ext == "bmp")
   {
    if(LoadBitmapFromFile(FileName->c_str(), *Output))
-    LoadFlag=true;
+	LoadFlag=true;
+   Output->ReflectionX();
   }
  }
  return true;
