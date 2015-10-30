@@ -41,6 +41,7 @@
 		<Unit filename="../../Core/UBAColorConvert.h" />
 		<Unit filename="../../Core/UBACrop.cpp" />
 		<Unit filename="../../Core/UBACrop.h" />
+		<Unit filename="../../Core/UBAFlipImage.cpp" />
 		<Unit filename="../../Core/UBAModel.cpp" />
 		<Unit filename="../../Core/UBAModel.h" />
 		<Unit filename="../../Core/UBAReceiver.cpp" />
@@ -53,6 +54,10 @@
 		<Unit filename="../../Core/UBARotate.h" />
 		<Unit filename="../../Core/UBASource.cpp" />
 		<Unit filename="../../Core/UBASource.h" />
+		<Unit filename="../../Core/UBASourceFile.cpp" />
+		<Unit filename="../../Core/UBASourceFile.h" />
+		<Unit filename="../../Core/UBASourceMultiFile.cpp" />
+		<Unit filename="../../Core/UBASourceMultiFile.h" />
 		<Unit filename="../../Core/UBPipeline.cpp" />
 		<Unit filename="../../Core/UBPipeline.h" />
 		<Extensions>
