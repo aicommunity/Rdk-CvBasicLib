@@ -73,11 +73,12 @@ UpgradeLog.XML
 *.exe
 Log
 Log0328
-Release
-Debug
 *.dcu
 *.identcache
 *.local       
 *.o       
 doxygen
 .metadata
+*.o
+*.d
+*.so
