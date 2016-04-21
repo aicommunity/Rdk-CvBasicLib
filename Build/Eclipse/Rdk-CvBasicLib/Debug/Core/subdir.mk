@@ -4,19 +4,19 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-/home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/Basic.cpp \
-/home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAColorConvert.cpp \
-/home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBACrop.cpp \
-/home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAFlipImage.cpp \
-/home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAModel.cpp \
-/home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAReceiver.cpp \
-/home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAReduce.cpp \
-/home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAResize.cpp \
-/home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBARotate.cpp \
-/home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBASource.cpp \
-/home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBASourceFile.cpp \
-/home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBASourceMultiFile.cpp \
-/home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBPipeline.cpp 
+../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/Basic.cpp \
+../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAColorConvert.cpp \
+../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBACrop.cpp \
+../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAFlipImage.cpp \
+../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAModel.cpp \
+../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAReceiver.cpp \
+../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAReduce.cpp \
+../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAResize.cpp \
+../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBARotate.cpp \
+../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBASource.cpp \
+../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBASourceFile.cpp \
+../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBASourceMultiFile.cpp \
+../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBPipeline.cpp 
 
 OBJS += \
 ./Core/Basic.o \
@@ -50,91 +50,91 @@ CPP_DEPS += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Core/Basic.o: /home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/Basic.cpp
+Core/Basic.o: ../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/Basic.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
 	g++ -O0 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Core/UBAColorConvert.o: /home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAColorConvert.cpp
+Core/UBAColorConvert.o: ../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAColorConvert.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
 	g++ -O0 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Core/UBACrop.o: /home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBACrop.cpp
+Core/UBACrop.o: ../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBACrop.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
 	g++ -O0 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Core/UBAFlipImage.o: /home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAFlipImage.cpp
+Core/UBAFlipImage.o: ../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAFlipImage.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
 	g++ -O0 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Core/UBAModel.o: /home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAModel.cpp
+Core/UBAModel.o: ../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAModel.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
 	g++ -O0 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Core/UBAReceiver.o: /home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAReceiver.cpp
+Core/UBAReceiver.o: ../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAReceiver.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
 	g++ -O0 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Core/UBAReduce.o: /home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAReduce.cpp
+Core/UBAReduce.o: ../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAReduce.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
 	g++ -O0 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Core/UBAResize.o: /home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAResize.cpp
+Core/UBAResize.o: ../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBAResize.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
 	g++ -O0 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Core/UBARotate.o: /home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBARotate.cpp
+Core/UBARotate.o: ../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBARotate.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
 	g++ -O0 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Core/UBASource.o: /home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBASource.cpp
+Core/UBASource.o: ../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBASource.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
 	g++ -O0 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Core/UBASourceFile.o: /home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBASourceFile.cpp
+Core/UBASourceFile.o: ../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBASourceFile.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
 	g++ -O0 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Core/UBASourceMultiFile.o: /home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBASourceMultiFile.cpp
+Core/UBASourceMultiFile.o: ../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBASourceMultiFile.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
 	g++ -O0 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Core/UBPipeline.o: /home/klavesin/workspace/tops-klavesin/Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBPipeline.cpp
+Core/UBPipeline.o: ../../../../../../../Klavesin-STZ/Libraries/Rdk-CvBasicLib/Core/UBPipeline.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
 	g++ -O0 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
