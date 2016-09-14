@@ -87,7 +87,7 @@ bool UBASourceMultiFile::ABuild(void)
 
  for(size_t i=DynamicOutputs.size();i<FileNames->size();i++)
  {
-  UPropertyOutputData<UBitmap,UBASourceMultiFile> *output=new UPropertyOutputData<UBitmap,UBASourceMultiFile>(std::string("Output")+sntoa(i+1),this,false);
+  UPropertyOutputData<UBitmap,UBASourceMultiFile> *output=new UPropertyOutputData<UBitmap,UBASourceMultiFile>(std::string("Output")+sntoa(i+1),this);
   DynamicOutputs.push_back(output);
  }
  DynamicOutputs.resize(FileNames->size());
