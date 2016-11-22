@@ -14,7 +14,7 @@ protected: // Параметры
 /// Номер столбца и строки для сохранения
 int NumCols, NumRows;
 
-protected: // Входные и выходные данные
+public: // Входные и выходные данные
 /// Входное изображение
 UPropertyInputData<UBitmap, UBAReduce> Input;
 
