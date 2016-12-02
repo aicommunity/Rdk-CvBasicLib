@@ -82,3 +82,8 @@ doxygen
 *.o
 *.d
 *.so
+*.cmake
+CMakeFiles
+CMakeCache.txt
+Makefile
+*.a
