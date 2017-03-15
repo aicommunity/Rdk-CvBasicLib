@@ -24,14 +24,15 @@ class RDK_LIB_TYPE UBAResize: public UNet
 {
 protected: // Параметры
 /// Новый размер
-int NewWidth,NewHeight;
+ULProperty<int, UBAResize> NewWidth;
+ULProperty<int, UBAResize> NewHeight;
 
 protected: // Входные и выходные данные
 /// Входное изображение
 UPropertyInputData<UBitmap, UBAResize> Input;
 
 /// Выходное изображение
-UPropertyInputData<UBitmap, UBAResize> Output;
+UPropertyOutputData<UBitmap, UBAResize> Output;
 
 protected: // Временные переменные
 UBitmap Buffer;
