@@ -31,7 +31,7 @@ protected: // Входные и выходные данные
 UPropertyInputData<UBitmap, UBAResize> Input;
 
 /// Выходное изображение
-UPropertyInputData<UBitmap, UBAResize> Output;
+UPropertyOutputData<UBitmap, UBAResize> Output;
 
 protected: // Временные переменные
 UBitmap Buffer;
