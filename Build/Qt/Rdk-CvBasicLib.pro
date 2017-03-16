@@ -15,9 +15,7 @@ DEFINES += RDK_UNICODE_RUN
 DEFINES += RDK_QT
 
 unix {
-    target.path = /usr/lib
-    INSTALLS += target
-    DESTDIR = $$PWD/../../../../Bin/Platform/Unix/Lib.Qt
+    DESTDIR = $$PWD/../../../../Bin/Platform/Linux/Lib.Qt
 }
 
 windows {
