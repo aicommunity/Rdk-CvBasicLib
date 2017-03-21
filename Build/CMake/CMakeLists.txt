@@ -7,6 +7,10 @@ set(A_OUTPUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../../../Bin/Platform/Linux/Lib
 file(MAKE_DIRECTORY ${A_OUTPUT_DIR})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${A_OUTPUT_DIR})
 
+# Compiler options
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+
 # Source files
 
 set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../Core/")
@@ -33,6 +37,4 @@ include_directories(${SOURCE_DIR})
 
 add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
 
-# Compiler options
 
-set_property(TARGET ${PROJECT_NAME} PROPERTY POSITION_INDEPENDENT_CODE ON)
