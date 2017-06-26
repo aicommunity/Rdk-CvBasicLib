@@ -21,7 +21,8 @@ namespace RDK {
 // Конструкторы и деструкторы
 // --------------------------
 UBASource::UBASource(void)
-: Output("Output",this)
+: Output("Output",this),
+  Input("Input",this)
 {
 }
 
@@ -76,6 +77,8 @@ bool UBASource::AReset(void)
 // Выполняет расчет этого объекта
 bool UBASource::ACalculate(void)
 {
+ if(Input.IsConnected())
+  *Output=*Input;
  return true;
 }
 // --------------------------

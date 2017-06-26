@@ -20,8 +20,9 @@ namespace RDK {
 /// Простой класс-источник изображений
 class RDK_LIB_TYPE UBASource: public UNet
 {
-protected:
+public:
 UPropertyOutputData<UBitmap, UBASource> Output;
+UPropertyInputData<UBitmap, UBASource> Input;
 
 public: // Методы
 // --------------------------
