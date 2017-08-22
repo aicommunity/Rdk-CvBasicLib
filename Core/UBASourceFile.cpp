@@ -24,6 +24,7 @@ namespace RDK {
 UBASourceFile::UBASourceFile(void)
 : FileName("FileName",this, &UBASourceFile::SetFileName)
 {
+ LoadFlag=false;
 }
 
 UBASourceFile::~UBASourceFile(void)

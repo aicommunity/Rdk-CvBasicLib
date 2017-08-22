@@ -23,6 +23,7 @@ namespace RDK {
 UBASourceMultiFile::UBASourceMultiFile(void)
  : FileNames("FileNames",this, &UBASourceMultiFile::SetFileNames)
 {
+ LoadFlag=false;
  BuildFlag=false;
 }
 
