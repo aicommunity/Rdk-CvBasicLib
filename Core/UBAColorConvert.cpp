@@ -25,7 +25,7 @@ UBAColorConvert::UBAColorConvert(void)
 : Input("Input",this),
   Output("Output",this)
 {
- new UPropertyVirtual<UBMColorModel,UBAColorConvert>("NewColorModel",ptPubParameter, this, &UBAColorConvert::SetNewColorModel, &UBAColorConvert::GetNewColorModel);
+ AddLookupProperty("NewColorModel",ptPubParameter, new UVProperty<UBMColorModel,UBAColorConvert>(this,&UBAColorConvert::SetNewColorModel,&UBAColorConvert::GetNewColorModel));
 }
 UBAColorConvert::~UBAColorConvert(void)
 {
