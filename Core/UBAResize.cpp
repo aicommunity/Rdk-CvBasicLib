@@ -169,7 +169,6 @@ bool UBAResizeEdges::BCalculate(UBitmap &input, UBitmap &output)
  float corrX, corrY;
  float di=0;
  float dj=0;
- int dj3;
 
  int oWidth=input.GetWidth();
  int oHeight=input.GetHeight();
