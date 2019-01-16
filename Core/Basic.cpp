@@ -32,7 +32,7 @@ Basic BasicLibrary;
 // Конструкторы и деструкторы
 // --------------------------
 Basic::Basic(void)
- : ULibrary("BasicLibrary","1.0")
+ : ULibrary("BasicLibrary","1.0", GetGlobalVersion())
 {
 }
 // --------------------------
