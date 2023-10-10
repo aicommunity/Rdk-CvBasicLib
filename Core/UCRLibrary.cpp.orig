@@ -1,0 +1,101 @@
+/* ***********************************************************
+@Copyright Alexander V. Bakhshiev, 2009.
+E-mail:            alexab@ailab.ru
+url:            http://ailab.ru
+Version:        1.0.0
+
+This file - part of the project: RDK
+
+File License:        BSD License
+Project License:    GNU GPLv3 License
+See file license.txt for more information
+*********************************************************** */
+
+#include "UCRLibrary.h"
+
+
+//#include "UCRClassifier.cpp"
+//#include "UCRDirectCompare.cpp"
+//#include "UCRDistance.cpp"
+//#include "UCRFusion.cpp"
+//#include "UCRPerseptron.cpp"
+//#include "UCRSample.cpp"
+//#include "UCRTeacherPerseptronDL.cpp"
+//#include "UCRTeacher.cpp"
+//#include "UCRTeacherPerseptronBP.cpp"
+//#include "UCRTeacherCVNetworkBP.cpp"
+//#include "UCRConvolutionNetwork.cpp"
+
+namespace RDK {
+
+UCRLibrary CRLibrary;
+
+
+// --------------------------
+// Конструкторы и деструкторы
+// --------------------------
+UCRLibrary::UCRLibrary(void)
+ : ULibrary("CRLibrary","1.0", GetGlobalVersion())
+{
+}
+// --------------------------
+
+// --------------------------
+// Методы заполенения бибилиотеки
+// --------------------------
+// Заполняет массив ClassSamples готовыми экземплярами образцов и их именами.
+// Не требуется предварительная очистка массива и уборка памяти.
+void UCRLibrary::CreateClassSamples(UStorage *storage)
+{
+ UContainer *cont;
+
+ cont=new UCRPerseptron;
+ cont->SetName("CRPerseptron");
+ cont->Default();
+ UploadClass("UCRPerseptron",cont);
+	 /*
+ cont=new UCRDirectCompare;
+ cont->SetName("CRDirectCompare");
+ cont->Default();
+ UploadClass("UCRDirectCompare",cont);
+
+ cont=new UCRDistance;
+ cont->SetName("CRDistance");
+ cont->Default();
+ UploadClass("UCRDistance",cont);
+
+ cont=new UCRFusion;
+ cont->SetName("CRFusion");
+ cont->Default();
+ UploadClass("UCRFusion",cont);
+			 */
+ cont=new UCRSample;
+ cont->SetName("CRSample");
+ cont->Default();
+ UploadClass("UCRSample",cont);
+
+ cont=new UCRTeacherPerseptronBP;
+ cont->SetName("CRTeacherPerseptronBP");
+ cont->Default();
+ UploadClass("UCRTeacherPerseptronBP",cont);
+
+
+ cont=new UCRTeacherPerseptronDL;
+ cont->SetName("CRTeacherPerseptronDL");
+ cont->Default();
+ UploadClass("UCRTeacherPerseptronDL",cont);
+
+ cont=new UCRConvolutionNetwork;
+ cont->SetName("CRConvolutionNetwork");
+ cont->Default();
+ UploadClass("UCRConvolutionNetwork",cont);
+
+ cont=new UCRTeacherCVNetworkBP;
+ cont->SetName("CRTeacherCVNetworkBP");
+ cont->Default();
+ UploadClass("UCRTeacherCVNetworkBP",cont);
+}
+// --------------------------
+
+
+}
