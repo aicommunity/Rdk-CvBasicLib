@@ -100,7 +100,7 @@ bool UBAReduce::ACalculate(void)
  if(!Input->GetData())
   return true;
 
- Input->Reduce(NumCols, NumRows, Output);
+ Input->Reduce(NumCols, NumRows, &Output.v);
  return true;
 }
 // --------------------------

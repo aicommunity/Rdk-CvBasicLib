@@ -78,13 +78,13 @@ class RDK_LIB_TYPE UBADataSimulatorSimple: public UBADataSimulator
 {
 protected: // Параметры
 /// Данные точек экрана
-std::vector<MVector<double,2> > ScreenPoints;
+UPropertyOutputData<std::vector<MVector<double,2> >, UBADataSimulatorSimple, ptPubOutput | ptPubParameter> ScreenPoints;
 
 /// Данные точек плоскости
-std::vector<MVector<double,3> > PlanePoints;
+UPropertyOutputData<std::vector<MVector<double,3> >, UBADataSimulatorSimple, ptPubOutput | ptPubParameter>  PlanePoints;
 
 /// Данные точек пространства
-std::vector<MVector<double,4> > SpacePoints;
+UPropertyOutputData<std::vector<MVector<double,4> >, UBADataSimulatorSimple, ptPubOutput | ptPubParameter>  SpacePoints;
 
 public: // Методы
 // ---------------------

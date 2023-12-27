@@ -100,10 +100,13 @@ bool UBADataSimulator::AFSCalculate(void)
 // Конструкторы и деструкторы
 // ---------------------
 UBADataSimulatorSimple::UBADataSimulatorSimple(void)
+    : ScreenPoints("ScreenPoints", this)
+    , PlanePoints("PlanePoints", this)
+    , SpacePoints("SpacePoints", this)
 {
- AddLookupProperty("ScreenPoints",ptPubOutput | ptPubParameter, new UVPropertyOutputData<std::vector<MVector<double,2> >,UBADataSimulator>(this,&ScreenPoints));
- AddLookupProperty("PlanePoints",ptPubOutput | ptPubParameter, new UVPropertyOutputData<std::vector<MVector<double,3> >,UBADataSimulator>(this,&PlanePoints));
- AddLookupProperty("SpacePoints",ptPubOutput | ptPubParameter, new UVPropertyOutputData<std::vector<MVector<double,4> >,UBADataSimulator>(this,&SpacePoints));
+// AddLookupProperty("ScreenPoints",ptPubOutput | ptPubParameter, new UVPropertyOutputData<std::vector<MVector<double,2> >,UBADataSimulator>(this,&ScreenPoints));
+// AddLookupProperty("PlanePoints",ptPubOutput | ptPubParameter, new UVPropertyOutputData<std::vector<MVector<double,3> >,UBADataSimulator>(this,&PlanePoints));
+// AddLookupProperty("SpacePoints",ptPubOutput | ptPubParameter, new UVPropertyOutputData<std::vector<MVector<double,4> >,UBADataSimulator>(this,&SpacePoints));
 }
 
 UBADataSimulatorSimple::~UBADataSimulatorSimple(void)
@@ -132,9 +135,9 @@ bool UBADataSimulatorSimple::AFSDefault(void)
 // SetNumInputs(0);
 
 // ScreenPoints.push_back(UBPoint(0,0));
- ScreenPoints.push_back(MVector<double,2>(0));
- PlanePoints.push_back(MVector<double,3>(0,0,1));
- SpacePoints.push_back(MVector<double,4>(0,0,0,1));
+ScreenPoints->push_back(MVector<double,2>(0));
+PlanePoints->push_back(MVector<double,3>(0,0,1));
+SpacePoints->push_back(MVector<double,4>(0,0,0,1));
 
  return true;
 }

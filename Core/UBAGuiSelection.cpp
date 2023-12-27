@@ -313,7 +313,7 @@ bool UBAGuiSelectionRect::AFCCalculate(void)
  Output->SetRes(Input->GetWidth(), Input->GetHeight(), ubmRGB24);
  Input->ConvertTo(*Output);
 
- Graphics.SetCanvas(Output);
+ Graphics.SetCanvas(&Output.v);
 
  Graphics.SetPenWidth(5);
  Graphics.SetPenColor(UColorT(0x00FF0000));
