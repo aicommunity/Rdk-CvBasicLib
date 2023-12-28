@@ -25,9 +25,9 @@ namespace RDK {
 // Конструкторы и деструкторы
 // ---------------------
 UBABitmapSource::UBABitmapSource(void)
-: Output("Output",this)
+: Output("Output",this),
+  SourceParamaters("SourceParamaters",this)
 {
- AddLookupProperty("SourceParameters",ptPubParameter, new UVProperty<std::vector<UBitmapParam>,UBABitmapSource>(this,&SourceParamaters));
 }
 
 UBABitmapSource::~UBABitmapSource(void)

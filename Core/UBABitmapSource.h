@@ -22,7 +22,7 @@ class RDK_LIB_TYPE UBABitmapSource: public UNet
 {
 protected: // Параметры
 /// Параметры изображений источников
-std::vector<UBitmapParam> SourceParamaters;
+UProperty<std::vector<UBitmapParam>,UBABitmapSource> SourceParamaters;
 
 UPropertyOutputData<UBitmap, UBABitmapSource> Output;
 

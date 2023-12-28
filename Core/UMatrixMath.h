@@ -20,8 +20,7 @@ UPropertyInputCData<MDMatrix<T>,UMatrixMath<T> > InputMatrixData;
 // Унарные операторы (игнорируют все входные матрицы кроме нулевой)
 // 10 - унарный минус
 // 11 - транспонирование
-
-int Mode;
+UProperty<int,UMatrixMath<T>> Mode;
 
 public: // Данные
 // Выходой вектор матриц
@@ -33,11 +32,7 @@ public: // Методы
 // --------------------------
 UMatrixMath(void);
 virtual ~UMatrixMath(void);
-// --------------------------
-// Методы управления параметрами
-// --------------------------
-const int& GetMode(void) const;
-bool SetMode(const int &value);
+
 // --------------------------
 // Системные методы управления объектом
 // --------------------------
@@ -74,10 +69,9 @@ virtual bool ACalculate(void);
 template<class T>
 UMatrixMath<T>::UMatrixMath(void)
  : InputMatrixData("InputMatrixData",this),
-
-   OutputMatrixData("OutputMatrixData",this)
+   OutputMatrixData("OutputMatrixData",this),
+   Mode("Mode",this)
 {
- AddLookupProperty("Mode",ptPubParameter, new UVProperty<int,UMatrixMath>(this,&UMatrixMath::SetMode,&UMatrixMath::GetMode));
 }
 
 template<class T>
@@ -86,24 +80,6 @@ UMatrixMath<T>::~UMatrixMath(void)
 
 }
 
-// --------------------------
-// Методы управления параметрами
-// --------------------------
-template<class T>
-const int& UMatrixMath<T>::GetMode(void) const
-{
- return Mode;
-}
-
-template<class T>
-bool UMatrixMath<T>::SetMode(const int &value)
-{
- if(Mode==value)
-  return true;
-
- Mode=value;
- return true;
-}
 // --------------------------
 // Системные методы управления объектом
 // --------------------------

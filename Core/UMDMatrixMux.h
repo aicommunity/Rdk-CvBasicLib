@@ -21,7 +21,7 @@ UPropertyInputCData<MDMatrix<T>,UMDMatrixMux<T> > InputMatrixData;
 /// 1 - сборка матриц в ширину
 /// 2 - сборка матриц в ширину с чередованием столбцов
 /// 3 - сборка матриц в высоту с чередованием строк
-int Mode;
+UProperty<int,UMDMatrixMux<T>> Mode;
 
 public: // Данные
 // Выходой вектор матриц
@@ -33,11 +33,8 @@ public: // Методы
 // --------------------------
 UMDMatrixMux(void);
 virtual ~UMDMatrixMux(void);
-// --------------------------
-// Методы управления параметрами
-// --------------------------
-const int& GetMode(void) const;
-bool SetMode(const int &value);
+
+
 // --------------------------
 // Системные методы управления объектом
 // --------------------------
@@ -77,9 +74,9 @@ UMDMatrixMux<T>::UMDMatrixMux(void)
   InputActivities("InputActivities",this),
   InputMatrixData("InputMatrixData",this),
 
-  OutputMatrixData("OutputMatrixData",this)
+  OutputMatrixData("OutputMatrixData",this),
+  Mode("Mode",this)
 {
- AddLookupProperty("Mode",ptPubParameter, new UVProperty<int,UMDMatrixMux>(this,&UMDMatrixMux::SetMode,&UMDMatrixMux::GetMode));
 }
 
 template<class T>
@@ -88,24 +85,6 @@ UMDMatrixMux<T>::~UMDMatrixMux(void)
 
 }
 
-// --------------------------
-// Методы управления параметрами
-// --------------------------
-template<class T>
-const int& UMDMatrixMux<T>::GetMode(void) const
-{
- return Mode;
-}
-
-template<class T>
-bool UMDMatrixMux<T>::SetMode(const int &value)
-{
- if(Mode==value)
-  return true;
-
- Mode=value;
- return true;
-}
 // --------------------------
 // Системные методы управления объектом
 // --------------------------
@@ -308,7 +287,7 @@ UPropertyInputCData<T,UMDScalarMux<T> > InputMatrixData;
 /// 1 - сборка матриц в ширину
 /// 2 - сборка матриц в ширину с чередованием столбцов
 /// 3 - сборка матриц в высоту с чередованием строк
-int Mode;
+UProperty<int,UMDScalarMux<T>> Mode;
 
 public: // Данные
 // Выходой вектор матриц
@@ -320,11 +299,7 @@ public: // Методы
 // --------------------------
 UMDScalarMux(void);
 virtual ~UMDScalarMux(void);
-// --------------------------
-// Методы управления параметрами
-// --------------------------
-const int& GetMode(void) const;
-bool SetMode(const int &value);
+
 // --------------------------
 // Системные методы управления объектом
 // --------------------------
@@ -363,10 +338,9 @@ UMDScalarMux<T>::UMDScalarMux(void)
  :
   InputActivities("InputActivities",this),
   InputMatrixData("InputMatrixData",this),
-
+  Mode("Mode",this),
   OutputMatrixData("OutputMatrixData",this)
 {
- AddLookupProperty("Mode",ptPubParameter, new UVProperty<int,UMDScalarMux>(this,&UMDScalarMux::SetMode,&UMDScalarMux::GetMode));
 }
 
 template<class T>
@@ -375,24 +349,6 @@ UMDScalarMux<T>::~UMDScalarMux(void)
 
 }
 
-// --------------------------
-// Методы управления параметрами
-// --------------------------
-template<class T>
-const int& UMDScalarMux<T>::GetMode(void) const
-{
- return Mode;
-}
-
-template<class T>
-bool UMDScalarMux<T>::SetMode(const int &value)
-{
- if(Mode==value)
-  return true;
-
- Mode=value;
- return true;
-}
 // --------------------------
 // Системные методы управления объектом
 // --------------------------

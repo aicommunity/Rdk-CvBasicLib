@@ -27,7 +27,7 @@ class RDK_LIB_TYPE UBMathOperator: public UNet
 {
 protected: // Параметры
 // Идентификатор оператора
-int OperatorId;
+UProperty<int,UBMathOperator> OperatorId;
 
 protected: // Входы и выходы
 /// Аргумент 1
@@ -48,14 +48,6 @@ public: // Методы
 // ---------------------
 UBMathOperator(void);
 virtual ~UBMathOperator(void);
-// ---------------------
-
-// ---------------------
-// Методы управления параметрами
-// ---------------------
-// Идентификатор оператора
-const int& GetOperatorId(void) const;
-bool SetOperatorId(const int &value);
 // ---------------------
 
 // ---------------------

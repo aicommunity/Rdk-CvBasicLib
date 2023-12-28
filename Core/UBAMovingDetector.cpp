@@ -75,7 +75,7 @@ bool UBAMovingDetector::SetHistorySize(int value)
 // Текущее входное изображение
 const UBitmap* UBAMovingDetector::GetInputData(void) const
 {
- return Input;
+ return &Input.GetData();
 }
 
 // Выходные данные
@@ -160,7 +160,7 @@ bool UBAMovingDetector::AReset(void)
 // Выполняет расчет этого объекта
 bool UBAMovingDetector::ACalculate(void)
 {
- if(!Input)
+ if(!Input.IsConnected())
   return true;
 
  return AFCCalculate();
@@ -455,7 +455,7 @@ bool UBANightMovingDetector::SetRes(int width, int height)
 // Вычисление локального контраста
 bool UBANightMovingDetector::CalcLocalContrasting(void)
 {
- if(!Input)
+ if(!Input.IsConnected())
   return false;
 
  memset(CL,0,sizeof(double)*NumBlocks);

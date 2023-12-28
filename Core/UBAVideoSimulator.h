@@ -52,23 +52,23 @@ RDK_LIB_TYPE USerStorageBinary& operator >> (USerStorageBinary& storage, UBVSObj
 /// Базовый класс симуляции сцен
 class RDK_LIB_TYPE UBAVideoSimulator: public UNet
 {
-protected: // Параметры
+public: // Параметры
 /// Режим оформления фона эмулятора
 /// 0 - не создавать фон
 /// 1 - однотонный фон с BgMode
-int BgMode;
+UProperty<int,UBAVideoSimulator> BgMode;
 
 /// Цвет фона
-UColorT BgColor;
+UProperty<UColorT ,UBAVideoSimulator> BgColor;
 
 /// Флаг скрытия всех объектов с изображения
-bool HideAllFlag;
+UProperty<bool,UBAVideoSimulator> HideAllFlag;
 
 /// Число объектов
-int NumObjects;
+UProperty<int,UBAVideoSimulator> NumObjects;
 
 /// Граница рабочей области
-UBRect WorkArea;
+UProperty<UBRect,UBAVideoSimulator> WorkArea;
 
 /// Включить отображение сетки
 ULProperty<bool, UBAVideoSimulator> ShowGrid;
@@ -91,10 +91,10 @@ UPropertyInputData<UBitmap, UBAVideoSimulator> Input;
 /// Выходное изображение
 UPropertyOutputData<UBitmap, UBAVideoSimulator> Output;
 
-protected: // Данные
 /// Массив объектов
-std::vector<UBVSObject> Objects;
+UProperty<std::vector<UBVSObject>, UBAVideoSimulator> Objects;
 
+protected: // Данные
 /// Текущий управляемый объект
 int CurrentObjectIndex;
 

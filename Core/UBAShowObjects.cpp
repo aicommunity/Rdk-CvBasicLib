@@ -25,16 +25,16 @@ namespace RDK {
 // Конструкторы и деструкторы
 // ---------------------
 UBAShowObjects::UBAShowObjects(void)
- : Input("Input",this),
+ : PenColor("PenColor",this),
+   PenWidth("PenWidth",this),
+   EnableShowFlag("EnableShowFlag",this),
+   Input("Input",this),
    Output("Output",this),
    ObjectsColor("ObjectsColor", this),
    ObjectsName("ObjectsName", this),
    ObjectsId("ObjectsId", this)
 
 {
- AddLookupProperty("PenColor",ptPubParameter, new UVProperty<RDK::UColorT,UBAShowObjects>(this,&PenColor));
- AddLookupProperty("PenWidth",ptPubParameter, new UVProperty<int,UBAShowObjects>(this,&PenWidth));
- AddLookupProperty("EnableShowFlag",ptPubParameter, new UVProperty<bool,UBAShowObjects>(this,&EnableShowFlag));
 }
 
 UBAShowObjects::~UBAShowObjects(void)
@@ -64,7 +64,7 @@ bool UBAShowObjects::SetActivity(const bool &activity)
 bool UBAShowObjects::ADefault(void)
 {
  // Цвет рамки
- PenColor.c=0x00FF0000;
+ PenColor.v.c=0x00FF0000;
 
  EnableShowFlag=true;
 
@@ -176,7 +176,7 @@ bool UBAShowObjectsSimple::AFSReset(void)
 // Выполняет расчет этого объекта
 bool UBAShowObjectsSimple::AFSCalculate(void)
 {
- if(Zones)
+ if(Zones.IsConnected())
   for(size_t i=0;i<Zones->size();i++)
   {
    if(ObjectsColor->size()>i)
@@ -186,7 +186,7 @@ bool UBAShowObjectsSimple::AFSCalculate(void)
    Graphics.Pixel((*Zones)[i].X,(*Zones)[i].Y);
   }
 
- if(MatrixPoints && MatrixPoints->GetCols()>1)
+ if(MatrixPoints.IsConnected() && MatrixPoints->GetCols()>1)
   for(int i=0;i<MatrixPoints->GetRows();i++)
   {
    if(int(ObjectsColor->size())>i)

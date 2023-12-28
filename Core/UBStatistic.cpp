@@ -27,23 +27,21 @@ namespace RDK {
 // Конструкторы и деструкторы
 // ---------------------
 UBStatistic::UBStatistic(void)
-: FileFormat("FileFormat",this),
+: SavePath("SavePath",this),
+  SubFolderAfterResetFlag("SubFolderAfterResetFlag",this),
+  ReflectionXFlag("ReflectionXFlag",this),
+  PrefixName("PrefixName",this),
+  InputIndexMode("InputIndexMode",this),
+  TimeToFileNameFlag("TimeToFileNameFlag",this),
+  OrderIndexToFileNameFlag("OrderIndexToFileNameFlag",this),
+  NumSkipSteps("NumSkipSteps",this),
+  FileFormat("FileFormat",this),
   FileNameSuffix("FileNameSuffix",this),
   ExcludeModelFileName("ExcludeModelFileName",this),
   UseManualStatistic("UseManualStatistic",this),
   ManualStatisticSwitch("ManualStatisticSwitch",this),
   Input("Input",this)
 {
- AddLookupProperty("SavePath",ptPubParameter, new UVProperty<std::string,UBStatistic>(this,&SavePath));
- AddLookupProperty("SubFolderAfterResetFlag",ptPubParameter, new UVProperty<bool,UBStatistic>(this,&SubFolderAfterResetFlag));
- AddLookupProperty("ReflectionXFlag",ptPubParameter, new UVProperty<bool,UBStatistic>(this,&ReflectionXFlag));
- AddLookupProperty("PrefixName",ptPubParameter, new UVProperty<std::string,UBStatistic>(this,&PrefixName));
- AddLookupProperty("InputIndexMode",ptPubParameter, new UVProperty<int,UBStatistic>(this,&InputIndexMode));
-
- AddLookupProperty("TimeToFileNameFlag",ptPubParameter, new UVProperty<bool,UBStatistic>(this,&TimeToFileNameFlag));
- AddLookupProperty("OrderIndexToFileNameFlag",ptPubParameter, new UVProperty<bool,UBStatistic>(this,&OrderIndexToFileNameFlag));
-
- AddLookupProperty("NumSkipSteps",ptPubParameter, new UVProperty<int,UBStatistic>(this,&NumSkipSteps));
 }
 
 UBStatistic::~UBStatistic(void)
@@ -153,15 +151,15 @@ bool UBStatistic::ACalculate(void)
 
  if(SubFolderAfterResetFlag && ResetFlag)
  {
-  if(RDK::CreateNewDirectory((Environment->GetCurrentDataDir()+SavePath).c_str()))
+  if(RDK::CreateNewDirectory((Environment->GetCurrentDataDir()+SavePath.v).c_str()))
    return false; // Заглушка!! здесь исключение
 
   time_t time_data;
   time(&time_data);
-  if(!PrefixName.empty())
-   CurrentPath=Environment->GetCurrentDataDir()+SavePath+std::string("/")+PrefixName+std::string(" ")+get_text_time(time_data,'.','-');
+  if(!PrefixName->empty())
+   CurrentPath=Environment->GetCurrentDataDir()+SavePath.v+std::string("/")+PrefixName.v+std::string(" ")+get_text_time(time_data,'.','-');
   else
-   CurrentPath=Environment->GetCurrentDataDir()+SavePath+std::string("/")+get_text_time(time_data,'.','-');
+   CurrentPath=Environment->GetCurrentDataDir()+SavePath.v+std::string("/")+get_text_time(time_data,'.','-');
   if(RDK::CreateNewDirectory(CurrentPath.c_str()))
    return false; // Заглушка!! здесь исключение
  }
@@ -178,7 +176,7 @@ bool UBStatistic::ACalculate(void)
  time_t time_data;
  time(&time_data);
  std::string new_file_name;
- if(!PrefixName.empty())
+ if(!PrefixName->empty())
   new_file_name=PrefixName;
 
  if(!new_file_name.empty())
@@ -216,10 +214,10 @@ bool UBStatistic::ACalculate(void)
 // Конструкторы и деструкторы
 // ---------------------
 UBStatisticSimple::UBStatisticSimple(void)
+ : TimeInterval("TimeInterval",this),
+   Mode("Mode",this),
+   WriteSignal("WriteSignal",this)
 {
- AddLookupProperty("TimeInterval",ptPubParameter, new UVProperty<int,UBStatisticSimple>(this,&TimeInterval));
- AddLookupProperty("Mode",ptPubParameter, new UVProperty<int,UBStatisticSimple>(this,&Mode));
- AddLookupProperty("WriteSignal",ptPubState, new UVProperty<bool,UBStatisticSimple>(this,&WriteSignal));
 }
 
 UBStatisticSimple::~UBStatisticSimple(void)
