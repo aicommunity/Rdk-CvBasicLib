@@ -21,10 +21,10 @@ namespace RDK {
 // Конструкторы и деструкторы
 // ---------------------
 UBMathOperator::UBMathOperator(void)
- : Input1("Input1",this),
+ : OperatorId("OperatorId",this),
+   Input1("Input1",this),
    Input2("Input2",this),
-   Output("Output",this),
-   OperatorId("OperatorId",this)
+   Output("Output",this)
 {
  OperatorId=0;
 }

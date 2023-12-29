@@ -73,9 +73,8 @@ UMDMatrixMux<T>::UMDMatrixMux(void)
  :
   InputActivities("InputActivities",this),
   InputMatrixData("InputMatrixData",this),
-
-  OutputMatrixData("OutputMatrixData",this),
-  Mode("Mode",this)
+  Mode("Mode",this),
+  OutputMatrixData("OutputMatrixData",this)
 {
 }
 

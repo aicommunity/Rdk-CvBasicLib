@@ -25,8 +25,8 @@ namespace RDK {
 // Конструкторы и деструкторы
 // ---------------------
 UBABitmapSource::UBABitmapSource(void)
-: Output("Output",this),
-  SourceParamaters("SourceParamaters",this)
+: SourceParamaters("SourceParamaters",this),
+  Output("Output",this)
 {
 }
 

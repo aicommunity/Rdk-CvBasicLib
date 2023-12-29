@@ -28,9 +28,9 @@ namespace RDK {
 // ---------------------
 UBStatistic::UBStatistic(void)
 : SavePath("SavePath",this),
+  PrefixName("PrefixName",this),
   SubFolderAfterResetFlag("SubFolderAfterResetFlag",this),
   ReflectionXFlag("ReflectionXFlag",this),
-  PrefixName("PrefixName",this),
   InputIndexMode("InputIndexMode",this),
   TimeToFileNameFlag("TimeToFileNameFlag",this),
   OrderIndexToFileNameFlag("OrderIndexToFileNameFlag",this),

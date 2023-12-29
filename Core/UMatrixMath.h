@@ -69,8 +69,8 @@ virtual bool ACalculate(void);
 template<class T>
 UMatrixMath<T>::UMatrixMath(void)
  : InputMatrixData("InputMatrixData",this),
-   OutputMatrixData("OutputMatrixData",this),
-   Mode("Mode",this)
+   Mode("Mode",this),
+   OutputMatrixData("OutputMatrixData",this)
 {
 }
 

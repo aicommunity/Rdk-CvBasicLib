@@ -13,13 +13,13 @@ namespace RDK {
 // Конструкторы и деструкторы
 // --------------------------
 UDetResSaverPVOC::UDetResSaverPVOC(void) :
-    InputImage("InputImage",this),
-    ImageName("ImageName",this),
-    InputObjects("InputObjects",this),
-    SaveDirectory("SaveDirectory",this),
-    OverwriteSaveDirectory("OverwriteSaveDirectory",this),
-    CalculateFlag("CalculateFlag",this),
-    ObjectsName("ObjectsName",this)
+ SaveDirectory("SaveDirectory",this),
+ OverwriteSaveDirectory("OverwriteSaveDirectory",this),
+ ObjectsName("ObjectsName",this),
+ InputObjects("InputObjects",this),
+ InputImage("InputImage",this),
+ ImageName("ImageName",this),
+ CalculateFlag("CalculateFlag",this)
 {
     OverwriteSaveDirectory = false;
     CalculateFlag = false;

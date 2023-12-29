@@ -14,14 +14,14 @@ namespace RDK {
 // --------------------------
 UClassifierResSaver::UClassifierResSaver(void):
     SaveDirectory("SaveDirectory", this),
-    ImageName("ImageName",this),
+    OverwriteSaveDirectory("OverwriteSaveDirectory",this),
+    ObjectsName("ObjectsName",this),
     InputImage("InputImage",this),
+    ImageName("ImageName",this),
     InputImages("InputImages",this),
     InputClasses("InputClasses",this),
     InputConfidences("InputConfidences", this),
-    OverwriteSaveDirectory("OverwriteSaveDirectory",this),
-    CalculateFlag("CalculateFlag",this),
-    ObjectsName("ObjectsName",this)
+    CalculateFlag("CalculateFlag",this)
 {
     OverwriteSaveDirectory = false;
     CalculateFlag = false;

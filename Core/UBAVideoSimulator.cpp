@@ -223,14 +223,14 @@ UBAVideoSimulator::UBAVideoSimulator(void)
   HideAllFlag("HideAllFlag",this),
   NumObjects("NumObjects",this),
   WorkArea("WorkArea",this),
-  Objects("Objects",this),
   ShowGrid("ShowGrid",this),
   PixelGridStep("PixelGridStep",this),
   PixelGridColor("PixelGridColor",this),
   PixelGridWidth("PixelGridWidth",this),
   InputData("InputData",this),
   Input("Input",this),
-  Output("Output",this)
+  Output("Output",this),
+  Objects("Objects",this)
 {
  // Режим эмулятора
  BgMode=0;

@@ -22,9 +22,9 @@ namespace RDK {
 // Конструкторы и деструкторы
 // ---------------------
 UBAColorConvert::UBAColorConvert(void)
-: Input("Input",this),
-  Output("Output",this),
-  NewColorModel("NewColorModel",this)
+: NewColorModel("NewColorModel",this),
+  Input("Input",this),
+  Output("Output",this)
 {
 }
 UBAColorConvert::~UBAColorConvert(void)
