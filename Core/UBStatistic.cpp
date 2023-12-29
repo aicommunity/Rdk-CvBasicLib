@@ -286,7 +286,6 @@ bool UBStatisticSimple::AFSReset(void)
  LastSaveTime=GetTime().GetSourceCurrentLocalTimeMs();
  WriteSignal=false;
  return true;
-
 }
 
 // Выполняет расчет этого объекта
@@ -297,15 +296,15 @@ bool UBStatisticSimple::AFSCalculate(void)
   if(TimeInterval > 0)
   {
    if(int(GetTime().GetSourceCurrentLocalTimeMs()-LastSaveTime)<TimeInterval)
-	return true;
+    return true;
   }
 
   if(Mode == 1)
   {
    if(WriteSignal)
    {
-	WriteSignal=false;
-	Save();
+    WriteSignal=false;
+    Save();
     LastSaveTime=GetTime().GetSourceCurrentLocalTimeMs();
    }
   }
@@ -327,64 +326,58 @@ bool UBStatisticSimple::Save(void)
   UConnector::GetCItem("Input", c_items);
   for(int i=0;i<Input.GetNumPointers();i++)
   {
-   if(!Input[i])
-    continue;
    std::string final_path;
    if(InputIndexMode == 0)
    {
-	final_path=CurrentPath+std::string("/");
+    final_path=CurrentPath+std::string("/");
    }
    else
    if(InputIndexMode == 1)
    {
-	final_path=CurrentPath+std::string("/")+sntoa(i)+std::string("/");
+    final_path=CurrentPath+std::string("/")+sntoa(i)+std::string("/");
    }
 
    std::string file_suffix;
    if(FileNameSuffix == 1)
-	c_items[i].Item->GetFullName(file_suffix);
+    c_items[i].Item->GetFullName(file_suffix);
    else
     file_suffix=sntoa(i);
    if(FileNameSuffix == 1 && ExcludeModelFileName)
    {
-	std::string::size_type i=file_suffix.find_first_of(".");
-	if(i != std::string::npos)
-	{
-	 file_suffix.erase(0, i+1);
-	}
+    std::string::size_type i=file_suffix.find_first_of(".");
+    if(i != std::string::npos)
+    {
+     file_suffix.erase(0, i+1);
+    }
    }
 
-
-
-
-   UBitmap* temp_bmp(0);
-   if((ReflectionXFlag && FileFormat == 0) ||
-      (!ReflectionXFlag && FileFormat == 1))
+   const UBitmap* temp_bmp(0);
+   if((ReflectionXFlag && FileFormat == 0) || (!ReflectionXFlag && FileFormat == 1))
    {
-	Input[i]->ReflectionX(&TempBitmap);
-	temp_bmp=&TempBitmap;
+    Input[i].ReflectionX(&TempBitmap);
+    temp_bmp=&TempBitmap;
    }
    else
-	temp_bmp=&(*(*Input)[i]);
+    temp_bmp=&Input[i];
 
    if(FileFormat == 0)
-	SaveBitmapToFile((final_path+CurrentFileName+std::string("_")+file_suffix+std::string(".bmp")).c_str(), TempBitmap);
+    SaveBitmapToFile((final_path+CurrentFileName+std::string("_")+file_suffix+std::string(".bmp")).c_str(), TempBitmap);
    else
    {
-	if(temp_bmp->GetColorModel() != ubmRGB24)
-	{
-	 Rgb24TempBitmap.SetColorModel(ubmRGB24,false);
-	 temp_bmp->ConvertTo(Rgb24TempBitmap);
-	 temp_bmp=&Rgb24TempBitmap;
-	}
+    if(temp_bmp->GetColorModel() != ubmRGB24)
+    {
+     Rgb24TempBitmap.SetColorModel(ubmRGB24,false);
+     temp_bmp->ConvertTo(Rgb24TempBitmap);
+     temp_bmp=&Rgb24TempBitmap;
+    }
 
-	if(!ConvertBitmapToJpeg(*temp_bmp, jpeg_buf, temp_buf, false))
-	{
-	 if(!SaveFileBin(final_path+CurrentFileName+std::string("_")+file_suffix+std::string(".jpg"), jpeg_buf))
-	 {
-	  LogMessageEx(RDK_EX_WARNING, std::string("Unable to save file ")+final_path+CurrentFileName+std::string("_")+file_suffix+std::string(".jpg"));
-	 }
-	}
+    if(!ConvertBitmapToJpeg(*temp_bmp, jpeg_buf, temp_buf, false))
+    {
+     if(!SaveFileBin(final_path+CurrentFileName+std::string("_")+file_suffix+std::string(".jpg"), jpeg_buf))
+     {
+      LogMessageEx(RDK_EX_WARNING, std::string("Unable to save file ")+final_path+CurrentFileName+std::string("_")+file_suffix+std::string(".jpg"));
+     }
+    }
    }
   }
  return true;

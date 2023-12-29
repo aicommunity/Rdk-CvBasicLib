@@ -151,13 +151,13 @@ bool UMDMatrixMux<T>::ACalculate(void)
    do
 //   for(size_t i=1;i<InputMatrixData->size();i++)
    {
-	if((*InputMatrixData)[i] && (*InputActivities)[i])
-	{
-	 new_rows+=(*InputMatrixData)[i]->GetRows();
-	 if(new_cols>(*InputMatrixData)[i]->GetCols() || new_cols<0)
-	  new_cols=(*InputMatrixData)[i]->GetCols();
-	}
-	++i;
+    if(InputActivities[i])
+    {
+     new_rows+=InputMatrixData[i].GetRows();
+     if(new_cols>InputMatrixData[i].GetCols() || new_cols<0)
+      new_cols=InputMatrixData[i].GetCols();
+    }
+    ++i;
    } while(i<InputMatrixData->size());
    OutputMatrixData->Resize(new_rows, new_cols);
 
@@ -165,17 +165,17 @@ bool UMDMatrixMux<T>::ACalculate(void)
    int row=0;
    for(size_t i=0;i<InputMatrixData->size();i++)
    {
-	if((*InputMatrixData)[i] && (*InputActivities)[i])
-	{
-	 MDMatrix<T> &input=*(*InputMatrixData)[i];
-	 for(int j=0;j<input.GetRows();j++)
-	 {
-	  for(int k=0;k<new_cols;k++)
-	   output(row,k)=input(j,k);
+    if(InputActivities[i])
+    {
+     const MDMatrix<T> &input=InputMatrixData[i];
+     for(int j=0;j<input.GetRows();j++)
+     {
+      for(int k=0;k<new_cols;k++)
+       output(row,k)=input(j,k);
 
-	  ++row;
-	 }
-	}
+      ++row;
+     }
+    }
    }
   }
   break;
@@ -189,13 +189,13 @@ bool UMDMatrixMux<T>::ACalculate(void)
    do
 //   for(size_t i=1;i<InputMatrixData->size();i++)
    {
-	if((*InputMatrixData)[i] && (*InputActivities)[i])
-	{
-	 new_cols+=(*InputMatrixData)[i]->GetCols();
-	 if(new_rows>(*InputMatrixData)[i]->GetRows() || new_rows<0)
-	  new_rows=(*InputMatrixData)[i]->GetRows();
-	}
-	++i;
+    if(InputActivities[i])
+    {
+     new_cols+=InputMatrixData[i].GetCols();
+     if(new_rows>InputMatrixData[i].GetRows() || new_rows<0)
+      new_rows=InputMatrixData[i].GetRows();
+    }
+    ++i;
    } while(i<InputMatrixData->size());
    OutputMatrixData->Resize(new_rows, new_cols);
 
@@ -203,17 +203,17 @@ bool UMDMatrixMux<T>::ACalculate(void)
    int col=0;
    for(size_t i=0;i<InputMatrixData->size();i++)
    {
-	if((*InputMatrixData)[i] && (*InputActivities)[i])
-	{
-	 MDMatrix<T> &input=*(*InputMatrixData)[i];
-	 for(int j=0;j<input.GetCols();j++)
-	 {
-	  for(int k=0;k<new_rows;k++)
-	   output(k,col)=input(k,j);
+    if(InputActivities[i])
+    {
+     const MDMatrix<T> &input=InputMatrixData[i];
+     for(int j=0;j<input.GetCols();j++)
+     {
+      for(int k=0;k<new_rows;k++)
+       output(k,col)=input(k,j);
 
-	  ++col;
-	 }
-	}
+      ++col;
+     }
+    }
    }
   }
   break;
@@ -226,13 +226,13 @@ bool UMDMatrixMux<T>::ACalculate(void)
 
    do
    {
-	if((*InputMatrixData)[i] && (*InputActivities)[i])
-	{
-	 new_cols+=(*InputMatrixData)[i]->GetCols();
-	 if(new_rows>(*InputMatrixData)[i]->GetRows() || new_rows<0)
-	  new_rows=(*InputMatrixData)[i]->GetRows();
-	}
-	++i;
+    if(InputActivities[i])
+    {
+     new_cols+=InputMatrixData[i].GetCols();
+     if(new_rows>InputMatrixData[i].GetRows() || new_rows<0)
+      new_rows=InputMatrixData[i].GetRows();
+    }
+    ++i;
    } while(i<InputMatrixData->size());
    OutputMatrixData->Resize(new_rows, new_cols);
 
@@ -241,19 +241,19 @@ bool UMDMatrixMux<T>::ACalculate(void)
    int col=0;
    int j=0;
    do {
-	for(size_t i=0;i<InputMatrixData->size();i++)
-	{
-	 if((*InputMatrixData)[i] && (*InputActivities)[i])
-	 {
-	  MDMatrix<T> &input=*(*InputMatrixData)[i];
+    for(size_t i=0;i<InputMatrixData->size();i++)
+    {
+     if(InputActivities[i])
+     {
+      const MDMatrix<T> &input=InputMatrixData[i];
 
-	  for(int k=0;k<new_rows;k++)
-	   output(k,col)=input(k,j);
+      for(int k=0;k<new_rows;k++)
+       output(k,col)=input(k,j);
 
-	  ++col;
-	 }
-	}
-	++j;
+      ++col;
+     }
+    }
+    ++j;
    } while (col<output.GetCols());
   }
   break;
@@ -427,13 +427,11 @@ bool UMDScalarMux<T>::ACalculate(void)
    int row=0;
    for(size_t i=0;i<InputMatrixData->size();i++)
    {
-	if((*InputMatrixData)[i] && (*InputActivities)[i])
-	{
-     T input=*(*InputMatrixData)[i];
-	 output(row,0)=input;
-
-	 ++row;
-	}
+    if(InputActivities[i])
+    {
+     output(row,0)=InputMatrixData[i];
+     ++row;
+    }
    }
   }
   break;
@@ -446,12 +444,12 @@ bool UMDScalarMux<T>::ACalculate(void)
 
    do
    {
-	if((*InputMatrixData)[i] && (*InputActivities)[i])
-	{
-	 new_cols++;
+    if(InputActivities[i])
+    {
+     new_cols++;
      new_rows=1;
-	}
-	++i;
+    }
+    ++i;
    } while(i<InputMatrixData->size());
    OutputMatrixData->Resize(new_rows, new_cols);
 
@@ -459,13 +457,11 @@ bool UMDScalarMux<T>::ACalculate(void)
    int col=0;
    for(size_t i=0;i<InputMatrixData->size();i++)
    {
-	if((*InputMatrixData)[i] && (*InputActivities)[i])
-	{
-     T input=*(*InputMatrixData)[i];
-	 output(0,col)=input;
-
-	 ++col;
-	}
+    if(InputActivities[i])
+    {
+     output(0,col)=InputMatrixData[i];
+     ++col;
+    }
    }
   }
   break;
@@ -478,12 +474,12 @@ bool UMDScalarMux<T>::ACalculate(void)
 
    do
    {
-	if((*InputMatrixData)[i] && (*InputActivities)[i])
-	{
-	 new_cols++;
-	 new_rows=1;
-	}
-	++i;
+    if(InputActivities[i])
+    {
+     new_cols++;
+     new_rows=1;
+    }
+    ++i;
    } while(i<InputMatrixData->size());
    OutputMatrixData->Resize(new_rows, new_cols);
 
@@ -492,16 +488,15 @@ bool UMDScalarMux<T>::ACalculate(void)
    int col=0;
    int j=0;
    do {
-	for(size_t i=0;i<InputMatrixData->size();i++)
-	{
-	 if((*InputMatrixData)[i] && (*InputActivities)[i])
-	 {
-      T input=*(*InputMatrixData)[i];
-	  output(0,col)=input;
-	  ++col;
-	 }
-	}
-	++j;
+    for(size_t i=0;i<InputMatrixData->size();i++)
+    {
+     if(InputActivities[i])
+     {
+      output(0,col)=InputMatrixData[i];
+      ++col;
+     }
+    }
+    ++j;
    } while (col<output.GetCols());
   }
   break;
