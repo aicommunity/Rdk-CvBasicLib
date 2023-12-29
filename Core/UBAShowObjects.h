@@ -21,13 +21,13 @@ class RDK_LIB_TYPE UBAShowObjects: public UNet
 {
 protected: // Параметры
 /// Цвет рамки
-UProperty<RDK::UColorT,UBAShowObjects> PenColor;
+UProperty<RDK::UColorT,UBAShowObjects, ptPubParameter> PenColor;
 
 /// Толщина рамки
-UProperty<int,UBAShowObjects> PenWidth;
+UProperty<int,UBAShowObjects, ptPubParameter> PenWidth;
 
 /// Флаг разрешения отрисовки
-UProperty<bool,UBAShowObjects> EnableShowFlag;
+UProperty<bool,UBAShowObjects, ptPubParameter> EnableShowFlag;
 
 public: // Входные и выходные данные
 /// Входное изображение

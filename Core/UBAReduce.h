@@ -12,8 +12,8 @@ class RDK_LIB_TYPE UBAReduce: public UNet
 {
 protected: // Параметры
 /// Номер столбца и строки для сохранения
-UProperty<int,UBAReduce> NumCols;
-UProperty<int,UBAReduce> NumRows;
+UProperty<int,UBAReduce, ptPubParameter> NumCols;
+UProperty<int,UBAReduce, ptPubParameter> NumRows;
 
 public: // Входные и выходные данные
 /// Входное изображение

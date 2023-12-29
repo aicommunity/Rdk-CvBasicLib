@@ -23,7 +23,7 @@ class RDK_LIB_TYPE UBAColorConvert: public UNet
 {
 protected: // Параметры
 /// Новый режим изображения
-UProperty<UBMColorModel,UBAColorConvert> NewColorModel;
+UProperty<UBMColorModel,UBAColorConvert, ptPubParameter> NewColorModel;
 
 public: // Входы и выходы
 UPropertyInputData<UBitmap, UBAColorConvert> Input;

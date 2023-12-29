@@ -21,7 +21,7 @@ UPropertyInputCData<MDMatrix<T>,UMDMatrixMux<T> > InputMatrixData;
 /// 1 - сборка матриц в ширину
 /// 2 - сборка матриц в ширину с чередованием столбцов
 /// 3 - сборка матриц в высоту с чередованием строк
-UProperty<int,UMDMatrixMux<T>> Mode;
+UProperty<int,UMDMatrixMux<T>, ptPubParameter> Mode;
 
 public: // Данные
 // Выходой вектор матриц
@@ -287,7 +287,7 @@ UPropertyInputCData<T,UMDScalarMux<T> > InputMatrixData;
 /// 1 - сборка матриц в ширину
 /// 2 - сборка матриц в ширину с чередованием столбцов
 /// 3 - сборка матриц в высоту с чередованием строк
-UProperty<int,UMDScalarMux<T>> Mode;
+UProperty<int,UMDScalarMux<T>, ptPubParameter> Mode;
 
 public: // Данные
 // Выходой вектор матриц

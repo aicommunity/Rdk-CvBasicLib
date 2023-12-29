@@ -27,7 +27,7 @@ class RDK_LIB_TYPE UBMathOperator: public UNet
 {
 protected: // Параметры
 // Идентификатор оператора
-UProperty<int,UBMathOperator> OperatorId;
+UProperty<int,UBMathOperator, ptPubParameter> OperatorId;
 
 protected: // Входы и выходы
 /// Аргумент 1

@@ -20,7 +20,7 @@ UPropertyInputCData<MDMatrix<T>,UMatrixMath<T> > InputMatrixData;
 // Унарные операторы (игнорируют все входные матрицы кроме нулевой)
 // 10 - унарный минус
 // 11 - транспонирование
-UProperty<int,UMatrixMath<T>> Mode;
+UProperty<int,UMatrixMath<T>, ptPubParameter> Mode;
 
 public: // Данные
 // Выходой вектор матриц

@@ -56,19 +56,19 @@ public: // Параметры
 /// Режим оформления фона эмулятора
 /// 0 - не создавать фон
 /// 1 - однотонный фон с BgMode
-UProperty<int,UBAVideoSimulator> BgMode;
+UProperty<int,UBAVideoSimulator, ptPubParameter> BgMode;
 
 /// Цвет фона
-UProperty<UColorT ,UBAVideoSimulator> BgColor;
+UProperty<UColorT ,UBAVideoSimulator, ptPubParameter> BgColor;
 
 /// Флаг скрытия всех объектов с изображения
-UProperty<bool,UBAVideoSimulator> HideAllFlag;
+UProperty<bool,UBAVideoSimulator, ptPubParameter> HideAllFlag;
 
 /// Число объектов
-UProperty<int,UBAVideoSimulator> NumObjects;
+UProperty<int,UBAVideoSimulator, ptPubParameter> NumObjects;
 
 /// Граница рабочей области
-UProperty<UBRect,UBAVideoSimulator> WorkArea;
+UProperty<UBRect,UBAVideoSimulator, ptPubParameter> WorkArea;
 
 /// Включить отображение сетки
 ULProperty<bool, UBAVideoSimulator> ShowGrid;
@@ -92,7 +92,7 @@ UPropertyInputData<UBitmap, UBAVideoSimulator> Input;
 UPropertyOutputData<UBitmap, UBAVideoSimulator> Output;
 
 /// Массив объектов
-UProperty<std::vector<UBVSObject>, UBAVideoSimulator> Objects;
+UProperty<std::vector<UBVSObject>, UBAVideoSimulator, ptPubParameter> Objects;
 
 protected: // Данные
 /// Текущий управляемый объект
