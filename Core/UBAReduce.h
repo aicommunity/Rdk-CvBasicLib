@@ -12,7 +12,8 @@ class RDK_LIB_TYPE UBAReduce: public UNet
 {
 protected: // Параметры
 /// Номер столбца и строки для сохранения
-int NumCols, NumRows;
+UProperty<int,UBAReduce, ptPubParameter> NumCols;
+UProperty<int,UBAReduce, ptPubParameter> NumRows;
 
 public: // Входные и выходные данные
 /// Входное изображение
@@ -33,16 +34,6 @@ virtual ~UBAReduce(void);
 // ---------------------
 
 public: // Методы
-// ---------------------
-// Методы управления параметрами
-// ---------------------
-/// Номер строки и столбца для удаления
-const int& GetNumCols(void) const;
-const int& GetNumRows(void) const;
-bool SetNumCols(const int &value);
-bool SetNumRows(const int &value);
-// ---------------------
-
 // ---------------------
 // Методы счета
 // ---------------------

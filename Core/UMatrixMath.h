@@ -20,8 +20,7 @@ UPropertyInputCData<MDMatrix<T>,UMatrixMath<T> > InputMatrixData;
 // Унарные операторы (игнорируют все входные матрицы кроме нулевой)
 // 10 - унарный минус
 // 11 - транспонирование
-
-int Mode;
+UProperty<int,UMatrixMath<T>, ptPubParameter> Mode;
 
 public: // Данные
 // Выходой вектор матриц
@@ -33,11 +32,7 @@ public: // Методы
 // --------------------------
 UMatrixMath(void);
 virtual ~UMatrixMath(void);
-// --------------------------
-// Методы управления параметрами
-// --------------------------
-const int& GetMode(void) const;
-bool SetMode(const int &value);
+
 // --------------------------
 // Системные методы управления объектом
 // --------------------------
@@ -74,10 +69,9 @@ virtual bool ACalculate(void);
 template<class T>
 UMatrixMath<T>::UMatrixMath(void)
  : InputMatrixData("InputMatrixData",this),
-
+   Mode("Mode",this),
    OutputMatrixData("OutputMatrixData",this)
 {
- AddLookupProperty("Mode",ptPubParameter, new UVProperty<int,UMatrixMath>(this,&UMatrixMath::SetMode,&UMatrixMath::GetMode));
 }
 
 template<class T>
@@ -86,24 +80,6 @@ UMatrixMath<T>::~UMatrixMath(void)
 
 }
 
-// --------------------------
-// Методы управления параметрами
-// --------------------------
-template<class T>
-const int& UMatrixMath<T>::GetMode(void) const
-{
- return Mode;
-}
-
-template<class T>
-bool UMatrixMath<T>::SetMode(const int &value)
-{
- if(Mode==value)
-  return true;
-
- Mode=value;
- return true;
-}
 // --------------------------
 // Системные методы управления объектом
 // --------------------------
@@ -159,119 +135,106 @@ bool UMatrixMath<T>::ACalculate(void)
  {
   case 0:
   {
-   if((*InputMatrixData)[0])
+   if(!InputMatrixData->empty())
    {
-	int aRows=(*InputMatrixData)[0]->GetRows();
-	int aCols=(*InputMatrixData)[0]->GetCols();
+    int aRows=InputMatrixData[0].GetRows();
+    int aCols=InputMatrixData[0].GetCols();
 
-	for(size_t i=1; i<InputMatrixData->size(); i++)
-	{
-	 if( ((*InputMatrixData)[i]->GetRows()!=aRows)||((*InputMatrixData)[i]->GetCols()!=aCols) )
-	  return true;
-	}
+    for(size_t i=1; i<InputMatrixData->size(); i++)
+    {
+     if( (InputMatrixData[i].GetRows()!=aRows) || (InputMatrixData[i].GetCols()!=aCols) )
+      return true;
+    }
 
-	MDMatrix<T> temp;
-	temp.Resize(aRows, aCols);
-	temp=*(*InputMatrixData)[0];
+    MDMatrix<T> temp;
+    temp.Resize(aRows, aCols);
+    temp=InputMatrixData[0];
 
-	for(size_t i=1; i<InputMatrixData->size(); i++)
-	{
-	 if((*InputMatrixData)[i])
-	 {
-	  MDMatrix<T> &input=*(*InputMatrixData)[i];
+    for(size_t i=1; i<InputMatrixData->size(); i++)
+    {
+     temp+=InputMatrixData[i];
+    }
 
-	  temp+=input;
-	 }
-	}
-
-	OutputMatrixData->Resize(aRows, aCols);
-	MDMatrix<T> &output=*OutputMatrixData;
-	output=temp;
+    OutputMatrixData->Resize(aRows, aCols);
+    MDMatrix<T> &output=*OutputMatrixData;
+    output=temp;
    }
   }
   break;
 
   case 1:
   {
-   if((*InputMatrixData)[0])
+   if(!InputMatrixData->empty())
    {
-	int aRows=(*InputMatrixData)[0]->GetRows();
-	int aCols=(*InputMatrixData)[0]->GetCols();
+    int aRows=InputMatrixData[0].GetRows();
+    int aCols=InputMatrixData[0].GetCols();
 
-	for(size_t i=1; i<InputMatrixData->size(); i++)
-	{
-	 if( ((*InputMatrixData)[i]->GetRows()!=aRows)||((*InputMatrixData)[i]->GetCols()!=aCols) )
-	  return true;
-	}
+    for(size_t i=1; i<InputMatrixData->size(); i++)
+    {
+     if( (InputMatrixData[i].GetRows()!=aRows) || (InputMatrixData[i].GetCols()!=aCols) )
+      return true;
+    }
 
-	MDMatrix<T> temp;
-	temp.Resize(aRows, aCols);
-	temp=*(*InputMatrixData)[0];
+    MDMatrix<T> temp;
+    temp.Resize(aRows, aCols);
+    temp=InputMatrixData[0];
 
-	for(size_t i=1; i<InputMatrixData->size(); i++)
-	{
-	 if((*InputMatrixData)[i])
-	 {
-	  MDMatrix<T> &input=*(*InputMatrixData)[i];
+    for(size_t i=1; i<InputMatrixData->size(); i++)
+    {
+     temp-=InputMatrixData[i];
+    }
 
-	  temp-=input;
-	 }
-	}
-
-	OutputMatrixData->Resize(aRows, aCols);
-	MDMatrix<T> &output=*OutputMatrixData;
-	output=temp;
+    OutputMatrixData->Resize(aRows, aCols);
+    MDMatrix<T> &output=*OutputMatrixData;
+    output=temp;
    }
   }
   break;
 
   case 2:
   {
-   if((*InputMatrixData)[0])
+   if(!InputMatrixData->empty())
    {
-	int aRows=(*InputMatrixData)[0]->GetRows();
-	int aCols=(*InputMatrixData)[0]->GetCols();
+    int aRows=InputMatrixData[0].GetRows();
+    int aCols=InputMatrixData[0].GetCols();
 
-	MDMatrix<T> temp;
-	temp.Resize(aRows, aCols);
-	temp=*(*InputMatrixData)[0];
+    MDMatrix<T> temp;
+    temp.Resize(aRows, aCols);
+    temp=InputMatrixData[0];
 
-	for(size_t i=1; i<InputMatrixData->size(); i++)
-	{
-	 if((*InputMatrixData)[i])
-	 {
-	  MDMatrix<T> &input=*(*InputMatrixData)[i];
-	  if(temp.GetCols()==input.GetRows())
-	  {
-	   if(temp.GetRows()!=input.GetCols())
-		temp.Resize(temp.GetRows(), input.GetCols());
+    for(size_t i=1; i<InputMatrixData->size(); i++)
+    {
+      const MDMatrix<T> &input=InputMatrixData[i];
+      if(temp.GetCols()==input.GetRows())
+      {
+       if(temp.GetRows()!=input.GetCols())
+        temp.Resize(temp.GetRows(), input.GetCols());
 
-	   temp=temp*input;
-	  }
-	 }
-	}
+       temp=temp*input;
+      }
+    }
 
-	OutputMatrixData->Resize(temp.GetRows(), temp.GetCols());
-	MDMatrix<T> &output=*OutputMatrixData;
-	output=temp;
+    OutputMatrixData->Resize(temp.GetRows(), temp.GetCols());
+    MDMatrix<T> &output=*OutputMatrixData;
+    output=temp;
    }
   }
   break;
 
   case 10:
   {
-   if((*InputMatrixData)[0])
+   if(!InputMatrixData->empty())
    {
-	*OutputMatrixData=-*(*InputMatrixData)[0];
+    *OutputMatrixData=-InputMatrixData[0];
    }
   }
   break;
 
   case 11:
   {
-   if((*InputMatrixData)[0])
+   if(!InputMatrixData->empty())
    {
-	(*InputMatrixData)[0]->Transpose(*OutputMatrixData);
+    InputMatrixData[0].Transpose(*OutputMatrixData);
    }
   }
   break;

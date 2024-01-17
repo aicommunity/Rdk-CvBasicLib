@@ -18,11 +18,11 @@ namespace RDK {
 UDetectorBase::UDetectorBase(void):
     ConfidenceThreshold("ConfidenceThreshold", this),
     NMSthreshold("NMSthreshold",this),
-    InputImage("InputImage",this),
     UseDebugImage("UseDebugImage",this),
+    InputImage("InputImage",this),
     //UseRelativeCoords("UseRelativeCoords",this),
-    OutputObjects("OutputObjects",this),
     DebugImage("DebugImage",this),
+    OutputObjects("OutputObjects",this),
     OutputRects("OutputRects",this),
     OutputClasses("OutputClasses",this),
     OutputReliability("OutputReliability",this)
@@ -94,7 +94,7 @@ bool UDetectorBase::ACalculate(void)
         DebugImage->SetColorModel(ubmRGB24,false);
         InputImage->ConvertTo(*DebugImage);
 
-        Graph.SetCanvas(DebugImage);
+        Graph.SetCanvas(&DebugImage.v);
 
         UAFont *class_font=GetFont("Tahoma",20);
 

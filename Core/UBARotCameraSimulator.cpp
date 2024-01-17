@@ -163,7 +163,7 @@ bool UBARotCameraSimulator::AFSCalculate(void)
  ViewShiftX += int(((*MoveRightSignal)(0,0) - (*MoveLeftSignal)(0,0))*XSpeedCoef);
  ViewShiftY += int(((*MoveBottomSignal)(0,0) - (*MoveTopSignal)(0,0))*YSpeedCoef);
 
- int shift;
+ int shift(0);
  bool is_saccades = true;
  if(is_saccades)
  {

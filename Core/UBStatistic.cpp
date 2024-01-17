@@ -27,23 +27,21 @@ namespace RDK {
 // Конструкторы и деструкторы
 // ---------------------
 UBStatistic::UBStatistic(void)
-: FileFormat("FileFormat",this),
+: SavePath("SavePath",this),
+  PrefixName("PrefixName",this),
+  SubFolderAfterResetFlag("SubFolderAfterResetFlag",this),
+  ReflectionXFlag("ReflectionXFlag",this),
+  InputIndexMode("InputIndexMode",this),
+  TimeToFileNameFlag("TimeToFileNameFlag",this),
+  OrderIndexToFileNameFlag("OrderIndexToFileNameFlag",this),
+  NumSkipSteps("NumSkipSteps",this),
+  FileFormat("FileFormat",this),
   FileNameSuffix("FileNameSuffix",this),
   ExcludeModelFileName("ExcludeModelFileName",this),
   UseManualStatistic("UseManualStatistic",this),
   ManualStatisticSwitch("ManualStatisticSwitch",this),
   Input("Input",this)
 {
- AddLookupProperty("SavePath",ptPubParameter, new UVProperty<std::string,UBStatistic>(this,&SavePath));
- AddLookupProperty("SubFolderAfterResetFlag",ptPubParameter, new UVProperty<bool,UBStatistic>(this,&SubFolderAfterResetFlag));
- AddLookupProperty("ReflectionXFlag",ptPubParameter, new UVProperty<bool,UBStatistic>(this,&ReflectionXFlag));
- AddLookupProperty("PrefixName",ptPubParameter, new UVProperty<std::string,UBStatistic>(this,&PrefixName));
- AddLookupProperty("InputIndexMode",ptPubParameter, new UVProperty<int,UBStatistic>(this,&InputIndexMode));
-
- AddLookupProperty("TimeToFileNameFlag",ptPubParameter, new UVProperty<bool,UBStatistic>(this,&TimeToFileNameFlag));
- AddLookupProperty("OrderIndexToFileNameFlag",ptPubParameter, new UVProperty<bool,UBStatistic>(this,&OrderIndexToFileNameFlag));
-
- AddLookupProperty("NumSkipSteps",ptPubParameter, new UVProperty<int,UBStatistic>(this,&NumSkipSteps));
 }
 
 UBStatistic::~UBStatistic(void)
@@ -153,15 +151,15 @@ bool UBStatistic::ACalculate(void)
 
  if(SubFolderAfterResetFlag && ResetFlag)
  {
-  if(RDK::CreateNewDirectory((Environment->GetCurrentDataDir()+SavePath).c_str()))
+  if(RDK::CreateNewDirectory((Environment->GetCurrentDataDir()+SavePath.v).c_str()))
    return false; // Заглушка!! здесь исключение
 
   time_t time_data;
   time(&time_data);
-  if(!PrefixName.empty())
-   CurrentPath=Environment->GetCurrentDataDir()+SavePath+std::string("/")+PrefixName+std::string(" ")+get_text_time(time_data,'.','-');
+  if(!PrefixName->empty())
+   CurrentPath=Environment->GetCurrentDataDir()+SavePath.v+std::string("/")+PrefixName.v+std::string(" ")+get_text_time(time_data,'.','-');
   else
-   CurrentPath=Environment->GetCurrentDataDir()+SavePath+std::string("/")+get_text_time(time_data,'.','-');
+   CurrentPath=Environment->GetCurrentDataDir()+SavePath.v+std::string("/")+get_text_time(time_data,'.','-');
   if(RDK::CreateNewDirectory(CurrentPath.c_str()))
    return false; // Заглушка!! здесь исключение
  }
@@ -178,7 +176,7 @@ bool UBStatistic::ACalculate(void)
  time_t time_data;
  time(&time_data);
  std::string new_file_name;
- if(!PrefixName.empty())
+ if(!PrefixName->empty())
   new_file_name=PrefixName;
 
  if(!new_file_name.empty())
@@ -216,10 +214,10 @@ bool UBStatistic::ACalculate(void)
 // Конструкторы и деструкторы
 // ---------------------
 UBStatisticSimple::UBStatisticSimple(void)
+ : TimeInterval("TimeInterval",this),
+   Mode("Mode",this),
+   WriteSignal("WriteSignal",this)
 {
- AddLookupProperty("TimeInterval",ptPubParameter, new UVProperty<int,UBStatisticSimple>(this,&TimeInterval));
- AddLookupProperty("Mode",ptPubParameter, new UVProperty<int,UBStatisticSimple>(this,&Mode));
- AddLookupProperty("WriteSignal",ptPubState, new UVProperty<bool,UBStatisticSimple>(this,&WriteSignal));
 }
 
 UBStatisticSimple::~UBStatisticSimple(void)
@@ -288,7 +286,6 @@ bool UBStatisticSimple::AFSReset(void)
  LastSaveTime=GetTime().GetSourceCurrentLocalTimeMs();
  WriteSignal=false;
  return true;
-
 }
 
 // Выполняет расчет этого объекта
@@ -299,15 +296,15 @@ bool UBStatisticSimple::AFSCalculate(void)
   if(TimeInterval > 0)
   {
    if(int(GetTime().GetSourceCurrentLocalTimeMs()-LastSaveTime)<TimeInterval)
-	return true;
+    return true;
   }
 
   if(Mode == 1)
   {
    if(WriteSignal)
    {
-	WriteSignal=false;
-	Save();
+    WriteSignal=false;
+    Save();
     LastSaveTime=GetTime().GetSourceCurrentLocalTimeMs();
    }
   }
@@ -329,64 +326,58 @@ bool UBStatisticSimple::Save(void)
   UConnector::GetCItem("Input", c_items);
   for(int i=0;i<Input.GetNumPointers();i++)
   {
-   if(!Input[i])
-    continue;
    std::string final_path;
    if(InputIndexMode == 0)
    {
-	final_path=CurrentPath+std::string("/");
+    final_path=CurrentPath+std::string("/");
    }
    else
    if(InputIndexMode == 1)
    {
-	final_path=CurrentPath+std::string("/")+sntoa(i)+std::string("/");
+    final_path=CurrentPath+std::string("/")+sntoa(i)+std::string("/");
    }
 
    std::string file_suffix;
    if(FileNameSuffix == 1)
-	c_items[i].Item->GetFullName(file_suffix);
+    c_items[i].Item->GetFullName(file_suffix);
    else
     file_suffix=sntoa(i);
    if(FileNameSuffix == 1 && ExcludeModelFileName)
    {
-	std::string::size_type i=file_suffix.find_first_of(".");
-	if(i != std::string::npos)
-	{
-	 file_suffix.erase(0, i+1);
-	}
+    std::string::size_type i=file_suffix.find_first_of(".");
+    if(i != std::string::npos)
+    {
+     file_suffix.erase(0, i+1);
+    }
    }
 
-
-
-
-   UBitmap* temp_bmp(0);
-   if((ReflectionXFlag && FileFormat == 0) ||
-      (!ReflectionXFlag && FileFormat == 1))
+   const UBitmap* temp_bmp(0);
+   if((ReflectionXFlag && FileFormat == 0) || (!ReflectionXFlag && FileFormat == 1))
    {
-	Input[i]->ReflectionX(&TempBitmap);
-	temp_bmp=&TempBitmap;
+    Input[i].ReflectionX(&TempBitmap);
+    temp_bmp=&TempBitmap;
    }
    else
-	temp_bmp=&(*(*Input)[i]);
+    temp_bmp=&Input[i];
 
    if(FileFormat == 0)
-	SaveBitmapToFile((final_path+CurrentFileName+std::string("_")+file_suffix+std::string(".bmp")).c_str(), TempBitmap);
+    SaveBitmapToFile((final_path+CurrentFileName+std::string("_")+file_suffix+std::string(".bmp")).c_str(), TempBitmap);
    else
    {
-	if(temp_bmp->GetColorModel() != ubmRGB24)
-	{
-	 Rgb24TempBitmap.SetColorModel(ubmRGB24,false);
-	 temp_bmp->ConvertTo(Rgb24TempBitmap);
-	 temp_bmp=&Rgb24TempBitmap;
-	}
+    if(temp_bmp->GetColorModel() != ubmRGB24)
+    {
+     Rgb24TempBitmap.SetColorModel(ubmRGB24,false);
+     temp_bmp->ConvertTo(Rgb24TempBitmap);
+     temp_bmp=&Rgb24TempBitmap;
+    }
 
-	if(!ConvertBitmapToJpeg(*temp_bmp, jpeg_buf, temp_buf, false))
-	{
-	 if(!SaveFileBin(final_path+CurrentFileName+std::string("_")+file_suffix+std::string(".jpg"), jpeg_buf))
-	 {
-	  LogMessageEx(RDK_EX_WARNING, std::string("Unable to save file ")+final_path+CurrentFileName+std::string("_")+file_suffix+std::string(".jpg"));
-	 }
-	}
+    if(!ConvertBitmapToJpeg(*temp_bmp, jpeg_buf, temp_buf, false))
+    {
+     if(!SaveFileBin(final_path+CurrentFileName+std::string("_")+file_suffix+std::string(".jpg"), jpeg_buf))
+     {
+      LogMessageEx(RDK_EX_WARNING, std::string("Unable to save file ")+final_path+CurrentFileName+std::string("_")+file_suffix+std::string(".jpg"));
+     }
+    }
    }
   }
  return true;

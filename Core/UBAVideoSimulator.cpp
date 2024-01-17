@@ -218,13 +218,19 @@ USerStorageBinary& operator >> (USerStorageBinary& storage, UBVSObject &data)
 // Конструкторы и деструкторы
 // ---------------------
 UBAVideoSimulator::UBAVideoSimulator(void)
-: ShowGrid("ShowGrid",this),
+: BgMode("BgMode",this),
+  BgColor("BgColor",this),
+  HideAllFlag("HideAllFlag",this),
+  NumObjects("NumObjects",this),
+  WorkArea("WorkArea",this),
+  ShowGrid("ShowGrid",this),
   PixelGridStep("PixelGridStep",this),
   PixelGridColor("PixelGridColor",this),
   PixelGridWidth("PixelGridWidth",this),
   InputData("InputData",this),
   Input("Input",this),
-  Output("Output",this)
+  Output("Output",this),
+  Objects("Objects",this)
 {
  // Режим эмулятора
  BgMode=0;
@@ -240,17 +246,10 @@ UBAVideoSimulator::UBAVideoSimulator(void)
 
  Graphics=0;
 
- WorkArea.X=0;
- WorkArea.Y=0;
- WorkArea.X2(360-1);
- WorkArea.Y2(240-1);
-
- AddLookupProperty("HideAllFlag",ptPubParameter, new UVProperty<bool,UBAVideoSimulator>(this,&UBAVideoSimulator::SetHideAllFlag,&UBAVideoSimulator::GetHideAllFlag));
- AddLookupProperty("NumObjects",ptPubParameter, new UVProperty<int,UBAVideoSimulator>(this,&UBAVideoSimulator::SetNumObjects,&UBAVideoSimulator::GetNumObjects));
- AddLookupProperty("WorkArea",ptPubParameter, new UVProperty<UBRect,UBAVideoSimulator>(this,&WorkArea));
- AddLookupProperty("Objects",ptPubParameter, new UVProperty<std::vector<UBVSObject> ,UBAVideoSimulator>(this,&Objects));
- AddLookupProperty("BgMode",ptPubParameter, new UVProperty<int ,UBAVideoSimulator>(this,&UBAVideoSimulator::SetBgMode,&UBAVideoSimulator::GetBgMode));
- AddLookupProperty("BgColor",ptPubParameter, new UVProperty<UColorT ,UBAVideoSimulator>(this,&BgColor));
+ WorkArea.v.X=0;
+ WorkArea.v.Y=0;
+ WorkArea.v.X2(360-1);
+ WorkArea.v.Y2(240-1);
 }
 
 UBAVideoSimulator::~UBAVideoSimulator(void)
@@ -266,7 +265,7 @@ UBAVideoSimulator::~UBAVideoSimulator(void)
 // (не используется)
 const int& UBAVideoSimulator::GetBgMode(void) const
 {
- return BgMode;
+ return BgMode.v;
 }
 
 bool UBAVideoSimulator::SetBgMode(const int &value)
@@ -281,7 +280,7 @@ bool UBAVideoSimulator::SetBgMode(const int &value)
 // Флаг скрытия всех объектов с изображения
 const bool& UBAVideoSimulator::GetHideAllFlag(void) const
 {
- return HideAllFlag;
+ return HideAllFlag.v;
 }
 
 bool UBAVideoSimulator::SetHideAllFlag(const bool &value)
@@ -296,12 +295,12 @@ bool UBAVideoSimulator::SetHideAllFlag(const bool &value)
 // Граница рабочей области
 const UBRect& UBAVideoSimulator::GetWorkArea(void) const
 {
- return WorkArea;
+ return WorkArea.v;
 }
 
 bool UBAVideoSimulator::SetWorkArea(const UBRect &value)
 {
- if(WorkArea == value)
+ if(WorkArea.v == value)
   return true;
 
  WorkArea = value;
@@ -322,7 +321,7 @@ void UBAVideoSimulator::ClearObjects(void)
 // Число объектов
 const int& UBAVideoSimulator::GetNumObjects(void) const
 {
- return NumObjects;
+ return NumObjects.v;
 }
 
 bool UBAVideoSimulator::SetNumObjects(const int &value)
@@ -633,9 +632,9 @@ bool UBAVideoSimulatorSimple::AFSCalculate(void)
   }
 
   object.ObjectX+=object.XShift; object.ObjectY+=object.YShift;
-  if((object.ObjectX>=WorkArea.X+WorkArea.Width && object.XShift>0) || (object.ObjectX<WorkArea.X && object.XShift<0) )
+  if((object.ObjectX>=WorkArea.v.X+WorkArea.v.Width && object.XShift>0) || (object.ObjectX<WorkArea.v.X && object.XShift<0) )
    object.XShift=-object.XShift;
-  if((object.ObjectY>=WorkArea.Y+WorkArea.Height && object.YShift>0) || (object.ObjectY<WorkArea.Y && object.YShift<0))
+  if((object.ObjectY>=WorkArea.v.Y+WorkArea.v.Height && object.YShift>0) || (object.ObjectY<WorkArea.v.Y && object.YShift<0))
    object.YShift=-object.YShift;
  }
 
@@ -851,9 +850,9 @@ void UBAVideoSimulatorSimpleBin::DrawSimple (UBitmap &canvas, int isBin)
      }
 
      object.ObjectX+=object.XShift; object.ObjectY+=object.YShift;
-     if((object.ObjectX>=WorkArea.X+WorkArea.Width && object.XShift>0) || (object.ObjectX<WorkArea.X && object.XShift<0) )
+     if((object.ObjectX>=WorkArea.v.X+WorkArea.v.Width && object.XShift>0) || (object.ObjectX<WorkArea.v.X && object.XShift<0) )
       object.XShift=-object.XShift;
-     if((object.ObjectY>=WorkArea.Y+WorkArea.Height && object.YShift>0) || (object.ObjectY<WorkArea.Y && object.YShift<0))
+     if((object.ObjectY>=WorkArea.v.Y+WorkArea.v.Height && object.YShift>0) || (object.ObjectY<WorkArea.v.Y && object.YShift<0))
       object.YShift=-object.YShift;
     }
 

@@ -11,52 +11,16 @@ namespace RDK {
 // ---------------------
 UBAReduce::UBAReduce(void)
 : Input("Input",this),
-  Output("Output",this)
+  Output("Output",this),
+  NumCols("NumCols",this),
+  NumRows("NumRows",this)
 {
- AddLookupProperty("NumCols",ptPubParameter, new UVProperty<int,UBAReduce>(this,&UBAReduce::SetNumCols,&UBAReduce::GetNumCols));
- AddLookupProperty("NumRows",ptPubParameter, new UVProperty<int,UBAReduce>(this,&UBAReduce::SetNumRows,&UBAReduce::GetNumRows));
 }
 UBAReduce::~UBAReduce(void)
 {
 
 }
-// ---------------------
-// Методы управления параметрами
-// ---------------------
-/// Номер строки и столбца для сохранения
-const int& UBAReduce::GetNumCols(void) const
-{
- return NumCols;
-}
 
-const int& UBAReduce::GetNumRows(void) const
-{
- return NumRows;
-}
-
-bool UBAReduce::SetNumCols(const int &value)
-{
- if(NumCols == value)
-  return true;
-
- if(value == 0)
-  return false;
-
- NumCols=value;
-  return true;
-}
-
-bool UBAReduce::SetNumRows(const int &value)
-{
- if(NumRows == value)
-  return true;
-
- if(value == 0)
-  return false;
-
- NumRows=value;
-  return true;
-}
 
 // ---------------------
 // Методы счета
@@ -100,7 +64,7 @@ bool UBAReduce::ACalculate(void)
  if(!Input->GetData())
   return true;
 
- Input->Reduce(NumCols, NumRows, Output);
+ Input->Reduce(NumCols, NumRows, &Output.v);
  return true;
 }
 // --------------------------

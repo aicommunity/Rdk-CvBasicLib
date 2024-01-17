@@ -799,7 +799,7 @@ bool UBABinarizationSimpleAdaptiveThreshold::AFBgCalculate(void)
     {
         //Вывод чисел в видеопоток инвертированного порога
         invThreshold->SetColorModel(ubmRGB24,true);
-        UGraphics graph(invThreshold);
+        UGraphics graph(&invThreshold.v);
 
         graph.SetFont(GetDefaultFont());
         graph.SetFont(GetFont("Tahoma",16));

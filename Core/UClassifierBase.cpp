@@ -14,12 +14,12 @@ namespace RDK {
 // --------------------------
 UClassifierBase::UClassifierBase(void):
     ConfidenceThreshold("ConfidenceThreshold", this),
+    NumClasses("NumClasses",this,&UClassifierBase::SetNumClasses),
     InputImage("InputImage",this),
     InputImages("InputImages",this),
     OutputClasses("OutputClasses",this),
     OutputConfidences("OutputConfidences", this),
-    ClassificationTime("ClassificationTime",this),
-    NumClasses("NumClasses",this,&UClassifierBase::SetNumClasses)
+    ClassificationTime("ClassificationTime",this)
 {
 
 }
@@ -64,7 +64,7 @@ bool UClassifierBase::ACalculate(void)
     {
         OutputClasses->Assign(int(InputImages->size()),1, CLASS_UNDEFINED);
         OutputConfidences->Assign(int(InputImages->size()), NumClasses,0.0);
-        for(int i=0; i<InputImages->size(); i++)
+        for(int i=0; i<int(InputImages->size()); i++)
         {
             ProcessedBmp = (*InputImages)[i];
 

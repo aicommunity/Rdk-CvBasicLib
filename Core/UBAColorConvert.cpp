@@ -22,32 +22,13 @@ namespace RDK {
 // Конструкторы и деструкторы
 // ---------------------
 UBAColorConvert::UBAColorConvert(void)
-: Input("Input",this),
+: NewColorModel("NewColorModel",this),
+  Input("Input",this),
   Output("Output",this)
 {
- AddLookupProperty("NewColorModel",ptPubParameter, new UVProperty<UBMColorModel,UBAColorConvert>(this,&UBAColorConvert::SetNewColorModel,&UBAColorConvert::GetNewColorModel));
 }
 UBAColorConvert::~UBAColorConvert(void)
 {
-}
-// ---------------------
-
-// ---------------------
-// Методы управления параметрами
-// ---------------------
-// Новый режим изображения
-const UBMColorModel& UBAColorConvert::GetNewColorModel(void) const
-{
- return NewColorModel;
-}
-
-bool UBAColorConvert::SetNewColorModel(const UBMColorModel &value)
-{
- if(NewColorModel == value)
-  return true;
-
- NewColorModel=value;
- return true;
 }
 // ---------------------
 

@@ -21,37 +21,17 @@ namespace RDK {
 // Конструкторы и деструкторы
 // ---------------------
 UBMathOperator::UBMathOperator(void)
- : Input1("Input1",this),
+ : OperatorId("OperatorId",this),
+   Input1("Input1",this),
    Input2("Input2",this),
    Output("Output",this)
 {
  OperatorId=0;
- AddLookupProperty("OperatorId",ptPubParameter, new UVProperty<int,UBMathOperator>(this,&UBMathOperator::SetOperatorId,&UBMathOperator::GetOperatorId));
 }
 UBMathOperator::~UBMathOperator(void)
 {
 }
 // ---------------------
-
-// ---------------------
-// Методы управления параметрами
-// ---------------------
-// Идентификатор оператора
-const int& UBMathOperator::GetOperatorId(void) const
-{
- return OperatorId;
-}
-
-bool UBMathOperator::SetOperatorId(const int &value)
-{
- if(OperatorId == value)
-  return true;
-
- OperatorId=value;
- return true;
-}
-// ---------------------
-
 
 // ---------------------
 // Методы счета

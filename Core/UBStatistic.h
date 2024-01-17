@@ -21,30 +21,30 @@ class RDK_LIB_TYPE UBStatistic: public UNet
 {
 protected: // Параметры
 /// Путь для сохранения статистики
-std::string SavePath;
+UProperty<std::string,UBStatistic, ptPubParameter> SavePath;
 
 /// Префикс имен для статистики
-std::string PrefixName;
+UProperty<std::string,UBStatistic, ptPubParameter> PrefixName;
 
 /// Флаг необходимости создавать подкаталог дата/время каждый раз после Reset
-bool SubFolderAfterResetFlag;
+UProperty<bool,UBStatistic, ptPubParameter> SubFolderAfterResetFlag;
 
 /// Флаг необходимости переворачивать изображение при записи в лог
-bool ReflectionXFlag;
+UProperty<bool,UBStatistic, ptPubParameter> ReflectionXFlag;
 
 /// Флаг способа размещения данных в логе
 /// 0 - в заданной папке с различением индекса входа по суффиксу файла.
 /// 1 - в подпапках с именем индекса входа в заданной папке.
-int InputIndexMode;
+UProperty<int,UBStatistic, ptPubParameter> InputIndexMode;
 
 // Флаг необходимости добавлять дату и время к имени файла
-bool TimeToFileNameFlag;
+UProperty<bool,UBStatistic, ptPubParameter> TimeToFileNameFlag;
 
 // Флаг необходимости добавлять порядковый номер файла к имени
-bool OrderIndexToFileNameFlag;
+UProperty<bool,UBStatistic, ptPubParameter> OrderIndexToFileNameFlag;
 
 // Число шагов расчета которые следует пропустить перед началом регистрации
-int NumSkipSteps;
+UProperty<int,UBStatistic, ptPubParameter> NumSkipSteps;
 
 public:
 /// Формат файла
@@ -164,16 +164,16 @@ class RDK_LIB_TYPE UBStatisticSimple: public RDK::UBStatistic
 protected: // Параметры
 /// Интервал времени в миллисекундах, через который сохраняются кадры
 /// Если 0, то интервал не учитывается
-int TimeInterval;
+UProperty<int,UBStatisticSimple, ptPubParameter> TimeInterval;
 
 /// Режим записи
 /// 0 - по таймеру
 /// 1 - по сигналу (с одновременным учетом таймера)
-int Mode;
+UProperty<int,UBStatisticSimple, ptPubParameter> Mode;
 
 /// Сигнал разрешения записи
 /// Автоматически сбрасывается при выполнении Calculate
-bool WriteSignal;
+UProperty<bool,UBStatisticSimple, ptPubParameter> WriteSignal;
 
 protected: // Переменные состояния
 unsigned long long LastSaveTime;

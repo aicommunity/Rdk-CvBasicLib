@@ -75,7 +75,7 @@ bool UBShowRect::AFSReset(void)
 // Выполняет расчет этого объекта
 bool UBShowRect::AFSCalculate(void)
 {
- if(MatrixZones)
+ if(MatrixZones.IsConnected())
  {
   MDMatrix<double> &matrix=*MatrixZones;
   MDMatrix<int> show_flags=*ShowFlags;
@@ -101,7 +101,7 @@ bool UBShowRect::AFSCalculate(void)
   }
  }
 
- if(RectZones)
+ if(RectZones.IsConnected())
   for(size_t i=0;i<RectZones->size();i++)
   {
    UBRect &rect=(*RectZones)[i];

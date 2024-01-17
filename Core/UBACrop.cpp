@@ -76,7 +76,7 @@ bool UBACrop::AReset(void)
 // Выполняет расчет этого объекта
 bool UBACrop::ACalculate(void)
 {
- if(!Input || !Output)
+ if(!Input.IsConnected())
   return true;
 
  MDMatrix<int> &crop_rect=*CropRect;
