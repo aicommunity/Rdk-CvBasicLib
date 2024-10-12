@@ -12,7 +12,7 @@ CONFIG += staticlib
 
 include($$PWD/../../../../Rdk/Build/Lib/Qt/RdkDefines.pri)
 
-VERSION = $$system(hg parents --template '{rev}')
+VERSION = 0 # $$system(hg parents --template '{rev}')
 DEFINES += RDK_LIB_CVS_REVISION=$$VERSION
 
 unix {
