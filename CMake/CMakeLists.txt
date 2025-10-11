@@ -9,6 +9,8 @@ target_include_directories(${TARGET_NAME}
   PUBLIC
     ${CMAKE_SOURCE_DIR}/Rdk/Deploy/Include
     ${CMAKE_SOURCE_DIR}/Libraries/Rdk-CvBasicLib/Core
+    ${CMAKE_SOURCE_DIR}/Rdk/Core/Engine
+    ${CMAKE_SOURCE_DIR}/Rdk/Core/System
 )
 
 file(GLOB CV_HEADERS
@@ -38,10 +40,12 @@ target_compile_definitions(${TARGET_NAME} PUBLIC RDK_QT RDK_LIB_CVS_REVISION=0)
 
 find_package(Qt5 REQUIRED COMPONENTS Core)
 target_link_libraries(${TARGET_NAME} PUBLIC Qt5::Core Threads::Threads rdk.static.qt Rdk-BasicLib.qt)
-find_package(Boost QUIET COMPONENTS filesystem system)
-if(Boost_FOUND)
-  target_link_libraries(${TARGET_NAME} PUBLIC Boost::filesystem Boost::system)
-endif()
+# Boost.Filesystem заменен на std::filesystem (C++20)
+# Boost.System больше не требуется
+# find_package(Boost QUIET COMPONENTS filesystem system)
+# if(Boost_FOUND)
+#   target_link_libraries(${TARGET_NAME} PUBLIC Boost::filesystem Boost::system)
+# endif()
 
 if (RDK_USE_OPENCV AND OpenCV_FOUND)
   target_link_libraries(${TARGET_NAME} PUBLIC ${OpenCV_LIBS})
