@@ -24,7 +24,7 @@ namespace RDK {
 //UBStatisticRect UBGuiSelectionRect;
 
 // ---------------------
-// Конструкторы и деструкторы
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // ---------------------
 UBStatistic::UBStatistic(void)
 : SavePath("SavePath",this),
@@ -51,7 +51,7 @@ UBStatistic::~UBStatistic(void)
 // ---------------------
 
 // ---------------------
-// Методы управления параметрами
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // ---------------------
 bool UBStatistic::SetSavePath(const std::string &value)
 {
@@ -85,9 +85,9 @@ bool UBStatistic::SetInputIndexMode(int value)
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 bool UBStatistic::ADefault(void)
 {
  Activity=false;
@@ -105,16 +105,16 @@ bool UBStatistic::ADefault(void)
  return AFSDefault();
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Reset() пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Ready пїЅ true
+// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 bool UBStatistic::ABuild(void)
 {
  return AFSBuild();
 }
 
-// Сброс процесса счета без потери настроек
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool UBStatistic::AReset(void)
 {
  ResetFlag=true;
@@ -128,7 +128,7 @@ bool UBStatistic::AReset(void)
  return AFSReset();
 }
 
-// Выполняет расчет этого объекта
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool UBStatistic::ACalculate(void)
 {
  if(CurrentStep<NumSkipSteps)
@@ -151,24 +151,25 @@ bool UBStatistic::ACalculate(void)
 
  if(SubFolderAfterResetFlag && ResetFlag)
  {
-  if(RDK::CreateNewDirectory((Environment->GetCurrentDataDir()+SavePath.v).c_str()))
-   return false; // Заглушка!! здесь исключение
+  auto env = Environment.lock();
+  if(RDK::CreateNewDirectory((env->GetCurrentDataDir()+SavePath.v).c_str()))
+   return false; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!! пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
   time_t time_data;
   time(&time_data);
   if(!PrefixName->empty())
-   CurrentPath=Environment->GetCurrentDataDir()+SavePath.v+std::string("/")+PrefixName.v+std::string(" ")+get_text_time(time_data,'.','-');
+   CurrentPath=env->GetCurrentDataDir()+SavePath.v+std::string("/")+PrefixName.v+std::string(" ")+get_text_time(time_data,'.','-');
   else
-   CurrentPath=Environment->GetCurrentDataDir()+SavePath.v+std::string("/")+get_text_time(time_data,'.','-');
+   CurrentPath=env->GetCurrentDataDir()+SavePath.v+std::string("/")+get_text_time(time_data,'.','-');
   if(RDK::CreateNewDirectory(CurrentPath.c_str()))
-   return false; // Заглушка!! здесь исключение
+   return false; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!! пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
  }
 
  if(InputIndexMode == 1)
  {
   for(int i=0;i<int(Input->size());i++)
    if(RDK::CreateNewDirectory((CurrentPath+std::string("/")+sntoa(i)).c_str()))
-	return false; // Заглушка!! здесь исключение
+	return false; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!! пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
  }
 
  ResetFlag=false;
@@ -211,7 +212,7 @@ bool UBStatistic::ACalculate(void)
 // --------------------------
 
 // ---------------------
-// Конструкторы и деструкторы
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // ---------------------
 UBStatisticSimple::UBStatisticSimple(void)
  : TimeInterval("TimeInterval",this),
@@ -227,7 +228,7 @@ UBStatisticSimple::~UBStatisticSimple(void)
 // ---------------------
 
 // ---------------------
-// Методы управления параметрами
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // ---------------------
 bool UBStatisticSimple::SetTimeInterval(int value)
 {
@@ -249,9 +250,9 @@ bool UBStatisticSimple::SetWriteSignal(bool value)
 // ---------------------
 
 // ---------------------
-// Методы счета
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 // ---------------------
-// Создание новой копии этого объекта
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 UBStatisticSimple* UBStatisticSimple::New(void)
 {
  return new UBStatisticSimple;
@@ -259,9 +260,9 @@ UBStatisticSimple* UBStatisticSimple::New(void)
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров сплиттинга
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 bool UBStatisticSimple::AFSDefault(void)
 {
  TimeInterval=0;
@@ -271,16 +272,16 @@ bool UBStatisticSimple::AFSDefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Reset() пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Ready пїЅ true
+// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 bool UBStatisticSimple::AFSBuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета без потери настроек
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool UBStatisticSimple::AFSReset(void)
 {
  LastSaveTime=GetTime().GetSourceCurrentLocalTimeMs();
@@ -288,7 +289,7 @@ bool UBStatisticSimple::AFSReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool UBStatisticSimple::AFSCalculate(void)
 {
  if(Mode == 0 || Mode == 1)
@@ -318,7 +319,7 @@ bool UBStatisticSimple::AFSCalculate(void)
  return true;
 }
 
-// Осуществляет сохранение текущих данных
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 bool UBStatisticSimple::Save(void)
 {
  std::vector<UCItem> c_items;

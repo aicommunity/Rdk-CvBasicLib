@@ -14,50 +14,72 @@ See file license.txt for more information
 #define UBASOURCE_H
 
 #include "../../../Rdk/Deploy/Include/rdk.h"
+#include "UEPtr.h"
+#include "ModernSmartPointers.h"
+#include <memory>
+#include <mutex>
+#include <filesystem>
 
 namespace RDK {
 
-/// Простой класс-источник изображений
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 class RDK_LIB_TYPE UBASource: public UNet
 {
 public:
 UPropertyOutputData<UBitmap, UBASource> Output;
 UPropertyInputData<UBitmap, UBASource> Input;
 
-public: // Методы
+public: // пїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
-// Конструкторы и деструкторы
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
 UBASource(void);
 virtual ~UBASource(void);
+
+// Modern C++20 methods with move semantics for images
+// Thread-safe image operations
+void SetImageSafe(const UBitmap& image);
+UBitmap GetImageSafe(void) const;
+
+// Modern move semantics for large image data
+UBASource(UBASource&& other) noexcept;
+UBASource& operator=(UBASource&& other) noexcept;
+
+// Modern smart pointer factory
+static std::shared_ptr<UBASource> Create(void);
+
+// Modern file operations with std::filesystem
+bool LoadImageFromFile(const std::filesystem::path& filepath);
+bool SaveImageToFile(const std::filesystem::path& filepath) const;
+
 // --------------------------
 
 protected:
 // --------------------------
-// Методы управления данными
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
-/// Непосредственно задает выходное изображение
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool SetOutputData(int index, const UBitmap &bitmap);
 // --------------------------
 
 // --------------------------
-// Системные методы управления объектом
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
-/// Выделяет память для новой чистой копии объекта этого класса
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 virtual UBASource* New(void);
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
 protected:
-/// Восстановление настроек по умолчанию и сброс процесса счета
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 virtual bool ADefault(void);
 
-/// Сброс процесса счета.
+/// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 virtual bool AReset(void);
 
-/// Выполняет расчет этого объекта
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 virtual bool ACalculate(void);
 // --------------------------
 };

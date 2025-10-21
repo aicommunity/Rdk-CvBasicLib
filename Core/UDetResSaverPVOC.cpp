@@ -8,9 +8,9 @@ namespace RDK {
 
 
 
-// Методы
+// пїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
-// Конструкторы и деструкторы
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
 UDetResSaverPVOC::UDetResSaverPVOC(void) :
  SaveDirectory("SaveDirectory",this),
@@ -34,19 +34,19 @@ UDetResSaverPVOC::~UDetResSaverPVOC(void)
 
 
 // ---------------------
-// Методы управления параметрами
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // ---------------------
 // ---------------------
 
 // ---------------------
-// Методы управления переменными состояния
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // ---------------------
 // ---------------------
 
 // --------------------------
-// Системные методы управления объектом
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 UDetResSaverPVOC* UDetResSaverPVOC::New(void)
 {
  return new UDetResSaverPVOC;
@@ -55,7 +55,7 @@ UDetResSaverPVOC* UDetResSaverPVOC::New(void)
 
 
 // --------------------------
-// Скрытые методы управления счетом
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
 bool UDetResSaverPVOC::ACalculate(void)
 {
@@ -86,9 +86,10 @@ bool UDetResSaverPVOC::ACalculate(void)
 
 bool UDetResSaverPVOC::SaveImage()
 {
-    std::string save_path = Environment->GetCurrentDataDir()+"Results/";
+    auto env = Environment.lock();
+    std::string save_path = env->GetCurrentDataDir()+"Results/";
 
-    //Создаем директорию Results в папке проекта
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Results пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     if(RDK::CreateNewDirectory(save_path.c_str())!=0)
     {
         LogMessageEx(RDK_EX_WARNING,__FUNCTION__,std::string("UDetResSaverPVOC error: error while creating \"Results\" directory. Full path: " + save_path));
@@ -103,18 +104,18 @@ bool UDetResSaverPVOC::SaveImage()
 
 
     std::string save_directory = SaveDirectory;
-    // Если новый запуск (новый компонент) и директория уже существует ЛИБО название папки изменилось извне и директория уже существует
+    // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     if( (!CalculateFlag && boost::filesystem::exists(save_path+SaveDirectory->c_str())) || ( (OldSaveDirectory != *SaveDirectory) && boost::filesystem::exists(save_path+SaveDirectory->c_str())))
     {
-        // Если перезаписываем
+        // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if(OverwriteSaveDirectory)
         {
-            // Удаляем директорию
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             std::string temp = save_path + SaveDirectory->c_str();
             std::vector<std::string> folders;
             RDK::FindFilesList(temp.c_str(),"*",false,folders);
 
-            // Удаление внутренних папок
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
             for(int k = 0; k < folders.size(); k++)
             {
                 std::string inner_folder = temp + "/" + folders.at(k).c_str();
@@ -125,25 +126,25 @@ bool UDetResSaverPVOC::SaveImage()
         }
         else
         {
-            // Генерация нового имени для директории с некоторым индексом
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             int folder_id = 0;
 
             while(boost::filesystem::exists(save_path + SaveDirectory->c_str()))
             {
                 folder_id ++;
                 SaveDirectory = save_directory + "_" + RDK::sntoa(folder_id);
-                // TODO возможно ли ситуация когда названий папок не останется?
-                // то есть все папки включая INT_MAX и INT_MIN будут заняты. делать break и error?
+                // TODO пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?
+                // пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ INT_MAX пїЅ INT_MIN пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ break пїЅ error?
             }
         }
     }
 
     CalculateFlag = true;
     OldSaveDirectory = SaveDirectory;
-    // Создание директории для сохранения
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     save_path = save_path + SaveDirectory->c_str() + "/";
 
-    //Создаем директорию {SaveDirectory} в папке Results
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ {SaveDirectory} пїЅ пїЅпїЅпїЅпїЅпїЅ Results
     if(RDK::CreateNewDirectory(save_path.c_str())!=0)
     {
         LogMessageEx(RDK_EX_WARNING,__FUNCTION__,std::string("UDetResSaverPVOC error: error while creating \"{SaveDirectory}\" directory. Full path: " + save_path));
@@ -154,7 +155,7 @@ bool UDetResSaverPVOC::SaveImage()
     std::string annotation_path = save_path;
 
     images_path = images_path + "images/";
-    //Создаем директорию {images} в папке {SaveDirectory}
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ {images} пїЅ пїЅпїЅпїЅпїЅпїЅ {SaveDirectory}
     if(RDK::CreateNewDirectory(images_path.c_str())!=0)
     {
         LogMessageEx(RDK_EX_WARNING,__FUNCTION__,std::string("UDetResSaverPVOC error: error while creating \"{images}\" directory. Full path: " + images_path));
@@ -162,7 +163,7 @@ bool UDetResSaverPVOC::SaveImage()
     }
 
     annotation_path = annotation_path + "annotations/";
-    //Создаем директорию {annotations} в папке {SaveDirectory}
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ {annotations} пїЅ пїЅпїЅпїЅпїЅпїЅ {SaveDirectory}
     if(RDK::CreateNewDirectory(annotation_path.c_str())!=0)
     {
         LogMessageEx(RDK_EX_WARNING,__FUNCTION__,std::string("UDetResSaverPVOC error: error while creating \"{annotations}\" directory. Full path: " + annotation_path));
@@ -178,7 +179,7 @@ bool UDetResSaverPVOC::SaveImage()
         return true;
     }
 
-    // Имя файла изображения и разметки
+    // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     static int name = 0;
 
     string img_name;
@@ -203,7 +204,7 @@ bool UDetResSaverPVOC::SaveImage()
     else
     {
          img_name = RDK::sntoa(name) + ".jpg";
-         // Сохранение изображения в папке images
+         // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ images
 
          jpge::params param;
          param.m_quality=100;
@@ -218,8 +219,8 @@ bool UDetResSaverPVOC::SaveImage()
     }
 
 
-    // Сохранение XML файла разметки
-    // Описание класса (отсюда формируются свойства)
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ XML пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
     USerStorageXML AnnotationXML;
 
     AnnotationXML.Create("annotation");
@@ -247,12 +248,12 @@ bool UDetResSaverPVOC::SaveImage()
 
     AnnotationXML.AddNode("source");
     AnnotationXML.AddNode("database");
-    // TODO что тут?
+    // TODO пїЅпїЅпїЅ пїЅпїЅпїЅ?
     AnnotationXML.SetNodeText("Unknown");
     AnnotationXML.SelectUp();
     AnnotationXML.SelectUp();
 
-    // Размер изображения
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     AnnotationXML.AddNode("size");
 
     AnnotationXML.AddNode("width");
@@ -285,11 +286,11 @@ bool UDetResSaverPVOC::SaveImage()
 
         if(class_name != (*ObjectsName).end())
         {
-            AnnotationXML.SetNodeText(class_name->second); // имя класса
+            AnnotationXML.SetNodeText(class_name->second); // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         }
         else
         {
-            AnnotationXML.SetNodeText(RDK::sntoa((*InputObjects)(i,5))); // номер класса
+            AnnotationXML.SetNodeText(RDK::sntoa((*InputObjects)(i,5))); // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         }
 
         AnnotationXML.SelectUp();
@@ -306,7 +307,7 @@ bool UDetResSaverPVOC::SaveImage()
         AnnotationXML.SetNodeText("0");
         AnnotationXML.SelectUp();
 
-        // Рамка
+        // пїЅпїЅпїЅпїЅпїЅ
         AnnotationXML.AddNode("bndbox");
 
         AnnotationXML.AddNode("xmin");

@@ -18,6 +18,11 @@ See file license.txt for more information
 #include "../../../Rdk/Core/Engine/ModernContainers.h"
 #include "../../../Rdk/Core/System/ModernChrono.h"
 #include "../../../Rdk/Core/System/ModernMutex.h"
+#include "UEPtr.h"
+#include <memory>
+#include <mutex>
+#include <filesystem>
+#include <vector>
 
 namespace RDK {
 
@@ -34,6 +39,23 @@ public: // ������
 // --------------------------
 UBPipeline(void);
 virtual ~UBPipeline(void);
+
+// Modern C++20 methods with move semantics for pipeline processing
+// Thread-safe pipeline operations
+void ProcessImageSafe(const UBitmap& input, UBitmap& output);
+void ProcessImageBatchSafe(const std::vector<UBitmap>& inputs, std::vector<UBitmap>& outputs);
+
+// Modern move semantics for large pipeline data
+UBPipeline(UBPipeline&& other) noexcept;
+UBPipeline& operator=(UBPipeline&& other) noexcept;
+
+// Modern smart pointer factory
+static std::shared_ptr<UBPipeline> Create(void);
+
+// Modern file operations with std::filesystem
+bool LoadPipelineFromFile(const std::filesystem::path& filepath);
+bool SavePipelineToFile(const std::filesystem::path& filepath) const;
+
 // --------------------------
 
 // ---------------------
@@ -120,18 +142,6 @@ virtual bool ACalculate(void);
 // --------------------------
 // Modern C++20 methods
 // --------------------------
-// Move semantics
-UBPipeline(const UBPipeline&) = default;
-UBPipeline(UBPipeline&&) noexcept = default;
-UBPipeline& operator=(const UBPipeline&) = default;
-UBPipeline& operator=(UBPipeline&&) noexcept = default;
-
-// Modern pipeline operations
-void OptimizePipelinePerformance();
-bool IsPipelineValid() const;
-void ReservePipelineMemory(size_t components_count);
-TimePoint GetLastPipelineUpdateTime() const;
-void SetLastPipelineUpdateTime(TimePoint time);
 
 // Modern image processing operations
 template<typename T>

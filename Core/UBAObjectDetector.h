@@ -17,6 +17,11 @@ See file license.txt for more information
 #include "../../../Rdk/Core/Engine/ModernContainers.h"
 #include "../../../Rdk/Core/System/ModernChrono.h"
 #include "../../../Rdk/Core/System/ModernMutex.h"
+#include "UEPtr.h"
+#include <memory>
+#include <mutex>
+#include <filesystem>
+#include <vector>
 
 namespace RDK {
 
@@ -26,6 +31,10 @@ class RDK_LIB_TYPE UBAObjectDetector
 public:
 // ��� ����������
 struct Rect { int X,Y,Width,Height; };
+
+// ����������� �� ���������
+UBAObjectDetector() = default;
+virtual ~UBAObjectDetector() = default;
 
 public: // ������
 // ---------------------
@@ -38,6 +47,23 @@ virtual bool Calculate(const UBitmap& input, Rect* objects)=0;
 // ���������
 // ---------------------
 bool operator () (const UBitmap& input, Rect* objects);
+
+// Modern C++20 methods with move semantics for object detection
+// Thread-safe object detection
+std::vector<Rect> DetectObjectsSafe(const UBitmap& input);
+bool DetectObjectsSafe(const UBitmap& input, std::vector<Rect>& objects);
+
+// Modern move semantics for large detection data
+UBAObjectDetector(UBAObjectDetector&& other) noexcept;
+UBAObjectDetector& operator=(UBAObjectDetector&& other) noexcept;
+
+// Modern smart pointer factory
+static std::shared_ptr<UBAObjectDetector> Create(void);
+
+// Modern file operations with std::filesystem
+bool LoadModelFromFile(const std::filesystem::path& filepath);
+bool SaveModelToFile(const std::filesystem::path& filepath) const;
+
 // ---------------------
 };
 

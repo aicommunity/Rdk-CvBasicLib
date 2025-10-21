@@ -8,9 +8,9 @@ namespace RDK {
 
 
 
-// Методы
+// пїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
-// Конструкторы и деструкторы
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
 UClassifierResSaver::UClassifierResSaver(void):
     SaveDirectory("SaveDirectory", this),
@@ -36,19 +36,19 @@ UClassifierResSaver::~UClassifierResSaver(void)
 
 
 // ---------------------
-// Методы управления параметрами
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // ---------------------
 // ---------------------
 
 // ---------------------
-// Методы управления переменными состояния
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // ---------------------
 // ---------------------
 
 // --------------------------
-// Системные методы управления объектом
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 UClassifierResSaver* UClassifierResSaver::New(void)
 {
  return new UClassifierResSaver;
@@ -57,7 +57,7 @@ UClassifierResSaver* UClassifierResSaver::New(void)
 
 
 // --------------------------
-// Скрытые методы управления счетом
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
 bool UClassifierResSaver::ACalculate(void)
 {
@@ -140,9 +140,10 @@ bool UClassifierResSaver::ACalculate(void)
 
 bool UClassifierResSaver::SaveImage(UBitmap& img, int class_id, MDMatrix<double>& confidences)
 {
-    std::string save_path = Environment->GetCurrentDataDir()+"Results/";
+    auto env = Environment.lock();
+    std::string save_path = env->GetCurrentDataDir()+"Results/";
 
-    //Создаем директорию Results в папке проекта
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Results пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     if(RDK::CreateNewDirectory(save_path.c_str())!=0)
     {
         LogMessageEx(RDK_EX_WARNING,__FUNCTION__,std::string("UClassifierResSaver error: error while creating \"Results\" directory. Full path: " + save_path));
@@ -156,18 +157,18 @@ bool UClassifierResSaver::SaveImage(UBitmap& img, int class_id, MDMatrix<double>
     }
 
     std::string save_directory = SaveDirectory;
-    // Если новый запуск (новый компонент) и директория уже существует ЛИБО название папки изменилось извне и директория уже существует
+    // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     if( (!CalculateFlag && boost::filesystem::exists(save_path+SaveDirectory->c_str())) || ( (OldSaveDirectory != *SaveDirectory) && boost::filesystem::exists(save_path+SaveDirectory->c_str())))
     {
-        // Если перезаписываем
+        // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if(OverwriteSaveDirectory)
         {
-            // Удаляем директорию
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             std::string temp = save_path + SaveDirectory->c_str();
             std::vector<std::string> folders;
             RDK::FindFilesList(temp.c_str(),"*",false,folders);
 
-            // Удаление внутренних папок
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
             for(int k = 0; k < folders.size(); k++)
             {
                 std::string inner_folder = temp + "/" + folders.at(k).c_str();
@@ -178,24 +179,24 @@ bool UClassifierResSaver::SaveImage(UBitmap& img, int class_id, MDMatrix<double>
         }
         else
         {
-            // Генерация нового имени для директории с некоторым индексом
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             int folder_id = 0;
 
             while(boost::filesystem::exists(save_path + SaveDirectory->c_str()))
             {
                 folder_id ++;
                 SaveDirectory = save_directory + "_" + RDK::sntoa(folder_id);
-                // TODO возможно ли ситуация когда названий папок не останется?
-                // то есть все папки включая INT_MAX и INT_MIN будут заняты. делать break и error?
+                // TODO пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?
+                // пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ INT_MAX пїЅ INT_MIN пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ break пїЅ error?
             }
         }
     }
     CalculateFlag = true;
     OldSaveDirectory = SaveDirectory;
-    // Создание директории для сохранения
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     save_path = save_path + SaveDirectory->c_str() + "/";
 
-    //Создаем директорию {SaveDirectory} в папке Results
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ {SaveDirectory} пїЅ пїЅпїЅпїЅпїЅпїЅ Results
     if(RDK::CreateNewDirectory(save_path.c_str())!=0)
     {
         LogMessageEx(RDK_EX_WARNING,__FUNCTION__,std::string("UClassifierResSaver error: error while creating \"{SaveDirectory}\" directory. Full path: " + save_path));
@@ -203,7 +204,7 @@ bool UClassifierResSaver::SaveImage(UBitmap& img, int class_id, MDMatrix<double>
     }
     std::string images_path = save_path + "images/";
 
-    // Если имя изобаржения не подключено, создается папка images, куда далее сохраняются изображения
+    // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ images, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     if(!ImageName.IsConnected())
     {
         if(RDK::CreateNewDirectory(images_path.c_str())!=0)
@@ -253,7 +254,7 @@ bool UClassifierResSaver::SaveImage(UBitmap& img, int class_id, MDMatrix<double>
         img_path << *ImageName;
     }
 
-    // Добавление разметки в файл разметки
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     std::string annotation_path = save_path + "annotations.txt";
     std::ofstream annotation_file;
     annotation_file.open(annotation_path.c_str(), std::ios::app);
