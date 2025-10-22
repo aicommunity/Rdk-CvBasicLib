@@ -44,7 +44,7 @@ UBPipeline::~UBPipeline(void)
 // в качестве компоненты данного объекта
 // Метод возвращает 'true' в случае допустимости
 // и 'false' в случае некорректного типа
-bool UBPipeline::CheckComponentType(UEPtr<UContainer> comp) const
+bool UBPipeline::CheckComponentType(std::shared_ptr<UContainer> comp) const
 {
  return true;
 }
@@ -68,7 +68,7 @@ UBPipeline* UBPipeline::New(void)
 // Метод будет вызван только если comp был
 // успешно добавлен в список компонент
 // Может быть передан указатель на локальную переменную
-bool UBPipeline::AAddComponent(UEPtr<UContainer> comp, UEPtr<UIPointer> pointer)
+bool UBPipeline::AAddComponent(std::shared_ptr<UContainer> comp, std::shared_ptr<UIPointer> pointer)
 {
  return true;
 }
@@ -77,7 +77,7 @@ bool UBPipeline::AAddComponent(UEPtr<UContainer> comp, UEPtr<UIPointer> pointer)
 // при удалении дочернего компонента из этого объекта
 // Метод будет вызван только если comp
 // существует в списке компонент
-bool UBPipeline::ADelComponent(UEPtr<UContainer> comp)
+bool UBPipeline::ADelComponent(std::shared_ptr<UContainer> comp)
 {
  return true;
 }

@@ -17,7 +17,7 @@ public:
 UPropertyInput<UCRConvolutionNetwork,UCRTeacherCVNetworkBP> Network;
 
 //UPropertyOutputData<MDMatrix<double>,UCRConvolutionNetwork, ptPubOutput | ptState> TrainErrorResult;
-//UEPtr<UCRConvolutionNetwork> Network;
+//std::shared_ptr<UCRConvolutionNetwork> Network;
 
 public: // Переменные состояния
 

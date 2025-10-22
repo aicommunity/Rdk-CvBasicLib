@@ -20,7 +20,7 @@ namespace RDK{
 CvBasicLib CvBasicLibrary;
 
 // --------------------------
-// Конструкторы и деструкторы
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
 CvBasicLib::CvBasicLib(void)
  : ULibrary("CvBasicLib","1.0", GetGlobalVersion())
@@ -29,185 +29,185 @@ CvBasicLib::CvBasicLib(void)
 // --------------------------
 
 // --------------------------
-// Методы заполенения бибилиотеки
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
-// Заполняет массив ClassSamples готовыми экземплярами образцов и их именами.
-// Не требуется предварительная очистка массива и уборка памяти.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ClassSamples пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 void CvBasicLib::CreateClassSamples(UStorage *storage)
 {
- UContainer *cont;
- cont=new UBAColorConvert;
+ std::shared_ptr<UContainer> cont;
+ cont=std::make_shared<UBAColorConvert>();
  cont->SetName("ColorConvert");
  cont->Default();
  UploadClass("ColorConvert",cont);
 
- cont=new UBAResizeEdges;
+ cont=std::make_shared<UBAResizeEdges>();
  cont->SetName("ResizeEdges");
  cont->Default();
  UploadClass("ResizeEdges",cont);
 
- cont=new UBARotateSimple;
+ cont=std::make_shared<UBARotateSimple>();
  cont->SetName("RotateSimple");
  cont->Default();
  UploadClass("RotateSimple",cont);
 
- cont=new UBAModel;
+ cont=std::make_shared<UBAModel>();
  cont->SetName("Model");
  cont->Default();
  UploadClass("Model",cont);
 
- cont=new UBPipeline;
+ cont=std::make_shared<UBPipeline>();
  cont->SetName("Pipeline");
  cont->Default();
  UploadClass("Pipeline",cont);
 
- cont=new UBParallelPipeline;
+ cont=std::make_shared<UBParallelPipeline>();
  cont->SetName("ParallelPipeline");
  cont->Default();
  UploadClass("ParallelPipeline",cont);
 
- cont=new UBASource;
+ cont=std::make_shared<UBASource>();
  cont->SetName("Source");
  cont->Default();
  UploadClass("Source",cont);
 
- cont=new UBASourceFile;
+ cont=std::make_shared<UBASourceFile>();
  cont->SetName("Source");
  cont->Default();
  UploadClass("SourceFile",cont);
 
- cont=new UBASourceMultiFile;
+ cont=std::make_shared<UBASourceMultiFile>();
  cont->SetName("Source");
  cont->Default();
  UploadClass("SourceMultiFile",cont);
 
- cont=new UBAReceiver;
+ cont=std::make_shared<UBAReceiver>();
  cont->SetName("Receiver");
  cont->Default();
  UploadClass("Receiver",cont);
 
- cont=new UBACrop;
+ cont=std::make_shared<UBACrop>();
  cont->SetName("Crop");
  cont->Default();
  UploadClass("Crop",cont);
 
- cont=new UBAReduce;
+ cont=std::make_shared<UBAReduce>();
  cont->SetName("Reduce");
  cont->Default();
  UploadClass("Reduce",cont);
 
- cont=new UBAFlipImageSimple;
+ cont=std::make_shared<UBAFlipImageSimple>();
  cont->SetName("FlipImage");
  cont->Default();
  UploadClass("UBAFlipImageSimple",cont);
 
- cont=new UMDMatrixMux<double>;
+ cont=std::make_shared<UMDMatrixMux<double>>();
  cont->SetName("MDMatrixDoubleMux");
  cont->Default();
  UploadClass("UMDMatrixDoubleMux",cont);
 
- cont=new UMDMatrixMux<int>;
+ cont=std::make_shared<UMDMatrixMux<int>>();
  cont->SetName("MDMatrixIntMux");
  cont->Default();
  UploadClass("UMDMatrixIntMux",cont);
 
- cont=new UBMathOperator;
+ cont=std::make_shared<UBMathOperator>();
  cont->SetName("BMathOperator");
  cont->Default();
  UploadClass("BMathOperator",cont);
 
- cont=new UMatrixMath<int>;
+ cont=std::make_shared<UMatrixMath<int>>();
  cont->SetName("MatrixIntMath");
  cont->Default();
  UploadClass("UMatrixIntMath",cont);
 
- cont=new UMatrixMath<double>;
+ cont=std::make_shared<UMatrixMath<double>>();
  cont->SetName("MatrixDoubleMath");
  cont->Default();
  UploadClass("UMatrixDoubleMath",cont);
 
- cont=new UMDScalarMux<double>;
+ cont=std::make_shared<UMDScalarMux<double>>();
  cont->SetName("MDScalarDoubleMux");
  cont->Default();
  UploadClass("UMDScalarDoubleMux",cont);
 
- cont=new UMDScalarMux<int>;
+ cont=std::make_shared<UMDScalarMux<int>>();
  cont->SetName("MDScalarIntMux");
  cont->Default();
  UploadClass("UMDScalarIntMux",cont);
 
-  cont=new UBADifferenceFrameSimple;
+  cont=std::make_shared<UBADifferenceFrameSimple>();
  cont->SetName("DifferenceFrameSimple");
  cont->Default();
  UploadClass("DifferenceFrameSimple",cont);
 
- cont=new UBABackgroundAvg;
+ cont=std::make_shared<UBABackgroundAvg>();
  cont->SetName("Background");
  cont->Default();
  UploadClass("BackgroundAvg",cont);
 
- cont=new UBABinarizationSimple;
+ cont=std::make_shared<UBABinarizationSimple>();
  cont->SetName("Binarization");
  cont->Default();
  UploadClass("TBinarizationSimple",cont);
 
- cont=new UBABinarizationSimpleAdaptiveThreshold;
+ cont=std::make_shared<UBABinarizationSimpleAdaptiveThreshold>();
  cont->SetName("Binarization");
  cont->Default();
  UploadClass("TBinarizationSimpleAdaptiveThreshold",cont);
 
- cont=new UBALabelingSimple;
+ cont=std::make_shared<UBALabelingSimple>();
  cont->SetName("Labeling");
  cont->Default();
  UploadClass("TLabelingSimple",cont);
 
 
- cont=new UBABackgroundExponnential;
+ cont=std::make_shared<UBABackgroundExponnential>();
  cont->SetName("Background");
  cont->Default();
  UploadClass("BackgroundExponnential",cont);
 
- cont=new UBADeltaBackgroundExponnential;
+ cont=std::make_shared<UBADeltaBackgroundExponnential>();
  cont->SetName("DeltaBackground");
  cont->Default();
  UploadClass("DeltaBackgroundExponnential",cont);
 
- cont=new UBABackgroundSimpleAdaptive;
+ cont=std::make_shared<UBABackgroundSimpleAdaptive>();
  cont->SetName("Background");
  cont->Default();
  UploadClass("BackgroundSimpleAdaptive",cont);
 
- cont=new UBABinarizationOtsu;
+ cont=std::make_shared<UBABinarizationOtsu>();
  cont->SetName("Binarization");
  cont->Default();
  UploadClass("UBABinarizationOtsu",cont);
 
- cont=new UBABackgroundDependDiff;
+ cont=std::make_shared<UBABackgroundDependDiff>();
  cont->SetName("Background");
  cont->Default();
  UploadClass("UBABackgroundDependDiff",cont);
 
- cont=new UBShowRect;
+ cont=std::make_shared<UBShowRect>();
  cont->SetName("ShowRect");
  cont->Default();
  UploadClass("UBShowRect",cont);
 
- cont=new UBAShowObjectsSimple;
+ cont=std::make_shared<UBAShowObjectsSimple>();
  cont->SetName("ShowObjectsSimple");
  cont->Default();
  UploadClass("ShowObjectsSimple",cont);
 
-  cont=new UBAVideoSimulatorSimple;
+  cont=std::make_shared<UBAVideoSimulatorSimple>();
  cont->SetName("VideoSimulatorSimple");
  cont->Default();
  UploadClass("VideoSimulatorSimple",cont);
 
- cont=new UBARotCameraSimulator;
+ cont=std::make_shared<UBARotCameraSimulator>();
  cont->SetName("RotCameraSimulator");
  cont->Default();
  UploadClass("RotCameraSimulator",cont);
 
- cont=new UBAVideoSimulatorSimpleBin;
+ cont=std::make_shared<UBAVideoSimulatorSimpleBin>();
  cont->SetName("VideoSimulatorSimpleBin");
  cont->Default();
  UploadClass("VideoSimulatorSimpleBin",cont);
@@ -217,26 +217,26 @@ void CvBasicLib::CreateClassSamples(UStorage *storage)
  cont->Default();
  UploadClass("Video3DSimulatorSimple",cont);
                  */
- cont=new UBADataSimulatorSimple;
+ cont=std::make_shared<UBADataSimulatorSimple>();
  cont->SetName("DataSimulatorSimple");
  cont->Default();
  UploadClass("DataSimulatorSimple",cont);
 
- cont=new UBABitmapSourceSimple;
+ cont=std::make_shared<UBABitmapSourceSimple>();
  cont->SetName("BitmapSourceSimple");
  cont->Default();
  UploadClass("BitmapSourceSimple",cont);
 
- cont=new UBABitmapSourceFile;
+ cont=std::make_shared<UBABitmapSourceFile>();
  cont->SetName("BitmapSourceFile");
  cont->Default();
  UploadClass("BitmapSourceFile",cont);
 
- cont=new UBASourceFreezeFrame;
+ cont=std::make_shared<UBASourceFreezeFrame>();
  cont->SetName("BitmapSourceFreezeFrame");
  cont->Default();
 
- cont=new UBStatisticSimple;
+ cont=std::make_shared<UBStatisticSimple>();
  cont->SetName("BStatisticSimple");
  cont->Default();
  UploadClass("BStatisticSimple",cont);
@@ -288,42 +288,48 @@ void CvBasicLib::CreateClassSamples(UStorage *storage)
  cont->Default();
  UploadClass("UCRTeacherCVNetworkBP",cont);
 */
- cont=new UClassifierBase;
+ cont=std::make_shared<UClassifierBase>();
  cont->SetName("ClassifierBase");
  cont->Default();
  UploadClass("UClassifierBase",cont);
 
- cont=new UDetectorBase;
+ cont=std::make_shared<UDetectorBase>();
  cont->SetName("DetectorBase");
  cont->Default();
  UploadClass("UDetectorBase",cont);
 
- cont=new USegmentatorBase;
+ cont=std::make_shared<USegmentatorBase>();
  cont->SetName("SegmentatorBase");
  cont->Default();
  UploadClass("USegmentatorBase",cont);
 
- cont=new UClassifierResSaver;
+ cont=std::make_shared<UClassifierResSaver>();
  cont->SetName("ClassifierResSaver");
  cont->Default();
  UploadClass("UClassifierResSaver",cont);
 
- cont=new UDetResSaverPVOC;
+ cont=std::make_shared<UDetResSaverPVOC>();
  cont->SetName("DetResSaverPVOC");
  cont->Default();
  UploadClass("UDetResSaverPVOC",cont);
 
- cont=new UCRPrincipalComponentAnalysis;
+ cont=std::make_shared<UCRPrincipalComponentAnalysis>();
  cont->SetName("CRPrincipalComponentAnalysis");
  cont->Default();
  UploadClass("UCRPrincipalComponentAnalysis",cont);
 
- cont=new UCRBarnesHutTSNE;
+ cont=std::make_shared<UCRBarnesHutTSNE>();
  cont->SetName("CRBarnesHutTSNE");
  cont->Default();
  UploadClass("UCRBarnesHutTSNE",cont);
 
- UploadClass<TCaptureImageSequence>("TCaptureImageSequence","Capture");
+ // UploadClass<TCaptureImageSequence>("TCaptureImageSequence","Capture");
+ {
+  auto cap = std::make_shared<TCaptureImageSequence>();
+  cap->SetName("Capture");
+  cap->Default();
+  UploadClass("TCaptureImageSequence", cap);
+ }
 }
 
 bool CvBasicLib::CvBasicLibCrPropMock(RDK::USerStorageXML *serstorage, RDK::UMockUNet *mock_unet)
