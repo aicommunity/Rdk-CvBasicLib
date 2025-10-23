@@ -51,3 +51,5 @@ if (RDK_USE_OPENCV AND OpenCV_FOUND)
   target_include_directories(${TARGET_NAME} PUBLIC ${OpenCV_INCLUDE_DIRS})
   target_link_libraries(${TARGET_NAME} PUBLIC ${OpenCV_LIBS})
 endif()
+
+
