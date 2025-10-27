@@ -140,7 +140,7 @@ bool UClassifierResSaver::ACalculate(void)
 
 bool UClassifierResSaver::SaveImage(UBitmap& img, int class_id, MDMatrix<double>& confidences)
 {
-    auto env = Environment.lock();
+    auto env = Environment;
     std::string save_path = env->GetCurrentDataDir()+"Results/";
 
     //������� ���������� Results � ����� �������

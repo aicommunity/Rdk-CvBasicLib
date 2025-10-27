@@ -86,7 +86,7 @@ bool UDetResSaverPVOC::ACalculate(void)
 
 bool UDetResSaverPVOC::SaveImage()
 {
-    auto env = Environment.lock();
+    auto env = Environment;
     std::string save_path = env->GetCurrentDataDir()+"Results/";
 
     //������� ���������� Results � ����� �������

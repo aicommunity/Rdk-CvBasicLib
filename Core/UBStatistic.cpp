@@ -151,7 +151,7 @@ bool UBStatistic::ACalculate(void)
 
  if(SubFolderAfterResetFlag && ResetFlag)
  {
-  auto env = Environment.lock();
+  auto env = Environment;
   if(RDK::CreateNewDirectory((env->GetCurrentDataDir()+SavePath.v).c_str()))
    return false; // ��������!! ����� ����������
 
