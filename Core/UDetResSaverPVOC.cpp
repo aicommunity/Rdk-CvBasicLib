@@ -1,7 +1,8 @@
 #ifndef RDK_UDETRESSAVERPVOC_CPP
 #define RDK_UDETRESSAVERPVOC_CPP
 
-#include <boost/filesystem.hpp>
+#include <filesystem>
+namespace fs = std::filesystem;
 #include "UDetResSaverPVOC.h"
 
 namespace RDK {
@@ -105,7 +106,7 @@ bool UDetResSaverPVOC::SaveImage()
 
     std::string save_directory = SaveDirectory;
     // ���� ����� ������ (����� ���������) � ���������� ��� ���������� ���� �������� ����� ���������� ����� � ���������� ��� ����������
-    if( (!CalculateFlag && boost::filesystem::exists(save_path+SaveDirectory->c_str())) || ( (OldSaveDirectory != *SaveDirectory) && boost::filesystem::exists(save_path+SaveDirectory->c_str())))
+    if( (!CalculateFlag && fs::exists(save_path+SaveDirectory->c_str())) || ( (OldSaveDirectory != *SaveDirectory) && fs::exists(save_path+SaveDirectory->c_str())))
     {
         // ���� ��������������
         if(OverwriteSaveDirectory)
@@ -129,7 +130,7 @@ bool UDetResSaverPVOC::SaveImage()
             // ��������� ������ ����� ��� ���������� � ��������� ��������
             int folder_id = 0;
 
-            while(boost::filesystem::exists(save_path + SaveDirectory->c_str()))
+            while(fs::exists(save_path + SaveDirectory->c_str()))
             {
                 folder_id ++;
                 SaveDirectory = save_directory + "_" + RDK::sntoa(folder_id);
