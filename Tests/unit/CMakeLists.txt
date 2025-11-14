@@ -7,6 +7,7 @@ find_package(GTest REQUIRED)
 # Create test executable for CvBasicLib tests
 add_executable(RdkCvBasicLibTests
     TestCvBasicLibComponents.cpp
+    TestCvBasicLibRegistration.cpp
     ${CMAKE_SOURCE_DIR}/Libraries/Libraries_con.cpp
 )
 
