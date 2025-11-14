@@ -178,3 +178,132 @@ TEST_F(CvBasicLibComponentsTest, CreatePipelineComponent) {
     // No need to call ReturnObject - shared_ptr will handle cleanup automatically
 }
 
+// Test additional image processing components
+TEST_F(CvBasicLibComponentsTest, CreateAdditionalImageProcessingComponents) {
+    // Test Reduce component
+    if (storage->CheckClass("Reduce")) {
+        auto reduce = storage->TakeObject("Reduce");
+        ASSERT_NE(reduce, nullptr);
+        EXPECT_EQ(reduce->GetCompClassName(), "Reduce");
+        reduce->SetName("TestReduce");
+        EXPECT_EQ(reduce->GetName(), "TestReduce");
+    }
+
+    // Test FlipImage component
+    if (storage->CheckClass("UBAFlipImageSimple")) {
+        auto flip = storage->TakeObject("UBAFlipImageSimple");
+        ASSERT_NE(flip, nullptr);
+        EXPECT_EQ(flip->GetCompClassName(), "UBAFlipImageSimple");
+        flip->SetName("TestFlipImage");
+        EXPECT_EQ(flip->GetName(), "TestFlipImage");
+    }
+
+    // Test Model component
+    if (storage->CheckClass("Model")) {
+        auto model = storage->TakeObject("Model");
+        ASSERT_NE(model, nullptr);
+        EXPECT_EQ(model->GetCompClassName(), "Model");
+        model->SetName("TestModel");
+        EXPECT_EQ(model->GetName(), "TestModel");
+    }
+
+    // Test ParallelPipeline component
+    if (storage->CheckClass("ParallelPipeline")) {
+        auto parallelPipeline = storage->TakeObject("ParallelPipeline");
+        ASSERT_NE(parallelPipeline, nullptr);
+        EXPECT_EQ(parallelPipeline->GetCompClassName(), "ParallelPipeline");
+        parallelPipeline->SetName("TestParallelPipeline");
+        EXPECT_EQ(parallelPipeline->GetName(), "TestParallelPipeline");
+    }
+}
+
+// Test additional detection components
+TEST_F(CvBasicLibComponentsTest, CreateAdditionalDetectionComponents) {
+    // Test DifferenceFrame component
+    if (storage->CheckClass("DifferenceFrame")) {
+        auto diffFrame = storage->TakeObject("DifferenceFrame");
+        ASSERT_NE(diffFrame, nullptr);
+        EXPECT_EQ(diffFrame->GetCompClassName(), "DifferenceFrame");
+        diffFrame->SetName("TestDifferenceFrame");
+        EXPECT_EQ(diffFrame->GetName(), "TestDifferenceFrame");
+    }
+
+    // Test MovingDetector component
+    if (storage->CheckClass("MovingDetector")) {
+        auto movingDetector = storage->TakeObject("MovingDetector");
+        ASSERT_NE(movingDetector, nullptr);
+        EXPECT_EQ(movingDetector->GetCompClassName(), "MovingDetector");
+        movingDetector->SetName("TestMovingDetector");
+        EXPECT_EQ(movingDetector->GetName(), "TestMovingDetector");
+    }
+
+    // Test ObjectDetector component
+    if (storage->CheckClass("ObjectDetector")) {
+        auto objectDetector = storage->TakeObject("ObjectDetector");
+        ASSERT_NE(objectDetector, nullptr);
+        EXPECT_EQ(objectDetector->GetCompClassName(), "ObjectDetector");
+        objectDetector->SetName("TestObjectDetector");
+        EXPECT_EQ(objectDetector->GetName(), "TestObjectDetector");
+    }
+}
+
+// Test classification base components
+TEST_F(CvBasicLibComponentsTest, CreateClassificationBaseComponents) {
+    // Test UClassifierBase component
+    if (storage->CheckClass("UClassifierBase")) {
+        auto classifierBase = storage->TakeObject("UClassifierBase");
+        ASSERT_NE(classifierBase, nullptr);
+        EXPECT_EQ(classifierBase->GetCompClassName(), "UClassifierBase");
+        classifierBase->SetName("TestClassifierBase");
+        EXPECT_EQ(classifierBase->GetName(), "TestClassifierBase");
+    }
+
+    // Test UDetectorBase component
+    if (storage->CheckClass("UDetectorBase")) {
+        auto detectorBase = storage->TakeObject("UDetectorBase");
+        ASSERT_NE(detectorBase, nullptr);
+        EXPECT_EQ(detectorBase->GetCompClassName(), "UDetectorBase");
+        detectorBase->SetName("TestDetectorBase");
+        EXPECT_EQ(detectorBase->GetName(), "TestDetectorBase");
+    }
+
+    // Test USegmentatorBase component
+    if (storage->CheckClass("USegmentatorBase")) {
+        auto segmentatorBase = storage->TakeObject("USegmentatorBase");
+        ASSERT_NE(segmentatorBase, nullptr);
+        EXPECT_EQ(segmentatorBase->GetCompClassName(), "USegmentatorBase");
+        segmentatorBase->SetName("TestSegmentatorBase");
+        EXPECT_EQ(segmentatorBase->GetName(), "TestSegmentatorBase");
+    }
+}
+
+// Test additional source components
+TEST_F(CvBasicLibComponentsTest, CreateAdditionalSourceComponents) {
+    // Test Source component
+    if (storage->CheckClass("Source")) {
+        auto source = storage->TakeObject("Source");
+        ASSERT_NE(source, nullptr);
+        EXPECT_EQ(source->GetCompClassName(), "Source");
+        source->SetName("TestSource");
+        EXPECT_EQ(source->GetName(), "TestSource");
+    }
+
+    // Test SourceMultiFile component
+    if (storage->CheckClass("SourceMultiFile")) {
+        auto sourceMultiFile = storage->TakeObject("SourceMultiFile");
+        ASSERT_NE(sourceMultiFile, nullptr);
+        EXPECT_EQ(sourceMultiFile->GetCompClassName(), "SourceMultiFile");
+        sourceMultiFile->SetName("TestSourceMultiFile");
+        EXPECT_EQ(sourceMultiFile->GetName(), "TestSourceMultiFile");
+    }
+
+    // Test Receiver component
+    if (storage->CheckClass("Receiver")) {
+        auto receiver = storage->TakeObject("Receiver");
+        ASSERT_NE(receiver, nullptr);
+        EXPECT_EQ(receiver->GetCompClassName(), "Receiver");
+        receiver->SetName("TestReceiver");
+        EXPECT_EQ(receiver->GetName(), "TestReceiver");
+    }
+}
+
