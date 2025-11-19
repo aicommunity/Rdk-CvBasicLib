@@ -10,7 +10,7 @@
 namespace RDK
 {
 // --------------------------
-// Конструкторы и деструкторы
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
 TCapture::TCapture(void)
 : DesiredFps("DesiredFps",this,&TCapture::SetDesiredFps),
@@ -47,9 +47,9 @@ TCapture::~TCapture(void)
 
 }
 // --------------------------
-// Методы управления параметрами
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
-/// Установка желаемой частоты кадров
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 bool TCapture::SetDesiredFps(const double &value)
 {
  return ASetDesiredFps(value);
@@ -60,7 +60,7 @@ bool TCapture::ASetDesiredFps(const double &value)
  return true;
 }
 
-/// Установка флага запуска захвата
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool TCapture::SetCameraType(const int &value)
 {
  return ASetCameraType(value);
@@ -72,7 +72,7 @@ bool TCapture::ASetCameraType(const int &value)
 }
 
 
-/// Таймаут на ожидание завершения захвата, мс
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ
 bool TCapture::SetCloseTimeout(const int &value)
 {
  return ASetCloseTimeout(value);
@@ -83,7 +83,7 @@ bool TCapture::ASetCloseTimeout(const double &value)
  return true;
 }
 
-/// Таймаут между переподключениями
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool TCapture::SetReconnectTimeout(const int &value)
 {
  return ASetReconnectTimeout(value);
@@ -104,10 +104,10 @@ bool TCapture::ASetCaptureTimeout(const double &value)
  return true;
 }
 
-/// Режим восстановления после сбоя захвата
-/// 0 - не делать ничего
-/// 1 - попытаться восстановить захват
-/// 2 - вызвать метод останова захвата
+/// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+/// 0 - пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+/// 1 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+/// 2 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool TCapture::SetRestartMode(const int &value)
 {
  return ASetRestartMode(value);
@@ -118,7 +118,7 @@ bool TCapture::ASetRestartMode(const double &value)
  return true;
 }
 
-/// Желаемое разрешение захвата
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool TCapture::SetDesiredWidth(const int &value)
 {
  return ASetDesiredWidth(value);
@@ -139,7 +139,7 @@ bool TCapture::ASetDesiredHeight(const double &value)
  return true;
 }
 
-/// Флаг включения выбора желаемого разрешения захвата
+/// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool TCapture::SetDesiredResolutionFlag(const bool &value)
 {
  return ASetDesiredResolutionFlag(value);
@@ -150,13 +150,13 @@ bool TCapture::ASetDesiredResolutionFlag(const bool &value)
  return true;
 }
 
-/// Установка флага запуска захвата
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool TCapture::SetEnableCapture(const bool &value)
 {
  return ASetEnableCapture(value);
 }
 
-/// Установка Флага приостановки захвата
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool TCapture::SetPaused(const bool &value)
 {
  return ASetPaused(value);
@@ -167,7 +167,7 @@ bool TCapture::ASetPaused(const bool &value)
  return true;
 }
 
-/// Инверсия по оси X
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ X
 bool TCapture::SetFlipX(const bool &value)
 {
  return ASetFlipX(value);
@@ -178,7 +178,7 @@ bool TCapture::ASetFlipX(const bool &value)
  return true;
 }
 
-/// Инверсия по оси Y
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ Y
 bool TCapture::SetFlipY(const bool &value)
 {
  return ASetFlipY(value);
@@ -189,7 +189,7 @@ bool TCapture::ASetFlipY(const bool &value)
  return true;
 }
 
-/// Установка угла поворота
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool TCapture::SetRotationAngle(const double &value)
 {
  return ASetRotationAngle(value);
@@ -200,14 +200,14 @@ bool TCapture::ASetRotationAngle(const double &value)
  return true;
 }
 
-/// Проверка актуальности данных
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 bool TCapture::SetRelevData(const bool &value)
 {
  return true;
 }
 
-/// Поворот изображения на фиксированный угол
-/// 0 - нет поворота
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+/// 0 - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 /// 1 - 90
 /// 2 - 180
 /// 3 - 270
@@ -227,21 +227,21 @@ int TCapture::GetCaptureState(void)
 }
 
 // --------------------------
-// Методы
+// пїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
-/// Запуск захвата
+/// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool TCapture::StartCapture(void)
 {
 // Paused=false;
  return AStartCapture();
 }
-/// Останов захвата
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool TCapture::StopCapture(void)
 {
  return AStopCapture();
 }
 
-/// Пауза захвата
+/// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool TCapture::PauseCapture(void)
 {
 // Paused=true;
@@ -254,25 +254,25 @@ bool TCapture::APauseCapture(void)
 }
 
 
-/// Возвращает общее число кадров в источнике
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 unsigned long long TCapture::GetNumFrames(void) const
 {
  return NumFrames;
 }
 
-/// Возвращает индекс текущего кадра в источнике
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 unsigned long long TCapture::GetFramePosition(void) const
 {
  return FramePosition;
 }
 
-/// Устанавливает имя текущего кадра в источнике
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void TCapture::SetFramePosition(unsigned long long value)
 {
 }
 
 
-/// Возвращает общее число секунд в источнике
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 double TCapture::GetTimeDuration(void) const
 {
  if(CaptureFps>0)
@@ -280,7 +280,7 @@ double TCapture::GetTimeDuration(void) const
  return 0;
 }
 
-/// Возвращает текущую секунду в источнике
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 double TCapture::GetTimePosition(void) const
 {
  if(RealFps>0)
@@ -288,13 +288,13 @@ double TCapture::GetTimePosition(void) const
  return 0;
 }
 
-/// Устанавливает текущую секунду в источнике
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void TCapture::SetTimePosition(double value)
 {
  SetFramePosition(static_cast<unsigned long long >(value*CaptureFps));
 }
 
-/// Перемещает позицию в источнике на value кадров
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ value пїЅпїЅпїЅпїЅпїЅпїЅ
 void TCapture::ChangeRelativeFramePosition(long long value)
 {
  unsigned long long position(GetFramePosition());
@@ -307,14 +307,14 @@ void TCapture::ChangeRelativeFramePosition(long long value)
   SetFramePosition(position-(unsigned long long)(-value));
 }
 
-/// Перемещает позицию в источнике на value секунд
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ value пїЅпїЅпїЅпїЅпїЅпїЅ
 void TCapture::ChangeRelativeTimePosition(double value)
 {
  ChangeRelativeFramePosition(static_cast<unsigned long long >(value*CaptureFps));
 }
 
 // --------------------------
-// Скрытые методы
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 // --------------------------
 bool TCapture::ADefault(void)
 {
@@ -364,10 +364,18 @@ bool TCapture::ACalculate(void)
   }
   else
   {
-   if(GetOwner())
-	GetOwner()->ForceSkipComponentCalculation();
+   // CRITICAL: GetOwner() now returns weak_ptr, need to lock before use
+   std::weak_ptr<UContainer> owner_weak=GetOwner();
+   if(!owner_weak.expired())
+   {
+    std::shared_ptr<UContainer> owner=owner_weak.lock();
+    if(owner)
+     owner->ForceSkipComponentCalculation();
+    else
+     ForceSkipComponentCalculation();
+   }
    else
-	ForceSkipComponentCalculation();
+    ForceSkipComponentCalculation();
    return true;
   }
  }
