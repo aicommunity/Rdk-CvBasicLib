@@ -19,7 +19,7 @@ namespace RDK {
 
 // class UBAObjectDetector
 // ---------------------
-// Операторы
+// РћРїРµСЂР°С‚РѕСЂС‹
 // ---------------------
 bool UBAObjectDetector::operator () (const UBitmap& input, Rect* objects)
 {
@@ -30,24 +30,24 @@ bool UBAObjectDetector::operator () (const UBitmap& input, Rect* objects)
 
 // class UBANightDetector
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 UBANightDetector::UBANightDetector(void)
 {
  HistorySize=0;
 
- // Размер блока изображения
+ // Р Р°Р·РјРµСЂ Р±Р»РѕРєР° РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
  BlockWidth=16;
  BlockHeight=20;
 
- // Размер карты
+ // Р Р°Р·РјРµСЂ РєР°СЂС‚С‹
  MapWidth=22;
  MapHeight=12;
 
- // Пороги
+ // РџРѕСЂРѕРіРё
  T1=0.45;
 
- // Коэффициент расстояния между кадрами
+ // РљРѕСЌС„С„РёС†РёРµРЅС‚ СЂР°СЃСЃС‚РѕСЏРЅРёСЏ РјРµР¶РґСѓ РєР°РґСЂР°РјРё
  Tr=0.8; // 0.8-0.9
 
  T=0;
@@ -57,34 +57,34 @@ UBANightDetector::UBANightDetector(void)
  CurrentFirstHistoryIndex=-1;
  Input=0;
 
- // Временные переменные для вычисления локального контраста
- // Размер изображения
+ // Р’СЂРµРјРµРЅРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ Р»РѕРєР°Р»СЊРЅРѕРіРѕ РєРѕРЅС‚СЂР°СЃС‚Р°
+ // Р Р°Р·РјРµСЂ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
  Width=0; Height=0;
 
- // Число блоков
+ // Р§РёСЃР»Рѕ Р±Р»РѕРєРѕРІ
  NumBlocks=0;
 
- // Массив локальных контрастов
+ // РњР°СЃСЃРёРІ Р»РѕРєР°Р»СЊРЅС‹С… РєРѕРЅС‚СЂР°СЃС‚РѕРІ
  CL=0;
 
- // Массив средних
+ // РњР°СЃСЃРёРІ СЃСЂРµРґРЅРёС…
  ML=0;
 
- // Массив СКО
+ // РњР°СЃСЃРёРІ РЎРљРћ
  SigmaL=0;
 
- // Временные переменные для вычисления карты локальной зависимости
- // Число элементов карты
+ // Р’СЂРµРјРµРЅРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ РєР°СЂС‚С‹ Р»РѕРєР°Р»СЊРЅРѕР№ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё
+ // Р§РёСЃР»Рѕ СЌР»РµРјРµРЅС‚РѕРІ РєР°СЂС‚С‹
  NumMaps=0;
 
- // Данные карты
+ // Р”Р°РЅРЅС‹Рµ РєР°СЂС‚С‹
  MCm=0;
  ICm=0;
 
- // Сетка контрастных объектов
+ // РЎРµС‚РєР° РєРѕРЅС‚СЂР°СЃС‚РЅС‹С… РѕР±СЉРµРєС‚РѕРІ
  ContrastGrid=0;
 
- // Сетка движущихся объектов
+ // РЎРµС‚РєР° РґРІРёР¶СѓС‰РёС…СЃСЏ РѕР±СЉРµРєС‚РѕРІ
  MovedGrid=0;
 
  TT=128;
@@ -97,27 +97,27 @@ UBANightDetector::UBANightDetector(void)
 
 UBANightDetector::~UBANightDetector(void)
 {
- // Временные переменные для вычисления локального контраста
- // Число блоков
+ // Р’СЂРµРјРµРЅРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ Р»РѕРєР°Р»СЊРЅРѕРіРѕ РєРѕРЅС‚СЂР°СЃС‚Р°
+ // Р§РёСЃР»Рѕ Р±Р»РѕРєРѕРІ
  NumBlocks=0;
 
- // Массив локальных контрастов
+ // РњР°СЃСЃРёРІ Р»РѕРєР°Р»СЊРЅС‹С… РєРѕРЅС‚СЂР°СЃС‚РѕРІ
  if(CL) delete[] CL;
  CL=0;
 
- // Массив средних
+ // РњР°СЃСЃРёРІ СЃСЂРµРґРЅРёС…
  if(ML) delete[] ML;
  ML=0;
 
- // Массив СКО
+ // РњР°СЃСЃРёРІ РЎРљРћ
  if(SigmaL) delete[] SigmaL;
  SigmaL=0;
 
- // Временные переменные для вычисления карты локальной зависимости
- // Число элементов карты
+ // Р’СЂРµРјРµРЅРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ РєР°СЂС‚С‹ Р»РѕРєР°Р»СЊРЅРѕР№ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё
+ // Р§РёСЃР»Рѕ СЌР»РµРјРµРЅС‚РѕРІ РєР°СЂС‚С‹
  NumMaps=0;
 
- // Данные карты
+ // Р”Р°РЅРЅС‹Рµ РєР°СЂС‚С‹
  if(MCm) delete[] MCm;
  MCm=0;
  if(ICm) delete[] ICm;
@@ -126,20 +126,20 @@ UBANightDetector::~UBANightDetector(void)
  if(T) delete[] T;
  T=0;
 
- // Сетка контрастных объектов
+ // РЎРµС‚РєР° РєРѕРЅС‚СЂР°СЃС‚РЅС‹С… РѕР±СЉРµРєС‚РѕРІ
  if(ContrastGrid) delete[] ContrastGrid;
  ContrastGrid=0;
 
- // Сетка движущихся объектов
+ // РЎРµС‚РєР° РґРІРёР¶СѓС‰РёС…СЃСЏ РѕР±СЉРµРєС‚РѕРІ
  if(MovedGrid) delete[] MovedGrid;
  MovedGrid=0;
 }
 // --------------------------
 
 // --------------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // --------------------------
-// Число изображений в истории
+// Р§РёСЃР»Рѕ РёР·РѕР±СЂР°Р¶РµРЅРёР№ РІ РёСЃС‚РѕСЂРёРё
 int UBANightDetector::GetHistorySize(void) const
 {
  return HistorySize;
@@ -167,9 +167,9 @@ bool UBANightDetector::SetHistorySize(int value)
 // --------------------------
 
 // --------------------------
-// Методы доступа к данным
+// РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР° Рє РґР°РЅРЅС‹Рј
 // --------------------------
-// Изображение с обнаружением движущихся объектов
+// РР·РѕР±СЂР°Р¶РµРЅРёРµ СЃ РѕР±РЅР°СЂСѓР¶РµРЅРёРµРј РґРІРёР¶СѓС‰РёС…СЃСЏ РѕР±СЉРµРєС‚РѕРІ
 const UBitmap& UBANightDetector::GetMovedImage(void) const
 {
  return MovedImage;
@@ -178,7 +178,7 @@ const UBitmap& UBANightDetector::GetMovedImage(void) const
 
 
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
 bool UBANightDetector::Calculate(const UBitmap& input, Rect* objects)
 {
@@ -203,7 +203,7 @@ bool UBANightDetector::Calculate(const UBitmap& input, Rect* objects)
    return false;
  }
 
- // Проверяем совпадение кадров
+ // РџСЂРѕРІРµСЂСЏРµРј СЃРѕРІРїР°РґРµРЅРёРµ РєР°РґСЂРѕРІ
 /* if(Input && Tr>0)
  {
   Correlation.SetIRes(Width,Height);
@@ -224,8 +224,8 @@ bool UBANightDetector::Calculate(const UBitmap& input, Rect* objects)
 
  Input=&input;
 
- // Сдвигаем историю если необходимо
- // и делаем текущим изображением истории то, куда будет производится запись
+ // РЎРґРІРёРіР°РµРј РёСЃС‚РѕСЂРёСЋ РµСЃР»Рё РЅРµРѕР±С…РѕРґРёРјРѕ
+ // Рё РґРµР»Р°РµРј С‚РµРєСѓС‰РёРј РёР·РѕР±СЂР°Р¶РµРЅРёРµРј РёСЃС‚РѕСЂРёРё С‚Рѕ, РєСѓРґР° Р±СѓРґРµС‚ РїСЂРѕРёР·РІРѕРґРёС‚СЃСЏ Р·Р°РїРёСЃСЊ
  if(CurrentHistorySize == HistorySize)
  {
   ++CurrentFirstHistoryIndex;
@@ -242,19 +242,19 @@ bool UBANightDetector::Calculate(const UBitmap& input, Rect* objects)
    ++CurrentHistorySize;
  }
 
- // Вычисляем локальный контраст
+ // Р’С‹С‡РёСЃР»СЏРµРј Р»РѕРєР°Р»СЊРЅС‹Р№ РєРѕРЅС‚СЂР°СЃС‚
  if(!CalcLocalContrasting())
   return false;
 
- // Вычисляем карту локальной заметности
+ // Р’С‹С‡РёСЃР»СЏРµРј РєР°СЂС‚Сѓ Р»РѕРєР°Р»СЊРЅРѕР№ Р·Р°РјРµС‚РЅРѕСЃС‚Рё
  if(!CalcLocalMap())
   return false;
 
-// Обнаружение движущихся объектов
+// РћР±РЅР°СЂСѓР¶РµРЅРёРµ РґРІРёР¶СѓС‰РёС…СЃСЏ РѕР±СЉРµРєС‚РѕРІ
  if(!CalcMovedObjects())
   return false;
 
- // Вычисляем адаптивный порог
+ // Р’С‹С‡РёСЃР»СЏРµРј Р°РґР°РїС‚РёРІРЅС‹Р№ РїРѕСЂРѕРі
  if(!CalcAdaptiveThreshold())
   return false;
 
@@ -264,9 +264,9 @@ bool UBANightDetector::Calculate(const UBitmap& input, Rect* objects)
 
 
 // ---------------------
-// Скрытые методы счета
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
-// Вычисление локального контраста
+// Р’С‹С‡РёСЃР»РµРЅРёРµ Р»РѕРєР°Р»СЊРЅРѕРіРѕ РєРѕРЅС‚СЂР°СЃС‚Р°
 bool UBANightDetector::CalcLocalContrasting(void)
 {
  int xblocks=Width/BlockWidth,yblocks=Height/BlockHeight;
@@ -332,7 +332,7 @@ bool UBANightDetector::CalcLocalContrasting(void)
  return true;
 }
 
-// Построение карты локальной заметности
+// РџРѕСЃС‚СЂРѕРµРЅРёРµ РєР°СЂС‚С‹ Р»РѕРєР°Р»СЊРЅРѕР№ Р·Р°РјРµС‚РЅРѕСЃС‚Рё
 bool UBANightDetector::CalcLocalMap(void)
 {
  UBitmap &out=LocalContrastedImages[CurrentFirstHistoryIndex];
@@ -378,7 +378,7 @@ bool UBANightDetector::CalcLocalMap(void)
 }
 
 
-// Обнаружение движущихся объектов
+// РћР±РЅР°СЂСѓР¶РµРЅРёРµ РґРІРёР¶СѓС‰РёС…СЃСЏ РѕР±СЉРµРєС‚РѕРІ
 bool UBANightDetector::CalcMovedObjects(void)
 {
  MovedImage.SetRes(LocalContrastedImages[CurrentFirstHistoryIndex].GetWidth(),
@@ -476,7 +476,7 @@ bool UBANightDetector::CalcMovedObjects(void)
 }
 
 
-// Расчет адаптивного порога
+// Р Р°СЃС‡РµС‚ Р°РґР°РїС‚РёРІРЅРѕРіРѕ РїРѕСЂРѕРіР°
 bool UBANightDetector::CalcAdaptiveThreshold(void)
 {
  unsigned minval,maxval;
@@ -490,7 +490,7 @@ bool UBANightDetector::CalcAdaptiveThreshold(void)
 //   DiffImage.CalcHistogram(Histogram, 256);
 //   memmove(Histogram,Histogram+1,255*sizeof(UBHistogramElement));
 
-   // Ищем маскимум гистограммы
+   // РС‰РµРј РјР°СЃРєРёРјСѓРј РіРёСЃС‚РѕРіСЂР°РјРјС‹
    maxval=0;
    for(int i=0;i<256;i++)
    {
@@ -500,7 +500,7 @@ bool UBANightDetector::CalcAdaptiveThreshold(void)
     }
    }
 
-   // Ищем яркость AdaptiveThresholdPercent% от максимума
+   // РС‰РµРј СЏСЂРєРѕСЃС‚СЊ AdaptiveThresholdPercent% РѕС‚ РјР°РєСЃРёРјСѓРјР°
    minval=0;
    for(int i=0;i<256;i++)
    {

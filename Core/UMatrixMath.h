@@ -8,63 +8,63 @@ namespace RDK{
 template<class T>
 class UMatrixMath: public UNet
 {
-protected: // Параметры
-// Входной вектор матриц
-UPropertyInputCData<MDMatrix<T>,UMatrixMath<T> > InputMatrixData;
+protected: // 
+//   
+UProperty<std::vector<MDMatrix<T>>,UMatrixMath<T>, ptPubInput> InputMatrixData;
 
-// Режим работы
-// 0 - сложение
-// 1 - вычитание
-// 2 - умножение
+//  
+// 0 - 
+// 1 - 
+// 2 - 
 
-// Унарные операторы (игнорируют все входные матрицы кроме нулевой)
-// 10 - унарный минус
-// 11 - транспонирование
+//   (     )
+// 10 -  
+// 11 - 
 UProperty<int,UMatrixMath<T>, ptPubParameter> Mode;
 
-public: // Данные
-// Выходой вектор матриц
-UPropertyOutputData<MDMatrix<T>,UMatrixMath<T>, ptPubOutput | ptState> OutputMatrixData;
+public: // 
+//   
+UProperty<MDMatrix<T>,UMatrixMath<T>, ptPubOutput | ptState> OutputMatrixData;
 
-public: // Методы
+public: // 
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 UMatrixMath(void);
 virtual ~UMatrixMath(void);
 
 // --------------------------
-// Системные методы управления объектом
+//    
 // --------------------------
 public:
-// Выделяет память для новой чистой копии объекта этого класса
+//         
 virtual UMatrixMath<T>* New(void);
 // --------------------------
 
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
 protected:
-// Восстановление настроек по умолчанию и сброс процесса счета
+//        
 virtual bool ADefault(void);
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+//     
+//   
+//    Reset()   Ready  true
+//    
 virtual bool ABuild(void);
 
-// Сброс процесса счета.
+//   .
 virtual bool AReset(void);
 
-// Выполняет расчет этого объекта
+//    
 virtual bool ACalculate(void);
 // --------------------------
 };
 
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 template<class T>
 UMatrixMath<T>::UMatrixMath(void)
@@ -81,9 +81,9 @@ UMatrixMath<T>::~UMatrixMath(void)
 }
 
 // --------------------------
-// Системные методы управления объектом
+//    
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+//         
 template<class T>
 UMatrixMath<T>* UMatrixMath<T>::New(void)
 {
@@ -92,9 +92,9 @@ UMatrixMath<T>* UMatrixMath<T>::New(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+//        
 template<class T>
 bool UMatrixMath<T>::ADefault(void)
 {
@@ -103,17 +103,17 @@ bool UMatrixMath<T>::ADefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+//     
+//   
+//    Reset()   Ready  true
+//    
 template<class T>
 bool UMatrixMath<T>::ABuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета.
+//   .
 template<class T>
 bool UMatrixMath<T>::AReset(void)
 {
@@ -121,7 +121,7 @@ bool UMatrixMath<T>::AReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта
+//    
 template<class T>
 bool UMatrixMath<T>::ACalculate(void)
 {

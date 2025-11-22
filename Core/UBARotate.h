@@ -18,127 +18,127 @@ See file license.txt for more information
 
 namespace RDK {
 
-/// Базовый класс поворота изображения
+///    
 class RDK_LIB_TYPE UBARotate: public UNet
 {
-public: // Параметры
-/// Угол поворота (градусы)
-ULProperty<float, UBARotate> Angle;
+public: // 
+///   ()
+UProperty<float, UBARotate, ptPubParameter> Angle;
 
-/// Флаг расширения изображения (временно отменен, расширение всегда!)
-//ULProperty<bool, UBARotate> Enlarge;
+///    ( ,  !)
+//UProperty<bool, UBARotate, ptPubParameter> Enlarge;
 bool Enlarge;
 
-protected: // Входные и выходные данные
-/// Входное изображение
-UPropertyInputData<UBitmap, UBARotate> Input;
+protected: //    
+///  
+UProperty<UBitmap, UBARotate, ptPubParameter> Input;
 
-/// Выходное изображение
-UPropertyOutputData<UBitmap, UBARotate> Output;
+///  
+UProperty<UBitmap, UBARotate, ptPubParameter> Output;
 
-protected: // Временные переменные
+protected: //  
 UBitmap Buffer;
 
-public: // Методы
+public: // 
 // ---------------------
-// Конструкторы и деструкторы
+//   
 // ---------------------
 UBARotate(void);
 virtual ~UBARotate(void);
 // ---------------------
 
 // ---------------------
-// Методы управления параметрами
+//   
 // ---------------------
-/// Угол поворота (градусы)
+///   ()
 float GetAngle(void) const;
 bool SetAngle(const float &angle);
 
-/// Флаг расширения
+///  
 bool GetEnlarge(void) const;
 bool SetEnlarge(const bool &enlarge);
 // ---------------------
 
 // ---------------------
-// Операторы
+// 
 // ---------------------
 bool operator () (UBitmap &input, UBitmap &output);
 bool operator () (UBitmap &input, UBitmap &output, float angle, bool enlarge=false);
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
 protected:
 virtual bool BCalculate(UBitmap &input, UBitmap &output)=0;
 
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool ADefault(void);
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool ABuild(void);
 
-/// Сброс процесса счета.
+///   .
 virtual bool AReset(void);
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool ACalculate(void);
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом трекинга
+//     
 // --------------------------
 protected:
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool AFCDefault(void)=0;
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool AFCBuild(void)=0;
 
-/// Сброс процесса счета.
+///   .
 virtual bool AFCReset(void)=0;
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool AFCCalculate(void)=0;
 // --------------------------
 };
 
-/// Поворачивает изображение на заданный угол
+///     
 class RDK_LIB_TYPE UBARotateSimple: public UBARotate
 {
-public: // Методы
+public: // 
 // ---------------------
-// Методы счета
+//  
 // ---------------------
-/// Создание новой копии этого объекта
+///     
 virtual UBARotateSimple* New(void);
 
 virtual bool BCalculate(UBitmap &input, UBitmap &output);
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом трекинга
+//     
 // --------------------------
 protected:
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool AFCDefault(void);
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool AFCBuild(void);
 
-/// Сброс процесса счета.
+///   .
 virtual bool AFCReset(void);
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool AFCCalculate(void);
 // --------------------------
 };

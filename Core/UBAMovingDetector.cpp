@@ -23,7 +23,7 @@ namespace RDK {
 
 // class UBAMovingDetector
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 UBAMovingDetector::UBAMovingDetector(void)
 : Input("Input",this)
@@ -47,9 +47,9 @@ UBAMovingDetector::~UBAMovingDetector(void)
 // --------------------------
 
 // --------------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // --------------------------
-// Число изображений в истории
+// Р§РёСЃР»Рѕ РёР·РѕР±СЂР°Р¶РµРЅРёР№ РІ РёСЃС‚РѕСЂРёРё
 int UBAMovingDetector::GetHistorySize(void) const
 {
  return HistorySize;
@@ -70,33 +70,33 @@ bool UBAMovingDetector::SetHistorySize(int value)
 // --------------------------
 
 // --------------------------
-// Методы доступа к данным
+// РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР° Рє РґР°РЅРЅС‹Рј
 // --------------------------
-// Текущее входное изображение
+// РўРµРєСѓС‰РµРµ РІС…РѕРґРЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ
 const UBitmap* UBAMovingDetector::GetInputData(void) const
 {
  return &Input.GetData();
 }
 
-// Выходные данные
+// Р’С‹С…РѕРґРЅС‹Рµ РґР°РЅРЅС‹Рµ
 const UBRect* UBAMovingDetector::GetMovedObjects(void) const
 {
  return MovedObjects;
 }
 
-// Обработанные изображения
+// РћР±СЂР°Р±РѕС‚Р°РЅРЅС‹Рµ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
 const UBitmap* UBAMovingDetector::GetLocalContrastedImages(void) const
 {
  return LocalContrastedImages;
 }
 
-// Текущий размер истории
+// РўРµРєСѓС‰РёР№ СЂР°Р·РјРµСЂ РёСЃС‚РѕСЂРёРё
 int UBAMovingDetector::GetCurrentHistorySize(void) const
 {
  return CurrentHistorySize;
 }
 
-// Текущий первый кадр истории
+// РўРµРєСѓС‰РёР№ РїРµСЂРІС‹Р№ РєР°РґСЂ РёСЃС‚РѕСЂРёРё
 int UBAMovingDetector::GetCurrentFirstHistoryIndex(void) const
 {
  return CurrentFirstHistoryIndex;
@@ -104,13 +104,13 @@ int UBAMovingDetector::GetCurrentFirstHistoryIndex(void) const
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-/// Сдвигает историю
+/// РЎРґРІРёРіР°РµС‚ РёСЃС‚РѕСЂРёСЋ
 void UBAMovingDetector::HistoryShift(void)
 {
- // Сдвигаем историю если необходимо
- // и делаем текущим изображением истории то, куда будет производится запись
+ // РЎРґРІРёРіР°РµРј РёСЃС‚РѕСЂРёСЋ РµСЃР»Рё РЅРµРѕР±С…РѕРґРёРјРѕ
+ // Рё РґРµР»Р°РµРј С‚РµРєСѓС‰РёРј РёР·РѕР±СЂР°Р¶РµРЅРёРµРј РёСЃС‚РѕСЂРёРё С‚Рѕ, РєСѓРґР° Р±СѓРґРµС‚ РїСЂРѕРёР·РІРѕРґРёС‚СЃСЏ Р·Р°РїРёСЃСЊ
  if(CurrentHistorySize == HistorySize)
  {
   ++CurrentFirstHistoryIndex;
@@ -128,16 +128,16 @@ void UBAMovingDetector::HistoryShift(void)
  }
 }
 
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBAMovingDetector::ADefault(void)
 {
  return AFCDefault();
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBAMovingDetector::ABuild(void)
 {
 
@@ -151,13 +151,13 @@ bool UBAMovingDetector::ABuild(void)
  return AFCBuild();
 }
 
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool UBAMovingDetector::AReset(void)
 {
  return AFCReset();
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBAMovingDetector::ACalculate(void)
 {
  if(!Input.IsConnected())
@@ -169,46 +169,46 @@ bool UBAMovingDetector::ACalculate(void)
 
 // class UBANightMovingDetector
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 UBANightMovingDetector::UBANightMovingDetector(void)
 {
- // Размер блока изображения
+ // Р Р°Р·РјРµСЂ Р±Р»РѕРєР° РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
  BlockWidth=16;
  BlockHeight=20;
 
- // Пороги
+ // РџРѕСЂРѕРіРё
  T1=0.45;
 
- // Коэффициент расстояния между кадрами
+ // РљРѕСЌС„С„РёС†РёРµРЅС‚ СЂР°СЃСЃС‚РѕСЏРЅРёСЏ РјРµР¶РґСѓ РєР°РґСЂР°РјРё
  Tr=0.8; // 0.8-0.9
 
  T=0;
 
- // Временные переменные для вычисления локального контраста
- // Размер изображения
+ // Р’СЂРµРјРµРЅРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ Р»РѕРєР°Р»СЊРЅРѕРіРѕ РєРѕРЅС‚СЂР°СЃС‚Р°
+ // Р Р°Р·РјРµСЂ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
  Width=0; Height=0;
 
- // Число блоков
+ // Р§РёСЃР»Рѕ Р±Р»РѕРєРѕРІ
  NumBlocks=0;
 
- // Массив локальных контрастов
+ // РњР°СЃСЃРёРІ Р»РѕРєР°Р»СЊРЅС‹С… РєРѕРЅС‚СЂР°СЃС‚РѕРІ
  CL=0;
 
- // Массив средних
+ // РњР°СЃСЃРёРІ СЃСЂРµРґРЅРёС…
  ML=0;
 
- // Массив СКО
+ // РњР°СЃСЃРёРІ РЎРљРћ
  SigmaL=0;
 
- // Данные карты
+ // Р”Р°РЅРЅС‹Рµ РєР°СЂС‚С‹
  MCm=0;
  ICm=0;
 
- // Сетка контрастных объектов
+ // РЎРµС‚РєР° РєРѕРЅС‚СЂР°СЃС‚РЅС‹С… РѕР±СЉРµРєС‚РѕРІ
  ContrastGrid=0;
 
- // Сетка движущихся объектов
+ // РЎРµС‚РєР° РґРІРёР¶СѓС‰РёС…СЃСЏ РѕР±СЉРµРєС‚РѕРІ
  MovedGrid=0;
 
  TT=128;
@@ -227,23 +227,23 @@ UBANightMovingDetector::UBANightMovingDetector(void)
 
 UBANightMovingDetector::~UBANightMovingDetector(void)
 {
- // Временные переменные для вычисления локального контраста
- // Число блоков
+ // Р’СЂРµРјРµРЅРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ Р»РѕРєР°Р»СЊРЅРѕРіРѕ РєРѕРЅС‚СЂР°СЃС‚Р°
+ // Р§РёСЃР»Рѕ Р±Р»РѕРєРѕРІ
  NumBlocks=0;
 
- // Массив локальных контрастов
+ // РњР°СЃСЃРёРІ Р»РѕРєР°Р»СЊРЅС‹С… РєРѕРЅС‚СЂР°СЃС‚РѕРІ
  if(CL) delete[] CL;
  CL=0;
 
- // Массив средних
+ // РњР°СЃСЃРёРІ СЃСЂРµРґРЅРёС…
  if(ML) delete[] ML;
  ML=0;
 
- // Массив СКО
+ // РњР°СЃСЃРёРІ РЎРљРћ
  if(SigmaL) delete[] SigmaL;
  SigmaL=0;
 
- // Данные карты
+ // Р”Р°РЅРЅС‹Рµ РєР°СЂС‚С‹
  if(MCm) delete[] MCm;
  MCm=0;
  if(ICm) delete[] ICm;
@@ -252,20 +252,20 @@ UBANightMovingDetector::~UBANightMovingDetector(void)
  if(T) delete[] T;
  T=0;
 
- // Сетка контрастных объектов
+ // РЎРµС‚РєР° РєРѕРЅС‚СЂР°СЃС‚РЅС‹С… РѕР±СЉРµРєС‚РѕРІ
  if(ContrastGrid) delete[] ContrastGrid;
  ContrastGrid=0;
 
- // Сетка движущихся объектов
+ // РЎРµС‚РєР° РґРІРёР¶СѓС‰РёС…СЃСЏ РѕР±СЉРµРєС‚РѕРІ
  if(MovedGrid) delete[] MovedGrid;
  MovedGrid=0;
 }
 // --------------------------
 
 // --------------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // --------------------------
-// Размер блока изображения
+// Р Р°Р·РјРµСЂ Р±Р»РѕРєР° РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
 int UBANightMovingDetector::GetBlockWidth(void) const
 {
  return BlockWidth;
@@ -296,7 +296,7 @@ bool UBANightMovingDetector::SetBlockHeight(int value)
  return true;
 }
 
-// Режим определения движения
+// Р РµР¶РёРј РѕРїСЂРµРґРµР»РµРЅРёСЏ РґРІРёР¶РµРЅРёСЏ
 int UBANightMovingDetector::GetMovingDetectionMode(void) const
 {
  return MovingDetectionMode;
@@ -311,7 +311,7 @@ bool UBANightMovingDetector::SetMovingDetectionMode(int value)
  return true;
 }
 
-// Диапазон анализа гистограммы
+// Р”РёР°РїР°Р·РѕРЅ Р°РЅР°Р»РёР·Р° РіРёСЃС‚РѕРіСЂР°РјРјС‹
 int UBANightMovingDetector::GetHistLeftRange(void) const
 {
  return HistLeftRange;
@@ -340,7 +340,7 @@ bool UBANightMovingDetector::SetHistRightRange(int value)
  return true;
 }
 
-// Режим формирования движущегося кадра
+// Р РµР¶РёРј С„РѕСЂРјРёСЂРѕРІР°РЅРёСЏ РґРІРёР¶СѓС‰РµРіРѕСЃСЏ РєР°РґСЂР°
 int UBANightMovingDetector::GetMovingFrameMode(void) const
 {
  return MovingFrameMode;
@@ -357,51 +357,51 @@ bool UBANightMovingDetector::SetMovingFrameMode(int value)
 // --------------------------
 
 // --------------------------
-// Методы доступа к данным
+// РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР° Рє РґР°РЅРЅС‹Рј
 // --------------------------
-// Изображение с обнаружением движущихся объектов
+// РР·РѕР±СЂР°Р¶РµРЅРёРµ СЃ РѕР±РЅР°СЂСѓР¶РµРЅРёРµРј РґРІРёР¶СѓС‰РёС…СЃСЏ РѕР±СЉРµРєС‚РѕРІ
 const UBitmap& UBANightMovingDetector::GetMovedImage(void) const
 {
  return MovedImage;
 }
 
-// Число блоков
+// Р§РёСЃР»Рѕ Р±Р»РѕРєРѕРІ
 int UBANightMovingDetector::GetNumBlocks(void) const
 {
  return NumBlocks;
 }
 
-// Массив локальных контрастов
+// РњР°СЃСЃРёРІ Р»РѕРєР°Р»СЊРЅС‹С… РєРѕРЅС‚СЂР°СЃС‚РѕРІ
 const double* UBANightMovingDetector::GetCL(void) const
 {
  return CL;
 }
 
-// Массив средних
+// РњР°СЃСЃРёРІ СЃСЂРµРґРЅРёС…
 const double* UBANightMovingDetector::GetML(void) const
 {
  return ML;
 }
 
-// Массив СКО
+// РњР°СЃСЃРёРІ РЎРљРћ
 const double* UBANightMovingDetector::GetSigmaL(void) const
 {
  return SigmaL;
 }
 
-// Изображение разностного кадра
+// РР·РѕР±СЂР°Р¶РµРЅРёРµ СЂР°Р·РЅРѕСЃС‚РЅРѕРіРѕ РєР°РґСЂР°
 const UBitmap& UBANightMovingDetector::GetDiffImage(void) const
 {
  return DiffImage;
 }
 
-// Гистограмма
+// Р“РёСЃС‚РѕРіСЂР°РјРјР°
 const UBHistogram& UBANightMovingDetector::GetHistogram(void) const
 {
  return Histogram;
 }
 
-// Сетка контрастных объектов
+// РЎРµС‚РєР° РєРѕРЅС‚СЂР°СЃС‚РЅС‹С… РѕР±СЉРµРєС‚РѕРІ
 const UBRect* UBANightMovingDetector::GetContrastGrid(void) const
 {
  return ContrastGrid;
@@ -413,7 +413,7 @@ const UBRect& UBANightMovingDetector::GetContrastGrid(int i) const
 }
 
 
-// Сетка движущихся объектов
+// РЎРµС‚РєР° РґРІРёР¶СѓС‰РёС…СЃСЏ РѕР±СЉРµРєС‚РѕРІ
 const UBRect* UBANightMovingDetector::GetMovedGrid(void) const
 {
  return MovedGrid;
@@ -427,9 +427,9 @@ const UBRect& UBANightMovingDetector::GetMovedGrid(int i) const
 
 
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
-// Создание новой копии этого объекта
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UBANightMovingDetector* UBANightMovingDetector::New(void)
 {
  return new UBANightMovingDetector;
@@ -438,9 +438,9 @@ UBANightMovingDetector* UBANightMovingDetector::New(void)
 
 
 // ---------------------
-// Скрытые методы счета
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
-// Установка разрешения входных изображений
+// РЈСЃС‚Р°РЅРѕРІРєР° СЂР°Р·СЂРµС€РµРЅРёСЏ РІС…РѕРґРЅС‹С… РёР·РѕР±СЂР°Р¶РµРЅРёР№
 bool UBANightMovingDetector::SetRes(int width, int height)
 {
  if(Width == width && Height == height)
@@ -452,7 +452,7 @@ bool UBANightMovingDetector::SetRes(int width, int height)
  return true;
 }
 
-// Вычисление локального контраста
+// Р’С‹С‡РёСЃР»РµРЅРёРµ Р»РѕРєР°Р»СЊРЅРѕРіРѕ РєРѕРЅС‚СЂР°СЃС‚Р°
 bool UBANightMovingDetector::CalcLocalContrasting(void)
 {
  if(!Input.IsConnected())
@@ -504,7 +504,7 @@ bool UBANightMovingDetector::CalcLocalContrasting(void)
  return true;
 }
 
-// Построение карты локальной заметности
+// РџРѕСЃС‚СЂРѕРµРЅРёРµ РєР°СЂС‚С‹ Р»РѕРєР°Р»СЊРЅРѕР№ Р·Р°РјРµС‚РЅРѕСЃС‚Рё
 bool UBANightMovingDetector::CalcLocalMap(void)
 {
  UBitmap &out=LocalContrastedImages[CurrentFirstHistoryIndex];
@@ -548,7 +548,7 @@ bool UBANightMovingDetector::CalcLocalMap(void)
 }
 
 
-// Обнаружение движущихся объектов
+// РћР±РЅР°СЂСѓР¶РµРЅРёРµ РґРІРёР¶СѓС‰РёС…СЃСЏ РѕР±СЉРµРєС‚РѕРІ
 bool UBANightMovingDetector::CalcMovedObjects(void)
 {
  MovedImage.SetRes(LocalContrastedImages[CurrentFirstHistoryIndex].GetWidth(),
@@ -638,7 +638,7 @@ bool UBANightMovingDetector::CalcMovedObjects(void)
  return true;
 }
 
-// Обнаружение движущихся объектов на основе нормировки разности
+// РћР±РЅР°СЂСѓР¶РµРЅРёРµ РґРІРёР¶СѓС‰РёС…СЃСЏ РѕР±СЉРµРєС‚РѕРІ РЅР° РѕСЃРЅРѕРІРµ РЅРѕСЂРјРёСЂРѕРІРєРё СЂР°Р·РЅРѕСЃС‚Рё
 bool UBANightMovingDetector::CalcNormalMovedObjects(void)
 {
  MovedImage.SetRes(LocalContrastedImages[CurrentFirstHistoryIndex].GetWidth(),
@@ -736,7 +736,7 @@ bool UBANightMovingDetector::CalcNormalMovedObjects(void)
 
 
 
-// Расчет адаптивного порога
+// Р Р°СЃС‡РµС‚ Р°РґР°РїС‚РёРІРЅРѕРіРѕ РїРѕСЂРѕРіР°
 bool UBANightMovingDetector::CalcAdaptiveThreshold(void)
 {
  unsigned minval,maxval;
@@ -747,7 +747,7 @@ bool UBANightMovingDetector::CalcAdaptiveThreshold(void)
  Histogram.Calc(DiffImage);
 //   memmove(Histogram,Histogram+1,255*sizeof(UBHistogramElement));
 
-   // Ищем маскимум гистограммы
+   // РС‰РµРј РјР°СЃРєРёРјСѓРј РіРёСЃС‚РѕРіСЂР°РјРјС‹
    maxval=0;
    for(int i=HistLeftRange;i<256;i++)
    {
@@ -758,7 +758,7 @@ bool UBANightMovingDetector::CalcAdaptiveThreshold(void)
     }
    }
 
-   // Ищем яркость AdaptiveThresholdPercent% от максимума
+   // РС‰РµРј СЏСЂРєРѕСЃС‚СЊ AdaptiveThresholdPercent% РѕС‚ РјР°РєСЃРёРјСѓРјР°
    minval=0;
    for(int i=HistLeftRange;i<HistRightRange;i++)
    {
@@ -781,13 +781,13 @@ bool UBANightMovingDetector::CalcAdaptiveThreshold(void)
 
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBANightMovingDetector::AFCDefault(void)
 {
- // Временные переменные для вычисления локального контраста
- // Число блоков
+ // Р’СЂРµРјРµРЅРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ Р»РѕРєР°Р»СЊРЅРѕРіРѕ РєРѕРЅС‚СЂР°СЃС‚Р°
+ // Р§РёСЃР»Рѕ Р±Р»РѕРєРѕРІ
  NumBlocks=0;
 
  MovingDetectionMode=0;
@@ -798,24 +798,24 @@ bool UBANightMovingDetector::AFCDefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBANightMovingDetector::AFCBuild(void)
 {
  XBlocks=Width/BlockWidth,YBlocks=Height/BlockHeight;
  NumBlocks=XBlocks*YBlocks;
 
- // Массив локальных контрастов
+ // РњР°СЃСЃРёРІ Р»РѕРєР°Р»СЊРЅС‹С… РєРѕРЅС‚СЂР°СЃС‚РѕРІ
  if(CL) delete[] CL;
   CL=new double[NumBlocks];
 
- // Массив средних
+ // РњР°СЃСЃРёРІ СЃСЂРµРґРЅРёС…
  if(ML) delete[] ML;
   ML=new double[NumBlocks];
 
- // Массив СКО
+ // РњР°СЃСЃРёРІ РЎРљРћ
  if(SigmaL) delete[] SigmaL;
   SigmaL=new double[NumBlocks];
 
@@ -823,7 +823,7 @@ bool UBANightMovingDetector::AFCBuild(void)
   T=new double[NumBlocks];
   memset(T,0,NumBlocks*sizeof(double));
 
- // Данные карты
+ // Р”Р°РЅРЅС‹Рµ РєР°СЂС‚С‹
  if(MCm) delete[] MCm;
  MCm=0;
  if(ICm) delete[] ICm;
@@ -831,24 +831,24 @@ bool UBANightMovingDetector::AFCBuild(void)
 
  Histogram.Resize(256);
 
- // Сетка контрастных объектов
+ // РЎРµС‚РєР° РєРѕРЅС‚СЂР°СЃС‚РЅС‹С… РѕР±СЉРµРєС‚РѕРІ
  if(ContrastGrid) delete[] ContrastGrid;
   ContrastGrid=new UBRect[NumBlocks];
 
- // Сетка движущихся объектов
+ // РЎРµС‚РєР° РґРІРёР¶СѓС‰РёС…СЃСЏ РѕР±СЉРµРєС‚РѕРІ
  if(MovedGrid) delete[] MovedGrid;
   MovedGrid=new UBRect[NumBlocks];
 
  return true;
 }
 
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool UBANightMovingDetector::AFCReset(void)
 {
  return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBANightMovingDetector::AFCCalculate(void)
 {
  SetRes(Input->GetWidth(),Input->GetHeight());
@@ -874,7 +874,7 @@ bool UBANightMovingDetector::AFCCalculate(void)
 
  HistoryShift();
 
- // Проверяем совпадение кадров
+ // РџСЂРѕРІРµСЂСЏРµРј СЃРѕРІРїР°РґРµРЅРёРµ РєР°РґСЂРѕРІ
 /* if(Input && Tr>0)
  {
   Correlation.SetIRes(Width,Height);
@@ -893,15 +893,15 @@ bool UBANightMovingDetector::AFCCalculate(void)
    return true;
  }   */
 
- // Вычисляем локальный контраст
+ // Р’С‹С‡РёСЃР»СЏРµРј Р»РѕРєР°Р»СЊРЅС‹Р№ РєРѕРЅС‚СЂР°СЃС‚
  if(!CalcLocalContrasting())
   return false;
 
- // Вычисляем карту локальной заметности
+ // Р’С‹С‡РёСЃР»СЏРµРј РєР°СЂС‚Сѓ Р»РѕРєР°Р»СЊРЅРѕР№ Р·Р°РјРµС‚РЅРѕСЃС‚Рё
  if(!CalcLocalMap())
   return false;
 
- // Обнаружение движущихся объектов
+ // РћР±РЅР°СЂСѓР¶РµРЅРёРµ РґРІРёР¶СѓС‰РёС…СЃСЏ РѕР±СЉРµРєС‚РѕРІ
  switch(MovingDetectionMode)
  {
  case 0:
@@ -914,7 +914,7 @@ bool UBANightMovingDetector::AFCCalculate(void)
  break;
  }
 
- // Вычисляем адаптивный порог
+ // Р’С‹С‡РёСЃР»СЏРµРј Р°РґР°РїС‚РёРІРЅС‹Р№ РїРѕСЂРѕРі
  if(!CalcAdaptiveThreshold())
   return false;
 
@@ -924,9 +924,9 @@ bool UBANightMovingDetector::AFCCalculate(void)
 
 
 
-// Класс UBACollateMovingDetector
+// РљР»Р°СЃСЃ UBACollateMovingDetector
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 UBACollateMovingDetector::UBACollateMovingDetector(void)
 {
@@ -938,9 +938,9 @@ UBACollateMovingDetector::~UBACollateMovingDetector(void)
 // --------------------------
 
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
-// Создание новой копии этого объекта
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UBACollateMovingDetector* UBACollateMovingDetector::New(void)
 {
  return new UBACollateMovingDetector;
@@ -948,30 +948,30 @@ UBACollateMovingDetector* UBACollateMovingDetector::New(void)
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBACollateMovingDetector::AFCDefault(void)
 {
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBACollateMovingDetector::AFCBuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool UBACollateMovingDetector::AFCReset(void)
 {
  return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 #ifdef __BORLANDC__
 #pragma warn -8058
 #endif
@@ -1001,7 +1001,7 @@ bool UBACollateMovingDetector::AFCCalculate(void)
  if(CurrentHistorySize<2)
   return true;
 
- // Вычисляем разностный кадр
+ // Р’С‹С‡РёСЃР»СЏРµРј СЂР°Р·РЅРѕСЃС‚РЅС‹Р№ РєР°РґСЂ
  int i1,i2;
 
  if(CurrentFirstHistoryIndex == 0)

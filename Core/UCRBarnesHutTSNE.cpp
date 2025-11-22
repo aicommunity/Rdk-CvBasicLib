@@ -9,7 +9,7 @@
 #include <iostream>
 #include <fstream>
 
-//Зададим дефолтные параметры тут тоже
+//Р—Р°РґР°РґРёРј РґРµС„РѕР»С‚РЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ С‚СѓС‚ С‚РѕР¶Рµ
 const int DEFAULT_NO_DIMS = 2;
 const int INITIAL_DIMENSIONS = 50;
 const int DEFAULT_PERPLEXITY = 50;
@@ -21,9 +21,9 @@ const int DEFAULT_MAX_ITERATIONS = 1000;
 
 namespace RDK {
 
-// Методы
+// РњРµС‚РѕРґС‹
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 UCRBarnesHutTSNE::UCRBarnesHutTSNE(void):
     RetrainFlag("RetrainFlag", this),
@@ -59,19 +59,19 @@ UCRBarnesHutTSNE::~UCRBarnesHutTSNE(void)
 
 
 // ---------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // ---------------------
 // ---------------------
 
 // ---------------------
-// Методы управления переменными состояния
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїРµСЂРµРјРµРЅРЅС‹РјРё СЃРѕСЃС‚РѕСЏРЅРёСЏ
 // ---------------------
 // ---------------------
 
 // --------------------------
-// Системные методы управления объектом
+// РЎРёСЃС‚РµРјРЅС‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРј
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+// Р’С‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РґР»СЏ РЅРѕРІРѕР№ С‡РёСЃС‚РѕР№ РєРѕРїРёРё РѕР±СЉРµРєС‚Р° СЌС‚РѕРіРѕ РєР»Р°СЃСЃР°
 UCRBarnesHutTSNE* UCRBarnesHutTSNE::New(void)
 {
  return new UCRBarnesHutTSNE;
@@ -80,7 +80,7 @@ UCRBarnesHutTSNE* UCRBarnesHutTSNE::New(void)
 
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
 
 
@@ -109,10 +109,10 @@ bool UCRBarnesHutTSNE::ACalculate(void)
         }
     }
 
-    //Расчет не активен
+    //Р Р°СЃС‡РµС‚ РЅРµ Р°РєС‚РёРІРµРЅ
     if(!TSNECalcInProcess)
     {
-        //Ничего нет или есть желание пересчитать
+        //РќРёС‡РµРіРѕ РЅРµС‚ РёР»Рё РµСЃС‚СЊ Р¶РµР»Р°РЅРёРµ РїРµСЂРµСЃС‡РёС‚Р°С‚СЊ
         if(OutputComponents->GetRows()==0 || RetrainFlag.v==true)
         {
             RunTSNECalculation();
@@ -129,7 +129,7 @@ bool UCRBarnesHutTSNE::RunTSNECalculation()
     if(TSNECalcInProcess)
         return true;
 
-    //Заполнить данные
+    //Р—Р°РїРѕР»РЅРёС‚СЊ РґР°РЅРЅС‹Рµ
     N = (*InputComponents).GetRows();
     D = (*InputComponents).GetCols();
     no_dims = NumOutCoords;
@@ -139,7 +139,7 @@ bool UCRBarnesHutTSNE::RunTSNECalculation()
     theta = Theta;
     rand_seed = RandomSeed;
 
-    //Важно - МАССИВЫ СОЗДАЮТСЯ ЗДЕСЬ!
+    //Р’Р°Р¶РЅРѕ - РњРђРЎРЎРР’Р« РЎРћР—Р”РђР®РўРЎРЇ Р—Р”Р•РЎР¬!
 
     landmarks = (int*) malloc(N * sizeof(int));
     if(landmarks == NULL) { LogMessageEx(RDK_EX_ERROR, __FUNCTION__, std::string("TSNE: Memory allocation failed!")); return false; }
@@ -165,23 +165,23 @@ bool UCRBarnesHutTSNE::RunTSNECalculation()
 
     if(Y == NULL || costs == NULL) { LogMessageEx(RDK_EX_ERROR, __FUNCTION__, std::string("TSNE: Memory allocation failed!")); return false; }
 
-    //Обнулить счетчик и переменную
+    //РћР±РЅСѓР»РёС‚СЊ СЃС‡РµС‚С‡РёРє Рё РїРµСЂРµРјРµРЅРЅСѓСЋ
     TSNECalcInProcess = true;
     CalcProgress = 0.0;
 
-    //Запустить поток
+    //Р—Р°РїСѓСЃС‚РёС‚СЊ РїРѕС‚РѕРє
     m_thread = new std::thread(&UCRBarnesHutTSNE::TSNECalculationThread, this);
-    //Вернуть норму
+    //Р’РµСЂРЅСѓС‚СЊ РЅРѕСЂРјСѓ
     return true;
 }
 
 void UCRBarnesHutTSNE::TSNECalculationThread()
 {
-    //Запустить расчет, передать счетчик состояния
+    //Р—Р°РїСѓСЃС‚РёС‚СЊ СЂР°СЃС‡РµС‚, РїРµСЂРµРґР°С‚СЊ СЃС‡РµС‚С‡РёРє СЃРѕСЃС‚РѕСЏРЅРёСЏ
 
     TSNE::run(data, N, D, Y, no_dims, perplexity, theta, rand_seed, false, max_iter, 250, 250);
 
-    //Выставить флаг
+    //Р’С‹СЃС‚Р°РІРёС‚СЊ С„Р»Р°Рі
 
     TSNECalcInProcess = false;
     RetrainFlag.v = false;
@@ -203,8 +203,8 @@ void UCRBarnesHutTSNE::TSNECalculationThread()
     ofs.close();
 
 
-    //Очистить данные
-    //ВАЖНО - МАССИВЫ ОЧИЩАЮТСЯ ЗДЕСЬ!!
+    //РћС‡РёСЃС‚РёС‚СЊ РґР°РЅРЅС‹Рµ
+    //Р’РђР–РќРћ - РњРђРЎРЎРР’Р« РћР§РР©РђР®РўРЎРЇ Р—Р”Р•РЎР¬!!
     free(data); data = NULL;
     free(Y); Y = NULL;
     free(costs); costs = NULL;

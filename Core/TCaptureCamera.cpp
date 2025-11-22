@@ -10,7 +10,7 @@
 namespace RDK
 {
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 TCaptureCamera::TCaptureCamera(void)
 {
@@ -20,7 +20,7 @@ TCaptureCamera::~TCaptureCamera(void)
 {
 }
 // --------------------------
-// Скрытые методы
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹
 // --------------------------
 bool TCaptureCamera::ASetEnableCapture(const bool &value)
 {

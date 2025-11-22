@@ -215,7 +215,7 @@ USerStorageBinary& operator >> (USerStorageBinary& storage, UBVSObject &data)
 
 
 // ---------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // ---------------------
 UBAVideoSimulator::UBAVideoSimulator(void)
 : BgMode("BgMode",this),
@@ -232,16 +232,16 @@ UBAVideoSimulator::UBAVideoSimulator(void)
   Output("Output",this),
   Objects("Objects",this)
 {
- // Режим эмулятора
+ // Р РµР¶РёРј СЌРјСѓР»СЏС‚РѕСЂР°
  BgMode=0;
 
- // Число объектов
+ // Р§РёСЃР»Рѕ РѕР±СЉРµРєС‚РѕРІ
  NumObjects=0;
 
- // Текущий управляемый объект
+ // РўРµРєСѓС‰РёР№ СѓРїСЂР°РІР»СЏРµРјС‹Р№ РѕР±СЉРµРєС‚
  CurrentObjectIndex=0;
 
- // Флаг скрытия всех объектов с изображения
+ // Р¤Р»Р°Рі СЃРєСЂС‹С‚РёСЏ РІСЃРµС… РѕР±СЉРµРєС‚РѕРІ СЃ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
  HideAllFlag=false;
 
  Graphics=0;
@@ -259,10 +259,10 @@ UBAVideoSimulator::~UBAVideoSimulator(void)
 // ---------------------
 
 // ---------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // ---------------------
-// Режим оформления фона эмулятора
-// (не используется)
+// Р РµР¶РёРј РѕС„РѕСЂРјР»РµРЅРёСЏ С„РѕРЅР° СЌРјСѓР»СЏС‚РѕСЂР°
+// (РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ)
 const int& UBAVideoSimulator::GetBgMode(void) const
 {
  return BgMode.v;
@@ -277,7 +277,7 @@ bool UBAVideoSimulator::SetBgMode(const int &value)
  return true;
 }
 
-// Флаг скрытия всех объектов с изображения
+// Р¤Р»Р°Рі СЃРєСЂС‹С‚РёСЏ РІСЃРµС… РѕР±СЉРµРєС‚РѕРІ СЃ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
 const bool& UBAVideoSimulator::GetHideAllFlag(void) const
 {
  return HideAllFlag.v;
@@ -292,7 +292,7 @@ bool UBAVideoSimulator::SetHideAllFlag(const bool &value)
  return true;
 }
 
-// Граница рабочей области
+// Р“СЂР°РЅРёС†Р° СЂР°Р±РѕС‡РµР№ РѕР±Р»Р°СЃС‚Рё
 const UBRect& UBAVideoSimulator::GetWorkArea(void) const
 {
  return WorkArea.v;
@@ -309,16 +309,16 @@ bool UBAVideoSimulator::SetWorkArea(const UBRect &value)
 // ---------------------
 
 // ---------------------
-// Методы управления данными
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РґР°РЅРЅС‹РјРё
 // ---------------------
-// Удаляет все объекты
+// РЈРґР°Р»СЏРµС‚ РІСЃРµ РѕР±СЉРµРєС‚С‹
 void UBAVideoSimulator::ClearObjects(void)
 {
  Objects.resize(0);
  NumObjects=0;
 }
 
-// Число объектов
+// Р§РёСЃР»Рѕ РѕР±СЉРµРєС‚РѕРІ
 const int& UBAVideoSimulator::GetNumObjects(void) const
 {
  return NumObjects.v;
@@ -334,7 +334,7 @@ bool UBAVideoSimulator::SetNumObjects(const int &value)
  return true;
 }
 
-// Массив объектов
+// РњР°СЃСЃРёРІ РѕР±СЉРµРєС‚РѕРІ
 const UBVSObject& UBAVideoSimulator::GetObjectData(int index) const
 {
  return Objects[index];
@@ -357,7 +357,7 @@ bool UBAVideoSimulator::SetCurrentObjectData(const UBVSObject &data)
  return true;
 }
 
-// Текущий управляемый объект
+// РўРµРєСѓС‰РёР№ СѓРїСЂР°РІР»СЏРµРјС‹Р№ РѕР±СЉРµРєС‚
 int UBAVideoSimulator::GetCurrentObjectIndex(void) const
 {
  return CurrentObjectIndex;
@@ -374,30 +374,30 @@ bool UBAVideoSimulator::SetCurrentObjectIndex(int value)
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBAVideoSimulator::ADefault(void)
 {
  return AFSDefault();
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBAVideoSimulator::ABuild(void)
 {
  return AFSBuild();
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBAVideoSimulator::AReset(void)
 {
  return AFSReset();
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBAVideoSimulator::ACalculate(void)
 {
  return AFSCalculate();
@@ -405,30 +405,30 @@ bool UBAVideoSimulator::ACalculate(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров симуляторов
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ СЃРёРјСѓР»СЏС‚РѕСЂРѕРІ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBAVideoSimulator::AFSDefault(void)
 {
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBAVideoSimulator::AFSBuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBAVideoSimulator::AFSReset(void)
 {
  return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBAVideoSimulator::AFSCalculate(void)
 {
  return true;
@@ -438,7 +438,7 @@ bool UBAVideoSimulator::AFSCalculate(void)
 
 /* UBAVideoSimulatorSimple */
 // ---------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // ---------------------
 UBAVideoSimulatorSimple::UBAVideoSimulatorSimple(void)
 {
@@ -456,14 +456,14 @@ UBAVideoSimulatorSimple::~UBAVideoSimulatorSimple(void)
 // ---------------------
 
 // ---------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // ---------------------
 // ---------------------
 
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
-// Создание новой копии этого объекта
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UBAVideoSimulatorSimple *UBAVideoSimulatorSimple::New(void)
 {
  return new UBAVideoSimulatorSimple;
@@ -472,14 +472,14 @@ UBAVideoSimulatorSimple *UBAVideoSimulatorSimple::New(void)
 
 
 // --------------------------
-// Скрытые методы управления счетом фильтров симуляторов
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ СЃРёРјСѓР»СЏС‚РѕСЂРѕРІ
 // --------------------------
 void UBAVideoSimulatorSimple::CreateFillBackground(UBitmap &canvas)
 {
  canvas.Fill(BgColor);
 }
 
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBAVideoSimulatorSimple::AFSDefault(void)
 {
  SetNumObjects(2);
@@ -516,17 +516,17 @@ bool UBAVideoSimulatorSimple::AFSDefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBAVideoSimulatorSimple::AFSBuild(void)
 {
 // SetOutputColorModel(0,ubmRGB24);
  return true;
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBAVideoSimulatorSimple::AFSReset(void)
 {
  return true;
@@ -535,7 +535,7 @@ bool UBAVideoSimulatorSimple::AFSReset(void)
 #ifdef __BORLANDC__
 #pragma warn -8058
 #endif
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBAVideoSimulatorSimple::AFSCalculate(void)
 {
  Canvas.SetRes(Input->GetWidth(),Input->GetHeight(),ubmRGB24);
@@ -543,7 +543,7 @@ bool UBAVideoSimulatorSimple::AFSCalculate(void)
 
  Input->ConvertTo(Canvas);
 
- // Тут инициализируем фон...
+ // РўСѓС‚ РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј С„РѕРЅ...
  switch(BgMode)
  {
  case 0:
@@ -557,7 +557,7 @@ bool UBAVideoSimulatorSimple::AFSCalculate(void)
 //  CreateLineBackground(BgLines,Canvas);
  break;
  }
- // Конец инициализации фона
+ // РљРѕРЅРµС† РёРЅРёС†РёР°Р»РёР·Р°С†РёРё С„РѕРЅР°
 
  for(int i=0;i<NumObjects;i++)
  {
@@ -662,7 +662,7 @@ bool UBAVideoSimulatorSimple::AFSCalculate(void)
 
 // ---------------------
 // ---------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // ---------------------
 UBAVideoSimulatorSimpleBin::UBAVideoSimulatorSimpleBin(void)
     :BinarOutput("BinarOutput", this),
@@ -683,14 +683,14 @@ UBAVideoSimulatorSimpleBin::~UBAVideoSimulatorSimpleBin(void)
  countFirstCleanBgFrame = 30;
 }
 // ---------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // ---------------------
 // ---------------------
 
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
-// Создание новой копии этого объекта
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UBAVideoSimulatorSimpleBin *UBAVideoSimulatorSimpleBin::New(void)
 {
  return new UBAVideoSimulatorSimpleBin;
@@ -699,14 +699,14 @@ UBAVideoSimulatorSimpleBin *UBAVideoSimulatorSimpleBin::New(void)
 
 
 // --------------------------
-// Скрытые методы управления счетом фильтров симуляторов
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ СЃРёРјСѓР»СЏС‚РѕСЂРѕРІ
 // --------------------------
 void UBAVideoSimulatorSimpleBin::CreateFillBackground(UBitmap &canvas)
 {
  canvas.Fill(BgColor);
 }
 
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBAVideoSimulatorSimpleBin::AFSDefault(void)
 {
  SetNumObjects(2);
@@ -738,10 +738,10 @@ bool UBAVideoSimulatorSimpleBin::AFSDefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBAVideoSimulatorSimpleBin::AFSBuild(void)
 {
 // SetOutputColorModel(0,ubmRGB24);
@@ -859,7 +859,7 @@ void UBAVideoSimulatorSimpleBin::DrawSimple (UBitmap &canvas, int isBin)
 }
 
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBAVideoSimulatorSimpleBin::AFSReset(void)
 {
  nCounterBG = 0;
@@ -869,7 +869,7 @@ bool UBAVideoSimulatorSimpleBin::AFSReset(void)
 #ifdef __BORLANDC__
 #pragma warn -8058
 #endif
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBAVideoSimulatorSimpleBin::AFSCalculate(void)
 {
  //if (nCounterBG > countFirstCleanBgFrame)
@@ -877,10 +877,10 @@ bool UBAVideoSimulatorSimpleBin::AFSCalculate(void)
 
      Canvas.SetRes(Input->GetWidth(),Input->GetHeight(),ubmRGB24);
      static_cast<UGraphics*>(Graphics)->SetCanvas(&Canvas);
-     //Заполнение бинарного выходного изображение черным фоном
+     //Р—Р°РїРѕР»РЅРµРЅРёРµ Р±РёРЅР°СЂРЅРѕРіРѕ РІС‹С…РѕРґРЅРѕРіРѕ РёР·РѕР±СЂР°Р¶РµРЅРёРµ С‡РµСЂРЅС‹Рј С„РѕРЅРѕРј
      BinarOutput->SetRes(Input->GetWidth(),Input->GetHeight(),ubmRGB24); //ubmY8
      Input->ConvertTo(Canvas);
-     // Тут инициализируем фон...
+     // РўСѓС‚ РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј С„РѕРЅ...
      switch(BgMode)
      {
      case 0:
@@ -894,7 +894,7 @@ bool UBAVideoSimulatorSimpleBin::AFSCalculate(void)
     //  CreateLineBackground(BgLines,Canvas);
      break;
      }
-     // Конец инициализации фона
+     // РљРѕРЅРµС† РёРЅРёС†РёР°Р»РёР·Р°С†РёРё С„РѕРЅР°
      DrawSimple(Canvas,0);
 
     // output.SetColorModel(ubmY8);

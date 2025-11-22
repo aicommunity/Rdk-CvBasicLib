@@ -17,60 +17,60 @@ See file license.txt for more information
 
 namespace RDK {
 
-/// Класс преобразования цветовых моделей изображения
+///     
 class RDK_LIB_TYPE UBACrop: public UNet
 {
-protected: // Параметры
+protected: // 
 
-public: // Входы и выходы
-UPropertyInputData<UBitmap, UBACrop> Input;
+public: //   
+UProperty<UBitmap, UBACrop, ptPubParameter> Input;
 
-/// Прямоугольник, описывающий область выходного изображения во входном
-/// матрица содержит одну строку, с количеством пикселей обрезки с каждой стороны
+/// ,      
+///    ,       
 /// <left, top, right, bottom>.
-UPropertyInputData<MDMatrix<int>, UBACrop, ptPubInput | ptParameter> CropRect;
+UProperty<MDMatrix<int>, UBACrop, ptPubInput | ptParameter> CropRect;
 
-UPropertyOutputData<UBitmap, UBACrop> Output;
+UProperty<UBitmap, UBACrop, ptPubParameter> Output;
 
-protected: // Временные переменные
+protected: //  
 UBitmap Buffer;   //?
 
-public: // Методы
+public: // 
 // ---------------------
-// Конструкторы и деструкторы
+//   
 // ---------------------
 UBACrop(void);
 virtual ~UBACrop(void);
 // ---------------------
 
 // ---------------------
-// Методы управления параметрами
+//   
 // ---------------------
 // ---------------------
 
 // ---------------------
-// Методы счета
+//  
 // ---------------------
 UBACrop* New(void);
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров
+//     
 // --------------------------
 protected:
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool ADefault(void);
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool ABuild(void);
 
-/// Сброс процесса счета без потери настроек
+///      
 virtual bool AReset(void);
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool ACalculate(void);
 // --------------------------
 };

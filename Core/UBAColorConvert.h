@@ -18,52 +18,52 @@ See file license.txt for more information
 
 namespace RDK {
 
-/// Класс преобразования цветовых моделей изображения
+///     
 class RDK_LIB_TYPE UBAColorConvert: public UNet
 {
-protected: // Параметры
-/// Новый режим изображения
+protected: // 
+///   
 UProperty<UBMColorModel,UBAColorConvert, ptPubParameter> NewColorModel;
 
-public: // Входы и выходы
-UPropertyInputData<UBitmap, UBAColorConvert> Input;
+public: //   
+UProperty<UBitmap, UBAColorConvert, ptPubParameter> Input;
 
-UPropertyOutputData<UBitmap, UBAColorConvert> Output;
+UProperty<UBitmap, UBAColorConvert, ptPubParameter> Output;
 
-protected: // Временные переменные
+protected: //  
 UBitmap Buffer;   //?
 
-public: // Методы
+public: // 
 // ---------------------
-// Конструкторы и деструкторы
+//   
 // ---------------------
 UBAColorConvert(void);
 virtual ~UBAColorConvert(void);
 // ---------------------
 
 // ---------------------
-// Методы счета
+//  
 // ---------------------
 UBAColorConvert* New(void);
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров
+//     
 // --------------------------
 protected:
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool ADefault(void);
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool ABuild(void);
 
-/// Сброс процесса счета без потери настроек
+///      
 virtual bool AReset(void);
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool ACalculate(void);
 // --------------------------
 };

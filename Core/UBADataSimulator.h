@@ -17,108 +17,108 @@ See file license.txt for more information
 namespace RDK {
 
 
-/// Базовый класс источник данных
+///    
 class RDK_LIB_TYPE UBADataSimulator: public UNet
 {
-protected: // Параметры
+protected: // 
 
-protected: // Временные переменные
+protected: //  
 
-public: // Методы
+public: // 
 // ---------------------
-// Конструкторы и деструкторы
+//   
 // ---------------------
 UBADataSimulator(void);
 virtual ~UBADataSimulator(void);
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров
+//     
 // --------------------------
 protected:
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool ADefault(void);
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool ABuild(void);
 
-/// Сброс процесса счета без потери настроек
+///      
 virtual bool AReset(void);
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool ACalculate(void);
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров симуляторов
+//      
 // --------------------------
 protected:
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool AFSDefault(void);
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool AFSBuild(void);
 
-/// Сброс процесса счета без потери настроек
+///      
 virtual bool AFSReset(void);
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool AFSCalculate(void);
 // --------------------------
 };
 
-/// Класс источник данных о геометрии точек
+///      
 class RDK_LIB_TYPE UBADataSimulatorSimple: public UBADataSimulator
 {
-protected: // Параметры
-/// Данные точек экрана
-UPropertyOutputData<std::vector<MVector<double,2> >, UBADataSimulatorSimple, ptPubOutput | ptPubParameter> ScreenPoints;
+protected: // 
+///   
+UProperty<std::vector<MVector<double,2> >, UBADataSimulatorSimple, ptPubOutput | ptPubParameter> ScreenPoints;
 
-/// Данные точек плоскости
-UPropertyOutputData<std::vector<MVector<double,3> >, UBADataSimulatorSimple, ptPubOutput | ptPubParameter>  PlanePoints;
+///   
+UProperty<std::vector<MVector<double,3> >, UBADataSimulatorSimple, ptPubOutput | ptPubParameter>  PlanePoints;
 
-/// Данные точек пространства
-UPropertyOutputData<std::vector<MVector<double,4> >, UBADataSimulatorSimple, ptPubOutput | ptPubParameter>  SpacePoints;
+///   
+UProperty<std::vector<MVector<double,4> >, UBADataSimulatorSimple, ptPubOutput | ptPubParameter>  SpacePoints;
 
-public: // Методы
+public: // 
 // ---------------------
-// Конструкторы и деструкторы
+//   
 // ---------------------
 UBADataSimulatorSimple(void);
 virtual ~UBADataSimulatorSimple(void);
 // ---------------------
 
 // ---------------------
-// Методы счета
+//  
 // ---------------------
-// Создание новой копии этого объекта
+//     
 virtual UBADataSimulatorSimple* New(void);
 // ---------------------
 
 
 // --------------------------
-// Скрытые методы управления счетом фильтров симуляторов
+//      
 // --------------------------
 protected:
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool AFSDefault(void);
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool AFSBuild(void);
 
-/// Сброс процесса счета без потери настроек
+///      
 virtual bool AFSReset(void);
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool AFSCalculate(void);
 // --------------------------
 };

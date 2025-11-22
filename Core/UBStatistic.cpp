@@ -24,7 +24,7 @@ namespace RDK {
 //UBStatisticRect UBGuiSelectionRect;
 
 // ---------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // ---------------------
 UBStatistic::UBStatistic(void)
 : SavePath("SavePath",this),
@@ -51,7 +51,7 @@ UBStatistic::~UBStatistic(void)
 // ---------------------
 
 // ---------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // ---------------------
 bool UBStatistic::SetSavePath(const std::string &value)
 {
@@ -85,9 +85,9 @@ bool UBStatistic::SetInputIndexMode(int value)
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBStatistic::ADefault(void)
 {
  Activity=false;
@@ -105,16 +105,16 @@ bool UBStatistic::ADefault(void)
  return AFSDefault();
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBStatistic::ABuild(void)
 {
  return AFSBuild();
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBStatistic::AReset(void)
 {
  ResetFlag=true;
@@ -128,7 +128,7 @@ bool UBStatistic::AReset(void)
  return AFSReset();
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBStatistic::ACalculate(void)
 {
  if(CurrentStep<NumSkipSteps)
@@ -152,7 +152,7 @@ bool UBStatistic::ACalculate(void)
  if(SubFolderAfterResetFlag && ResetFlag)
  {
   if(RDK::CreateNewDirectory((Environment->GetCurrentDataDir()+SavePath.v).c_str()))
-   return false; // Заглушка!! здесь исключение
+   return false; // Р—Р°РіР»СѓС€РєР°!! Р·РґРµСЃСЊ РёСЃРєР»СЋС‡РµРЅРёРµ
 
   time_t time_data;
   time(&time_data);
@@ -161,14 +161,14 @@ bool UBStatistic::ACalculate(void)
   else
    CurrentPath=Environment->GetCurrentDataDir()+SavePath.v+std::string("/")+get_text_time(time_data,'.','-');
   if(RDK::CreateNewDirectory(CurrentPath.c_str()))
-   return false; // Заглушка!! здесь исключение
+   return false; // Р—Р°РіР»СѓС€РєР°!! Р·РґРµСЃСЊ РёСЃРєР»СЋС‡РµРЅРёРµ
  }
 
  if(InputIndexMode == 1)
  {
   for(int i=0;i<int(Input->size());i++)
    if(RDK::CreateNewDirectory((CurrentPath+std::string("/")+sntoa(i)).c_str()))
-	return false; // Заглушка!! здесь исключение
+	return false; // Р—Р°РіР»СѓС€РєР°!! Р·РґРµСЃСЊ РёСЃРєР»СЋС‡РµРЅРёРµ
  }
 
  ResetFlag=false;
@@ -211,7 +211,7 @@ bool UBStatistic::ACalculate(void)
 // --------------------------
 
 // ---------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // ---------------------
 UBStatisticSimple::UBStatisticSimple(void)
  : TimeInterval("TimeInterval",this),
@@ -227,7 +227,7 @@ UBStatisticSimple::~UBStatisticSimple(void)
 // ---------------------
 
 // ---------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // ---------------------
 bool UBStatisticSimple::SetTimeInterval(int value)
 {
@@ -249,9 +249,9 @@ bool UBStatisticSimple::SetWriteSignal(bool value)
 // ---------------------
 
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
-// Создание новой копии этого объекта
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UBStatisticSimple* UBStatisticSimple::New(void)
 {
  return new UBStatisticSimple;
@@ -259,9 +259,9 @@ UBStatisticSimple* UBStatisticSimple::New(void)
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров сплиттинга
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ СЃРїР»РёС‚С‚РёРЅРіР°
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBStatisticSimple::AFSDefault(void)
 {
  TimeInterval=0;
@@ -271,16 +271,16 @@ bool UBStatisticSimple::AFSDefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBStatisticSimple::AFSBuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBStatisticSimple::AFSReset(void)
 {
  LastSaveTime=GetTime().GetSourceCurrentLocalTimeMs();
@@ -288,7 +288,7 @@ bool UBStatisticSimple::AFSReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBStatisticSimple::AFSCalculate(void)
 {
  if(Mode == 0 || Mode == 1)
@@ -318,7 +318,7 @@ bool UBStatisticSimple::AFSCalculate(void)
  return true;
 }
 
-// Осуществляет сохранение текущих данных
+// РћСЃСѓС‰РµСЃС‚РІР»СЏРµС‚ СЃРѕС…СЂР°РЅРµРЅРёРµ С‚РµРєСѓС‰РёС… РґР°РЅРЅС‹С…
 bool UBStatisticSimple::Save(void)
 {
  std::vector<UCItem> c_items;

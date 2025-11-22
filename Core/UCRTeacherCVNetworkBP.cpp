@@ -5,7 +5,7 @@
 namespace RDK{
 
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 UCRTeacherCVNetworkBP::UCRTeacherCVNetworkBP(void)
 : Network("Network",this,4)
@@ -26,15 +26,15 @@ UCRTeacherCVNetworkBP::~UCRTeacherCVNetworkBP(void)
 // --------------------------
 
 // -----------------------------
-// Методы доступа к данным
+// РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР° Рє РґР°РЅРЅС‹Рј
 // -----------------------------
-// Флаг состояния обучения
+// Р¤Р»Р°Рі СЃРѕСЃС‚РѕСЏРЅРёСЏ РѕР±СѓС‡РµРЅРёСЏ
 const int& UCRTeacherCVNetworkBP::GetTrainingEndingFlag(void) const
 {
  return TrainingEndingFlag;
 }
 
-// Доступ к ошибкам первого и второго рода
+// Р”РѕСЃС‚СѓРї Рє РѕС€РёР±РєР°Рј РїРµСЂРІРѕРіРѕ Рё РІС‚РѕСЂРѕРіРѕ СЂРѕРґР°
 const double& UCRTeacherCVNetworkBP::GetErr1(void) const
 {
  return Err1;
@@ -45,7 +45,7 @@ const double& UCRTeacherCVNetworkBP::GetErr2(void) const
  return Err2;
 }
 
-// Процент правильного принятия решения
+// РџСЂРѕС†РµРЅС‚ РїСЂР°РІРёР»СЊРЅРѕРіРѕ РїСЂРёРЅСЏС‚РёСЏ СЂРµС€РµРЅРёСЏ
 const double& UCRTeacherCVNetworkBP::GetSuccessRecognition(void) const
 {
  return SuccessRecognition;
@@ -53,15 +53,15 @@ const double& UCRTeacherCVNetworkBP::GetSuccessRecognition(void) const
 // -----------------------------
 
 // -----------------------------
-// Методы управления общедоступными свойствами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РѕР±С‰РµРґРѕСЃС‚СѓРїРЅС‹РјРё СЃРІРѕР№СЃС‚РІР°РјРё
 // -----------------------------
 
 // -----------------------------
 
 // ------------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ------------------------
-// Загружает настройки из файла 'name'
+// Р—Р°РіСЂСѓР¶Р°РµС‚ РЅР°СЃС‚СЂРѕР№РєРё РёР· С„Р°Р№Р»Р° 'name'
 bool UCRTeacherCVNetworkBP::AFileLoad(fstream &file)
 {
  //fstream ofs(Network->TrainFileName.c_str(), ios::out);
@@ -73,7 +73,7 @@ bool UCRTeacherCVNetworkBP::AFileLoad(fstream &file)
  return true;
 }
 
-// Сохраняет настройки в файл 'name'
+// РЎРѕС…СЂР°РЅСЏРµС‚ РЅР°СЃС‚СЂРѕР№РєРё РІ С„Р°Р№Р» 'name'
 bool UCRTeacherCVNetworkBP::AFileSave(fstream &file)
 {
  //fstream ifs(Network->TrainFileName.c_str(), ios::in | ios::trunc | ios::binary | ios::app);
@@ -87,9 +87,9 @@ bool UCRTeacherCVNetworkBP::AFileSave(fstream &file)
 // ------------------------
 
 // --------------------------
-// Системные методы управления объектом
+// РЎРёСЃС‚РµРјРЅС‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРј
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+// Р’С‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РґР»СЏ РЅРѕРІРѕР№ С‡РёСЃС‚РѕР№ РєРѕРїРёРё РѕР±СЉРµРєС‚Р° СЌС‚РѕРіРѕ РєР»Р°СЃСЃР°
 UCRTeacherCVNetworkBP* UCRTeacherCVNetworkBP::New(void)
 {
  return new UCRTeacherCVNetworkBP;
@@ -97,9 +97,9 @@ UCRTeacherCVNetworkBP* UCRTeacherCVNetworkBP::New(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UCRTeacherCVNetworkBP::ACrDefault(void)
 {
  //Moment=0.5;
@@ -112,10 +112,10 @@ bool UCRTeacherCVNetworkBP::ACrDefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UCRTeacherCVNetworkBP::ACrBuild(void)
 {
  //Network=dynamic_cast<UCRConvolutionNetwork*>(&(*Classifier));
@@ -128,7 +128,7 @@ bool UCRTeacherCVNetworkBP::ACrBuild(void)
  return true;
 }
 
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool UCRTeacherCVNetworkBP::ACrReset(void)
 {
  time_t tm;
@@ -138,7 +138,7 @@ bool UCRTeacherCVNetworkBP::ACrReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта на текущем шаге.
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р° РЅР° С‚РµРєСѓС‰РµРј С€Р°РіРµ.
 bool UCRTeacherCVNetworkBP::ACrCalculate(void)
 {
  switch(Mode)
@@ -200,9 +200,9 @@ bool UCRTeacherCVNetworkBP::ACrCalculate(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы обучения сети
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ РѕР±СѓС‡РµРЅРёСЏ СЃРµС‚Рё
 // --------------------------
-// Сброс настроек обучение в исходное состояние
+// РЎР±СЂРѕСЃ РЅР°СЃС‚СЂРѕРµРє РѕР±СѓС‡РµРЅРёРµ РІ РёСЃС…РѕРґРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 void UCRTeacherCVNetworkBP::ACrResetTraining(void)
 {
  //Network->SetNetworkNumLayers(TrainSample->NumClasses);
@@ -213,7 +213,7 @@ void UCRTeacherCVNetworkBP::ACrResetTraining(void)
  TrainingEndingFlag = 0;
 }
 
-// Собственно выполнение алгоритма обучения
+// РЎРѕР±СЃС‚РІРµРЅРЅРѕ РІС‹РїРѕР»РЅРµРЅРёРµ Р°Р»РіРѕСЂРёС‚РјР° РѕР±СѓС‡РµРЅРёСЏ
 double UCRTeacherCVNetworkBP::ACrTrainStep(size_t exp_class)
 {
  if(!TrainingEndingFlag)
@@ -233,7 +233,7 @@ double UCRTeacherCVNetworkBP::ACrTrainStep(size_t exp_class)
  return TrainingError;
 }
 
-// Завершающие действия при завершении текущего обхода выборки
+// Р—Р°РІРµСЂС€Р°СЋС‰РёРµ РґРµР№СЃС‚РІРёСЏ РїСЂРё Р·Р°РІРµСЂС€РµРЅРёРё С‚РµРєСѓС‰РµРіРѕ РѕР±С…РѕРґР° РІС‹Р±РѕСЂРєРё
 void UCRTeacherCVNetworkBP::ACrSampleIterationCompleteAction(void)
 {
  TrainingUsl=0;

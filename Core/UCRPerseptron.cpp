@@ -22,7 +22,7 @@ See file license.txt for more information
 namespace RDK {
 
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 UCRPerseptron::UCRPerseptron(void)
 //: UCRClassifier(name),
@@ -50,7 +50,7 @@ UCRPerseptron::~UCRPerseptron(void)
 // --------------------------
 
 // -----------------------------
-// Методы доступа к данным
+// РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР° Рє РґР°РЅРЅС‹Рј
 // -----------------------------
 double UCRPerseptron::GetWeight(int layer, int col, int row)
 {
@@ -69,9 +69,9 @@ double UCRPerseptron::GetOutputs(int layer, int row)
 // -----------------------------
 
 // -----------------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // -----------------------------
-// Устанавливает число слоев сети
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ С‡РёСЃР»Рѕ СЃР»РѕРµРІ СЃРµС‚Рё
 bool UCRPerseptron::SetNumLayers(const int &num)
 {
  Ready=false;
@@ -84,10 +84,10 @@ bool UCRPerseptron::SetNumLayers(const int &num)
  return true;
 }
 
-// Устанавливает число входов всех скрытых слоев
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ С‡РёСЃР»Рѕ РІС…РѕРґРѕРІ РІСЃРµС… СЃРєСЂС‹С‚С‹С… СЃР»РѕРµРІ
 bool UCRPerseptron::SetNumLayerInputs(const vector<int> &numinputs)
 {
- Ready=false; // Заглушка!!
+ Ready=false; // Р—Р°РіР»СѓС€РєР°!!
  if(NumLayerInputs->size() == numinputs.size())
   {
    bool key=true;
@@ -104,7 +104,7 @@ bool UCRPerseptron::SetNumLayerInputs(const vector<int> &numinputs)
  return true;
 }
 
-// Автоопределение размера слоев
+// РђРІС‚РѕРѕРїСЂРµРґРµР»РµРЅРёРµ СЂР°Р·РјРµСЂР° СЃР»РѕРµРІ
 bool UCRPerseptron::SetAutoSetLayerInputs(const bool &value)
 {
  if(AutoSetLayerInputs == false)
@@ -117,9 +117,9 @@ bool UCRPerseptron::SetAutoSetLayerInputs(const bool &value)
 // -----------------------------
 
 // ------------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ------------------------
-// Загружает настройки из файла 'name'
+// Р—Р°РіСЂСѓР¶Р°РµС‚ РЅР°СЃС‚СЂРѕР№РєРё РёР· С„Р°Р№Р»Р° 'name'
 bool UCRPerseptron::AFileLoad(fstream &file)
 {
  int i,j,k;
@@ -154,7 +154,7 @@ bool UCRPerseptron::AFileLoad(fstream &file)
  return true;
 }
 
-// Сохраняет настройки в файл 'name'
+// РЎРѕС…СЂР°РЅСЏРµС‚ РЅР°СЃС‚СЂРѕР№РєРё РІ С„Р°Р№Р» 'name'
 bool UCRPerseptron::AFileSave(fstream &file)
 {
  int i,j,k;
@@ -179,9 +179,9 @@ bool UCRPerseptron::AFileSave(fstream &file)
 // ------------------------
 
 // --------------------------
-// Системные методы управления объектом
+// РЎРёСЃС‚РµРјРЅС‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРј
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+// Р’С‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РґР»СЏ РЅРѕРІРѕР№ С‡РёСЃС‚РѕР№ РєРѕРїРёРё РѕР±СЉРµРєС‚Р° СЌС‚РѕРіРѕ РєР»Р°СЃСЃР°
 UCRPerseptron* UCRPerseptron::New(void)
 {
  return new UCRPerseptron;
@@ -189,9 +189,9 @@ UCRPerseptron* UCRPerseptron::New(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UCRPerseptron::ACRDefault(void)
 {
  vector<int> numinputs;
@@ -231,10 +231,10 @@ bool UCRPerseptron::ACRDefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UCRPerseptron::ACRBuild(void)
 {
  int i,j;
@@ -279,7 +279,7 @@ bool UCRPerseptron::ACRBuild(void)
      dWeights[i].resize(NumLayerInputs[i+1]);
     }
 
-   // Изменяем длины строк матрицы весов
+   // РР·РјРµРЅСЏРµРј РґР»РёРЅС‹ СЃС‚СЂРѕРє РјР°С‚СЂРёС†С‹ РІРµСЃРѕРІ
    for(j=0;j<int(Weights[i].size());j++)
     {
      Weights[i][j].resize(NumLayerInputs[i]+1);
@@ -293,7 +293,7 @@ bool UCRPerseptron::ACRBuild(void)
 }
 
 
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool UCRPerseptron::ACRReset(void)
 {
  std::string path;
@@ -304,7 +304,7 @@ bool UCRPerseptron::ACRReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта на текущем шаге.
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р° РЅР° С‚РµРєСѓС‰РµРј С€Р°РіРµ.
 bool UCRPerseptron::ACRCalculate(void)
 {
  int input_size=GetInputDataSize(0)[1];
@@ -331,9 +331,9 @@ bool UCRPerseptron::ACRCalculate(void)
 
 
 // --------------------------
-// Скрытые методы обучения сети
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ РѕР±СѓС‡РµРЅРёСЏ СЃРµС‚Рё
 // --------------------------
-// Сброс настроек обучение в исходное состояние
+// РЎР±СЂРѕСЃ РЅР°СЃС‚СЂРѕРµРє РѕР±СѓС‡РµРЅРёРµ РІ РёСЃС…РѕРґРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 void UCRPerseptron::AResetTraining(void)
 {
  size_t i,j;
@@ -366,7 +366,7 @@ void UCRPerseptron::AResetTraining(void)
 
 }
 
-// Сброс настроек обучения выбранного слоя в исходное состояние
+// РЎР±СЂРѕСЃ РЅР°СЃС‚СЂРѕРµРє РѕР±СѓС‡РµРЅРёСЏ РІС‹Р±СЂР°РЅРЅРѕРіРѕ СЃР»РѕСЏ РІ РёСЃС…РѕРґРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 void UCRPerseptron::LayerResetTraining(size_t index)
 {
  size_t i,j,k;
@@ -391,9 +391,9 @@ void UCRPerseptron::LayerResetTraining(size_t index)
 
 
 // ------------------------
-// Скрытые методы счета
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ------------------------
-// Устанавливает значения входного вектора для распознавания
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ Р·РЅР°С‡РµРЅРёСЏ РІС…РѕРґРЅРѕРіРѕ РІРµРєС‚РѕСЂР° РґР»СЏ СЂР°СЃРїРѕР·РЅР°РІР°РЅРёСЏ
 bool UCRPerseptron::SetInput(const vector<double> &input)
 {
  int i;
@@ -407,7 +407,7 @@ bool UCRPerseptron::SetInput(const vector<double> &input)
  return true;
 }
 
-// Производит расчет заданного слоя
+// РџСЂРѕРёР·РІРѕРґРёС‚ СЂР°СЃС‡РµС‚ Р·Р°РґР°РЅРЅРѕРіРѕ СЃР»РѕСЏ
 void UCRPerseptron::CalcLayer(vector<double> &in_x, vector<double> &out_q,
 						vector<vector<double> > &weights)
 {
@@ -484,7 +484,7 @@ void UCRPerseptron::ReverseCalcLayer0(vector<double> &in_x, vector<double> &out_
 }
 
 
-// Производит расчет всей сети
+// РџСЂРѕРёР·РІРѕРґРёС‚ СЂР°СЃС‡РµС‚ РІСЃРµР№ СЃРµС‚Рё
 void UCRPerseptron::CalcNetwork(vector<double> &inputs)
 {
  int i;
@@ -494,8 +494,8 @@ void UCRPerseptron::CalcNetwork(vector<double> &inputs)
   return;
 
 
- // Аналогично проводим расчет на всех слоях кроме последнего
- // вплоть до предпоследнего включительно
+ // РђРЅР°Р»РѕРіРёС‡РЅРѕ РїСЂРѕРІРѕРґРёРј СЂР°СЃС‡РµС‚ РЅР° РІСЃРµС… СЃР»РѕСЏС… РєСЂРѕРјРµ РїРѕСЃР»РµРґРЅРµРіРѕ
+ // РІРїР»РѕС‚СЊ РґРѕ РїСЂРµРґРїРѕСЃР»РµРґРЅРµРіРѕ РІРєР»СЋС‡РёС‚РµР»СЊРЅРѕ
  p_inputs=&inputs;
  for(i=0;i<NumLayers;i++)
   {
@@ -506,7 +506,7 @@ void UCRPerseptron::CalcNetwork(vector<double> &inputs)
 }
 
 
-// Производит расчет всей сети
+// РџСЂРѕРёР·РІРѕРґРёС‚ СЂР°СЃС‡РµС‚ РІСЃРµР№ СЃРµС‚Рё
 void UCRPerseptron::CalcDeepNetwork(vector<double> &inputs)
 {
  int i;
@@ -515,8 +515,8 @@ void UCRPerseptron::CalcDeepNetwork(vector<double> &inputs)
  if(!Ready)
   return;
 
- // Аналогично проводим расчет на всех слоях кроме последнего
- // вплоть до предпоследнего включительно
+ // РђРЅР°Р»РѕРіРёС‡РЅРѕ РїСЂРѕРІРѕРґРёРј СЂР°СЃС‡РµС‚ РЅР° РІСЃРµС… СЃР»РѕСЏС… РєСЂРѕРјРµ РїРѕСЃР»РµРґРЅРµРіРѕ
+ // РІРїР»РѕС‚СЊ РґРѕ РїСЂРµРґРїРѕСЃР»РµРґРЅРµРіРѕ РІРєР»СЋС‡РёС‚РµР»СЊРЅРѕ
  p_inputs=&inputs;
  for(i=0;i<NumLayers;i++)
   {

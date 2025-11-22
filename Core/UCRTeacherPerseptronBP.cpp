@@ -6,7 +6,7 @@
 namespace RDK {
 
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 UCRTeacherPerseptronBP::UCRTeacherPerseptronBP(void)
 :
@@ -24,19 +24,19 @@ UCRTeacherPerseptronBP::~UCRTeacherPerseptronBP(void)
 // --------------------------
 
 // -----------------------------
-// Методы доступа к данным
+// РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР° Рє РґР°РЅРЅС‹Рј
 // -----------------------------
 // -----------------------------
 
 // -----------------------------
-// Методы управления общедоступными свойствами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РѕР±С‰РµРґРѕСЃС‚СѓРїРЅС‹РјРё СЃРІРѕР№СЃС‚РІР°РјРё
 // -----------------------------
 bool UCRTeacherPerseptronBP::SetMode(const int &value)
 {
  return true;
 }
 
-// Устанавливает момент сети
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РјРѕРјРµРЅС‚ СЃРµС‚Рё
 bool UCRTeacherPerseptronBP::SetMoment(const double &m)
 {
  if(m < 0 || m > 1.0)
@@ -48,15 +48,15 @@ bool UCRTeacherPerseptronBP::SetMoment(const double &m)
 // -----------------------------
 
 // ------------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ------------------------
-// Загружает настройки из файла 'name'
+// Р—Р°РіСЂСѓР¶Р°РµС‚ РЅР°СЃС‚СЂРѕР№РєРё РёР· С„Р°Р№Р»Р° 'name'
 bool UCRTeacherPerseptronBP::AFileLoad(fstream &file)
 {
  return true;
 }
 
-// Сохраняет настройки в файл 'name'
+// РЎРѕС…СЂР°РЅСЏРµС‚ РЅР°СЃС‚СЂРѕР№РєРё РІ С„Р°Р№Р» 'name'
 bool UCRTeacherPerseptronBP::AFileSave(fstream &file)
 {
  return true;
@@ -64,9 +64,9 @@ bool UCRTeacherPerseptronBP::AFileSave(fstream &file)
 // ------------------------
 
 // --------------------------
-// Системные методы управления объектом
+// РЎРёСЃС‚РµРјРЅС‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРј
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+// Р’С‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РґР»СЏ РЅРѕРІРѕР№ С‡РёСЃС‚РѕР№ РєРѕРїРёРё РѕР±СЉРµРєС‚Р° СЌС‚РѕРіРѕ РєР»Р°СЃСЃР°
 UCRTeacherPerseptronBP* UCRTeacherPerseptronBP::New(void)
 {
  return new UCRTeacherPerseptronBP;
@@ -74,9 +74,9 @@ UCRTeacherPerseptronBP* UCRTeacherPerseptronBP::New(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UCRTeacherPerseptronBP::ACrDefault(void)
 {
  Moment=0.5;
@@ -89,17 +89,17 @@ bool UCRTeacherPerseptronBP::ACrDefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UCRTeacherPerseptronBP::ACrBuild(void)
 {
 
  return true;
 }
 
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool UCRTeacherPerseptronBP::ACrReset(void)
 {
  time_t tm;
@@ -109,7 +109,7 @@ bool UCRTeacherPerseptronBP::ACrReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта на текущем шаге.
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р° РЅР° С‚РµРєСѓС‰РµРј С€Р°РіРµ.
 bool UCRTeacherPerseptronBP::ACrCalculate(void)
 {
  return true;
@@ -117,9 +117,9 @@ bool UCRTeacherPerseptronBP::ACrCalculate(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы обучения сети
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ РѕР±СѓС‡РµРЅРёСЏ СЃРµС‚Рё
 // --------------------------
-// Сброс настроек обучение в исходное состояние
+// РЎР±СЂРѕСЃ РЅР°СЃС‚СЂРѕРµРє РѕР±СѓС‡РµРЅРёРµ РІ РёСЃС…РѕРґРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 void UCRTeacherPerseptronBP::ACrResetTraining(void)
 {
  Perseptron->NumClasses=TrainSample->NumClasses;
@@ -128,7 +128,7 @@ void UCRTeacherPerseptronBP::ACrResetTraining(void)
  Perseptron->ResetTraining();
 }
 
-// Собственно выполнение алгоритма обучения
+// РЎРѕР±СЃС‚РІРµРЅРЅРѕ РІС‹РїРѕР»РЅРµРЅРёРµ Р°Р»РіРѕСЂРёС‚РјР° РѕР±СѓС‡РµРЅРёСЏ
 double UCRTeacherPerseptronBP::ACrTrainStep(size_t exp_class)
 {
  if(Perseptron->NumLayers == 0)
@@ -149,12 +149,12 @@ double UCRTeacherPerseptronBP::ACrTrainStep(size_t exp_class)
  if(!Perseptron->IsReady())
   return 0;
 
- // Проводим распознавание примера
+ // РџСЂРѕРІРѕРґРёРј СЂР°СЃРїРѕР·РЅР°РІР°РЅРёРµ РїСЂРёРјРµСЂР°
  Perseptron->Calculate();
 
  double alpha=Perseptron->Alpha;
 
- // Рассчитываем поправки выходному слою
+ // Р Р°СЃСЃС‡РёС‚С‹РІР°РµРј РїРѕРїСЂР°РІРєРё РІС‹С…РѕРґРЅРѕРјСѓ СЃР»РѕСЋ
  delta.assign(weights[Perseptron->NumLayers-1].size(),0);
  for(int j=0;j<(int)weights[Perseptron->NumLayers-1].size();j++)
   {
@@ -164,7 +164,7 @@ double UCRTeacherPerseptronBP::ACrTrainStep(size_t exp_class)
 	delta[j]=outputs[Perseptron->NumLayers-1][j]-Perseptron->MinOutputValue;
   }
 
- // Корректируем веса всем слоям
+ // РљРѕСЂСЂРµРєС‚РёСЂСѓРµРј РІРµСЃР° РІСЃРµРј СЃР»РѕСЏРј
  for(int l=Perseptron->NumLayers-1;l>=0;l--)
   {
    vector<vector<double> > *pweights=&(weights[l]);
@@ -178,7 +178,7 @@ double UCRTeacherPerseptronBP::ACrTrainStep(size_t exp_class)
 	   for(int j=0;j<(int)outputs[l+1].size();j++)
 		delta[i]+=delta_prev[j]*weights_prev[j][i];
 
-	   delta[i]*=outputs[l][i]*(1-outputs[l][i]); // Проверить почему это за суммой!!!!
+	   delta[i]*=outputs[l][i]*(1-outputs[l][i]); // РџСЂРѕРІРµСЂРёС‚СЊ РїРѕС‡РµРјСѓ СЌС‚Рѕ Р·Р° СЃСѓРјРјРѕР№!!!!
 	  }
 	}
 
@@ -207,7 +207,7 @@ double UCRTeacherPerseptronBP::ACrTrainStep(size_t exp_class)
 	   (*pweights)[i][j]+=(*pdweights)[i][j];
 	  }
 
-	 (*pdweights)[i][(*pdweights)[0].size()-1]=TrainingRate*corr*0.5+ // почему не считается разность с предыдущим шагом??
+	 (*pdweights)[i][(*pdweights)[0].size()-1]=TrainingRate*corr*0.5+ // РїРѕС‡РµРјСѓ РЅРµ СЃС‡РёС‚Р°РµС‚СЃСЏ СЂР°Р·РЅРѕСЃС‚СЊ СЃ РїСЂРµРґС‹РґСѓС‰РёРј С€Р°РіРѕРј??
 							  Moment*(*pdweights)[i][(*pdweights)[0].size()-1];
 	 (*pweights)[i][(*pweights)[0].size()-1]+=(*pdweights)[i][(*pdweights)[0].size()-1];
 
@@ -218,7 +218,7 @@ double UCRTeacherPerseptronBP::ACrTrainStep(size_t exp_class)
 	delta_prev[i]=delta[i];
   }
 
- // Вычисляем ошибку
+ // Р’С‹С‡РёСЃР»СЏРµРј РѕС€РёР±РєСѓ
  E=0;
  for(int i=0;i<(int)outputs[Perseptron->NumLayers-1].size();i++)
   {
@@ -230,7 +230,7 @@ double UCRTeacherPerseptronBP::ACrTrainStep(size_t exp_class)
  return 0.5*E;
 }
 
-// Завершающие действия при завершении текущего обхода выборки
+// Р—Р°РІРµСЂС€Р°СЋС‰РёРµ РґРµР№СЃС‚РІРёСЏ РїСЂРё Р·Р°РІРµСЂС€РµРЅРёРё С‚РµРєСѓС‰РµРіРѕ РѕР±С…РѕРґР° РІС‹Р±РѕСЂРєРё
 void UCRTeacherPerseptronBP::ACrSampleIterationCompleteAction(void)
 {
 

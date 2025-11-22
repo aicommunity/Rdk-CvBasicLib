@@ -9,7 +9,7 @@
 namespace RDK
 {
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 TCaptureCameraIp::TCaptureCameraIp(void)
 : Address("Address",this,&TCaptureCameraIp::SetAddress),
@@ -23,28 +23,28 @@ TCaptureCameraIp::~TCaptureCameraIp(void)
 
 }
 // --------------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // --------------------------
-/// Установка адреса соединения
+/// РЈСЃС‚Р°РЅРѕРІРєР° Р°РґСЂРµСЃР° СЃРѕРµРґРёРЅРµРЅРёСЏ
 bool TCaptureCameraIp::SetAddress(const std::string &num)
 {
  Ready=false;
  return true;
 }
-/// Установка имени пользователя
+/// РЈСЃС‚Р°РЅРѕРІРєР° РёРјРµРЅРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 bool TCaptureCameraIp::SetLogin(const std::string &num)
 {
  Ready=false;
  return true;
 }
-/// Установка пароля
+/// РЈСЃС‚Р°РЅРѕРІРєР° РїР°СЂРѕР»СЏ
 bool TCaptureCameraIp::SetPassword(const std::string &num)
 {
  Ready=false;
  return true;
 }
 // --------------------------
-// Скрытые методы
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹
 // --------------------------
 bool TCaptureCameraIp::ASetEnableCapture1(const bool &value)
 {

@@ -8,65 +8,65 @@ namespace RDK{
 template<class T>
 class UMDMatrixMux: public UNet
 {
-protected: // Параметры
-/// Массив флагов, описывающих какие входы использовать, а какие нет
-ULProperty<std::vector<bool>,UMDMatrixMux<T> > InputActivities;
+protected: // 
+///  ,    ,   
+UProperty<std::vector<bool>,UMDMatrixMux<T>, ptPubParameter> InputActivities;
 
-public: // Данные
-/// Входной вектор матриц
-UPropertyInputCData<MDMatrix<T>,UMDMatrixMux<T> > InputMatrixData;
+public: // 
+///   
+UProperty<std::vector<MDMatrix<T>>,UMDMatrixMux<T>, ptPubInput> InputMatrixData;
 
-/// Режим работы
-/// 0 - сборка матриц в высоту
-/// 1 - сборка матриц в ширину
-/// 2 - сборка матриц в ширину с чередованием столбцов
-/// 3 - сборка матриц в высоту с чередованием строк
+///  
+/// 0 -    
+/// 1 -    
+/// 2 -       
+/// 3 -       
 UProperty<int,UMDMatrixMux<T>, ptPubParameter> Mode;
 
-public: // Данные
-// Выходой вектор матриц
-UPropertyOutputData<MDMatrix<T>,UMDMatrixMux<T>, ptPubOutput | ptState> OutputMatrixData;
+public: // 
+//   
+UProperty<MDMatrix<T>,UMDMatrixMux<T>, ptPubOutput | ptState> OutputMatrixData;
 
-public: // Методы
+public: // 
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 UMDMatrixMux(void);
 virtual ~UMDMatrixMux(void);
 
 
 // --------------------------
-// Системные методы управления объектом
+//    
 // --------------------------
 public:
-// Выделяет память для новой чистой копии объекта этого класса
+//         
 virtual UMDMatrixMux<T>* New(void);
 // --------------------------
 
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
 protected:
-// Восстановление настроек по умолчанию и сброс процесса счета
+//        
 virtual bool ADefault(void);
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+//     
+//   
+//    Reset()   Ready  true
+//    
 virtual bool ABuild(void);
 
-// Сброс процесса счета.
+//   .
 virtual bool AReset(void);
 
-// Выполняет расчет этого объекта
+//    
 virtual bool ACalculate(void);
 // --------------------------
 };
 
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 template<class T>
 UMDMatrixMux<T>::UMDMatrixMux(void)
@@ -85,9 +85,9 @@ UMDMatrixMux<T>::~UMDMatrixMux(void)
 }
 
 // --------------------------
-// Системные методы управления объектом
+//    
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+//         
 template<class T>
 UMDMatrixMux<T>* UMDMatrixMux<T>::New(void)
 {
@@ -96,9 +96,9 @@ UMDMatrixMux<T>* UMDMatrixMux<T>::New(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+//        
 template<class T>
 bool UMDMatrixMux<T>::ADefault(void)
 {
@@ -107,17 +107,17 @@ bool UMDMatrixMux<T>::ADefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+//     
+//   
+//    Reset()   Ready  true
+//    
 template<class T>
 bool UMDMatrixMux<T>::ABuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета.
+//   .
 template<class T>
 bool UMDMatrixMux<T>::AReset(void)
 {
@@ -125,7 +125,7 @@ bool UMDMatrixMux<T>::AReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта
+//    
 template<class T>
 bool UMDMatrixMux<T>::ACalculate(void)
 {
@@ -141,7 +141,7 @@ bool UMDMatrixMux<T>::ACalculate(void)
  size_t i=0;
  switch(Mode)
  {
-  // Сборка в высоту
+  //   
   case 0:
   {
    int new_rows=0;//((*InputMatrixData)[0])?(*InputMatrixData)[0]->GetRows():0;
@@ -179,7 +179,7 @@ bool UMDMatrixMux<T>::ACalculate(void)
   }
   break;
 
-  // Сборка в ширину
+  //   
   case 1:
   {
    int new_rows=-1;//((*InputMatrixData)[0])?(*InputMatrixData)[0]->GetRows():0;
@@ -217,7 +217,7 @@ bool UMDMatrixMux<T>::ACalculate(void)
   }
   break;
 
-  /// 2 - сборка матриц в ширину с чередованием столбцов
+  /// 2 -       
   case 2:
   {
    int new_rows=-1;
@@ -257,7 +257,7 @@ bool UMDMatrixMux<T>::ACalculate(void)
   }
   break;
 
-  /// 3 - сборка матриц в высоту с чередованием строк
+  /// 3 -       
   case 3:
   {
 
@@ -273,64 +273,64 @@ bool UMDMatrixMux<T>::ACalculate(void)
 template<class T>
 class UMDScalarMux: public UNet
 {
-protected: // Параметры
-/// Массив флагов, описывающих какие входы использовать, а какие нет
-ULProperty<std::vector<bool>,UMDScalarMux<T> > InputActivities;
+protected: // Input activities
+/// Input activities vector
+UProperty<std::vector<bool>,UMDScalarMux<T>, ptPubParameter> InputActivities;
 
-protected: // Данные
-/// Входной вектор матриц
-UPropertyInputCData<T,UMDScalarMux<T> > InputMatrixData;
+protected: // 
+///   
+UProperty<std::vector<T>,UMDScalarMux<T>, ptPubInput> InputMatrixData;
 
-/// Режим работы
-/// 0 - сборка матриц в высоту
-/// 1 - сборка матриц в ширину
-/// 2 - сборка матриц в ширину с чередованием столбцов
-/// 3 - сборка матриц в высоту с чередованием строк
+///  
+/// 0 -    
+/// 1 -    
+/// 2 -       
+/// 3 -       
 UProperty<int,UMDScalarMux<T>, ptPubParameter> Mode;
 
-public: // Данные
-// Выходой вектор матриц
-UPropertyOutputData<MDMatrix<T>,UMDScalarMux<T>, ptPubOutput | ptState> OutputMatrixData;
+public: // 
+//   
+UProperty<MDMatrix<T>,UMDScalarMux<T>, ptPubOutput | ptState> OutputMatrixData;
 
-public: // Методы
+public: // 
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 UMDScalarMux(void);
 virtual ~UMDScalarMux(void);
 
 // --------------------------
-// Системные методы управления объектом
+//    
 // --------------------------
 public:
-// Выделяет память для новой чистой копии объекта этого класса
+//         
 virtual UMDScalarMux<T>* New(void);
 // --------------------------
 
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
 protected:
-// Восстановление настроек по умолчанию и сброс процесса счета
+//        
 virtual bool ADefault(void);
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+//     
+//   
+//    Reset()   Ready  true
+//    
 virtual bool ABuild(void);
 
-// Сброс процесса счета.
+//   .
 virtual bool AReset(void);
 
-// Выполняет расчет этого объекта
+//    
 virtual bool ACalculate(void);
 // --------------------------
 };
 
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 template<class T>
 UMDScalarMux<T>::UMDScalarMux(void)
@@ -349,9 +349,9 @@ UMDScalarMux<T>::~UMDScalarMux(void)
 }
 
 // --------------------------
-// Системные методы управления объектом
+//    
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+//         
 template<class T>
 UMDScalarMux<T>* UMDScalarMux<T>::New(void)
 {
@@ -360,9 +360,9 @@ UMDScalarMux<T>* UMDScalarMux<T>::New(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+//        
 template<class T>
 bool UMDScalarMux<T>::ADefault(void)
 {
@@ -371,17 +371,17 @@ bool UMDScalarMux<T>::ADefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+//     
+//   
+//    Reset()   Ready  true
+//    
 template<class T>
 bool UMDScalarMux<T>::ABuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета.
+//   .
 template<class T>
 bool UMDScalarMux<T>::AReset(void)
 {
@@ -389,7 +389,7 @@ bool UMDScalarMux<T>::AReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта
+//    
 template<class T>
 bool UMDScalarMux<T>::ACalculate(void)
 {
@@ -405,7 +405,7 @@ bool UMDScalarMux<T>::ACalculate(void)
  size_t i=0;
  switch(Mode)
  {
-  // Сборка в высоту
+  //   
   case 0:
   {
    int new_rows=0;
@@ -435,7 +435,7 @@ bool UMDScalarMux<T>::ACalculate(void)
   }
   break;
 
-  // Сборка в ширину
+  //   
   case 1:
   {
    int new_rows=-1;
@@ -465,7 +465,7 @@ bool UMDScalarMux<T>::ACalculate(void)
   }
   break;
 
-  /// 2 - сборка матриц в ширину с чередованием столбцов
+  /// 2 -       
   case 2:
   {
    int new_rows=-1;
@@ -500,7 +500,7 @@ bool UMDScalarMux<T>::ACalculate(void)
   }
   break;
 
-  /// 3 - сборка матриц в высоту с чередованием строк
+  /// 3 -       
   case 3:
   {
 
