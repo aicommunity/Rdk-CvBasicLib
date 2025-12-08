@@ -1,3 +1,10 @@
+#ifndef UBADIFFERENCEFRAME_CPP
+#define UBADIFFERENCEFRAME_CPP
+
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable:4244)
+#endif
 /* ***********************************************************
 @Copyright Alexander V. Bakhshiev, Anton M. Korsakov 2009.
 E-mail:        alexab@ailab.ru, anton_korsakov@mail.ru
@@ -225,6 +232,12 @@ bool UBADifferenceFrameSimple::AFDiffCalculate(void)
 // --------------------------
 
 
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
+
 }
 //---------------------------------------------------------------------------
+
+#endif // UBADIFFERENCEFRAME_CPP
 

@@ -1,3 +1,9 @@
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable:4244)
+#endif
+#ifndef UBALOOPING_CPP
+#define UBALOOPING_CPP
 /* ***********************************************************
 @Copyright Alexander V. Bakhshiev, Anton M. Korsakov 2009.
 E-mail:        alexab@ailab.ru, anton_korsakov@mail.ru
@@ -487,6 +493,12 @@ bool UBALoopingSobel::AFCCalculate(void)
  return BCalculate(*Input, *Output);
 }
 // --------------------------
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 }
 //---------------------------------------------------------------------------
+
+#endif // UBALOOPING_CPP
 

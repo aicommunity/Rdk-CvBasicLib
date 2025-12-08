@@ -1,3 +1,7 @@
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable:4244)
+#endif
 /* ***********************************************************
 @Copyright Alexsandr V. Bakhshiev, 2011.
 E-mail:        alexab@ailab.ru
@@ -520,6 +524,10 @@ bool UBANightDetector::CalcAdaptiveThreshold(void)
  return true;
 }
 // ---------------------
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
 }
 
