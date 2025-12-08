@@ -344,10 +344,10 @@ bool UBStatisticSimple::Save(void)
     file_suffix=sntoa(i);
    if(FileNameSuffix == 1 && ExcludeModelFileName)
    {
-    std::string::size_type i=file_suffix.find_first_of(".");
-    if(i != std::string::npos)
+    std::string::size_type pos=file_suffix.find_first_of(".");
+    if(pos != std::string::npos)
     {
-     file_suffix.erase(0, i+1);
+     file_suffix.erase(0, pos+1);
     }
    }
 

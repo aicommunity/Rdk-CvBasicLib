@@ -18,8 +18,8 @@ file(GLOB CV_SOURCES
   ${CMAKE_SOURCE_DIR}/Libraries/Rdk-CvBasicLib/Core/*.cpp
 )
 
-# Исключаем только заведомо GUI-зависимый файл; остальные нужны для символов из Basic.cpp
-list(FILTER CV_SOURCES EXCLUDE REGEX "/Libraries/Rdk-CvBasicLib/Core/UBAGuiSelection\\.cpp$")
+# UBAGuiSelection.cpp нужен для реализации UMouse, которая используется в Basic.h
+# Файл возвращен в компиляцию для обеспечения наличия символов UMouse
 list(FILTER CV_SOURCES EXCLUDE REGEX "/Libraries/Rdk-CvBasicLib/Core/UCR.*\\.cpp$")
 list(FILTER CV_SOURCES EXCLUDE REGEX "/Libraries/Rdk-CvBasicLib/Core/TCapture.*\\.cpp$")
 

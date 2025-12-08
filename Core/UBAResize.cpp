@@ -228,11 +228,11 @@ bool UBAResizeEdges::BCalculate(UBitmap &input, UBitmap &output)
 		y1coord= (int)(di + corrY);
 		Src0= input.GetData() + 3 * y0coord * oWidth;
 		Src1= input.GetData() + 3 * y1coord * oWidth;
-		double dj=0;
-		for(int j=0; j<nWidth; j++, dj+=StepX)
+		double dj_local=0;
+		for(int j=0; j<nWidth; j++, dj_local+=StepX)
 		{
-			x0coord= 3 * (int)dj;
-			x1coord= 3 * (int)(dj + corrX);
+			x0coord= 3 * (int)dj_local;
+			x1coord= 3 * (int)(dj_local + corrX);
 			p1= *(Src0 + x0coord);
 			p2= *(Src0 + x1coord);
 			p3= *(Src1 + x0coord);
@@ -252,11 +252,11 @@ bool UBAResizeEdges::BCalculate(UBitmap &input, UBitmap &output)
 		y1coord= (int)(di + corrY);
 		Src0= input.GetData() + 3 * y0coord * oWidth;
 		Src1= input.GetData() + 3 * y1coord * oWidth;
-		double dj=0;
-		for(int j=0; j<nWidth; j++, dj+=StepX)
+		double dj_local=0;
+		for(int j=0; j<nWidth; j++, dj_local+=StepX)
 		{
-			x0coord= 3 * (int)dj + 1;
-			x1coord= 3 * (int)(dj + corrX) + 1;
+			x0coord= 3 * (int)dj_local + 1;
+			x1coord= 3 * (int)(dj_local + corrX) + 1;
 			p1= *(Src0 + x0coord);
 			p2= *(Src0 + x1coord);
 			p3= *(Src1 + x0coord);
@@ -276,8 +276,8 @@ bool UBAResizeEdges::BCalculate(UBitmap &input, UBitmap &output)
 		y1coord= (int)(di + corrY);
 		Src0= input.GetData() + 3 * y0coord * oWidth;
 		Src1= input.GetData() + 3 * y1coord * oWidth;
-		double dj=0;
-		for(int j=0; j<nWidth; j++, dj+=StepX)
+		double dj_local=0;
+		for(int j=0; j<nWidth; j++, dj_local+=StepX)
 		{
 			x0coord= 3 * (int)dj + 2;
 			x1coord= 3 * (int)(dj + corrX) + 2;

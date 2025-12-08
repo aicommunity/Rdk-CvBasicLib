@@ -691,22 +691,30 @@ bool TSNE::load_data(double** data, int* n, int* d, int* no_dims, double* theta,
 		return false;
 	}
 	// Suppress unused result warnings - fread return values are checked implicitly via data validity
+#ifdef __GNUC__
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-result"
+#endif
 	(void) fread(n, sizeof(int), 1, h);											// number of datapoints
 	(void) fread(d, sizeof(int), 1, h);											// original dimensionality
 	(void) fread(theta, sizeof(double), 1, h);										// gradient accuracy
 	(void) fread(perplexity, sizeof(double), 1, h);								// perplexity
 	(void) fread(no_dims, sizeof(int), 1, h);                                      // output dimensionality
 	(void) fread(max_iter, sizeof(int),1,h);                                       // maximum number of iterations
+#ifdef __GNUC__
 #pragma GCC diagnostic pop
+#endif
 	*data = (double*) malloc(*d * *n * sizeof(double));
     if(*data == NULL) { printf("Memory allocation failed!\n"); exit(1); }
+#ifdef __GNUC__
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-result"
+#endif
 	(void) fread(*data, sizeof(double), *n * *d, h);                               // the data
     if(!feof(h)) (void) fread(rand_seed, sizeof(int), 1, h);                       // random seed
+#ifdef __GNUC__
 #pragma GCC diagnostic pop
+#endif
 	fclose(h);
 	printf("Read the %i x %i data matrix successfully!\n", *n, *d);
 	return true;
@@ -721,14 +729,18 @@ void TSNE::save_data(double* data, int* landmarks, double* costs, int n, int d) 
 		printf("Error: could not open data file.\n");
 		return;
 	}
+#ifdef __GNUC__
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-result"
+#endif
 	fwrite(&n, sizeof(int), 1, h);
 	fwrite(&d, sizeof(int), 1, h);
     fwrite(data, sizeof(double), n * d, h);
 	fwrite(landmarks, sizeof(int), n, h);
     fwrite(costs, sizeof(double), n, h);
+#ifdef __GNUC__
 #pragma GCC diagnostic pop
+#endif
     fclose(h);
 	printf("Wrote the %i x %i data matrix successfully!\n", n, d);
 }
