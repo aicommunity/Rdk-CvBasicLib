@@ -15,6 +15,11 @@ See file license.txt for more information
 #include "UBAResize.h"
 #include <math.h>
 
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable:4244)
+#endif
+
 namespace RDK {
 
 //UBAResizeEdges UBResizeEdges;
@@ -167,8 +172,8 @@ bool UBAResizeEdges::BCalculate(UBitmap &input, UBitmap &output)
  //unsigned int p1, p2, p3, p4;
  unsigned int Res;
  float corrX, corrY;
- float di=0;
- float dj=0;
+float di_acc=0;
+float dj=0;
 
  int oWidth=input.GetWidth();
  int oHeight=input.GetHeight();
@@ -220,19 +225,19 @@ bool UBAResizeEdges::BCalculate(UBitmap &input, UBitmap &output)
 //	corrY= (StepY>1)? StepY-1. : 0;
 
 	// Прореживание по каждой строке компоненты R
-	double di=0;
+	double di_local=0.0;
 	Dest= output.GetData();
-	for(int i=0; i<nHeight; i++, di+=StepY)
+ for(int i=0; i<nHeight; i++, di_local+=StepY)
 	{
-		y0coord= (int)di;
-		y1coord= (int)(di + corrY);
+  y0coord= (int)di_local;
+  y1coord= (int)(di_local + corrY);
 		Src0= input.GetData() + 3 * y0coord * oWidth;
 		Src1= input.GetData() + 3 * y1coord * oWidth;
-		double dj=0;
-		for(int j=0; j<nWidth; j++, dj+=StepX)
+		double dj_local=0;
+		for(int j=0; j<nWidth; j++, dj_local+=StepX)
 		{
-			x0coord= 3 * (int)dj;
-			x1coord= 3 * (int)(dj + corrX);
+			x0coord= 3 * (int)dj_local;
+			x1coord= 3 * (int)(dj_local + corrX);
 			p1= *(Src0 + x0coord);
 			p2= *(Src0 + x1coord);
 			p3= *(Src1 + x0coord);
@@ -245,18 +250,18 @@ bool UBAResizeEdges::BCalculate(UBitmap &input, UBitmap &output)
 	}
 	// Прореживание по каждой строке компоненты G
 	Dest = output.GetData() + 1;
-	di=0;
-	for(int i=0; i<nHeight; i++, di+=StepY)
+ di_acc=0;
+ for(int i=0; i<nHeight; i++, di_acc+=StepY)
 	{
-		y0coord= (int)di;
-		y1coord= (int)(di + corrY);
+  y0coord= (int)di_acc;
+  y1coord= (int)(di_acc + corrY);
 		Src0= input.GetData() + 3 * y0coord * oWidth;
 		Src1= input.GetData() + 3 * y1coord * oWidth;
-		double dj=0;
-		for(int j=0; j<nWidth; j++, dj+=StepX)
+		double dj_local=0;
+		for(int j=0; j<nWidth; j++, dj_local+=StepX)
 		{
-			x0coord= 3 * (int)dj + 1;
-			x1coord= 3 * (int)(dj + corrX) + 1;
+			x0coord= 3 * (int)dj_local + 1;
+			x1coord= 3 * (int)(dj_local + corrX) + 1;
 			p1= *(Src0 + x0coord);
 			p2= *(Src0 + x1coord);
 			p3= *(Src1 + x0coord);
@@ -269,15 +274,15 @@ bool UBAResizeEdges::BCalculate(UBitmap &input, UBitmap &output)
 	}
 	// Прореживание по каждой строке компоненты B
 	Dest = output.GetData() + 2;
-	di=0;
-	for(int i=0; i<nHeight; i++, di+=StepY)
+ di_acc=0;
+ for(int i=0; i<nHeight; i++, di_acc+=StepY)
 	{
-		y0coord= (int)di;
-		y1coord= (int)(di + corrY);
+  y0coord= (int)di_acc;
+  y1coord= (int)(di_acc + corrY);
 		Src0= input.GetData() + 3 * y0coord * oWidth;
 		Src1= input.GetData() + 3 * y1coord * oWidth;
-		double dj=0;
-		for(int j=0; j<nWidth; j++, dj+=StepX)
+		double dj_local=0;
+		for(int j=0; j<nWidth; j++, dj_local+=StepX)
 		{
 			x0coord= 3 * (int)dj + 2;
 			x1coord= 3 * (int)(dj + corrX) + 2;
@@ -295,11 +300,11 @@ bool UBAResizeEdges::BCalculate(UBitmap &input, UBitmap &output)
  }
 		 /*
   // Прореживание по каждой строке
-  di=0;
-  for(int i=0; i<nHeight; i++, di+=StepY)
+  di_acc=0;
+  for(int i=0; i<nHeight; i++, di_acc+=StepY)
   {
-    y1coord= int(di + corrY);
-    Src0= input.GetData() + int(di) * oLineByteLength;
+    y1coord= int(di_acc + corrY);
+    Src0= input.GetData() + int(di_acc) * oLineByteLength;
     Src1= input.GetData() + y1coord * oLineByteLength;
     dj=0;
     for(int j=0; j<nWidth; j++, dj+=StepX)
@@ -329,11 +334,11 @@ bool UBAResizeEdges::BCalculate(UBitmap &input, UBitmap &output)
 
  case ubmY8:
   // Прореживание по каждой строке
-  di=0;
-  for(int i=0; i<nHeight; i++, di+=StepY)
+  di_acc=0;
+  for(int i=0; i<nHeight; i++, di_acc+=StepY)
   {
-    y1coord= (int)(di + corrY);
-    Src0= input.GetData() + int(di) * oLineByteLength;
+    y1coord= (int)(di_acc + corrY);
+    Src0= input.GetData() + int(di_acc) * oLineByteLength;
     Src1= input.GetData() + y1coord * oLineByteLength;
     dj=0;
     for(int j=0; j<nWidth; ++j, dj+=StepX)
@@ -350,11 +355,11 @@ bool UBAResizeEdges::BCalculate(UBitmap &input, UBitmap &output)
 
  case ubmY32:
   // Прореживание по каждой строке
-  di=0;
-  for(int i=0; i<nHeight; i++, di+=StepY)
+  di_acc=0;
+  for(int i=0; i<nHeight; i++, di_acc+=StepY)
   {
-   y1coord= (int)(di + corrY);
-   Src0= input.GetData() + int(di) * oLineByteLength;
+   y1coord= (int)(di_acc + corrY);
+   Src0= input.GetData() + int(di_acc) * oLineByteLength;
    Src1= input.GetData() + y1coord * oLineByteLength;
    dj=0;
    for(int j=0; j<nWidth; j++, dj+=StepX, Dest+=4)
@@ -406,9 +411,12 @@ bool UBAResizeEdges::AFCCalculate(void)
 }
 // --------------------------
 
-
 }
 //---------------------------------------------------------------------------
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
 #endif
 

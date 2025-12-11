@@ -250,14 +250,14 @@ UBABinarizationSimpleAdaptiveThreshold* UBABinarizationSimpleAdaptiveThreshold::
 }
 
 bool UBABinarizationSimpleAdaptiveThreshold::BCalculate1
-(UBitmap &Background, UBitmap &input, UBitmap &Threshold, UBitmap &output, UBitmap &counterFG)
+(UBitmap &Background_param, UBitmap &input, UBitmap &Threshold_param, UBitmap &output, UBitmap &counterFG_param)
 {
-    UBColor *bg=Background.GetData();
+    UBColor *bg=Background_param.GetData();
     UBColor *in=input.GetData();
-    UBColor *th=Threshold.GetData();
+    UBColor *th=Threshold_param.GetData();
     UBColor *out=output.GetData();
 
-    UBColor *cFG=counterFG.GetData();
+    UBColor *cFG=counterFG_param.GetData();
 
     switch(input.GetColorModel())
     {
@@ -270,7 +270,7 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate1
         //если изображение черно-белое
         case ubmY8:
         {
-            for(int j=0;j<Background.GetLength();j++)
+            for(int j=0;j<Background_param.GetLength();j++)
             {
                 if (abs(int(*in)-int(*bg)) >(*th))
                 {
@@ -320,9 +320,9 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate1
 }
 
 bool UBABinarizationSimpleAdaptiveThreshold::BCalculate0
-(UBitmap &Background, UBitmap &input, UBitmap &output)
+(UBitmap &Background_param, UBitmap &input, UBitmap &output)
 {
-    UBColor *bg=Background.GetData();
+    UBColor *bg=Background_param.GetData();
     UBColor *in=input.GetData();
     UBColor *out=output.GetData();
 
@@ -337,7 +337,7 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate0
         //если изображение черно-белое
         case ubmY8:
         {
-            for(int j=0;j<Background.GetLength();j++)
+            for(int j=0;j<Background_param.GetLength();j++)
             {
                 if (abs(int(*in)-int(*bg)) >startThreshold)
                 {
@@ -364,14 +364,14 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate0
 }
 
 bool UBABinarizationSimpleAdaptiveThreshold::BCalculate2
-(UBitmap &Background, UBitmap &input, UBitmap &Threshold, UBitmap &output, UBitmap &counterFG,UBitmap &counterBG)
+(UBitmap &Background_param, UBitmap &input, UBitmap &Threshold_param, UBitmap &output, UBitmap &counterFG_param,UBitmap &counterBG_param)
 {
-    UBColor *bg=Background.GetData();
+    UBColor *bg=Background_param.GetData();
     UBColor *in=input.GetData();
-    UBColor *th=Threshold.GetData();
+    UBColor *th=Threshold_param.GetData();
     UBColor *out=output.GetData();
-    UBColor *cFG=counterFG.GetData();
-    UBColor *cBG=counterBG.GetData();
+    UBColor *cFG=counterFG_param.GetData();
+    UBColor *cBG=counterBG_param.GetData();
 
     switch(input.GetColorModel())
     {
@@ -384,7 +384,7 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate2
         //если изображение черно-белое
         case ubmY8:
         {
-            for(int j=0;j<Background.GetLength();j++)
+            for(int j=0;j<Background_param.GetLength();j++)
             {
                 if (abs(int(*in)-int(*bg)) >(*th))
                 {
@@ -439,15 +439,15 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate2
 }
 
 bool UBABinarizationSimpleAdaptiveThreshold::BCalculate3
-(UBitmap &Background, UBitmap &input, UBitmap &Threshold, UBitmap &output,
- UBitmap &counterFG, UBitmap &counterBG)
+(UBitmap &Background_param, UBitmap &input, UBitmap &Threshold_param, UBitmap &output,
+ UBitmap &counterFG_param, UBitmap &counterBG_param)
 {
-    UBColor *bg=Background.GetData();
+    UBColor *bg=Background_param.GetData();
     UBColor *in=input.GetData();
-    UBColor *th=Threshold.GetData();
+    UBColor *th=Threshold_param.GetData();
     UBColor *out=output.GetData();
-    UBColor *cFG=counterFG.GetData();
-    UBColor *cBG=counterBG.GetData();
+    UBColor *cFG=counterFG_param.GetData();
+    UBColor *cBG=counterBG_param.GetData();
 
     //int cmaxcount=0;
 
@@ -466,7 +466,7 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate3
         //если изображение черно-белое
         case ubmY8:
         {
-            for(int j=0;j<Background.GetLength();j++)
+            for(int j=0;j<Background_param.GetLength();j++)
             {
                 if (abs(int(*in)-int(*bg)) >(*th))
                 {
@@ -551,7 +551,7 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate3
             for(unsigned long long j=0;j<15;j++)
             {
                 //ThresholdStats[0]+=ThresholdStats[j];
-                ThresholdStats[j]/=Background.GetLength();
+                ThresholdStats[j]/=Background_param.GetLength();
                 ThresholdStats[j]*=100;
             }
         }
@@ -563,11 +563,11 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate3
 }
 
 bool UBABinarizationSimpleAdaptiveThreshold::BCalculateFirstThreshold1
-(UBitmap &Background, UBitmap &input, UBitmap &Threshold, UBitmap &output)
+(UBitmap &Background_param, UBitmap &input, UBitmap &Threshold_param, UBitmap &output)
 {
-    UBColor *bg=Background.GetData();
+    UBColor *bg=Background_param.GetData();
     UBColor *in=input.GetData();
-    UBColor *th=Threshold.GetData();
+    UBColor *th=Threshold_param.GetData();
     UBColor *out=output.GetData();
 
     double d, c, tmpc, tmpd;
@@ -580,7 +580,7 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculateFirstThreshold1
         c=static_cast<double>(nCounter-2)*d;
     }
     //newt = (unsigned int)(c*thr+d*pow);
-    for(int j=0;j<Background.GetLength();j++)
+    for(int j=0;j<Background_param.GetLength();j++)
     {
         if (abs(int(*in)-int(*bg)) >(*th))
         {
@@ -619,15 +619,15 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculateFirstThreshold1
 }
 
 bool UBABinarizationSimpleAdaptiveThreshold::BCalculateFirstThreshold2
-(UBitmap &Background, UBitmap &input, UBitmap &Threshold, UBitmap &output)
+(UBitmap &Background_param, UBitmap &input, UBitmap &Threshold_param, UBitmap &output)
 {
-    UBColor *bg=Background.GetData();
+    UBColor *bg=Background_param.GetData();
     UBColor *in=input.GetData();
-    UBColor *th=Threshold.GetData();
+    UBColor *th=Threshold_param.GetData();
     UBColor *out=output.GetData();
 
     //newt = (unsigned int)(c*thr+d*pow);
-    for(int j=0;j<Background.GetLength();j++)
+    for(int j=0;j<Background_param.GetLength();j++)
     {
         if (abs(int(*in)-int(*bg)) >(*th))
         {

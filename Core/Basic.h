@@ -112,20 +112,20 @@ static void CreateProperty(RDK::USerStorageXML* serstorage, RDK::UMockUNet* mock
 
         // если вектор пуст берем тип - elemType
         // если есть элементы берем тип элементов
-        std::string type;
+        std::string elem_type;
         if(size == 0)
         {
-            type = serstorage->GetNodeAttribute("elemType");
+            elem_type = serstorage->GetNodeAttribute("elemType");
         }
         else
         {
             serstorage->SelectNode("elem",size-1);
-            type = serstorage->GetNodeAttribute("Type");
+            elem_type = serstorage->GetNodeAttribute("Type");
             serstorage->SelectUp();
         }
 
         // std::vector<UBVSObject>
-        if(type == "UBVSObject")
+        if(elem_type == "UBVSObject")
         {
             CreatorProperty<PropType, TypeInt, std::vector<UBVSObject> >::CreatePropertyByType(serstorage, mock_unet, ptype);
             return;

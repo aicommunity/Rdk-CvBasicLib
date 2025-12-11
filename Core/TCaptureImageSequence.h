@@ -7,6 +7,11 @@
 
 #include "TCapture.h"
 
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable:4515)
+#endif
+
 namespace RDK {
 using namespace RDK;
 
@@ -106,4 +111,9 @@ void CalcActualPath(const std::string &path, bool is_relative, std::string &resu
 
 };
 }
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
+
 #endif

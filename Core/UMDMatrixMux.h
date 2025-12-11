@@ -162,11 +162,11 @@ bool UMDMatrixMux<T>::ACalculate(void)
 
    MDMatrix<T> &output=*OutputMatrixData;
    int row=0;
-   for(size_t i=0;i<InputMatrixData->size();i++)
+   for(size_t i2=0;i2<InputMatrixData->size();i2++)
    {
-    if(InputActivities[i])
+    if(InputActivities[i2])
     {
-     const MDMatrix<T> &input=InputMatrixData[i];
+     const MDMatrix<T> &input=InputMatrixData[i2];
      for(int j=0;j<input.GetRows();j++)
      {
       for(int k=0;k<new_cols;k++)
@@ -200,11 +200,11 @@ bool UMDMatrixMux<T>::ACalculate(void)
 
    MDMatrix<T> &output=*OutputMatrixData;
    int col=0;
-   for(size_t i=0;i<InputMatrixData->size();i++)
+   for(size_t i2=0;i2<InputMatrixData->size();i2++)
    {
-    if(InputActivities[i])
+    if(InputActivities[i2])
     {
-     const MDMatrix<T> &input=InputMatrixData[i];
+     const MDMatrix<T> &input=InputMatrixData[i2];
      for(int j=0;j<input.GetCols();j++)
      {
       for(int k=0;k<new_rows;k++)
@@ -240,11 +240,11 @@ bool UMDMatrixMux<T>::ACalculate(void)
    int col=0;
    int j=0;
    do {
-    for(size_t i=0;i<InputMatrixData->size();i++)
+    for(size_t i2=0;i2<InputMatrixData->size();i2++)
     {
-     if(InputActivities[i])
+     if(InputActivities[i2])
      {
-      const MDMatrix<T> &input=InputMatrixData[i];
+      const MDMatrix<T> &input=InputMatrixData[i2];
 
       for(int k=0;k<new_rows;k++)
        output(k,col)=input(k,j);
@@ -424,11 +424,11 @@ bool UMDScalarMux<T>::ACalculate(void)
 
    MDMatrix<T> &output=*OutputMatrixData;
    int row=0;
-   for(size_t i=0;i<InputMatrixData->size();i++)
+   for(size_t i2=0;i2<InputMatrixData->size();i2++)
    {
-    if(InputActivities[i])
+    if(InputActivities[i2])
     {
-     output(row,0)=InputMatrixData[i];
+     output(row,0)=InputMatrixData[i2];
      ++row;
     }
    }
@@ -454,11 +454,11 @@ bool UMDScalarMux<T>::ACalculate(void)
 
    MDMatrix<T> &output=*OutputMatrixData;
    int col=0;
-   for(size_t i=0;i<InputMatrixData->size();i++)
+   for(size_t i2=0;i2<InputMatrixData->size();i2++)
    {
-    if(InputActivities[i])
+    if(InputActivities[i2])
     {
-     output(0,col)=InputMatrixData[i];
+     output(0,col)=InputMatrixData[i2];
      ++col;
     }
    }
@@ -487,11 +487,11 @@ bool UMDScalarMux<T>::ACalculate(void)
    int col=0;
    int j=0;
    do {
-    for(size_t i=0;i<InputMatrixData->size();i++)
+    for(size_t i2=0;i2<InputMatrixData->size();i2++)
     {
-     if(InputActivities[i])
+     if(InputActivities[i2])
      {
-      output(0,col)=InputMatrixData[i];
+      output(0,col)=InputMatrixData[i2];
       ++col;
      }
     }

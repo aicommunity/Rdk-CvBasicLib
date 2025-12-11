@@ -506,7 +506,7 @@ bool UBABackgroundSimpleAdaptive::BCalculateExp(UBitmap &input, UBitmap &backgro
 }
 
 bool UBABackgroundSimpleAdaptive::BCalculateSimplAdaptive
-(UBitmap &input, UBitmap &background, UBitmap &lastBinarization)
+(UBitmap &input, UBitmap &background, UBitmap &lastBinarization_param)
 {
     //Если изображение поменяло формат
     //Говорим, что новый фон = первому кадру нового формата
@@ -521,8 +521,8 @@ bool UBABackgroundSimpleAdaptive::BCalculateSimplAdaptive
     UBColor *bg=background.GetData();
     UBColor *inp=input.GetData();
     //Если бинаризованный кадр не определен
-    if(input.GetWidth() != lastBinarization.GetWidth() ||
-       input.GetHeight() != lastBinarization.GetHeight())
+    if(input.GetWidth() != lastBinarization_param.GetWidth() ||
+       input.GetHeight() != lastBinarization_param.GetHeight())
     {
         for(int j=0;j<background.GetByteLength();j++)
         {
@@ -539,7 +539,7 @@ bool UBABackgroundSimpleAdaptive::BCalculateSimplAdaptive
     //Если бинаризованный кадр определен
     else
     {
-        UBColor *bin=lastBinarization.GetData();
+        UBColor *bin=lastBinarization_param.GetData();
         //Идем попиксельно по кадру
         for(int j=0;j<background.GetByteLength();j++)
         {
@@ -568,7 +568,7 @@ bool UBABackgroundSimpleAdaptive::BCalculateSimplAdaptive
      return true;
 }
 
-bool UBABackgroundSimpleAdaptive::BCalculateStabilityIndicator(UBitmap &input, UBitmap &background, UBitmap &lastBinarization, UBitmap &lastInput, UBitmap &updateFGFlag)
+bool UBABackgroundSimpleAdaptive::BCalculateStabilityIndicator(UBitmap &input, UBitmap &background, UBitmap &lastBinarization_param, UBitmap &lastInput_param, UBitmap &updateFGFlag_param)
 {
     //Если изображение поменяло формат
     if(input.GetWidth() != background.GetWidth() ||
@@ -580,10 +580,10 @@ bool UBABackgroundSimpleAdaptive::BCalculateStabilityIndicator(UBitmap &input, U
     }
     UBColor *bg=background.GetData();
     UBColor *inp=input.GetData();
-    unsigned *updateflag=reinterpret_cast<unsigned*>(updateFGFlag.GetData());
+    unsigned *updateflag=reinterpret_cast<unsigned*>(updateFGFlag_param.GetData());
     //Если бинаризованный кадр не определен
-    if(input.GetWidth() != lastBinarization.GetWidth() ||
-       input.GetHeight() != lastBinarization.GetHeight())
+    if(input.GetWidth() != lastBinarization_param.GetWidth() ||
+       input.GetHeight() != lastBinarization_param.GetHeight())
     {
         for(int j=0;j<background.GetByteLength();j++)
         {
@@ -600,8 +600,8 @@ bool UBABackgroundSimpleAdaptive::BCalculateStabilityIndicator(UBitmap &input, U
     //Если бинаризованный кадр определен
     else
     {
-        UBColor *bin=lastBinarization.GetData();
-        UBColor *lin=lastInput.GetData();
+        UBColor *bin=lastBinarization_param.GetData();
+        UBColor *lin=lastInput_param.GetData();
         for(int j=0;j<background.GetByteLength();j++)
         {
             double tmp2, tmp4;

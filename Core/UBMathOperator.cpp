@@ -1,3 +1,7 @@
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable:4244)
+#endif
 /* ***********************************************************
 @Copyright Alexander V. Bakhshiev.
 E-mail:        alexab@ailab.ru
@@ -149,7 +153,7 @@ void UBMathOperator::Sub(const UBitmap &in1, const UBitmap &in2, UBitmap &out)
  {
   unsigned char *in1_data=in1.GetData(), *in2_data=in2.GetData(), *out_data=out.GetData();
   for(int i=0;i<in1.GetLength();i++)
-   *out_data++=max(0,(int)(*in1_data++)) - (int)*in2_data++;
+  *out_data++=static_cast<unsigned char>(max(0,(int)(*in1_data++)) - (int)*in2_data++);
   return;
  }
 
@@ -157,7 +161,7 @@ void UBMathOperator::Sub(const UBitmap &in1, const UBitmap &in2, UBitmap &out)
  {
   unsigned char *in1_data=in1.GetData(), *in2_data=in2.GetData(), *out_data=out.GetData();
   for(int i=0;i<in1.GetByteLength();i++)
-   *out_data++=max(0,(int)(*in1_data++)) - (int)*in2_data++;
+  *out_data++=static_cast<unsigned char>(max(0,(int)(*in1_data++)) - (int)*in2_data++);
   return;
  }
 
@@ -165,7 +169,7 @@ void UBMathOperator::Sub(const UBitmap &in1, const UBitmap &in2, UBitmap &out)
  {
   unsigned char *in1_data=in1.GetData(), *in2_data=in2.GetData(), *out_data=out.GetData();
   for(int i=0;i<in1.GetByteLength();i++)
-   *out_data++=max(0,(int)(*in1_data++)) - (int)*in2_data++;
+  *out_data++=static_cast<unsigned char>(max(0,(int)(*in1_data++)) - (int)*in2_data++);
   return;
  }
 
@@ -297,6 +301,11 @@ bool UBMathOperator::ACalculate(void)
  return true;
 }
 // --------------------------
+
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
 }
 //---------------------------------------------------------------------------
