@@ -10,9 +10,9 @@ namespace RDK {
 
 
 
-// Методы
+// РњРµС‚РѕРґС‹
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 UCRPrincipalComponentAnalysis::UCRPrincipalComponentAnalysis(void):
     RetrainFlag("RetrainFlag", this),
@@ -37,19 +37,19 @@ UCRPrincipalComponentAnalysis::~UCRPrincipalComponentAnalysis(void)
 
 
 // ---------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // ---------------------
 // ---------------------
 
 // ---------------------
-// Методы управления переменными состояния
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїРµСЂРµРјРµРЅРЅС‹РјРё СЃРѕСЃС‚РѕСЏРЅРёСЏ
 // ---------------------
 // ---------------------
 
 // --------------------------
-// Системные методы управления объектом
+// РЎРёСЃС‚РµРјРЅС‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРј
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+// Р’С‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РґР»СЏ РЅРѕРІРѕР№ С‡РёСЃС‚РѕР№ РєРѕРїРёРё РѕР±СЉРµРєС‚Р° СЌС‚РѕРіРѕ РєР»Р°СЃСЃР°
 UCRPrincipalComponentAnalysis* UCRPrincipalComponentAnalysis::New(void)
 {
  return new UCRPrincipalComponentAnalysis;
@@ -58,7 +58,7 @@ UCRPrincipalComponentAnalysis* UCRPrincipalComponentAnalysis::New(void)
 
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
 
 
@@ -108,8 +108,8 @@ bool UCRPrincipalComponentAnalysis::ACalculate(void)
 
 bool UCRPrincipalComponentAnalysis::TrainPCA(void)
 {
-    //Обучить PCA
-    //Подготовить параметры
+    //РћР±СѓС‡РёС‚СЊ PCA
+    //РџРѕРґРіРѕС‚РѕРІРёС‚СЊ РїР°СЂР°РјРµС‚СЂС‹
     int N = TrainingData->GetRows();
     int M = TrainingData->GetCols();
 
@@ -127,10 +127,10 @@ bool UCRPrincipalComponentAnalysis::TrainPCA(void)
         }
     }
 
-    //Применить
+    //РџСЂРёРјРµРЅРёС‚СЊ
     double **eigenvector = PCA(data, M, N, true);
 
-    //Записать результат
+    //Р—Р°РїРёСЃР°С‚СЊ СЂРµР·СѓР»СЊС‚Р°С‚
     PCA_X->Resize(M, M+1);
     for(int i=0; i<M; i++)
     {
@@ -142,7 +142,7 @@ bool UCRPrincipalComponentAnalysis::TrainPCA(void)
 
     RetrainFlag.v = false;
 
-    //Очистка
+    //РћС‡РёСЃС‚РєР°
     for(int i=0; i<N; i++)
     {
         delete[] data[i];
@@ -157,7 +157,7 @@ bool UCRPrincipalComponentAnalysis::TrainPCA(void)
 }
 bool UCRPrincipalComponentAnalysis::ApplyPCA(void)
 {
-    //Подготовить данные
+    //РџРѕРґРіРѕС‚РѕРІРёС‚СЊ РґР°РЅРЅС‹Рµ
     int M = PCA_X->GetRows();
 
     double **eigenvector = new double*[M];
@@ -178,7 +178,7 @@ bool UCRPrincipalComponentAnalysis::ApplyPCA(void)
         data[i] = (*EncodingData)(0, i);
     }
 
-    //Расчет
+    //Р Р°СЃС‡РµС‚
     int nc = OutComponents.v;
     if(nc<=0 || nc>M)
     {
@@ -192,7 +192,7 @@ bool UCRPrincipalComponentAnalysis::ApplyPCA(void)
         (*PCAResult)(0, i) = PCA_TransformOne(data, eigenvector, i, M);
     }
 
-    //Очистка
+    //РћС‡РёСЃС‚РєР°
     for(int i=0; i<M; i++)
     {
         delete[] eigenvector[i];

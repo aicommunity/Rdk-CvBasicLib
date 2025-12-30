@@ -8,9 +8,9 @@ namespace RDK {
 
 
 
-// Методы
+// РњРµС‚РѕРґС‹
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 UClassifierResSaver::UClassifierResSaver(void):
     SaveDirectory("SaveDirectory", this),
@@ -36,19 +36,19 @@ UClassifierResSaver::~UClassifierResSaver(void)
 
 
 // ---------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // ---------------------
 // ---------------------
 
 // ---------------------
-// Методы управления переменными состояния
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїРµСЂРµРјРµРЅРЅС‹РјРё СЃРѕСЃС‚РѕСЏРЅРёСЏ
 // ---------------------
 // ---------------------
 
 // --------------------------
-// Системные методы управления объектом
+// РЎРёСЃС‚РµРјРЅС‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРј
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+// Р’С‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РґР»СЏ РЅРѕРІРѕР№ С‡РёСЃС‚РѕР№ РєРѕРїРёРё РѕР±СЉРµРєС‚Р° СЌС‚РѕРіРѕ РєР»Р°СЃСЃР°
 UClassifierResSaver* UClassifierResSaver::New(void)
 {
  return new UClassifierResSaver;
@@ -57,7 +57,7 @@ UClassifierResSaver* UClassifierResSaver::New(void)
 
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
 bool UClassifierResSaver::ACalculate(void)
 {
@@ -142,7 +142,7 @@ bool UClassifierResSaver::SaveImage(UBitmap& img, int class_id, MDMatrix<double>
 {
     std::string save_path = Environment->GetCurrentDataDir()+"Results/";
 
-    //Создаем директорию Results в папке проекта
+    //РЎРѕР·РґР°РµРј РґРёСЂРµРєС‚РѕСЂРёСЋ Results РІ РїР°РїРєРµ РїСЂРѕРµРєС‚Р°
     if(RDK::CreateNewDirectory(save_path.c_str())!=0)
     {
         LogMessageEx(RDK_EX_WARNING,__FUNCTION__,std::string("UClassifierResSaver error: error while creating \"Results\" directory. Full path: " + save_path));
@@ -156,18 +156,18 @@ bool UClassifierResSaver::SaveImage(UBitmap& img, int class_id, MDMatrix<double>
     }
 
     std::string save_directory = SaveDirectory;
-    // Если новый запуск (новый компонент) и директория уже существует ЛИБО название папки изменилось извне и директория уже существует
+    // Р•СЃР»Рё РЅРѕРІС‹Р№ Р·Р°РїСѓСЃРє (РЅРѕРІС‹Р№ РєРѕРјРїРѕРЅРµРЅС‚) Рё РґРёСЂРµРєС‚РѕСЂРёСЏ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р›РР‘Рћ РЅР°Р·РІР°РЅРёРµ РїР°РїРєРё РёР·РјРµРЅРёР»РѕСЃСЊ РёР·РІРЅРµ Рё РґРёСЂРµРєС‚РѕСЂРёСЏ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚
     if( (!CalculateFlag && boost::filesystem::exists(save_path+SaveDirectory->c_str())) || ( (OldSaveDirectory != *SaveDirectory) && boost::filesystem::exists(save_path+SaveDirectory->c_str())))
     {
-        // Если перезаписываем
+        // Р•СЃР»Рё РїРµСЂРµР·Р°РїРёСЃС‹РІР°РµРј
         if(OverwriteSaveDirectory)
         {
-            // Удаляем директорию
+            // РЈРґР°Р»СЏРµРј РґРёСЂРµРєС‚РѕСЂРёСЋ
             std::string temp = save_path + SaveDirectory->c_str();
             std::vector<std::string> folders;
             RDK::FindFilesList(temp.c_str(),"*",false,folders);
 
-            // Удаление внутренних папок
+            // РЈРґР°Р»РµРЅРёРµ РІРЅСѓС‚СЂРµРЅРЅРёС… РїР°РїРѕРє
             for(int k = 0; k < folders.size(); k++)
             {
                 std::string inner_folder = temp + "/" + folders.at(k).c_str();
@@ -178,24 +178,24 @@ bool UClassifierResSaver::SaveImage(UBitmap& img, int class_id, MDMatrix<double>
         }
         else
         {
-            // Генерация нового имени для директории с некоторым индексом
+            // Р“РµРЅРµСЂР°С†РёСЏ РЅРѕРІРѕРіРѕ РёРјРµРЅРё РґР»СЏ РґРёСЂРµРєС‚РѕСЂРёРё СЃ РЅРµРєРѕС‚РѕСЂС‹Рј РёРЅРґРµРєСЃРѕРј
             int folder_id = 0;
 
             while(boost::filesystem::exists(save_path + SaveDirectory->c_str()))
             {
                 folder_id ++;
                 SaveDirectory = save_directory + "_" + RDK::sntoa(folder_id);
-                // TODO возможно ли ситуация когда названий папок не останется?
-                // то есть все папки включая INT_MAX и INT_MIN будут заняты. делать break и error?
+                // TODO РІРѕР·РјРѕР¶РЅРѕ Р»Рё СЃРёС‚СѓР°С†РёСЏ РєРѕРіРґР° РЅР°Р·РІР°РЅРёР№ РїР°РїРѕРє РЅРµ РѕСЃС‚Р°РЅРµС‚СЃСЏ?
+                // С‚Рѕ РµСЃС‚СЊ РІСЃРµ РїР°РїРєРё РІРєР»СЋС‡Р°СЏ INT_MAX Рё INT_MIN Р±СѓРґСѓС‚ Р·Р°РЅСЏС‚С‹. РґРµР»Р°С‚СЊ break Рё error?
             }
         }
     }
     CalculateFlag = true;
     OldSaveDirectory = SaveDirectory;
-    // Создание директории для сохранения
+    // РЎРѕР·РґР°РЅРёРµ РґРёСЂРµРєС‚РѕСЂРёРё РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ
     save_path = save_path + SaveDirectory->c_str() + "/";
 
-    //Создаем директорию {SaveDirectory} в папке Results
+    //РЎРѕР·РґР°РµРј РґРёСЂРµРєС‚РѕСЂРёСЋ {SaveDirectory} РІ РїР°РїРєРµ Results
     if(RDK::CreateNewDirectory(save_path.c_str())!=0)
     {
         LogMessageEx(RDK_EX_WARNING,__FUNCTION__,std::string("UClassifierResSaver error: error while creating \"{SaveDirectory}\" directory. Full path: " + save_path));
@@ -203,7 +203,7 @@ bool UClassifierResSaver::SaveImage(UBitmap& img, int class_id, MDMatrix<double>
     }
     std::string images_path = save_path + "images/";
 
-    // Если имя изобаржения не подключено, создается папка images, куда далее сохраняются изображения
+    // Р•СЃР»Рё РёРјСЏ РёР·РѕР±Р°СЂР¶РµРЅРёСЏ РЅРµ РїРѕРґРєР»СЋС‡РµРЅРѕ, СЃРѕР·РґР°РµС‚СЃСЏ РїР°РїРєР° images, РєСѓРґР° РґР°Р»РµРµ СЃРѕС…СЂР°РЅСЏСЋС‚СЃСЏ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
     if(!ImageName.IsConnected())
     {
         if(RDK::CreateNewDirectory(images_path.c_str())!=0)
@@ -253,7 +253,7 @@ bool UClassifierResSaver::SaveImage(UBitmap& img, int class_id, MDMatrix<double>
         img_path << *ImageName;
     }
 
-    // Добавление разметки в файл разметки
+    // Р”РѕР±Р°РІР»РµРЅРёРµ СЂР°Р·РјРµС‚РєРё РІ С„Р°Р№Р» СЂР°Р·РјРµС‚РєРё
     std::string annotation_path = save_path + "annotations.txt";
     std::ofstream annotation_file;
     annotation_file.open(annotation_path.c_str(), std::ios::app);

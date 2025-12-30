@@ -61,9 +61,9 @@ UCRClassifier::~UCRClassifier(void)
 
 
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
-/// Создание новой копии этого объекта
+/// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UCRClassifier* UCRClassifier::New(void)
 {
  return new UCRClassifier;
@@ -71,9 +71,9 @@ UCRClassifier* UCRClassifier::New(void)
 // ---------------------
 
 // -----------------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // -----------------------------
-// Устанавливает число классов
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ С‡РёСЃР»Рѕ РєР»Р°СЃСЃРѕРІ
 bool UCRClassifier::SetNumClasses(const int &value)
 {
  if(value <=0)
@@ -83,7 +83,7 @@ bool UCRClassifier::SetNumClasses(const int &value)
  return true;
 }
 
-// Устанавливает граничные величины входных значений классификатора
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РіСЂР°РЅРёС‡РЅС‹Рµ РІРµР»РёС‡РёРЅС‹ РІС…РѕРґРЅС‹С… Р·РЅР°С‡РµРЅРёР№ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂР°
 bool UCRClassifier::SetMinInputValue(const double &value)
 {
  ModifiedFlag=true;
@@ -96,7 +96,7 @@ bool UCRClassifier::SetMaxInputValue(const double &value)
  return true;
 }
 
-// Устанавливает граничные величины выходных значений классификатора
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РіСЂР°РЅРёС‡РЅС‹Рµ РІРµР»РёС‡РёРЅС‹ РІС‹С…РѕРґРЅС‹С… Р·РЅР°С‡РµРЅРёР№ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂР°
 bool UCRClassifier::SetMinOutputValue(const double &value)
 {
  ModifiedFlag=true;
@@ -109,7 +109,7 @@ bool UCRClassifier::SetMaxOutputValue(const double &value)
  return true;
 }
 
-// Устанавливает граничные величины допустимого показателя качества
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РіСЂР°РЅРёС‡РЅС‹Рµ РІРµР»РёС‡РёРЅС‹ РґРѕРїСѓСЃС‚РёРјРѕРіРѕ РїРѕРєР°Р·Р°С‚РµР»СЏ РєР°С‡РµСЃС‚РІР°
 bool UCRClassifier::SetMinQualityRate(const vector<double>& value)
 {
 // size_t sz=(value.size()<MaxQualityRate->size())?value.size():MaxQualityRate->size();
@@ -132,7 +132,7 @@ bool UCRClassifier::SetMaxQualityRate(const vector<double>& value)
  return true;
 }
 
-// Имя файла загрузки/сохранения состояния обучения
+// РРјСЏ С„Р°Р№Р»Р° Р·Р°РіСЂСѓР·РєРё/СЃРѕС…СЂР°РЅРµРЅРёСЏ СЃРѕСЃС‚РѕСЏРЅРёСЏ РѕР±СѓС‡РµРЅРёСЏ
 bool UCRClassifier::SetTrainFileName(const string &name)
 {
  //if(name == "")
@@ -142,7 +142,7 @@ bool UCRClassifier::SetTrainFileName(const string &name)
  return true;
 }
 
-// Имя файла сохранения результатов работы сети
+// РРјСЏ С„Р°Р№Р»Р° СЃРѕС…СЂР°РЅРµРЅРёСЏ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ СЂР°Р±РѕС‚С‹ СЃРµС‚Рё
 bool UCRClassifier::SetResultsFileName(const string &name)
 {
  //if(name == "")
@@ -154,9 +154,9 @@ bool UCRClassifier::SetResultsFileName(const string &name)
 // -----------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UCRClassifier::ADefault(void)
 {
  SetNumOutputs(2);
@@ -196,10 +196,10 @@ bool UCRClassifier::ACRDefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UCRClassifier::ABuild(void)
 {
  int output_size=GetOutputDataSize(0)[1];
@@ -233,7 +233,7 @@ bool UCRClassifier::ACRBuild(void)
  return true;
 }
 
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool UCRClassifier::AReset(void)
 {
  QualityRate=pair<float,int>(0.0f,0);
@@ -246,14 +246,14 @@ bool UCRClassifier::ACRReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта на текущем шаге.
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р° РЅР° С‚РµРєСѓС‰РµРј С€Р°РіРµ.
 bool UCRClassifier::ACalculate(void)
 {
  if(!ACRCalculate())
   return false;
 
  int output_size_0=GetOutputDataSize(0)[1];
- // Если разрешено автовырванивание выхода, то проводим его
+ // Р•СЃР»Рё СЂР°Р·СЂРµС€РµРЅРѕ Р°РІС‚РѕРІС‹СЂРІР°РЅРёРІР°РЅРёРµ РІС‹С…РѕРґР°, С‚Рѕ РїСЂРѕРІРѕРґРёРј РµРіРѕ
  if(AutoAlignmentOutput && output_size_0>0)
  {
   double maxoutput=POutputData[0].Double[0];
@@ -272,7 +272,7 @@ bool UCRClassifier::ACalculate(void)
      (POutputData[0].Double[k]-minoutput)*(MaxOutputValue()-MinOutputValue)/(maxoutput-minoutput)+MinOutputValue;
  }
 
- // Вычисляем маштабированный выход [0;100]
+ // Р’С‹С‡РёСЃР»СЏРµРј РјР°С€С‚Р°Р±РёСЂРѕРІР°РЅРЅС‹Р№ РІС‹С…РѕРґ [0;100]
  ScaledResult->resize(output_size_0);
  size_t o1size=GetOutputDataSize(1)[1];
  size_t o0size=output_size_0;
@@ -286,7 +286,7 @@ bool UCRClassifier::ACalculate(void)
   for(int k=0;k<output_size_0;k++)
    ScaledResult[k]=(POutputData[0].Double[k]-MinOutputValue)*((DesiredMaxOutputValue()-DesiredMinOutputValue)/(MaxOutputValue()-MinOutputValue))+DesiredMinOutputValue;
 
- // Вычисляем показатель качества
+ // Р’С‹С‡РёСЃР»СЏРµРј РїРѕРєР°Р·Р°С‚РµР»СЊ РєР°С‡РµСЃС‚РІР°
  double qual;
  int res;
  vector<double>::iterator I,J;
@@ -297,7 +297,7 @@ bool UCRClassifier::ACalculate(void)
   if(J+res == I)
    break;
 
- // Вычисление показателей качества
+ // Р’С‹С‡РёСЃР»РµРЅРёРµ РїРѕРєР°Р·Р°С‚РµР»РµР№ РєР°С‡РµСЃС‚РІР°
  qual=100;
  for(int k=0;k<output_size_0;k++)
   if(k != res && qual>(ScaledResult[res]-ScaledResult[k]))
@@ -321,7 +321,7 @@ bool UCRClassifier::ACRCalculate(void)
 // --------------------------
 
 
-// Сброс настроек обучение в исходное состояние
+// РЎР±СЂРѕСЃ РЅР°СЃС‚СЂРѕРµРє РѕР±СѓС‡РµРЅРёРµ РІ РёСЃС…РѕРґРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 void UCRClassifier::ResetTraining(void)
 {
  if(!Ready)
@@ -338,9 +338,9 @@ void UCRClassifier::ResetTraining(void)
 // --------------------------
 
 // ------------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ------------------------
-// Загружает настройки из файла 'name'
+// Р—Р°РіСЂСѓР¶Р°РµС‚ РЅР°СЃС‚СЂРѕР№РєРё РёР· С„Р°Р№Р»Р° 'name'
 bool UCRClassifier::FileLoad(const string &name)
 {
  fstream file((name).c_str(), ios_base::in | ios_base::binary);
@@ -351,7 +351,7 @@ bool UCRClassifier::FileLoad(const string &name)
  int itemp;
  string stemp;
 
- // Граничные величины выходных значений классификатора
+ // Р“СЂР°РЅРёС‡РЅС‹Рµ РІРµР»РёС‡РёРЅС‹ РІС‹С…РѕРґРЅС‹С… Р·РЅР°С‡РµРЅРёР№ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂР°
  file.read((char*)&temp,sizeof(temp));
  MinOutputValue=temp;
  file.read((char*)&temp,sizeof(temp));
@@ -363,7 +363,7 @@ bool UCRClassifier::FileLoad(const string &name)
  MaxInputValue=temp;
 
 
- // Граничные величины допустимого показателя качества
+ // Р“СЂР°РЅРёС‡РЅС‹Рµ РІРµР»РёС‡РёРЅС‹ РґРѕРїСѓСЃС‚РёРјРѕРіРѕ РїРѕРєР°Р·Р°С‚РµР»СЏ РєР°С‡РµСЃС‚РІР°
  file.read((char*)&itemp,sizeof(itemp));
  MinQualityRate->resize(itemp);
  for(int i=0;i<itemp;i++)
@@ -379,14 +379,14 @@ bool UCRClassifier::FileLoad(const string &name)
   MaxQualityRate[i]=temp;
  }
 
- // Имя файла загрузки/сохранения состояния обучения
+ // РРјСЏ С„Р°Р№Р»Р° Р·Р°РіСЂСѓР·РєРё/СЃРѕС…СЂР°РЅРµРЅРёСЏ СЃРѕСЃС‚РѕСЏРЅРёСЏ РѕР±СѓС‡РµРЅРёСЏ
  file.read((char*)&itemp,sizeof(itemp));
  stemp.resize(itemp);
  file.read((char*)&stemp[0],itemp);
  TrainFileName=stemp;
 
- // Признак разрешения автоматической настройки показателя качества
- // по результатам обучения
+ // РџСЂРёР·РЅР°Рє СЂР°Р·СЂРµС€РµРЅРёСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕР№ РЅР°СЃС‚СЂРѕР№РєРё РїРѕРєР°Р·Р°С‚РµР»СЏ РєР°С‡РµСЃС‚РІР°
+ // РїРѕ СЂРµР·СѓР»СЊС‚Р°С‚Р°Рј РѕР±СѓС‡РµРЅРёСЏ
  file.read((char*)&itemp,sizeof(itemp));
  AutoQualityRate=itemp;
 
@@ -412,7 +412,7 @@ bool UCRClassifier::AFileLoad(fstream &file)
 }
 
 
-// Сохраняет настройки в файл 'name'
+// РЎРѕС…СЂР°РЅСЏРµС‚ РЅР°СЃС‚СЂРѕР№РєРё РІ С„Р°Р№Р» 'name'
 bool UCRClassifier::FileSave(const string &name)
 {
  if(!ModifiedFlag)
@@ -430,7 +430,7 @@ bool UCRClassifier::FileSave(const string &name)
  int itemp;
  string stemp;
 
- // Граничные величины выходных значений классификатора
+ // Р“СЂР°РЅРёС‡РЅС‹Рµ РІРµР»РёС‡РёРЅС‹ РІС‹С…РѕРґРЅС‹С… Р·РЅР°С‡РµРЅРёР№ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂР°
  temp=MinOutputValue;
  file.write((char*)&temp,sizeof(temp));
  temp=MaxOutputValue;
@@ -441,7 +441,7 @@ bool UCRClassifier::FileSave(const string &name)
  temp=MaxInputValue;
  file.write((char*)&temp,sizeof(temp));
 
- // Граничные величины допустимого показателя качества
+ // Р“СЂР°РЅРёС‡РЅС‹Рµ РІРµР»РёС‡РёРЅС‹ РґРѕРїСѓСЃС‚РёРјРѕРіРѕ РїРѕРєР°Р·Р°С‚РµР»СЏ РєР°С‡РµСЃС‚РІР°
  itemp=int(MinQualityRate->size());
  file.write((char*)&itemp,sizeof(itemp));
  for(int i=0;i<itemp;i++)
@@ -457,14 +457,14 @@ bool UCRClassifier::FileSave(const string &name)
   file.write((char*)&temp,sizeof(temp));
  }
 
- // Имя файла загрузки/сохранения состояния обучения
+ // РРјСЏ С„Р°Р№Р»Р° Р·Р°РіСЂСѓР·РєРё/СЃРѕС…СЂР°РЅРµРЅРёСЏ СЃРѕСЃС‚РѕСЏРЅРёСЏ РѕР±СѓС‡РµРЅРёСЏ
  itemp=int(TrainFileName->size());
  file.write((char*)&itemp,sizeof(itemp));
  stemp=TrainFileName;
  file.write((char*)&stemp[0],itemp);
 
- // Признак разрешения автоматической настройки показателя качества
- // по результатам обучения
+ // РџСЂРёР·РЅР°Рє СЂР°Р·СЂРµС€РµРЅРёСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕР№ РЅР°СЃС‚СЂРѕР№РєРё РїРѕРєР°Р·Р°С‚РµР»СЏ РєР°С‡РµСЃС‚РІР°
+ // РїРѕ СЂРµР·СѓР»СЊС‚Р°С‚Р°Рј РѕР±СѓС‡РµРЅРёСЏ
  itemp=AutoQualityRate;
  file.write((char*)&itemp,sizeof(itemp));
 
@@ -488,9 +488,9 @@ bool UCRClassifier::AFileSave(fstream &file)
 
 
 // --------------------------
-// Скрытые методы обучения сети
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ РѕР±СѓС‡РµРЅРёСЏ СЃРµС‚Рё
 // --------------------------
-// Сброс настроек обучения в исходное состояние
+// РЎР±СЂРѕСЃ РЅР°СЃС‚СЂРѕРµРє РѕР±СѓС‡РµРЅРёСЏ РІ РёСЃС…РѕРґРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 void UCRClassifier::AResetTraining(void)
 {
 

@@ -1,3 +1,7 @@
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable:4244)
+#endif
 /* ***********************************************************
 @Copyright Alexander V. Bakhshiev.
 E-mail:        alexab@ailab.ru
@@ -18,7 +22,7 @@ See file license.txt for more information
 namespace RDK {
 
 // ---------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // ---------------------
 UBMathOperator::UBMathOperator(void)
  : OperatorId("OperatorId",this),
@@ -34,9 +38,9 @@ UBMathOperator::~UBMathOperator(void)
 // ---------------------
 
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
-// Создание новой копии этого объекта
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UBMathOperator* UBMathOperator::New(void)
 {
  return new UBMathOperator;
@@ -44,7 +48,7 @@ UBMathOperator* UBMathOperator::New(void)
 // ---------------------
 
 // --------------------------
-// Методы, реализующие арифметические операции
+// РњРµС‚РѕРґС‹, СЂРµР°Р»РёР·СѓСЋС‰РёРµ Р°СЂРёС„РјРµС‚РёС‡РµСЃРєРёРµ РѕРїРµСЂР°С†РёРё
 // --------------------------
 void UBMathOperator::And(const UBitmap &in1, const UBitmap &in2, UBitmap &out)
 {
@@ -149,7 +153,7 @@ void UBMathOperator::Sub(const UBitmap &in1, const UBitmap &in2, UBitmap &out)
  {
   unsigned char *in1_data=in1.GetData(), *in2_data=in2.GetData(), *out_data=out.GetData();
   for(int i=0;i<in1.GetLength();i++)
-   *out_data++=max(0,(int)(*in1_data++)) - (int)*in2_data++;
+  *out_data++=static_cast<unsigned char>(max(0,(int)(*in1_data++)) - (int)*in2_data++);
   return;
  }
 
@@ -157,7 +161,7 @@ void UBMathOperator::Sub(const UBitmap &in1, const UBitmap &in2, UBitmap &out)
  {
   unsigned char *in1_data=in1.GetData(), *in2_data=in2.GetData(), *out_data=out.GetData();
   for(int i=0;i<in1.GetByteLength();i++)
-   *out_data++=max(0,(int)(*in1_data++)) - (int)*in2_data++;
+  *out_data++=static_cast<unsigned char>(max(0,(int)(*in1_data++)) - (int)*in2_data++);
   return;
  }
 
@@ -165,7 +169,7 @@ void UBMathOperator::Sub(const UBitmap &in1, const UBitmap &in2, UBitmap &out)
  {
   unsigned char *in1_data=in1.GetData(), *in2_data=in2.GetData(), *out_data=out.GetData();
   for(int i=0;i<in1.GetByteLength();i++)
-   *out_data++=max(0,(int)(*in1_data++)) - (int)*in2_data++;
+  *out_data++=static_cast<unsigned char>(max(0,(int)(*in1_data++)) - (int)*in2_data++);
   return;
  }
 
@@ -226,31 +230,31 @@ void UBMathOperator::Sum(const UBitmap &in1, const UBitmap &in2, UBitmap &out)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBMathOperator::ADefault(void)
 {
  //SetNumOutputs(1);
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBMathOperator::ABuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBMathOperator::AReset(void)
 {
  return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBMathOperator::ACalculate(void)
 {
  switch(OperatorId)
@@ -297,6 +301,11 @@ bool UBMathOperator::ACalculate(void)
  return true;
 }
 // --------------------------
+
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
 }
 //---------------------------------------------------------------------------

@@ -18,12 +18,12 @@ See file license.txt for more information
 namespace RDK {
 
 // --------------------------------------------------------------------------------------------------------------------
-// ПРОСТОЙ РАЗНОСТНЫЙ КАДР
+// РџР РћРЎРўРћР™ Р РђР—РќРћРЎРўРќР«Р™ РљРђР”Р 
 // -------------------------------------------------------
 
 
 // ---------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // ---------------------
 UBABackground::UBABackground(void)
 : Input("Input",this),
@@ -38,30 +38,30 @@ UBABackground::~UBABackground(void)
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBABackground::ADefault(void)
 {
  return AFBgDefault();
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBABackground::ABuild(void)
 {
  return AFBgBuild();
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBABackground::AReset(void)
 {
  return AFBgReset();
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBABackground::ACalculate(void)
 {
  return AFBgCalculate();
@@ -69,30 +69,30 @@ bool UBABackground::ACalculate(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров разностных кадров
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ СЂР°Р·РЅРѕСЃС‚РЅС‹С… РєР°РґСЂРѕРІ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBABackground::AFBgDefault(void)
 {
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBABackground::AFBgBuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBABackground::AFBgReset(void)
 {
  return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBABackground::AFBgCalculate(void)
 {
  return true;
@@ -102,10 +102,10 @@ bool UBABackground::AFBgCalculate(void)
 
 
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
 // ---------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // ---------------------
 UBABackgroundAvg::UBABackgroundAvg(void)
  : HistorySize("HistorySize",this)
@@ -121,7 +121,7 @@ UBABackgroundAvg::~UBABackgroundAvg(void)
 // ---------------------
 
 
-// Создание новой копии этого объекта
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UBABackgroundAvg* UBABackgroundAvg::New(void)
 {
  return new UBABackgroundAvg;
@@ -172,25 +172,25 @@ bool UBABackgroundAvg::BCalculate(UBitmap &input, UBitmap &background)
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров разностных кадров
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ СЂР°Р·РЅРѕСЃС‚РЅС‹С… РєР°РґСЂРѕРІ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBABackgroundAvg::AFBgDefault(void)
 {
  HistorySize=10;
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBABackgroundAvg::AFBgBuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBABackgroundAvg::AFBgReset(void)
 {
  CurrentHistoryIndex=0;
@@ -198,7 +198,7 @@ bool UBABackgroundAvg::AFBgReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBABackgroundAvg::AFBgCalculate(void)
 {
  Background->SetRes(Input->GetWidth(), Input->GetHeight(), Input->GetColorModel());
@@ -209,13 +209,13 @@ bool UBABackgroundAvg::AFBgCalculate(void)
 
 
 // ------------------------------------------------------------------------------------------------------------------
-// КАДР МЕТОДОМ ЭКСПОНЕНЦИАЛЬНОГО СКОЛЬЗЯЩЕГО СРЕДНЕГО// -------------------------------------------------------
+// РљРђР”Р  РњР•РўРћР”РћРњ Р­РљРЎРџРћРќР•РќР¦РРђР›Р¬РќРћР“Рћ РЎРљРћР›Р¬Р—РЇР©Р•Р“Рћ РЎР Р•Р”РќР•Р“Рћ// -------------------------------------------------------
 
 // --------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
 // ---------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // ---------------------
 UBABackgroundExponnential::UBABackgroundExponnential(void)
  : tempoUpdate("tempoUpdate",this)
@@ -233,7 +233,7 @@ UBABackgroundExponnential::~UBABackgroundExponnential(void)
 // ---------------------
 
 
-// Создание новой копии этого объекта
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UBABackgroundExponnential* UBABackgroundExponnential::New(void)
 {
  return new UBABackgroundExponnential;
@@ -241,7 +241,7 @@ UBABackgroundExponnential* UBABackgroundExponnential::New(void)
 
 bool UBABackgroundExponnential::BCalculate(UBitmap &input, UBitmap &background)
 {
-  //Если изображение поменяло формат
+  //Р•СЃР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРјРµРЅСЏР»Рѕ С„РѕСЂРјР°С‚
   if(input.GetWidth() != background.GetWidth() ||
   input.GetHeight() != background.GetHeight() ||
   input.GetColorModel() != background.GetColorModel())
@@ -252,8 +252,8 @@ bool UBABackgroundExponnential::BCalculate(UBitmap &input, UBitmap &background)
   }
 
 
-//Фон = Предыдущий фон*(а-1)+Текущий кадр*а
-//а - темп обновления 0<a<1
+//Р¤РѕРЅ = РџСЂРµРґС‹РґСѓС‰РёР№ С„РѕРЅ*(Р°-1)+РўРµРєСѓС‰РёР№ РєР°РґСЂ*Р°
+//Р° - С‚РµРјРї РѕР±РЅРѕРІР»РµРЅРёСЏ 0<a<1
  UBColor *bg=background.GetData();
  UBColor *inp=input.GetData();
  for(int j=0;j<background.GetByteLength();j++)
@@ -273,9 +273,9 @@ bool UBABackgroundExponnential::BCalculate(UBitmap &input, UBitmap &background)
 }
 
 // --------------------------
-// Скрытые методы управления счетом фильтров разностных кадров
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ СЂР°Р·РЅРѕСЃС‚РЅС‹С… РєР°РґСЂРѕРІ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBABackgroundExponnential::AFBgDefault(void)
 {
  CurrentHistorySize=10;
@@ -283,16 +283,16 @@ bool UBABackgroundExponnential::AFBgDefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBABackgroundExponnential::AFBgBuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBABackgroundExponnential::AFBgReset(void)
 {
  CurrentHistoryIndex=0;
@@ -301,7 +301,7 @@ bool UBABackgroundExponnential::AFBgReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBABackgroundExponnential::AFBgCalculate(void)
 {
     if (Background->GetWidth()!=Input->GetWidth() ||
@@ -316,15 +316,15 @@ bool UBABackgroundExponnential::AFBgCalculate(void)
 // --------------------------
 
 // ------------------------------------------------------------------------------------------------------------------
-// РАЗНИЦА КАДРОВ МЕТОДОМ ЭКСПОНЕНЦИАЛЬНОГО СКОЛЬЗЯЩЕГО СРЕДНЕГО
-// В INT И DOUBLE
+// Р РђР—РќРР¦Рђ РљРђР”Р РћР’ РњР•РўРћР”РћРњ Р­РљРЎРџРћРќР•РќР¦РРђР›Р¬РќРћР“Рћ РЎРљРћР›Р¬Р—РЇР©Р•Р“Рћ РЎР Р•Р”РќР•Р“Рћ
+// Р’ INT Р DOUBLE
 // -------------------------------------------------------
 
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
 // ---------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // ---------------------
 UBADeltaBackgroundExponnential::UBADeltaBackgroundExponnential(void)
  : tempoUpdate("tempoUpdate",this)
@@ -342,7 +342,7 @@ UBADeltaBackgroundExponnential::~UBADeltaBackgroundExponnential(void)
 // ---------------------
 
 
-// Создание новой копии этого объекта
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UBADeltaBackgroundExponnential* UBADeltaBackgroundExponnential::New(void)
 {
  return new UBADeltaBackgroundExponnential;
@@ -350,7 +350,7 @@ UBADeltaBackgroundExponnential* UBADeltaBackgroundExponnential::New(void)
 
 bool UBADeltaBackgroundExponnential::BCalculate(UBitmap &input, UBitmap &background)
 {
- //Если изображение поменяло формат
+ //Р•СЃР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРјРµРЅСЏР»Рѕ С„РѕСЂРјР°С‚
  if(input.GetWidth() != background.GetWidth() ||
   input.GetHeight() != background.GetHeight() ||
   input.GetColorModel() != background.GetColorModel())
@@ -361,8 +361,8 @@ bool UBADeltaBackgroundExponnential::BCalculate(UBitmap &input, UBitmap &backgro
  }
 
 
-//Фон = Предыдущий фон*(а-1)+Текущий кадр*а
-//а - темп обновления 0<a<1
+//Р¤РѕРЅ = РџСЂРµРґС‹РґСѓС‰РёР№ С„РѕРЅ*(Р°-1)+РўРµРєСѓС‰РёР№ РєР°РґСЂ*Р°
+//Р° - С‚РµРјРї РѕР±РЅРѕРІР»РµРЅРёСЏ 0<a<1
  UBColor *bg=background.GetData();
  UBColor *inp=input.GetData();
  for(int j=0;j<background.GetByteLength();j++)
@@ -389,9 +389,9 @@ bool UBADeltaBackgroundExponnential::BCalculate(UBitmap &input, UBitmap &backgro
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров разностных кадров
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ СЂР°Р·РЅРѕСЃС‚РЅС‹С… РєР°РґСЂРѕРІ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBADeltaBackgroundExponnential::AFBgDefault(void)
 {
  CurrentHistorySize=10;
@@ -399,17 +399,17 @@ bool UBADeltaBackgroundExponnential::AFBgDefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBADeltaBackgroundExponnential::AFBgBuild(void)
 {
  *Background=*Input;
  return true;
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBADeltaBackgroundExponnential::AFBgReset(void)
 {
  CurrentHistoryIndex=0;
@@ -417,7 +417,7 @@ bool UBADeltaBackgroundExponnential::AFBgReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBADeltaBackgroundExponnential::AFBgCalculate(void)
 {
  Background->SetRes(Input->GetWidth(), Input->GetHeight(), Input->GetColorModel());
@@ -427,14 +427,14 @@ bool UBADeltaBackgroundExponnential::AFBgCalculate(void)
 
 
 //----------------------------------------------------------------------------
-//АДАПТИВНЫЙ САМЫЙ ПРОСТОЙ ФОН
+//РђР”РђРџРўРР’РќР«Р™ РЎРђРњР«Р™ РџР РћРЎРўРћР™ Р¤РћРќ
 //----------------------------------------------------------------------------
 
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
 // ---------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // ---------------------
 UBABackgroundSimpleAdaptive::UBABackgroundSimpleAdaptive(void)
  : tempoUpdate("tempoUpdate",this),
@@ -471,7 +471,7 @@ UBABackgroundSimpleAdaptive::~UBABackgroundSimpleAdaptive(void)
 {
     countFirstCleanBgFrame=50;
 }
-// Создание новой копии этого объекта
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UBABackgroundSimpleAdaptive* UBABackgroundSimpleAdaptive::New(void)
 {
     return new UBABackgroundSimpleAdaptive;
@@ -479,7 +479,7 @@ UBABackgroundSimpleAdaptive* UBABackgroundSimpleAdaptive::New(void)
 
 bool UBABackgroundSimpleAdaptive::BCalculateExp(UBitmap &input, UBitmap &background)
 {
-    //Если изображение поменяло формат
+    //Р•СЃР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРјРµРЅСЏР»Рѕ С„РѕСЂРјР°С‚
     if(input.GetWidth() != background.GetWidth() ||
     input.GetHeight() != background.GetHeight() ||
     input.GetColorModel() != background.GetColorModel())
@@ -488,8 +488,8 @@ bool UBABackgroundSimpleAdaptive::BCalculateExp(UBitmap &input, UBitmap &backgro
         CurrentHistorySize=0;
         return true;
     }
-    //Фон = Предыдущий фон*(а-1)+Текущий кадр*а
-    //а - темп обновления 0<a<1
+    //Р¤РѕРЅ = РџСЂРµРґС‹РґСѓС‰РёР№ С„РѕРЅ*(Р°-1)+РўРµРєСѓС‰РёР№ РєР°РґСЂ*Р°
+    //Р° - С‚РµРјРї РѕР±РЅРѕРІР»РµРЅРёСЏ 0<a<1
     UBColor *bg=background.GetData();
     UBColor *inp=input.GetData();
     for(int j=0;j<background.GetByteLength();j++)
@@ -506,10 +506,10 @@ bool UBABackgroundSimpleAdaptive::BCalculateExp(UBitmap &input, UBitmap &backgro
 }
 
 bool UBABackgroundSimpleAdaptive::BCalculateSimplAdaptive
-(UBitmap &input, UBitmap &background, UBitmap &lastBinarization)
+(UBitmap &input, UBitmap &background, UBitmap &lastBinarization_param)
 {
-    //Если изображение поменяло формат
-    //Говорим, что новый фон = первому кадру нового формата
+    //Р•СЃР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРјРµРЅСЏР»Рѕ С„РѕСЂРјР°С‚
+    //Р“РѕРІРѕСЂРёРј, С‡С‚Рѕ РЅРѕРІС‹Р№ С„РѕРЅ = РїРµСЂРІРѕРјСѓ РєР°РґСЂСѓ РЅРѕРІРѕРіРѕ С„РѕСЂРјР°С‚Р°
     if(input.GetWidth() != background.GetWidth() ||
     input.GetHeight() != background.GetHeight() ||
     input.GetColorModel() != background.GetColorModel())
@@ -520,9 +520,9 @@ bool UBABackgroundSimpleAdaptive::BCalculateSimplAdaptive
     }
     UBColor *bg=background.GetData();
     UBColor *inp=input.GetData();
-    //Если бинаризованный кадр не определен
-    if(input.GetWidth() != lastBinarization.GetWidth() ||
-       input.GetHeight() != lastBinarization.GetHeight())
+    //Р•СЃР»Рё Р±РёРЅР°СЂРёР·РѕРІР°РЅРЅС‹Р№ РєР°РґСЂ РЅРµ РѕРїСЂРµРґРµР»РµРЅ
+    if(input.GetWidth() != lastBinarization_param.GetWidth() ||
+       input.GetHeight() != lastBinarization_param.GetHeight())
     {
         for(int j=0;j<background.GetByteLength();j++)
         {
@@ -536,22 +536,22 @@ bool UBABackgroundSimpleAdaptive::BCalculateSimplAdaptive
         }
         return true;
     }
-    //Если бинаризованный кадр определен
+    //Р•СЃР»Рё Р±РёРЅР°СЂРёР·РѕРІР°РЅРЅС‹Р№ РєР°РґСЂ РѕРїСЂРµРґРµР»РµРЅ
     else
     {
-        UBColor *bin=lastBinarization.GetData();
-        //Идем попиксельно по кадру
+        UBColor *bin=lastBinarization_param.GetData();
+        //РРґРµРј РїРѕРїРёРєСЃРµР»СЊРЅРѕ РїРѕ РєР°РґСЂСѓ
         for(int j=0;j<background.GetByteLength();j++)
         {
             double tmp2, tmp4;
-            //Если текущий пиксель относится к переднему плану
+            //Р•СЃР»Рё С‚РµРєСѓС‰РёР№ РїРёРєСЃРµР»СЊ РѕС‚РЅРѕСЃРёС‚СЃСЏ Рє РїРµСЂРµРґРЅРµРјСѓ РїР»Р°РЅСѓ
             if ((*bin)==255)
             {
                 tmp2=double(*bg)*(1.0-tempoUpdateFG.v);
                 tmp4=tempoUpdateFG.v*double((*inp));
                 *bg=static_cast<unsigned char>(tmp2+tmp4);
             }
-            //Если текущий пиксель относится к фону
+            //Р•СЃР»Рё С‚РµРєСѓС‰РёР№ РїРёРєСЃРµР»СЊ РѕС‚РЅРѕСЃРёС‚СЃСЏ Рє С„РѕРЅСѓ
             else
             {
                 tmp2=double(*bg)*(1.0-tempoUpdateBG.v);
@@ -568,9 +568,9 @@ bool UBABackgroundSimpleAdaptive::BCalculateSimplAdaptive
      return true;
 }
 
-bool UBABackgroundSimpleAdaptive::BCalculateStabilityIndicator(UBitmap &input, UBitmap &background, UBitmap &lastBinarization, UBitmap &lastInput, UBitmap &updateFGFlag)
+bool UBABackgroundSimpleAdaptive::BCalculateStabilityIndicator(UBitmap &input, UBitmap &background, UBitmap &lastBinarization_param, UBitmap &lastInput_param, UBitmap &updateFGFlag_param)
 {
-    //Если изображение поменяло формат
+    //Р•СЃР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРјРµРЅСЏР»Рѕ С„РѕСЂРјР°С‚
     if(input.GetWidth() != background.GetWidth() ||
     input.GetHeight() != background.GetHeight() ||
     input.GetColorModel() != background.GetColorModel())
@@ -580,10 +580,10 @@ bool UBABackgroundSimpleAdaptive::BCalculateStabilityIndicator(UBitmap &input, U
     }
     UBColor *bg=background.GetData();
     UBColor *inp=input.GetData();
-    unsigned *updateflag=reinterpret_cast<unsigned*>(updateFGFlag.GetData());
-    //Если бинаризованный кадр не определен
-    if(input.GetWidth() != lastBinarization.GetWidth() ||
-       input.GetHeight() != lastBinarization.GetHeight())
+    unsigned *updateflag=reinterpret_cast<unsigned*>(updateFGFlag_param.GetData());
+    //Р•СЃР»Рё Р±РёРЅР°СЂРёР·РѕРІР°РЅРЅС‹Р№ РєР°РґСЂ РЅРµ РѕРїСЂРµРґРµР»РµРЅ
+    if(input.GetWidth() != lastBinarization_param.GetWidth() ||
+       input.GetHeight() != lastBinarization_param.GetHeight())
     {
         for(int j=0;j<background.GetByteLength();j++)
         {
@@ -597,20 +597,20 @@ bool UBABackgroundSimpleAdaptive::BCalculateStabilityIndicator(UBitmap &input, U
         }
         return true;
     }
-    //Если бинаризованный кадр определен
+    //Р•СЃР»Рё Р±РёРЅР°СЂРёР·РѕРІР°РЅРЅС‹Р№ РєР°РґСЂ РѕРїСЂРµРґРµР»РµРЅ
     else
     {
-        UBColor *bin=lastBinarization.GetData();
-        UBColor *lin=lastInput.GetData();
+        UBColor *bin=lastBinarization_param.GetData();
+        UBColor *lin=lastInput_param.GetData();
         for(int j=0;j<background.GetByteLength();j++)
         {
             double tmp2, tmp4;
-            //Если текущий пиксель относится к переднему плану
+            //Р•СЃР»Рё С‚РµРєСѓС‰РёР№ РїРёРєСЃРµР»СЊ РѕС‚РЅРѕСЃРёС‚СЃСЏ Рє РїРµСЂРµРґРЅРµРјСѓ РїР»Р°РЅСѓ
             if ((*bin)==255)
             {
                 if ((int(*lin)-int(*inp))<deltaFrames && (int(*lin)-int(*inp))>-deltaFrames)
                 {
-                    //Если Индикатор стабильности дошел до стабильности
+                    //Р•СЃР»Рё РРЅРґРёРєР°С‚РѕСЂ СЃС‚Р°Р±РёР»СЊРЅРѕСЃС‚Рё РґРѕС€РµР» РґРѕ СЃС‚Р°Р±РёР»СЊРЅРѕСЃС‚Рё
                     if(*updateflag >=zeroingUpdateFlag)
                     {
                         tmp2=double(*bg)*(1.0-tempoUpdateFG.v);
@@ -623,7 +623,7 @@ bool UBABackgroundSimpleAdaptive::BCalculateStabilityIndicator(UBitmap &input, U
 
                 }
             }
-            //Если текущий пиксель относится к фону
+            //Р•СЃР»Рё С‚РµРєСѓС‰РёР№ РїРёРєСЃРµР»СЊ РѕС‚РЅРѕСЃРёС‚СЃСЏ Рє С„РѕРЅСѓ
             else
             {
                 tmp2=double(*bg)*(1.0-tempoUpdateBG.v);
@@ -645,7 +645,7 @@ bool UBABackgroundSimpleAdaptive::BCalculateStabilityIndicator(UBitmap &input, U
 bool UBABackgroundSimpleAdaptive::BCalculateFirstBackground
 (UBitmap &input, UBitmap &background)
 {
-    //Если изображение поменяло формат
+    //Р•СЃР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРјРµРЅСЏР»Рѕ С„РѕСЂРјР°С‚
     if(input.GetWidth() != background.GetWidth() ||
     input.GetHeight() != background.GetHeight() ||
     input.GetColorModel() != background.GetColorModel())
@@ -653,12 +653,12 @@ bool UBABackgroundSimpleAdaptive::BCalculateFirstBackground
         background=input;
         return true;
     }
-    //фон
+    //С„РѕРЅ
     UBColor *bg=background.GetData();
-    //текущий кадр
+    //С‚РµРєСѓС‰РёР№ РєР°РґСЂ
     UBColor *inp=input.GetData();
 
-    //коэфф для обновления фона
+    //РєРѕСЌС„С„ РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ С„РѕРЅР°
     double a, b;
 
     b = static_cast<double>(1./(static_cast<double>(nCounterBG)));
@@ -677,9 +677,9 @@ bool UBABackgroundSimpleAdaptive::BCalculateFirstBackground
 
 
 // --------------------------
-// Скрытые методы управления счетом фильтров разностных кадров
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ СЂР°Р·РЅРѕСЃС‚РЅС‹С… РєР°РґСЂРѕРІ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBABackgroundSimpleAdaptive::AFBgDefault(void)
 {
 
@@ -696,16 +696,16 @@ bool UBABackgroundSimpleAdaptive::AFBgDefault(void)
     return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBABackgroundSimpleAdaptive::AFBgBuild(void)
 {
     return true;
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBABackgroundSimpleAdaptive::AFBgReset(void)
 {
     updateFGFlag->Fill(0);
@@ -716,7 +716,7 @@ bool UBABackgroundSimpleAdaptive::AFBgReset(void)
     return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBABackgroundSimpleAdaptive::AFBgCalculate(void)
 {
     //int static n=1;
@@ -767,7 +767,7 @@ bool UBABackgroundSimpleAdaptive::AFBgCalculate(void)
         *lastInput=*Input;
     }
 
-    //другой выход для другой модели
+    //РґСЂСѓРіРѕР№ РІС‹С…РѕРґ РґР»СЏ РґСЂСѓРіРѕР№ РјРѕРґРµР»Рё
     //unsigned* out2 = (unsigned*)output2->GetData();
     unsigned* out2 = reinterpret_cast<unsigned*>(output2->GetData());
     UBColor* out1 =Background->GetData();
@@ -791,13 +791,13 @@ bool UBABackgroundSimpleAdaptive::AFBgCalculate(void)
 
 
 //------------------------------------------------------------------------
-// Фон в зависимоти от текущего дельта между фоном и текущим кадром
+// Р¤РѕРЅ РІ Р·Р°РІРёСЃРёРјРѕС‚Рё РѕС‚ С‚РµРєСѓС‰РµРіРѕ РґРµР»СЊС‚Р° РјРµР¶РґСѓ С„РѕРЅРѕРј Рё С‚РµРєСѓС‰РёРј РєР°РґСЂРѕРј
 //------------------------------------------------------------------------
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
 // ---------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // ---------------------
 UBABackgroundDependDiff::UBABackgroundDependDiff(void)
  : //StateTempoDif("StateTempoDif",this),
@@ -813,7 +813,7 @@ UBABackgroundDependDiff::~UBABackgroundDependDiff(void)
 {
   ;
 }
-// Создание новой копии этого объекта
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UBABackgroundDependDiff* UBABackgroundDependDiff::New(void)
 {
     return new UBABackgroundDependDiff;
@@ -822,7 +822,7 @@ UBABackgroundDependDiff* UBABackgroundDependDiff::New(void)
 bool UBABackgroundDependDiff::BCalculateFirstBackground
 (UBitmap &input, UBitmap &background)
 {
-    //Если изображение поменяло формат
+    //Р•СЃР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРјРµРЅСЏР»Рѕ С„РѕСЂРјР°С‚
     if(input.GetWidth() != background.GetWidth() ||
     input.GetHeight() != background.GetHeight() ||
     input.GetColorModel() != background.GetColorModel())
@@ -830,12 +830,12 @@ bool UBABackgroundDependDiff::BCalculateFirstBackground
         background=input;
         return true;
     }
-    //фон
+    //С„РѕРЅ
     UBColor *bg=background.GetData();
-    //текущий кадр
+    //С‚РµРєСѓС‰РёР№ РєР°РґСЂ
     UBColor *inp=input.GetData();
 
-    //коэфф для обновления фона
+    //РєРѕСЌС„С„ РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ С„РѕРЅР°
     double a, b;
 
     b = static_cast<double>(1./static_cast<double>(nCounterBG));
@@ -857,7 +857,7 @@ double UBABackgroundDependDiff::BCalculate1
 (UBitmap &input, UBitmap &background, UBitmap &diffImg)
 {
     double midAl=0;
-    //Если изображение поменяло формат
+    //Р•СЃР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРјРµРЅСЏР»Рѕ С„РѕСЂРјР°С‚
     if(input.GetWidth() != background.GetWidth() ||
     input.GetHeight() != background.GetHeight() //||
     //input.GetColorModel() != background.GetColorModel()
@@ -871,11 +871,11 @@ double UBABackgroundDependDiff::BCalculate1
     diffImg.GetColorModel() != background.GetColorModel())
     {
         diffImg=input;
-        //фон
+        //С„РѕРЅ
         UBColor *bg=background.GetData();
-        //текущий кадр
+        //С‚РµРєСѓС‰РёР№ РєР°РґСЂ
         UBColor *inp=input.GetData();
-        //разниц фона и текущего предыдущего кадра
+        //СЂР°Р·РЅРёС† С„РѕРЅР° Рё С‚РµРєСѓС‰РµРіРѕ РїСЂРµРґС‹РґСѓС‰РµРіРѕ РєР°РґСЂР°
         UBColor *delta=diffImg.GetData();
         for(int j=0;j<background.GetByteLength();j++)
         {
@@ -891,17 +891,17 @@ double UBABackgroundDependDiff::BCalculate1
         }
         return true;
     }
-    //фон
+    //С„РѕРЅ
     UBColor *bg=background.GetData();
-    //текущий кадр
+    //С‚РµРєСѓС‰РёР№ РєР°РґСЂ
     UBColor *inp=input.GetData();
-    //разниц фона и текущего предыдущего кадра
+    //СЂР°Р·РЅРёС† С„РѕРЅР° Рё С‚РµРєСѓС‰РµРіРѕ РїСЂРµРґС‹РґСѓС‰РµРіРѕ РєР°РґСЂР°
     UBColor *delta=diffImg.GetData();
 
     for(int j=0;j<background.GetByteLength();j++)
     {
-        //вычисляемый коэффициент обновления фона
-        //на самом деле коэф это 1-альфа
+        //РІС‹С‡РёСЃР»СЏРµРјС‹Р№ РєРѕСЌС„С„РёС†РёРµРЅС‚ РѕР±РЅРѕРІР»РµРЅРёСЏ С„РѕРЅР°
+        //РЅР° СЃР°РјРѕРј РґРµР»Рµ РєРѕСЌС„ СЌС‚Рѕ 1-Р°Р»СЊС„Р°
         double alfa = *delta;
         //alfa +=(255-StateTempoDif);
         alfa /= 255.0;        
@@ -923,9 +923,9 @@ double UBABackgroundDependDiff::BCalculate1
 
 
 // --------------------------
-// Скрытые методы управления счетом фильтров разностных кадров
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ СЂР°Р·РЅРѕСЃС‚РЅС‹С… РєР°РґСЂРѕРІ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBABackgroundDependDiff::AFBgDefault(void)
 {
     //StateTempoDif = 242;
@@ -933,16 +933,16 @@ bool UBABackgroundDependDiff::AFBgDefault(void)
     return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBABackgroundDependDiff::AFBgBuild(void)
 {
     return true;
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBABackgroundDependDiff::AFBgReset(void)
 {
     *Background=*Input;
@@ -951,7 +951,7 @@ bool UBABackgroundDependDiff::AFBgReset(void)
     return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBABackgroundDependDiff::AFBgCalculate(void)
 {
     //int static n=1;
@@ -969,20 +969,20 @@ bool UBABackgroundDependDiff::AFBgCalculate(void)
         deltaImg->GetColorModel()!=Input->GetColorModel())
     {
         deltaImg->SetRes(Input->GetWidth(), Input->GetHeight(), Input->GetColorModel());
-        //разница максимальная
-        //фон не обновляется
+        //СЂР°Р·РЅРёС†Р° РјР°РєСЃРёРјР°Р»СЊРЅР°СЏ
+        //С„РѕРЅ РЅРµ РѕР±РЅРѕРІР»СЏРµС‚СЃСЏ
         deltaImg->Fill(255);
     }
 
 
-    //первоначальная настройка  фона при отсутствии движущихся объектов
+    //РїРµСЂРІРѕРЅР°С‡Р°Р»СЊРЅР°СЏ РЅР°СЃС‚СЂРѕР№РєР°  С„РѕРЅР° РїСЂРё РѕС‚СЃСѓС‚СЃС‚РІРёРё РґРІРёР¶СѓС‰РёС…СЃСЏ РѕР±СЉРµРєС‚РѕРІ
     if (nCounterBG < countFirstCleanBgFrame)
     {
         IsBGReady = false;
         BCalculateFirstBackground(*Input, *Background);
         nCounterBG++;
     }
-    //рабочая часть, когда появляется движение
+    //СЂР°Р±РѕС‡Р°СЏ С‡Р°СЃС‚СЊ, РєРѕРіРґР° РїРѕСЏРІР»СЏРµС‚СЃСЏ РґРІРёР¶РµРЅРёРµ
     else
     {
         IsBGReady = true;

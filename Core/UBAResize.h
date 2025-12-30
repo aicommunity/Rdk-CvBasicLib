@@ -19,36 +19,36 @@ See file license.txt for more information
 
 namespace RDK {
 
-/// Базовый класс масштабирования изображения
+///    
 class RDK_LIB_TYPE UBAResize: public UNet
 {
-protected: // Параметры
-/// Новый размер
-ULProperty<int, UBAResize> NewWidth;
-ULProperty<int, UBAResize> NewHeight;
+protected: // 
+///  
+UProperty<int, UBAResize, ptPubParameter> NewWidth;
+UProperty<int, UBAResize, ptPubParameter> NewHeight;
 
-protected: // Входные и выходные данные
-/// Входное изображение
-UPropertyInputData<UBitmap, UBAResize> Input;
+protected: //    
+///  
+UProperty<UBitmap, UBAResize, ptPubParameter> Input;
 
-/// Выходное изображение
-UPropertyOutputData<UBitmap, UBAResize> Output;
+///  
+UProperty<UBitmap, UBAResize, ptPubParameter> Output;
 
-protected: // Временные переменные
+protected: //  
 UBitmap Buffer;
 
-public: // Методы
+public: // 
 // ---------------------
-// Конструкторы и деструкторы
+//   
 // ---------------------
 UBAResize(void);
 virtual ~UBAResize(void);
 // ---------------------
 
 // ---------------------
-// Методы управления параметрами
+//   
 // ---------------------
-/// Новый размер
+///  
 int GetNewWidth(void) const;
 int GetNewHeight(void) const;
 bool SetNewWidth(int value);
@@ -56,7 +56,7 @@ bool SetNewHeight(int value);
 // ---------------------
 
 // ---------------------
-// Методы счета
+//  
 // ---------------------
 virtual bool BCalculate(UBitmap &input, UBitmap &output)=0;
 bool BCalculate(UBitmap &input, int width, int height);
@@ -64,7 +64,7 @@ bool BCalculate(UBitmap &input, UBitmap &output, int width, int height);
 // ---------------------
 
 // ---------------------
-// Операторы
+// 
 // ---------------------
 bool operator () (UBitmap &input, UBitmap &output);
 bool operator () (UBitmap &input, int width, int height);
@@ -72,77 +72,77 @@ bool operator () (UBitmap &input, UBitmap &output, int width, int height);
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
 protected:
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool ADefault(void);
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool ABuild(void);
 
-/// Сброс процесса счета.
+///   .
 virtual bool AReset(void);
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool ACalculate(void);
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом трекинга
+//     
 // --------------------------
 protected:
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool AFCDefault(void)=0;
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool AFCBuild(void)=0;
 
-/// Сброс процесса счета.
+///   .
 virtual bool AFCReset(void)=0;
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool AFCCalculate(void)=0;
 // --------------------------
 
 };
 
-/// Изменяет размер изображения по четырем угловым точкам
+///       
 class RDK_LIB_TYPE UBAResizeEdges: public UBAResize
 {
-public: // Методы
+public: // 
 // ---------------------
-// Методы счета
+//  
 // ---------------------
-/// Создание новой копии этого объекта
+///     
 virtual UBAResizeEdges* New(void);
 
 bool BCalculate(UBitmap &input, UBitmap &output);
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом трекинга
+//     
 // --------------------------
 protected:
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool AFCDefault(void);
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool AFCBuild(void);
 
-/// Сброс процесса счета.
+///   .
 virtual bool AFCReset(void);
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool AFCCalculate(void);
 // --------------------------
 };

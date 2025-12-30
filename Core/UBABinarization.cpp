@@ -18,7 +18,7 @@ See file license.txt for more information
 namespace RDK {
 
 // ---------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // ---------------------
 UBABinarization::UBABinarization(void)
  : Input("Input",this),
@@ -32,30 +32,30 @@ UBABinarization::~UBABinarization(void)
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBABinarization::ADefault(void)
 {
  return AFBgDefault();
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBABinarization::ABuild(void)
 {
  return AFBgBuild();
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBABinarization::AReset(void)
 {
  return AFBgReset();
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBABinarization::ACalculate(void)
 {
  return AFBgCalculate();
@@ -63,30 +63,30 @@ bool UBABinarization::ACalculate(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров разностных кадров
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ СЂР°Р·РЅРѕСЃС‚РЅС‹С… РєР°РґСЂРѕРІ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBABinarization::AFBgDefault(void)
 {
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBABinarization::AFBgBuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBABinarization::AFBgReset(void)
 {
  return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBABinarization::AFBgCalculate(void)
 {
  return true;
@@ -96,10 +96,10 @@ bool UBABinarization::AFBgCalculate(void)
 
 
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
 // ---------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // ---------------------
 UBABinarizationSimple::UBABinarizationSimple(void)
  : Threshold("Threshold",this)
@@ -114,7 +114,7 @@ UBABinarizationSimple::~UBABinarizationSimple(void)
 // ---------------------
 
 
-// Создание новой копии этого объекта
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UBABinarizationSimple* UBABinarizationSimple::New(void)
 {
  return new UBABinarizationSimple;
@@ -160,31 +160,31 @@ bool UBABinarizationSimple::BCalculate(UBitmap &input, UBitmap &background)
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров разностных кадров
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ СЂР°Р·РЅРѕСЃС‚РЅС‹С… РєР°РґСЂРѕРІ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBABinarizationSimple::AFBgDefault(void)
 {
  Threshold=0x00808080;
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBABinarizationSimple::AFBgBuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBABinarizationSimple::AFBgReset(void)
 {
  return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBABinarizationSimple::AFBgCalculate(void)
 {
  Output->SetRes(Input->GetWidth(), Input->GetHeight(), ubmY8);
@@ -196,15 +196,15 @@ bool UBABinarizationSimple::AFBgCalculate(void)
 
 
 //----------------------------------------------------------------------------
-//ПРОСТОЙ РАЗНОСТНЫЙ КАДР С АДАПТИВНОЙ МОДЕЛЬЮ ПОРОГА
+//РџР РћРЎРўРћР™ Р РђР—РќРћРЎРўРќР«Р™ РљРђР”Р  РЎ РђР”РђРџРўРР’РќРћР™ РњРћР”Р•Р›Р¬Р® РџРћР РћР“Рђ
 //
 //----------------------------------------------------------------------------
 
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
 // ---------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // ---------------------
 UBABinarizationSimpleAdaptiveThreshold::UBABinarizationSimpleAdaptiveThreshold(void)
  : Threshold("Threshold",this),
@@ -243,38 +243,38 @@ UBABinarizationSimpleAdaptiveThreshold::~UBABinarizationSimpleAdaptiveThreshold(
 
 }
 // ---------------------
-// Создание новой копии этого объекта
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UBABinarizationSimpleAdaptiveThreshold* UBABinarizationSimpleAdaptiveThreshold::New(void)
 {
  return new UBABinarizationSimpleAdaptiveThreshold;
 }
 
 bool UBABinarizationSimpleAdaptiveThreshold::BCalculate1
-(UBitmap &Background, UBitmap &input, UBitmap &Threshold, UBitmap &output, UBitmap &counterFG)
+(UBitmap &Background_param, UBitmap &input, UBitmap &Threshold_param, UBitmap &output, UBitmap &counterFG_param)
 {
-    UBColor *bg=Background.GetData();
+    UBColor *bg=Background_param.GetData();
     UBColor *in=input.GetData();
-    UBColor *th=Threshold.GetData();
+    UBColor *th=Threshold_param.GetData();
     UBColor *out=output.GetData();
 
-    UBColor *cFG=counterFG.GetData();
+    UBColor *cFG=counterFG_param.GetData();
 
     switch(input.GetColorModel())
     {
         case ubmRGB24:
         {
-            //что-то делаем, если изображение цветное
+            //С‡С‚Рѕ-С‚Рѕ РґРµР»Р°РµРј, РµСЃР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ С†РІРµС‚РЅРѕРµ
         }
         break;
 
-        //если изображение черно-белое
+        //РµСЃР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ С‡РµСЂРЅРѕ-Р±РµР»РѕРµ
         case ubmY8:
         {
-            for(int j=0;j<Background.GetLength();j++)
+            for(int j=0;j<Background_param.GetLength();j++)
             {
                 if (abs(int(*in)-int(*bg)) >(*th))
                 {
-                    //передний план белый
+                    //РїРµСЂРµРґРЅРёР№ РїР»Р°РЅ Р±РµР»С‹Р№
                     *out = 255;
 
                     *cFG+=1;
@@ -287,8 +287,8 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate1
                 else
                 {
                     double th_res(0.0);
-                    //фон черный
-                    //изменяется порог
+                    //С„РѕРЅ С‡РµСЂРЅС‹Р№
+                    //РёР·РјРµРЅСЏРµС‚СЃСЏ РїРѕСЂРѕРі
                     if((int(*in)-int(*bg))>0)
                         th_res=KAlpha*double(*th)+(1.0-KAlpha.v)*KGamma.v*double(*in-*bg);
                     else
@@ -320,9 +320,9 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate1
 }
 
 bool UBABinarizationSimpleAdaptiveThreshold::BCalculate0
-(UBitmap &Background, UBitmap &input, UBitmap &output)
+(UBitmap &Background_param, UBitmap &input, UBitmap &output)
 {
-    UBColor *bg=Background.GetData();
+    UBColor *bg=Background_param.GetData();
     UBColor *in=input.GetData();
     UBColor *out=output.GetData();
 
@@ -330,18 +330,18 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate0
     {
         case ubmRGB24:
         {
-            //что-то делаем, если изображение цветное
+            //С‡С‚Рѕ-С‚Рѕ РґРµР»Р°РµРј, РµСЃР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ С†РІРµС‚РЅРѕРµ
         }
         break;
 
-        //если изображение черно-белое
+        //РµСЃР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ С‡РµСЂРЅРѕ-Р±РµР»РѕРµ
         case ubmY8:
         {
-            for(int j=0;j<Background.GetLength();j++)
+            for(int j=0;j<Background_param.GetLength();j++)
             {
                 if (abs(int(*in)-int(*bg)) >startThreshold)
                 {
-                    //передний план белый
+                    //РїРµСЂРµРґРЅРёР№ РїР»Р°РЅ Р±РµР»С‹Р№
                     *out = 255;
 
                 }
@@ -364,31 +364,31 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate0
 }
 
 bool UBABinarizationSimpleAdaptiveThreshold::BCalculate2
-(UBitmap &Background, UBitmap &input, UBitmap &Threshold, UBitmap &output, UBitmap &counterFG,UBitmap &counterBG)
+(UBitmap &Background_param, UBitmap &input, UBitmap &Threshold_param, UBitmap &output, UBitmap &counterFG_param,UBitmap &counterBG_param)
 {
-    UBColor *bg=Background.GetData();
+    UBColor *bg=Background_param.GetData();
     UBColor *in=input.GetData();
-    UBColor *th=Threshold.GetData();
+    UBColor *th=Threshold_param.GetData();
     UBColor *out=output.GetData();
-    UBColor *cFG=counterFG.GetData();
-    UBColor *cBG=counterBG.GetData();
+    UBColor *cFG=counterFG_param.GetData();
+    UBColor *cBG=counterBG_param.GetData();
 
     switch(input.GetColorModel())
     {
         case ubmRGB24:
         {
-            //что-то делаем, если изображение цветное
+            //С‡С‚Рѕ-С‚Рѕ РґРµР»Р°РµРј, РµСЃР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ С†РІРµС‚РЅРѕРµ
         }
         break;
 
-        //если изображение черно-белое
+        //РµСЃР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ С‡РµСЂРЅРѕ-Р±РµР»РѕРµ
         case ubmY8:
         {
-            for(int j=0;j<Background.GetLength();j++)
+            for(int j=0;j<Background_param.GetLength();j++)
             {
                 if (abs(int(*in)-int(*bg)) >(*th))
                 {
-                    //передний план белый
+                    //РїРµСЂРµРґРЅРёР№ РїР»Р°РЅ Р±РµР»С‹Р№
                     *out = 255;
                     *cFG+=1;
                     if (*cFG == stableBGflag)
@@ -401,8 +401,8 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate2
                 else
                 {
                     double th_res(0.0);
-                    //фон черный
-                    //изменяется порог
+                    //С„РѕРЅ С‡РµСЂРЅС‹Р№
+                    //РёР·РјРµРЅСЏРµС‚СЃСЏ РїРѕСЂРѕРі
                     if((int(*in)-int(*bg))>0)
                         th_res=KAlpha*double(*th)+(1.0-KAlpha.v)*KGamma.v*double(*in-*bg);
                     else
@@ -439,19 +439,19 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate2
 }
 
 bool UBABinarizationSimpleAdaptiveThreshold::BCalculate3
-(UBitmap &Background, UBitmap &input, UBitmap &Threshold, UBitmap &output,
- UBitmap &counterFG, UBitmap &counterBG)
+(UBitmap &Background_param, UBitmap &input, UBitmap &Threshold_param, UBitmap &output,
+ UBitmap &counterFG_param, UBitmap &counterBG_param)
 {
-    UBColor *bg=Background.GetData();
+    UBColor *bg=Background_param.GetData();
     UBColor *in=input.GetData();
-    UBColor *th=Threshold.GetData();
+    UBColor *th=Threshold_param.GetData();
     UBColor *out=output.GetData();
-    UBColor *cFG=counterFG.GetData();
-    UBColor *cBG=counterBG.GetData();
+    UBColor *cFG=counterFG_param.GetData();
+    UBColor *cBG=counterBG_param.GetData();
 
     //int cmaxcount=0;
 
-    //обновление статистики по пикселям
+    //РѕР±РЅРѕРІР»РµРЅРёРµ СЃС‚Р°С‚РёСЃС‚РёРєРё РїРѕ РїРёРєСЃРµР»СЏРј
     for(unsigned long int j=0;j<15;j++)
         ThresholdStats[j]=0;
 
@@ -459,18 +459,18 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate3
     {
         case ubmRGB24:
         {
-            //что-то делаем, если изображение цветное
+            //С‡С‚Рѕ-С‚Рѕ РґРµР»Р°РµРј, РµСЃР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ С†РІРµС‚РЅРѕРµ
         }
         break;
 
-        //если изображение черно-белое
+        //РµСЃР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ С‡РµСЂРЅРѕ-Р±РµР»РѕРµ
         case ubmY8:
         {
-            for(int j=0;j<Background.GetLength();j++)
+            for(int j=0;j<Background_param.GetLength();j++)
             {
                 if (abs(int(*in)-int(*bg)) >(*th))
                 {
-                    //передний план белый
+                    //РїРµСЂРµРґРЅРёР№ РїР»Р°РЅ Р±РµР»С‹Р№
                     *out = 255;
                     *cFG+=1;
                     if (*cFG == stableBGflag)
@@ -486,9 +486,9 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate3
                 else
                 {
                     double th_res(0.0);
-                    //фон черный
-                    //изменяется порог
-                    //если фон слишком долго - можно уменьшить порог
+                    //С„РѕРЅ С‡РµСЂРЅС‹Р№
+                    //РёР·РјРµРЅСЏРµС‚СЃСЏ РїРѕСЂРѕРі
+                    //РµСЃР»Рё С„РѕРЅ СЃР»РёС€РєРѕРј РґРѕР»РіРѕ - РјРѕР¶РЅРѕ СѓРјРµРЅСЊС€РёС‚СЊ РїРѕСЂРѕРі
                     *cBG+=1;
                     if (*cBG == unstableFlag)
                     {
@@ -506,9 +506,9 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate3
                         else
                             th_res=KAlpha*double(*th)+(1.0-KAlpha.v)*KGamma.v*double(*bg-*in);
                     //}
-                    //сбор статистики по разнице в значениях пикселей фона и текущего кадра
-                    //от 1 до 15
-                    //считается количесво пикселей
+                    //СЃР±РѕСЂ СЃС‚Р°С‚РёСЃС‚РёРєРё РїРѕ СЂР°Р·РЅРёС†Рµ РІ Р·РЅР°С‡РµРЅРёСЏС… РїРёРєСЃРµР»РµР№ С„РѕРЅР° Рё С‚РµРєСѓС‰РµРіРѕ РєР°РґСЂР°
+                    //РѕС‚ 1 РґРѕ 15
+                    //СЃС‡РёС‚Р°РµС‚СЃСЏ РєРѕР»РёС‡РµСЃРІРѕ РїРёРєСЃРµР»РµР№
                     if (abs(int(*in)-int(*bg))<14)
                     {
                         ThresholdStats[static_cast<unsigned long int>(abs(int(*in)-int(*bg)))]++;
@@ -547,11 +547,11 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate3
                 cFG++;
                 cBG++;
             }
-            //вычиление процентов из количесва
+            //РІС‹С‡РёР»РµРЅРёРµ РїСЂРѕС†РµРЅС‚РѕРІ РёР· РєРѕР»РёС‡РµСЃРІР°
             for(unsigned long long j=0;j<15;j++)
             {
                 //ThresholdStats[0]+=ThresholdStats[j];
-                ThresholdStats[j]/=Background.GetLength();
+                ThresholdStats[j]/=Background_param.GetLength();
                 ThresholdStats[j]*=100;
             }
         }
@@ -563,11 +563,11 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate3
 }
 
 bool UBABinarizationSimpleAdaptiveThreshold::BCalculateFirstThreshold1
-(UBitmap &Background, UBitmap &input, UBitmap &Threshold, UBitmap &output)
+(UBitmap &Background_param, UBitmap &input, UBitmap &Threshold_param, UBitmap &output)
 {
-    UBColor *bg=Background.GetData();
+    UBColor *bg=Background_param.GetData();
     UBColor *in=input.GetData();
-    UBColor *th=Threshold.GetData();
+    UBColor *th=Threshold_param.GetData();
     UBColor *out=output.GetData();
 
     double d, c, tmpc, tmpd;
@@ -580,11 +580,11 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculateFirstThreshold1
         c=static_cast<double>(nCounter-2)*d;
     }
     //newt = (unsigned int)(c*thr+d*pow);
-    for(int j=0;j<Background.GetLength();j++)
+    for(int j=0;j<Background_param.GetLength();j++)
     {
         if (abs(int(*in)-int(*bg)) >(*th))
         {
-            //передний план белый
+            //РїРµСЂРµРґРЅРёР№ РїР»Р°РЅ Р±РµР»С‹Р№
             *out = 255;
         }
         else
@@ -619,19 +619,19 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculateFirstThreshold1
 }
 
 bool UBABinarizationSimpleAdaptiveThreshold::BCalculateFirstThreshold2
-(UBitmap &Background, UBitmap &input, UBitmap &Threshold, UBitmap &output)
+(UBitmap &Background_param, UBitmap &input, UBitmap &Threshold_param, UBitmap &output)
 {
-    UBColor *bg=Background.GetData();
+    UBColor *bg=Background_param.GetData();
     UBColor *in=input.GetData();
-    UBColor *th=Threshold.GetData();
+    UBColor *th=Threshold_param.GetData();
     UBColor *out=output.GetData();
 
     //newt = (unsigned int)(c*thr+d*pow);
-    for(int j=0;j<Background.GetLength();j++)
+    for(int j=0;j<Background_param.GetLength();j++)
     {
         if (abs(int(*in)-int(*bg)) >(*th))
         {
-            //передний план белый
+            //РїРµСЂРµРґРЅРёР№ РїР»Р°РЅ Р±РµР»С‹Р№
             *out = 255;
             *th = static_cast<unsigned char>(abs(int(*in)-int(*bg)));
         }
@@ -654,9 +654,9 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculateFirstThreshold2
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров разностных кадров
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ СЂР°Р·РЅРѕСЃС‚РЅС‹С… РєР°РґСЂРѕРІ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBABinarizationSimpleAdaptiveThreshold::AFBgDefault(void)
 {
     KAlpha = 0.8;
@@ -667,35 +667,35 @@ bool UBABinarizationSimpleAdaptiveThreshold::AFBgDefault(void)
     return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBABinarizationSimpleAdaptiveThreshold::AFBgBuild(void)
 {
     return true;
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBABinarizationSimpleAdaptiveThreshold::AFBgReset(void)
 {
-    //отсутствует первоначальное накопление фона
+    //РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РїРµСЂРІРѕРЅР°С‡Р°Р»СЊРЅРѕРµ РЅР°РєРѕРїР»РµРЅРёРµ С„РѕРЅР°
     if (firstThTypes == 1)
     {
       countFirstCleanBgFrame = 0;
       startThreshold.SetData(maxDinamThreshold);
     }
-    //заполняется начальное значение порога
+    //Р·Р°РїРѕР»РЅСЏРµС‚СЃСЏ РЅР°С‡Р°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РїРѕСЂРѕРіР°
     Threshold->Fill(static_cast<unsigned char>(startThreshold.GetData()));
     //invThreshold->Fill(255-startThreshold.GetData());
     nCounter=1;
     return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBABinarizationSimpleAdaptiveThreshold::AFBgCalculate(void)
 {
-    //отсутствует первоначальное накопление фона
+    //РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РїРµСЂРІРѕРЅР°С‡Р°Р»СЊРЅРѕРµ РЅР°РєРѕРїР»РµРЅРёРµ С„РѕРЅР°
     if (firstThTypes == 1)
     {
       countFirstCleanBgFrame = 0;
@@ -753,10 +753,10 @@ bool UBABinarizationSimpleAdaptiveThreshold::AFBgCalculate(void)
 
     if(nCounter<countFirstCleanBgFrame)
     {
-        //среднестатистическое накопление порога первые countFirstCleanBgFrame кадров
+        //СЃСЂРµРґРЅРµСЃС‚Р°С‚РёСЃС‚РёС‡РµСЃРєРѕРµ РЅР°РєРѕРїР»РµРЅРёРµ РїРѕСЂРѕРіР° РїРµСЂРІС‹Рµ countFirstCleanBgFrame РєР°РґСЂРѕРІ
         if(firstThTypes == 2)
             BCalculateFirstThreshold1(*Background, *Input, *Threshold, *Output);
-        //максимальное в точке в первые countFirstCleanBgFrame кадров
+        //РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РІ С‚РѕС‡РєРµ РІ РїРµСЂРІС‹Рµ countFirstCleanBgFrame РєР°РґСЂРѕРІ
         if(firstThTypes == 3)
             BCalculateFirstThreshold2(*Background, *Input, *Threshold, *Output);
         nCounter++;
@@ -797,7 +797,7 @@ bool UBABinarizationSimpleAdaptiveThreshold::AFBgCalculate(void)
 
     if(nCounter>=countFirstCleanBgFrame)
     {
-        //Вывод чисел в видеопоток инвертированного порога
+        //Р’С‹РІРѕРґ С‡РёСЃРµР» РІ РІРёРґРµРѕРїРѕС‚РѕРє РёРЅРІРµСЂС‚РёСЂРѕРІР°РЅРЅРѕРіРѕ РїРѕСЂРѕРіР°
         invThreshold->SetColorModel(ubmRGB24,true);
         UGraphics graph(&invThreshold.v);
 
@@ -835,7 +835,7 @@ bool UBABinarizationSimpleAdaptiveThreshold::AFBgCalculate(void)
 
 
 
-//ОЦУ
+//РћР¦РЈ
 
 
 
@@ -843,10 +843,10 @@ bool UBABinarizationSimpleAdaptiveThreshold::AFBgCalculate(void)
 
 
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
 // ---------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // ---------------------
 UBABinarizationOtsu::UBABinarizationOtsu(void)
     : minThreshold ("minThreshold", this),
@@ -862,7 +862,7 @@ UBABinarizationOtsu::~UBABinarizationOtsu(void)
 // ---------------------
 
 
-// Создание новой копии этого объекта
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UBABinarizationOtsu* UBABinarizationOtsu::New(void)
 {
  return new UBABinarizationOtsu;
@@ -882,8 +882,8 @@ bool UBABinarizationOtsu::BCalculate(UBitmap &input, UBitmap &output, UBitmap &m
         in++;*/
 
 
-        // Посчитаем минимальную и максимальную яркость всех пикселей
-        //Заполним зону не-интереса черным
+        // РџРѕСЃС‡РёС‚Р°РµРј РјРёРЅРёРјР°Р»СЊРЅСѓСЋ Рё РјР°РєСЃРёРјР°Р»СЊРЅСѓСЋ СЏСЂРєРѕСЃС‚СЊ РІСЃРµС… РїРёРєСЃРµР»РµР№
+        //Р—Р°РїРѕР»РЅРёРј Р·РѕРЅСѓ РЅРµ-РёРЅС‚РµСЂРµСЃР° С‡РµСЂРЅС‹Рј
         int min = *in;
         int max = *in;
 
@@ -910,16 +910,16 @@ bool UBABinarizationOtsu::BCalculate(UBitmap &input, UBitmap &output, UBitmap &m
         out=output.GetData();
         ms=mask.GetData();
 
-        // Гистограмма будет ограничена снизу и сверху значениями min и max,
-        // поэтому нет смысла создавать гистограмму размером 256 бинов
+        // Р“РёСЃС‚РѕРіСЂР°РјРјР° Р±СѓРґРµС‚ РѕРіСЂР°РЅРёС‡РµРЅР° СЃРЅРёР·Сѓ Рё СЃРІРµСЂС…Сѓ Р·РЅР°С‡РµРЅРёСЏРјРё min Рё max,
+        // РїРѕСЌС‚РѕРјСѓ РЅРµС‚ СЃРјС‹СЃР»Р° СЃРѕР·РґР°РІР°С‚СЊ РіРёСЃС‚РѕРіСЂР°РјРјСѓ СЂР°Р·РјРµСЂРѕРј 256 Р±РёРЅРѕРІ
         int histSize = max - min + 1;
         int* hist = new int[static_cast<unsigned long int>(histSize)];
 
-        // Заполним гистограмму нулями
+        // Р—Р°РїРѕР»РЅРёРј РіРёСЃС‚РѕРіСЂР°РјРјСѓ РЅСѓР»СЏРјРё
         for (int t = 0; t < histSize; t++)
         hist[t] = 0;
 
-        // И вычислим высоту бинов
+        // Р РІС‹С‡РёСЃР»РёРј РІС‹СЃРѕС‚Сѓ Р±РёРЅРѕРІ
         for (int i = 0; i < size; i++)
         {
             hist[*in - min]++;
@@ -927,41 +927,41 @@ bool UBABinarizationOtsu::BCalculate(UBitmap &input, UBitmap &output, UBitmap &m
         }
         in=input.GetData();
 
-        // Введем два вспомогательных числа:
-        int m = 0; // m - сумма высот всех бинов, домноженных на положение их середины
-        int n = 0; // n - сумма высот всех бинов
+        // Р’РІРµРґРµРј РґРІР° РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹С… С‡РёСЃР»Р°:
+        int m = 0; // m - СЃСѓРјРјР° РІС‹СЃРѕС‚ РІСЃРµС… Р±РёРЅРѕРІ, РґРѕРјРЅРѕР¶РµРЅРЅС‹С… РЅР° РїРѕР»РѕР¶РµРЅРёРµ РёС… СЃРµСЂРµРґРёРЅС‹
+        int n = 0; // n - СЃСѓРјРјР° РІС‹СЃРѕС‚ РІСЃРµС… Р±РёРЅРѕРІ
         for (int t = 0; t <= max - min; t++)
         {
             m += t * hist[t];
             n += hist[t];
         }
 
-        float maxSigma = -1; // Максимальное значение межклассовой дисперсии
-        int threshold = 0; // Порог, соответствующий maxSigma
+        float maxSigma = -1; // РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РјРµР¶РєР»Р°СЃСЃРѕРІРѕР№ РґРёСЃРїРµСЂСЃРёРё
+        int threshold = 0; // РџРѕСЂРѕРі, СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёР№ maxSigma
 
-        int alpha1 = 0; // Сумма высот всех бинов для класса 1
-        int beta1 = 0; // Сумма высот всех бинов для класса 1, домноженных на положение их середины
+        int alpha1 = 0; // РЎСѓРјРјР° РІС‹СЃРѕС‚ РІСЃРµС… Р±РёРЅРѕРІ РґР»СЏ РєР»Р°СЃСЃР° 1
+        int beta1 = 0; // РЎСѓРјРјР° РІС‹СЃРѕС‚ РІСЃРµС… Р±РёРЅРѕРІ РґР»СЏ РєР»Р°СЃСЃР° 1, РґРѕРјРЅРѕР¶РµРЅРЅС‹С… РЅР° РїРѕР»РѕР¶РµРЅРёРµ РёС… СЃРµСЂРµРґРёРЅС‹
 
-        // Переменная alpha2 не нужна, т.к. она равна m - alpha1
-        // Переменная beta2 не нужна, т.к. она равна n - alpha1
+        // РџРµСЂРµРјРµРЅРЅР°СЏ alpha2 РЅРµ РЅСѓР¶РЅР°, С‚.Рє. РѕРЅР° СЂР°РІРЅР° m - alpha1
+        // РџРµСЂРµРјРµРЅРЅР°СЏ beta2 РЅРµ РЅСѓР¶РЅР°, С‚.Рє. РѕРЅР° СЂР°РІРЅР° n - alpha1
 
-        // t пробегается по всем возможным значениям порога
+        // t РїСЂРѕР±РµРіР°РµС‚СЃСЏ РїРѕ РІСЃРµРј РІРѕР·РјРѕР¶РЅС‹Рј Р·РЅР°С‡РµРЅРёСЏРј РїРѕСЂРѕРіР°
         for (int t = 0; t < max - min; t++)
         {
             alpha1 += t * hist[t];
             beta1 += hist[t];
 
-            // Считаем вероятность класса 1.
+            // РЎС‡РёС‚Р°РµРј РІРµСЂРѕСЏС‚РЅРѕСЃС‚СЊ РєР»Р°СЃСЃР° 1.
             float w1 = static_cast<float>(beta1) / n;
-            // Нетрудно догадаться, что w2 тоже не нужна, т.к. она равна 1 - w1
+            // РќРµС‚СЂСѓРґРЅРѕ РґРѕРіР°РґР°С‚СЊСЃСЏ, С‡С‚Рѕ w2 С‚РѕР¶Рµ РЅРµ РЅСѓР¶РЅР°, С‚.Рє. РѕРЅР° СЂР°РІРЅР° 1 - w1
 
-            // a = a1 - a2, где a1, a2 - средние арифметические для классов 1 и 2
+            // a = a1 - a2, РіРґРµ a1, a2 - СЃСЂРµРґРЅРёРµ Р°СЂРёС„РјРµС‚РёС‡РµСЃРєРёРµ РґР»СЏ РєР»Р°СЃСЃРѕРІ 1 Рё 2
             float a = static_cast<float>(alpha1) / beta1 - static_cast<float>(m - alpha1) / (n - beta1);
 
-            // Наконец, считаем sigma
+            // РќР°РєРѕРЅРµС†, СЃС‡РёС‚Р°РµРј sigma
             float sigma = w1 * (1 - w1) * a * a;
 
-            // Если sigma больше текущей максимальной, то обновляем maxSigma и порог
+            // Р•СЃР»Рё sigma Р±РѕР»СЊС€Рµ С‚РµРєСѓС‰РµР№ РјР°РєСЃРёРјР°Р»СЊРЅРѕР№, С‚Рѕ РѕР±РЅРѕРІР»СЏРµРј maxSigma Рё РїРѕСЂРѕРі
             if (sigma > maxSigma)
             {
                 maxSigma = sigma;
@@ -969,7 +969,7 @@ bool UBABinarizationOtsu::BCalculate(UBitmap &input, UBitmap &output, UBitmap &m
             }
         }
 
-        // Не забудем, что порог отсчитывался от min, а не от нуля
+        // РќРµ Р·Р°Р±СѓРґРµРј, С‡С‚Рѕ РїРѕСЂРѕРі РѕС‚СЃС‡РёС‚С‹РІР°Р»СЃСЏ РѕС‚ min, Р° РЅРµ РѕС‚ РЅСѓР»СЏ
         threshold += min;
         if (threshold < minThreshold)
             threshold = minThreshold;
@@ -994,31 +994,31 @@ bool UBABinarizationOtsu::BCalculate(UBitmap &input, UBitmap &output, UBitmap &m
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров разностных кадров
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ СЂР°Р·РЅРѕСЃС‚РЅС‹С… РєР°РґСЂРѕРІ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBABinarizationOtsu::AFBgDefault(void)
 {
     minThreshold = 30;
     return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBABinarizationOtsu::AFBgBuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBABinarizationOtsu::AFBgReset(void)
 {
  return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBABinarizationOtsu::AFBgCalculate(void)
 {
  Output->SetRes(Input->GetWidth(), Input->GetHeight(), ubmY8);

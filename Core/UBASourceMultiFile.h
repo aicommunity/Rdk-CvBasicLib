@@ -18,63 +18,63 @@ See file license.txt for more information
 
 namespace RDK {
 
-/// Простой класс-источник изображений
+///  - 
 class RDK_LIB_TYPE UBASourceMultiFile: public UNet
 {
 public:
-/// Список файлов изображений
-ULProperty<std::vector<std::string>, UBASourceMultiFile> FileNames;
+/// File names
+UProperty<std::vector<std::string>, UBASourceMultiFile, ptPubParameter> FileNames;
 
-protected: // Временные переменные
+protected: //  
 bool LoadFlag;
 
 std::vector<bool> LoadFlags;
 
 bool BuildFlag;
 
-std::vector<UPropertyOutputData<UBitmap,UBASourceMultiFile>* > DynamicOutputs;
+std::vector<UProperty<UBitmap,UBASourceMultiFile, ptPubOutput>* > DynamicOutputs;
 
-public: // Методы
+public: // 
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 UBASourceMultiFile(void);
 virtual ~UBASourceMultiFile(void);
 // --------------------------
 
 // --------------------------
-// Методы управления параметрами
+//   
 // --------------------------
 bool SetFileNames(const std::vector<std::string> &value);
 // --------------------------
 
 // --------------------------
-// Методы управления данными
+//   
 // --------------------------
-/// Проверяет были ли загружены изображения
+///     
 bool IsLoad(void) const;
 // --------------------------
 
 // --------------------------
-// Системные методы управления объектом
+//    
 // --------------------------
-/// Выделяет память для новой чистой копии объекта этого класса
+///         
 virtual UBASourceMultiFile* New(void);
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
 protected:
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool ADefault(void);
 
 virtual bool ABuild(void);
 
-/// Сброс процесса счета.
+///   .
 virtual bool AReset(void);
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool ACalculate(void);
 // --------------------------
 };

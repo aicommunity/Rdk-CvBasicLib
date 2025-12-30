@@ -9,7 +9,7 @@ namespace RDK {
 using namespace std;
 
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 UCRConvolutionNetwork::UCRConvolutionNetwork(void)
 {
@@ -29,17 +29,17 @@ UCRConvolutionNetwork::~UCRConvolutionNetwork(void)
 
 }
 // -----------------------------
-// Методы доступа к данным модели
+// РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР° Рє РґР°РЅРЅС‹Рј РјРѕРґРµР»Рё
 // -----------------------------
-// Доступ к сети
+// Р”РѕСЃС‚СѓРї Рє СЃРµС‚Рё
 CNetwork& UCRConvolutionNetwork::GetNetwork(void)
 {
  return CVNetwork;
 }
 // --------------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // --------------------------
-// Число слоев сети
+// Р§РёСЃР»Рѕ СЃР»РѕРµРІ СЃРµС‚Рё
 const int& UCRConvolutionNetwork::GetNetworkNumLayers(void) const
 {
  return CVNetwork.GetNumLayers();
@@ -51,7 +51,7 @@ bool UCRConvolutionNetwork::SetNetworkNumLayers(const int &value)
  return true;
 }
 
-// Шаг ядра свертки для каждого слоя
+// РЁР°Рі СЏРґСЂР° СЃРІРµСЂС‚РєРё РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃР»РѕСЏ
 const vector<int>& UCRConvolutionNetwork::GetNetworkConvStep(void) const
 {
  return CVNetwork.GetNetworkConvStep();
@@ -63,7 +63,7 @@ bool UCRConvolutionNetwork::SetNetworkConvStep(const vector<int>& value)
  return true;
 }
 
-// Высота ядра свертки для каждого слоя
+// Р’С‹СЃРѕС‚Р° СЏРґСЂР° СЃРІРµСЂС‚РєРё РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃР»РѕСЏ
 const vector<int>& UCRConvolutionNetwork::GetNetworkConvHeight(void) const
 {
  return CVNetwork.GetNetworkConvHeight();
@@ -75,7 +75,7 @@ bool UCRConvolutionNetwork::SetNetworkConvHeight(const vector<int>& value)
  return true;
 }
 
-// Ширина ядра свертки для каждого слоя
+// РЁРёСЂРёРЅР° СЏРґСЂР° СЃРІРµСЂС‚РєРё РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃР»РѕСЏ
 const vector<int>& UCRConvolutionNetwork::GetNetworkConvWidth(void) const
 {
  return CVNetwork.GetNetworkConvWidth();
@@ -87,7 +87,7 @@ bool UCRConvolutionNetwork::SetNetworkConvWidth(const vector<int>& value)
  return true;
 }
 
-// Числое полей нейронов для каждого слоя
+// Р§РёСЃР»РѕРµ РїРѕР»РµР№ РЅРµР№СЂРѕРЅРѕРІ РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃР»РѕСЏ
 const vector<int>& UCRConvolutionNetwork::GetNetworkNumFields(void) const
 {
  return CVNetwork.GetNetworkNumFields();
@@ -99,13 +99,13 @@ bool UCRConvolutionNetwork::SetNetworkNumFields(const vector<int>& value)
  return true;
 }
 
-// Параметр скорости обучения
+// РџР°СЂР°РјРµС‚СЂ СЃРєРѕСЂРѕСЃС‚Рё РѕР±СѓС‡РµРЅРёСЏ
 const double& UCRConvolutionNetwork::GetNetworkEta(void) const
 {
  return CVNetwork.GetEta();
 }
 
-// Порядок весовых коэффициентов сети
+// РџРѕСЂСЏРґРѕРє РІРµСЃРѕРІС‹С… РєРѕСЌС„С„РёС†РёРµРЅС‚РѕРІ СЃРµС‚Рё
 const double& UCRConvolutionNetwork::GetNetworkDegWeights(void) const
 {
  return CVNetwork.GetDegWeights();
@@ -116,7 +116,7 @@ bool UCRConvolutionNetwork::SetNetworkDegWeights(const double& value)
  return CVNetwork.SetDegWeights(value);
 }
 
-// Размеры входного изображения
+// Р Р°Р·РјРµСЂС‹ РІС…РѕРґРЅРѕРіРѕ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
 const int& UCRConvolutionNetwork::GetInputWidth(void) const
 {
  return CVNetwork.GetInputWidth();
@@ -140,9 +140,9 @@ bool UCRConvolutionNetwork::SetInputHeight(const int &value)
 }
 
 // --------------------------
-// Методы управления данными
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РґР°РЅРЅС‹РјРё
 // --------------------------
-// Преобразовывает входной вектор в матрицу входа и загружает в нулевой слой сети
+// РџСЂРµРѕР±СЂР°Р·РѕРІС‹РІР°РµС‚ РІС…РѕРґРЅРѕР№ РІРµРєС‚РѕСЂ РІ РјР°С‚СЂРёС†Сѓ РІС…РѕРґР° Рё Р·Р°РіСЂСѓР¶Р°РµС‚ РІ РЅСѓР»РµРІРѕР№ СЃР»РѕР№ СЃРµС‚Рё
 bool UCRConvolutionNetwork::LoadInputData(double *input, int size)
 {
  if(size<(GetInputWidth()*GetInputHeight()))
@@ -170,7 +170,7 @@ bool UCRConvolutionNetwork::LoadInputData(double *input, int size)
  return true;
 }
 
-// Преобразовывает выходной слой полей нейронов сети в выходной вектор
+// РџСЂРµРѕР±СЂР°Р·РѕРІС‹РІР°РµС‚ РІС‹С…РѕРґРЅРѕР№ СЃР»РѕР№ РїРѕР»РµР№ РЅРµР№СЂРѕРЅРѕРІ СЃРµС‚Рё РІ РІС‹С…РѕРґРЅРѕР№ РІРµРєС‚РѕСЂ
 vector<double> UCRConvolutionNetwork::ConversionOutputData(int size)
 {
  vector<double> temp;
@@ -184,9 +184,9 @@ vector<double> UCRConvolutionNetwork::ConversionOutputData(int size)
  return temp;
 }
 // ------------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ------------------------
-// Загружает настройки весов из файла с именем 'name'
+// Р—Р°РіСЂСѓР¶Р°РµС‚ РЅР°СЃС‚СЂРѕР№РєРё РІРµСЃРѕРІ РёР· С„Р°Р№Р»Р° СЃ РёРјРµРЅРµРј 'name'
 bool UCRConvolutionNetwork::AFileLoad(fstream &file)
 {
 int i,j,k,n,m,l,o;
@@ -269,7 +269,7 @@ int i,j,k,n,m,l,o;
  return true;
 }
 
-// Сохраняет настройки весов в файл с именем 'name'
+// РЎРѕС…СЂР°РЅСЏРµС‚ РЅР°СЃС‚СЂРѕР№РєРё РІРµСЃРѕРІ РІ С„Р°Р№Р» СЃ РёРјРµРЅРµРј 'name'
 bool UCRConvolutionNetwork::AFileSave(fstream &file)
 {
  int i,j,k,n,m,l,o;
@@ -342,9 +342,9 @@ bool UCRConvolutionNetwork::AFileSave(fstream &file)
 // ------------------------
 
 // --------------------------
-// Системные методы управления объектом
+// РЎРёСЃС‚РµРјРЅС‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРј
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+// Р’С‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РґР»СЏ РЅРѕРІРѕР№ С‡РёСЃС‚РѕР№ РєРѕРїРёРё РѕР±СЉРµРєС‚Р° СЌС‚РѕРіРѕ РєР»Р°СЃСЃР°
 UCRConvolutionNetwork* UCRConvolutionNetwork::New(void)
 {
  return new UCRConvolutionNetwork;
@@ -352,9 +352,9 @@ UCRConvolutionNetwork* UCRConvolutionNetwork::New(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UCRConvolutionNetwork::ACRDefault(void)
 {
  CVNetwork.Default();
@@ -380,10 +380,10 @@ bool UCRConvolutionNetwork::ACRDefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UCRConvolutionNetwork::ACRBuild(void)
 {
  SetOutputDataSize(0,MMatrixSize(1,NumClasses.v));
@@ -392,7 +392,7 @@ bool UCRConvolutionNetwork::ACRBuild(void)
  return true;
 }
 
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool UCRConvolutionNetwork::ACRReset(void)
 {
  CVNetwork.Reset();
@@ -400,7 +400,7 @@ bool UCRConvolutionNetwork::ACRReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта на текущем шаге.
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р° РЅР° С‚РµРєСѓС‰РµРј С€Р°РіРµ.
 bool UCRConvolutionNetwork::ACRCalculate(void)
 {
  if(!LoadInputData(GetInputData(0)->Double, GetInputDataSize(0)[1]))
@@ -425,9 +425,9 @@ bool UCRConvolutionNetwork::ACRCalculate(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы обучения сети
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ РѕР±СѓС‡РµРЅРёСЏ СЃРµС‚Рё
 // --------------------------
-// Сброс настроек обучение в исходное состояние
+// РЎР±СЂРѕСЃ РЅР°СЃС‚СЂРѕРµРє РѕР±СѓС‡РµРЅРёРµ РІ РёСЃС…РѕРґРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 void UCRConvolutionNetwork::AResetTraining(void)
 {
  CVNetwork.ResetTraining();
@@ -435,7 +435,7 @@ void UCRConvolutionNetwork::AResetTraining(void)
  return;
 }
 
-// Однократное обучение на заданном примере
+// РћРґРЅРѕРєСЂР°С‚РЅРѕРµ РѕР±СѓС‡РµРЅРёРµ РЅР° Р·Р°РґР°РЅРЅРѕРј РїСЂРёРјРµСЂРµ
 double UCRConvolutionNetwork::Train(size_t exp_class)
 {
  CVNetwork.ATrain(int(exp_class));

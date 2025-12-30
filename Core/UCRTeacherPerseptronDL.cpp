@@ -6,7 +6,7 @@
 namespace RDK {
 
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 UCRTeacherPerseptronDL::UCRTeacherPerseptronDL(void)
 :
@@ -31,12 +31,12 @@ UCRTeacherPerseptronDL::~UCRTeacherPerseptronDL(void)
 // --------------------------
 
 // -----------------------------
-// Методы доступа к данным
+// РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР° Рє РґР°РЅРЅС‹Рј
 // -----------------------------
 // -----------------------------
 
 // -----------------------------
-// Методы управления общедоступными свойствами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РѕР±С‰РµРґРѕСЃС‚СѓРїРЅС‹РјРё СЃРІРѕР№СЃС‚РІР°РјРё
 // -----------------------------
 bool UCRTeacherPerseptronDL::SetMode(const int &value)
 {
@@ -49,15 +49,15 @@ bool UCRTeacherPerseptronDL::SetMode(const int &value)
 // -----------------------------
 
 // ------------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ------------------------
-// Загружает настройки из файла 'name'
+// Р—Р°РіСЂСѓР¶Р°РµС‚ РЅР°СЃС‚СЂРѕР№РєРё РёР· С„Р°Р№Р»Р° 'name'
 bool UCRTeacherPerseptronDL::AFileLoad(fstream &file)
 {
  return true;
 }
 
-// Сохраняет настройки в файл 'name'
+// РЎРѕС…СЂР°РЅСЏРµС‚ РЅР°СЃС‚СЂРѕР№РєРё РІ С„Р°Р№Р» 'name'
 bool UCRTeacherPerseptronDL::AFileSave(fstream &file)
 {
  return true;
@@ -65,9 +65,9 @@ bool UCRTeacherPerseptronDL::AFileSave(fstream &file)
 // ------------------------
 
 // --------------------------
-// Системные методы управления объектом
+// РЎРёСЃС‚РµРјРЅС‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРј
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+// Р’С‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РґР»СЏ РЅРѕРІРѕР№ С‡РёСЃС‚РѕР№ РєРѕРїРёРё РѕР±СЉРµРєС‚Р° СЌС‚РѕРіРѕ РєР»Р°СЃСЃР°
 UCRTeacherPerseptronDL* UCRTeacherPerseptronDL::New(void)
 {
  return new UCRTeacherPerseptronDL;
@@ -75,9 +75,9 @@ UCRTeacherPerseptronDL* UCRTeacherPerseptronDL::New(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UCRTeacherPerseptronDL::ACrDefault(void)
 {
  SetNumInputs(4);
@@ -94,17 +94,17 @@ bool UCRTeacherPerseptronDL::ACrDefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UCRTeacherPerseptronDL::ACrBuild(void)
 {
 
  return true;
 }
 
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool UCRTeacherPerseptronDL::ACrReset(void)
 {
  Temp_dW=0;
@@ -113,7 +113,7 @@ bool UCRTeacherPerseptronDL::ACrReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта на текущем шаге.
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р° РЅР° С‚РµРєСѓС‰РµРј С€Р°РіРµ.
 bool UCRTeacherPerseptronDL::ACrCalculate(void)
 {
  switch(Mode)
@@ -135,9 +135,9 @@ bool UCRTeacherPerseptronDL::ACrCalculate(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы обучения сети
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ РѕР±СѓС‡РµРЅРёСЏ СЃРµС‚Рё
 // --------------------------
-// Сброс настроек обучение в исходное состояние
+// РЎР±СЂРѕСЃ РЅР°СЃС‚СЂРѕРµРє РѕР±СѓС‡РµРЅРёРµ РІ РёСЃС…РѕРґРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 void UCRTeacherPerseptronDL::ACrResetTraining(void)
 {
  DeepPerseptron->NumLayers=1;
@@ -146,13 +146,13 @@ void UCRTeacherPerseptronDL::ACrResetTraining(void)
  DeepPerseptron->Build();
  DeepPerseptron->ResetTraining();
 
- // Инициализируем вектор смещений нулевого слоя
+ // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РІРµРєС‚РѕСЂ СЃРјРµС‰РµРЅРёР№ РЅСѓР»РµРІРѕРіРѕ СЃР»РѕСЏ
  Fi.resize(DeepPerseptron->Inputs->size());
  for(size_t i=0;i<Fi.size();i++)
   Fi[i]=(double)(((rand()*100.0)/double(RAND_MAX))/100.0-0.5)*0.1;
 }
 
-// Собственно выполнение алгоритма обучения
+// РЎРѕР±СЃС‚РІРµРЅРЅРѕ РІС‹РїРѕР»РЅРµРЅРёРµ Р°Р»РіРѕСЂРёС‚РјР° РѕР±СѓС‡РµРЅРёСЏ
 double UCRTeacherPerseptronDL::ACrTrainStep(size_t exp_class)
 {
  if(DeepPerseptron->NumLayers<1)
@@ -194,7 +194,7 @@ double UCRTeacherPerseptronDL::ACrTrainStep(size_t exp_class)
 
  DeepPerseptron->CalcLayer(x2, Q2, hidden_weights);
 
- // Настраиваем веса
+ // РќР°СЃС‚СЂР°РёРІР°РµРј РІРµСЃР°
  for(size_t i=0;i<hidden_weights.size();i++)
  {
   for(size_t j=0;j<hidden_weights[i].size();j++)
@@ -248,9 +248,9 @@ double UCRTeacherPerseptronDL::ACrTrainStep(size_t exp_class)
  return 0;
 }
 
-// Создание нового слоя для обучения
-// Подготоваливает алгоритм к обучению этого слоя и
-// возвращает индекс созданного слоя
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ СЃР»РѕСЏ РґР»СЏ РѕР±СѓС‡РµРЅРёСЏ
+// РџРѕРґРіРѕС‚РѕРІР°Р»РёРІР°РµС‚ Р°Р»РіРѕСЂРёС‚Рј Рє РѕР±СѓС‡РµРЅРёСЋ СЌС‚РѕРіРѕ СЃР»РѕСЏ Рё
+// РІРѕР·РІСЂР°С‰Р°РµС‚ РёРЅРґРµРєСЃ СЃРѕР·РґР°РЅРЅРѕРіРѕ СЃР»РѕСЏ
 int UCRTeacherPerseptronDL::Train1CreateLayer(void)
 {
  DeepPerseptron->NumLayers=DeepPerseptron->NumLayers+1;
@@ -266,7 +266,7 @@ int UCRTeacherPerseptronDL::Train1CreateLayer(void)
  return DeepPerseptron->NumLayers-1;
 }
 
-// Завершающие действия при завершении текущего обхода выборки
+// Р—Р°РІРµСЂС€Р°СЋС‰РёРµ РґРµР№СЃС‚РІРёСЏ РїСЂРё Р·Р°РІРµСЂС€РµРЅРёРё С‚РµРєСѓС‰РµРіРѕ РѕР±С…РѕРґР° РІС‹Р±РѕСЂРєРё
 void UCRTeacherPerseptronDL::ACrSampleIterationCompleteAction(void)
 {
  switch(Mode)
@@ -290,7 +290,7 @@ void UCRTeacherPerseptronDL::ACrSampleIterationCompleteAction(void)
 }
 
 
-// Вычисляет оценку обучения этапа 1
+// Р’С‹С‡РёСЃР»СЏРµС‚ РѕС†РµРЅРєСѓ РѕР±СѓС‡РµРЅРёСЏ СЌС‚Р°РїР° 1
 double UCRTeacherPerseptronDL::CalcTrain1Estimation(void)
 {
  return 0;

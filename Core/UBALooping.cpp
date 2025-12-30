@@ -1,3 +1,9 @@
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable:4244)
+#endif
+#ifndef UBALOOPING_CPP
+#define UBALOOPING_CPP
 /* ***********************************************************
 @Copyright Alexander V. Bakhshiev, Anton M. Korsakov 2009.
 E-mail:        alexab@ailab.ru, anton_korsakov@mail.ru
@@ -18,7 +24,7 @@ See file license.txt for more information
 namespace RDK {
 
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 UBALooping::UBALooping(void)
 : Input("Input",this),
@@ -35,30 +41,30 @@ UBALooping::~UBALooping(void)
 
 
 // --------------------------
-// Скрытые методы управления счетом трекинга
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С‚СЂРµРєРёРЅРіР°
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBALooping::ADefault(void)
 {
  return AFCDefault();
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBALooping::ABuild(void)
 {
  return AFCBuild();
 }
 
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool UBALooping::AReset(void)
 {
  return AFCReset();
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBALooping::ACalculate(void)
 {
  return AFCCalculate();
@@ -66,11 +72,11 @@ bool UBALooping::ACalculate(void)
 // --------------------------
 
 
-// Выделяет контура простым фильтром
+// Р’С‹РґРµР»СЏРµС‚ РєРѕРЅС‚СѓСЂР° РїСЂРѕСЃС‚С‹Рј С„РёР»СЊС‚СЂРѕРј
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
-// Создание новой копии этого объекта
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UBALoopingSimple* UBALoopingSimple::New(void)
 {
  return new UBALoopingSimple;
@@ -78,7 +84,7 @@ UBALoopingSimple* UBALoopingSimple::New(void)
 
 bool UBALoopingSimple::BCalculate(UBitmap &input, UBitmap &output)
 {
- int i; // Счётчик
+ int i; // РЎС‡С‘С‚С‡РёРє
  UBColor *pData, *ptData;
  unsigned r,g,b;
  unsigned tr,tg,tb;
@@ -232,41 +238,41 @@ bool UBALoopingSimple::BCalculate(UBitmap &input, UBitmap &output)
 
 
 // --------------------------
-// Скрытые методы управления счетом трекинга
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С‚СЂРµРєРёРЅРіР°
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBALoopingSimple::AFCDefault(void)
 {
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBALoopingSimple::AFCBuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool UBALoopingSimple::AFCReset(void)
 {
  return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBALoopingSimple::AFCCalculate(void)
 {
  return BCalculate(*Input, *Output);
 }
 // --------------------------
 
-// Выделяет контура фильтром собеля
+// Р’С‹РґРµР»СЏРµС‚ РєРѕРЅС‚СѓСЂР° С„РёР»СЊС‚СЂРѕРј СЃРѕР±РµР»СЏ
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
-// Создание новой копии этого объекта
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UBALoopingSobel* UBALoopingSobel::New(void)
 {
  return new UBALoopingSobel;
@@ -274,7 +280,7 @@ UBALoopingSobel* UBALoopingSobel::New(void)
 
 bool UBALoopingSobel::BCalculate(UBitmap &input, UBitmap &output)
 {
-// int i=0; // Счётчик
+// int i=0; // РЎС‡С‘С‚С‡РёРє
  UBColor *pData, *ptData;
  //int r,g,b;
 // int tr,tg,tb;
@@ -303,7 +309,7 @@ bool UBALoopingSobel::BCalculate(UBitmap &input, UBitmap &output)
   case ubmRGB24:
         pData+=linebytelength;
 
-        memset(ptData, 0, linebytelength);    // 1 строка
+        memset(ptData, 0, linebytelength);    // 1 СЃС‚СЂРѕРєР°
         ptData += linebytelength;
         for(y = 1; y < Height-1; y++)
         {
@@ -371,14 +377,14 @@ bool UBALoopingSobel::BCalculate(UBitmap &input, UBitmap &output)
             *ptData=0; ptData+=3;
             pData+=3;// 1 pixel
         }
-        memset(ptData, 0, linebytelength);    // 1 строка
+        memset(ptData, 0, linebytelength);    // 1 СЃС‚СЂРѕРєР°
 //   target->Contrasting(cmin,cmax);
   break;
 
   case ubmY8:
         pData+=linebytelength;
 
-        memset(ptData, 0, linebytelength);    // 1 строка
+        memset(ptData, 0, linebytelength);    // 1 СЃС‚СЂРѕРєР°
         ptData += linebytelength;
         for(y = 1; y < Height-1; y++)
         {
@@ -407,7 +413,7 @@ bool UBALoopingSobel::BCalculate(UBitmap &input, UBitmap &output)
             *ptData++=0;
             pData++;// 1 pixel
         }
-        memset(ptData, 0, linebytelength);    // 1 строка
+        memset(ptData, 0, linebytelength);    // 1 СЃС‚СЂРѕРєР°
 
 //   target->Contrasting();
   break;
@@ -415,7 +421,7 @@ bool UBALoopingSobel::BCalculate(UBitmap &input, UBitmap &output)
   case ubmY32:
         pData+=linebytelength;
 
-        memset(ptData, 0, linebytelength);    // 1 строка
+        memset(ptData, 0, linebytelength);    // 1 СЃС‚СЂРѕРєР°
         ptData += linebytelength;
         for(y = 1; y < Height-1; y++)
         {
@@ -446,7 +452,7 @@ bool UBALoopingSobel::BCalculate(UBitmap &input, UBitmap &output)
             ptData+=4;
             pData+=4;// 1 pixel
         }
-        memset(ptData, 0, linebytelength);    // 1 строка
+        memset(ptData, 0, linebytelength);    // 1 СЃС‚СЂРѕРєР°
 
 //   target->Contrasting();
   break;
@@ -458,35 +464,41 @@ bool UBALoopingSobel::BCalculate(UBitmap &input, UBitmap &output)
 
 
 // --------------------------
-// Скрытые методы управления счетом трекинга
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С‚СЂРµРєРёРЅРіР°
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBALoopingSobel::AFCDefault(void)
 {
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBALoopingSobel::AFCBuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool UBALoopingSobel::AFCReset(void)
 {
  return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBALoopingSobel::AFCCalculate(void)
 {
  return BCalculate(*Input, *Output);
 }
 // --------------------------
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 }
 //---------------------------------------------------------------------------
+
+#endif // UBALOOPING_CPP
 

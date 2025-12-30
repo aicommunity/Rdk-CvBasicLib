@@ -22,55 +22,55 @@ namespace RDK {
 
 class RDK_LIB_TYPE UCRDirectCompare: public UCRClassifier
 {
-public: // Общедоступные свойства
-// Порог распознавания по максимуму суммы превышения
-// в процентах от максимума входов (0,1)
-RDK::ULProperty<double,UCRDirectCompare> MaxRecThreshold;
+public: //  
+//      
+//      (0,1)
+RDK::UProperty<double,UCRDirectCompare, ptPubParameter> MaxRecThreshold;
 
-RDK::ULProperty<double,UCRDirectCompare> MinRecThreshold;
+RDK::UProperty<double,UCRDirectCompare, ptPubParameter> MinRecThreshold;
 
-RDK::ULProperty<double,UCRDirectCompare> MiddleRecThreshold;
+RDK::UProperty<double,UCRDirectCompare, ptPubParameter> MiddleRecThreshold;
 
-RDK::ULProperty<double,UCRDirectCompare> AbsoluteRecThreshold;
+RDK::UProperty<double,UCRDirectCompare, ptPubParameter> AbsoluteRecThreshold;
 
-// Тип распознавания
-// 0 - по максимуму подобия по всей выборке
-// 1 - по максимуму суммы превышения плавающего порога по всей выборке
-// 2 - по максимуму суммы превышения фиксированного порога по всей выборке
-// 3 - по числу превышений фиксированного порога по всей выборке
-// 4 - аналогично 1 но с 2 уровнями работы
-//         выше max - по узкой полосе
-//        ниже max - по широкой полосе
-// 5 - Комплексный алгоритм
-// 6 - Алгоритм по 5 максимумам
-// 10 - ретрансляция входов на выход
-RDK::ULProperty<int,UCRDirectCompare> RecognitionType;
+//  
+// 0 -      
+// 1 -         
+// 2 -         
+// 3 -        
+// 4 -  1   2  
+//          max -   
+//         max -   
+// 5 -  
+// 6 -   5 
+// 10 -    
+RDK::UProperty<int,UCRDirectCompare, ptPubParameter> RecognitionType;
 
-// Минимум разности достоверного результата (по разности двух максимумов)
-RDK::ULProperty<double,UCRDirectCompare> ReliabilityDistance;
+//     (   )
+RDK::UProperty<double,UCRDirectCompare, ptPubParameter> ReliabilityDistance;
 
-// Порог проверки достоверности результата по абсолютному значению максимума
-RDK::ULProperty<double,UCRDirectCompare> ReliabilityValue;
+//        
+RDK::UProperty<double,UCRDirectCompare, ptPubParameter> ReliabilityValue;
 
-protected: // Данные модели
+protected: //  
 //public:
-// Ожидаемые вектора
+//  
 vector<vector<vector<double> > > Samples;
 
-// Вектор входов сети
+//   
 //vector<double> Inputs;
 
-// Вектор оригинальных выходов слоев сети
+//     
 vector<double> NativeOutput;
 
-protected: // Данные и параметры обучения сети
+protected: //     
 
-protected: // Временные переменные
+protected: //  
 
 
 public:
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 UCRDirectCompare(void);
 ~UCRDirectCompare(void);
@@ -78,83 +78,83 @@ UCRDirectCompare(void);
 
 protected:
 // -----------------------------
-// Методы управления общедоступными свойствами
+//    
 // -----------------------------
-// Устанавливает число входов всех скрытых слоев
+//      
 //bool SetNumInputs(size_t numinputs);
 
-// Порог распознавания по максимуму суммы превышения
+//      
 bool SetMaxRecThreshold(const double &value);
 // -----------------------------
 
 // -----------------------------
-// Методы доступа к данным модели
+//     
 // -----------------------------
 public:
-// Вектор выборки
+//  
 double GetSamples(int i, int j, int k) const;
 
-// Вектор оригинальных выходов слоев сети
+//     
 const vector<double>& GetNativeOutput(void) const;
 
-// Вектор входов
+//  
 //const vector<double>& GetInputs(void) const;
 // -----------------------------
 
 // ------------------------
-// Методы счета
+//  
 // ------------------------
 public:
-// Загружает настройки весов из файла с именем 'name'
+//        'name'
 virtual bool AFileLoad(fstream &file);
 
-// Сохраняет настройки весов в файл с именем 'name'
+//        'name'
 virtual bool AFileSave(fstream &file);
 // ------------------------
 
 // --------------------------
-// Системные методы управления объектом
+//    
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+//         
 virtual UCRDirectCompare* New(void);
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
 protected:
-// Восстановление настроек по умолчанию и сброс процесса счета
+//        
 virtual bool ACRDefault(void);
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+//     
+//   
+//    Reset()   Ready  true
+//    
 virtual bool ACRBuild(void);
 
-// Сброс процесса счета.
+//   .
 virtual bool ACRReset(void);
 
-// Выполняет расчет этого объекта на текущем шаге.
+//       .
 virtual bool ACRCalculate(void);
 // --------------------------
 
 // --------------------------
-// Скрытые методы обучения сети
+//    
 // --------------------------
 protected:
-// Сброс настроек обучение в исходное состояние
+//      
 virtual void AResetTraining(void);
 
-// Однократное обучение на заданном примере
+//     
 virtual double ATrain(size_t exp_class);
 // --------------------------
 
 // ------------------------
-// Скрытые методы счета
+//   
 // ------------------------
 public:
-// Устанавливает значения входного вектора для распознавания
+//      
 //virtual bool SetInput(const Real &input);
 // ------------------------
 };

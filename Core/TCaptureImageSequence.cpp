@@ -11,7 +11,7 @@
 namespace RDK
 {
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 TCaptureImageSequence::TCaptureImageSequence(void)
  : Path("Path",this, &TCaptureImageSequence::SetPath),
@@ -29,9 +29,9 @@ TCaptureImageSequence::~TCaptureImageSequence(void)
 }
 
 // --------------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // --------------------------
-/// Путь до папки с изображениями
+/// РџСѓС‚СЊ РґРѕ РїР°РїРєРё СЃ РёР·РѕР±СЂР°Р¶РµРЅРёСЏРјРё
 bool TCaptureImageSequence::SetPath(const std::string &value)
 {
  CalcActualPath(value, IsPathRelativeFromConfig, ActualPath);
@@ -39,7 +39,7 @@ bool TCaptureImageSequence::SetPath(const std::string &value)
  return true;
 }
 
-/// Признак, требующий рассматривать путь как относительный от папки с конфигурацией
+/// РџСЂРёР·РЅР°Рє, С‚СЂРµР±СѓСЋС‰РёР№ СЂР°СЃСЃРјР°С‚СЂРёРІР°С‚СЊ РїСѓС‚СЊ РєР°Рє РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅС‹Р№ РѕС‚ РїР°РїРєРё СЃ РєРѕРЅС„РёРіСѓСЂР°С†РёРµР№
 bool TCaptureImageSequence::SetIsPathRelativeFromConfig(const bool &value)
 {
  CalcActualPath(Path, value, ActualPath);
@@ -47,13 +47,13 @@ bool TCaptureImageSequence::SetIsPathRelativeFromConfig(const bool &value)
  return true;
 }
 
-/// Флаг зацикливания воспроизведения
+/// Р¤Р»Р°Рі Р·Р°С†РёРєР»РёРІР°РЅРёСЏ РІРѕСЃРїСЂРѕРёР·РІРµРґРµРЅРёСЏ
 bool TCaptureImageSequence::SetRepeatFlag(const bool &value)
 {
  return true;
 }
 
-/// Интервал между считыванием изображений (мс)
+/// РРЅС‚РµСЂРІР°Р» РјРµР¶РґСѓ СЃС‡РёС‚С‹РІР°РЅРёРµРј РёР·РѕР±СЂР°Р¶РµРЅРёР№ (РјСЃ)
 bool TCaptureImageSequence::SetCaptureDelay(const int &value)
 {
  return true;
@@ -61,7 +61,7 @@ bool TCaptureImageSequence::SetCaptureDelay(const int &value)
 // --------------------------
 
 // --------------------------
-// Скрытые методы
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹
 // --------------------------
 bool TCaptureImageSequence::ASetEnableCapture(const bool &value)
 {
@@ -83,7 +83,7 @@ bool TCaptureImageSequence::AStopCapture(void)
 // --------------------------
 
 // --------------------------
-/// Выделяет память для новой чистой копии объекта этого класса
+/// Р’С‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РґР»СЏ РЅРѕРІРѕР№ С‡РёСЃС‚РѕР№ РєРѕРїРёРё РѕР±СЉРµРєС‚Р° СЌС‚РѕРіРѕ РєР»Р°СЃСЃР°
 TCaptureImageSequence* TCaptureImageSequence::New(void)
 {
  return new TCaptureImageSequence;
@@ -183,7 +183,7 @@ bool TCaptureImageSequence::ACalculate1(void)
  return true;
 }
 
-/// Вычисляет актуальный путь
+/// Р’С‹С‡РёСЃР»СЏРµС‚ Р°РєС‚СѓР°Р»СЊРЅС‹Р№ РїСѓС‚СЊ
 void TCaptureImageSequence::CalcActualPath(const std::string &path, bool is_relative, std::string &result)
 {
  if(is_relative)

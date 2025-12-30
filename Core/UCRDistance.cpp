@@ -38,7 +38,7 @@ int elemsort(const void *v1,const void *v2)
 }
 
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 UCRDistance::UCRDistance(void)
 //: UCRClassifier(name),
@@ -70,9 +70,9 @@ UCRDistance::~UCRDistance(void)
 // --------------------------
 
 // -----------------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // -----------------------------
-// Устанавливает число входов всех скрытых слоев
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ С‡РёСЃР»Рѕ РІС…РѕРґРѕРІ РІСЃРµС… СЃРєСЂС‹С‚С‹С… СЃР»РѕРµРІ
 bool UCRDistance::SetNumLayerInputs(const size_t &numinputs)
 {
 // NumLayerInputs=numinputs;
@@ -81,7 +81,7 @@ bool UCRDistance::SetNumLayerInputs(const size_t &numinputs)
  return true;
 }
 
-// Устанавливает скорость обучения сети
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЃРєРѕСЂРѕСЃС‚СЊ РѕР±СѓС‡РµРЅРёСЏ СЃРµС‚Рё
 bool UCRDistance::SetTrainingRate(const double &tr)
 {
  if(tr <= 0)
@@ -90,7 +90,7 @@ bool UCRDistance::SetTrainingRate(const double &tr)
  return true;
 }
 
-// Порог распознавания по максимуму суммы превышения
+// РџРѕСЂРѕРі СЂР°СЃРїРѕР·РЅР°РІР°РЅРёСЏ РїРѕ РјР°РєСЃРёРјСѓРјСѓ СЃСѓРјРјС‹ РїСЂРµРІС‹С€РµРЅРёСЏ
 bool UCRDistance::SetMaxRecThreshold(const double &value)
 {
 // MaxOutputValue=(0.5-MinRecThreshold-value*(0.5-MinRecThreshold))*OutputSize;
@@ -101,45 +101,45 @@ bool UCRDistance::SetMaxRecThreshold(const double &value)
 // -----------------------------
 
 // -----------------------------
-// Методы доступа к данным модели
+// РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР° Рє РґР°РЅРЅС‹Рј РјРѕРґРµР»Рё
 // -----------------------------
-// Вектор математического ожидания
+// Р’РµРєС‚РѕСЂ РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРіРѕ РѕР¶РёРґР°РЅРёСЏ
 double UCRDistance::GetMiddleSamples(int i, int j) const
 {
  return MiddleSamples[i][j];
 }
 
-// Вектор выборки
+// Р’РµРєС‚РѕСЂ РІС‹Р±РѕСЂРєРё
 double UCRDistance::GetSamples(int i, int j, int k) const
 {
  return Samples[i][j][k];
 }
 
-// Вектор исходных данных выборки
+// Р’РµРєС‚РѕСЂ РёСЃС…РѕРґРЅС‹С… РґР°РЅРЅС‹С… РІС‹Р±РѕСЂРєРё
 double UCRDistance::GetPreSamples(int i, int j, int k) const
 {
  return PreSamples[i][j][k];
 }
 
-// Вектор оригинальных выходов слоев сети
+// Р’РµРєС‚РѕСЂ РѕСЂРёРіРёРЅР°Р»СЊРЅС‹С… РІС‹С…РѕРґРѕРІ СЃР»РѕРµРІ СЃРµС‚Рё
 const vector<double>& UCRDistance::GetNativeOutput(void) const
 {
  return NativeOutput;
 }
 
-// Вектор входов
+// Р’РµРєС‚РѕСЂ РІС…РѕРґРѕРІ
 const vector<double>& UCRDistance::GetInputs(void) const
 {
  return Inputs;
 }
 
-// Дисперсия отклонений
+// Р”РёСЃРїРµСЂСЃРёСЏ РѕС‚РєР»РѕРЅРµРЅРёР№
 double UCRDistance::GetDispersion(int i, int j) const
 {
  return Dispersion[i][j];
 }
 
-// Стандартное отклонение
+// РЎС‚Р°РЅРґР°СЂС‚РЅРѕРµ РѕС‚РєР»РѕРЅРµРЅРёРµ
 double UCRDistance::GetSDeviation(int i, int j) const
 {
  if(fabs(MiddleSamples[i][j])>1e-5)
@@ -152,9 +152,9 @@ double UCRDistance::GetSDeviation(int i, int j) const
 // -----------------------------
 
 // ------------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ------------------------
-// Загружает настройки из файла
+// Р—Р°РіСЂСѓР¶Р°РµС‚ РЅР°СЃС‚СЂРѕР№РєРё РёР· С„Р°Р№Р»Р°
 bool UCRDistance::AFileLoad(fstream &file)
 {
  int i,j,k;
@@ -199,7 +199,7 @@ bool UCRDistance::AFileLoad(fstream &file)
  return true;
 }
 
-// Сохраняет настройки в файл
+// РЎРѕС…СЂР°РЅСЏРµС‚ РЅР°СЃС‚СЂРѕР№РєРё РІ С„Р°Р№Р»
 bool UCRDistance::AFileSave(fstream &file)
 {
  size_t i,j,k;
@@ -235,9 +235,9 @@ bool UCRDistance::AFileSave(fstream &file)
 // ------------------------
 
 // --------------------------
-// Системные методы управления объектом
+// РЎРёСЃС‚РµРјРЅС‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРј
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+// Р’С‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РґР»СЏ РЅРѕРІРѕР№ С‡РёСЃС‚РѕР№ РєРѕРїРёРё РѕР±СЉРµРєС‚Р° СЌС‚РѕРіРѕ РєР»Р°СЃСЃР°
 UCRDistance* UCRDistance::New(void)
 {
  return new UCRDistance;
@@ -245,9 +245,9 @@ UCRDistance* UCRDistance::New(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UCRDistance::ACRDefault(void)
 {
  SetOutputDataSize(0,MMatrixSize(1,2));
@@ -283,17 +283,17 @@ bool UCRDistance::ACRDefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UCRDistance::ACRBuild(void)
 {
  return true;
 }
 
 
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool UCRDistance::ACRReset(void)
 {
  return true;
@@ -419,9 +419,9 @@ bool UCRDistance::ACRCalculate(void)
 
 
 // --------------------------
-// Скрытые методы обучения сети
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ РѕР±СѓС‡РµРЅРёСЏ СЃРµС‚Рё
 // --------------------------
-// Сброс настроек обучение в исходное состояние
+// РЎР±СЂРѕСЃ РЅР°СЃС‚СЂРѕРµРє РѕР±СѓС‡РµРЅРёРµ РІ РёСЃС…РѕРґРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 void UCRDistance::AResetTraining(void)
 {
 // Samples.resize(GetOutputDataSize(0));
@@ -435,14 +435,14 @@ void UCRDistance::AResetTraining(void)
  }
 }
 
-// Однократное обучение на заданном примере
+// РћРґРЅРѕРєСЂР°С‚РЅРѕРµ РѕР±СѓС‡РµРЅРёРµ РЅР° Р·Р°РґР°РЅРЅРѕРј РїСЂРёРјРµСЂРµ
 double UCRDistance::ATrain(size_t exp_class)
 {
  double E=0;
 
  PreSamples[exp_class].push_back(Inputs);
 
- // Расчет максимальных элементов вектора
+ // Р Р°СЃС‡РµС‚ РјР°РєСЃРёРјР°Р»СЊРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ РІРµРєС‚РѕСЂР°
  if(int(exp_class) == GetOutputDataSize(0)[1]-1)
  {
   CalcMiddleSamples();
@@ -452,10 +452,10 @@ double UCRDistance::ATrain(size_t exp_class)
  return E;
 }
 
-// Расчет средних ожидаемых векторов
+// Р Р°СЃС‡РµС‚ СЃСЂРµРґРЅРёС… РѕР¶РёРґР°РµРјС‹С… РІРµРєС‚РѕСЂРѕРІ
 void UCRDistance::CalcMiddleSamples(void)
 {
- // Считаем среднее
+ // РЎС‡РёС‚Р°РµРј СЃСЂРµРґРЅРµРµ
  MiddleSamples.resize(PreSamples.size());
 
  for(size_t i=0;i<PreSamples.size();i++)
@@ -471,7 +471,7 @@ void UCRDistance::CalcMiddleSamples(void)
   }
  }
 
- // Считаем дисперсию
+ // РЎС‡РёС‚Р°РµРј РґРёСЃРїРµСЂСЃРёСЋ
  Dispersion.resize(PreSamples.size());
  DispersionBanIndexes.clear();
 
@@ -490,7 +490,7 @@ void UCRDistance::CalcMiddleSamples(void)
 //   Dispersion[i][k]/=MiddleSamples[i][k];
 //   Dispersion[i][k]*=100;
 
-   // Считаем запрещенные индексы
+   // РЎС‡РёС‚Р°РµРј Р·Р°РїСЂРµС‰РµРЅРЅС‹Рµ РёРЅРґРµРєСЃС‹
    if(GetSDeviation(int(i),int(k))>MaxDispersionValue)
     DispersionBanIndexes.push_back(int(k));
   }
@@ -501,14 +501,14 @@ void UCRDistance::CalcMiddleSamples(void)
 // CalcMiddleSamples();
 }
 
-// Расчет максимальных элементов вектора
+// Р Р°СЃС‡РµС‚ РјР°РєСЃРёРјР°Р»СЊРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ РІРµРєС‚РѕСЂР°
 void UCRDistance::CalcMaxElements(void)
 {
  if(MiddleSamples.size() == 0 ||
     MiddleSamples[0].size() == 0)
   return;
 
- // Считаем максимальные компоненты выборочно для класса
+ // РЎС‡РёС‚Р°РµРј РјР°РєСЃРёРјР°Р»СЊРЅС‹Рµ РєРѕРјРїРѕРЅРµРЅС‚С‹ РІС‹Р±РѕСЂРѕС‡РЅРѕ РґР»СЏ РєР»Р°СЃСЃР°
  NumMaxElements->resize(MiddleSamples.size());
  MaxClassElements.resize(MiddleSamples.size());
  MaxClassElementsIndex.resize(MiddleSamples.size());
@@ -537,7 +537,7 @@ void UCRDistance::CalcMaxElements(void)
   reverse(temp.begin(),temp.end());
   vector<double> orig=MaxClassElements[k];
 
-  // Расчет индексов максимальных компонент
+  // Р Р°СЃС‡РµС‚ РёРЅРґРµРєСЃРѕРІ РјР°РєСЃРёРјР°Р»СЊРЅС‹С… РєРѕРјРїРѕРЅРµРЅС‚
   for(size_t j=0;j<MiddleSamples[0].size();j++)
    for(size_t i=0;i<MiddleSamples[0].size();i++)
    if(temp[j] != -1 && orig[i] == temp[j])
@@ -549,7 +549,7 @@ void UCRDistance::CalcMaxElements(void)
 
  }
 
- // Расчет весов компонент выборочно для класса
+ // Р Р°СЃС‡РµС‚ РІРµСЃРѕРІ РєРѕРјРїРѕРЅРµРЅС‚ РІС‹Р±РѕСЂРѕС‡РЅРѕ РґР»СЏ РєР»Р°СЃСЃР°
  Weights.resize(MaxClassElements.size());
  for(size_t k=0;k<Weights.size();k++)
  {
@@ -581,7 +581,7 @@ void UCRDistance::CalcMaxElements(void)
 }
 
 
-// Отсечение выбросов в обучающей выборке по дисперсии
+// РћС‚СЃРµС‡РµРЅРёРµ РІС‹Р±СЂРѕСЃРѕРІ РІ РѕР±СѓС‡Р°СЋС‰РµР№ РІС‹Р±РѕСЂРєРµ РїРѕ РґРёСЃРїРµСЂСЃРёРё
 void UCRDistance::CalcDispersioUCRopping(void)
 {
  Samples=PreSamples;
@@ -623,9 +623,9 @@ void UCRDistance::CalcDispersioUCRopping(void)
 
 
 // ------------------------
-// Скрытые методы счета
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ------------------------
-// Устанавливает значения входного вектора для распознавания
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ Р·РЅР°С‡РµРЅРёСЏ РІС…РѕРґРЅРѕРіРѕ РІРµРєС‚РѕСЂР° РґР»СЏ СЂР°СЃРїРѕР·РЅР°РІР°РЅРёСЏ
 bool UCRDistance::SetInput(const vector<double> &input)
 {
  size_t i;

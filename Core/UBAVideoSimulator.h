@@ -28,13 +28,13 @@ UColorT Color4;
 bool Visible;
 int MovingDirection;
 
-// 0 - однотонный объект
-// 1 - с вертикальным градиентом
+// 0 -  
+// 1 -   
 int Mode;
 
 public:
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 UBVSObject(void);
 // --------------------------
@@ -49,243 +49,243 @@ RDK_LIB_TYPE USerStorageXML& operator >> (USerStorageXML& storage, UBVSObject &d
 RDK_LIB_TYPE USerStorageBinary& operator << (USerStorageBinary& storage, const UBVSObject &data);
 RDK_LIB_TYPE USerStorageBinary& operator >> (USerStorageBinary& storage, UBVSObject &data);  
 
-/// Базовый класс симуляции сцен
+///    
 class RDK_LIB_TYPE UBAVideoSimulator: public UNet
 {
-public: // Параметры
-/// Режим оформления фона эмулятора
-/// 0 - не создавать фон
-/// 1 - однотонный фон с BgMode
+public: // 
+///    
+/// 0 -   
+/// 1 -    BgMode
 UProperty<int,UBAVideoSimulator, ptPubParameter> BgMode;
 
-/// Цвет фона
+///  
 UProperty<UColorT ,UBAVideoSimulator, ptPubParameter> BgColor;
 
-/// Флаг скрытия всех объектов с изображения
+///      
 UProperty<bool,UBAVideoSimulator, ptPubParameter> HideAllFlag;
 
-/// Число объектов
+///  
 UProperty<int,UBAVideoSimulator, ptPubParameter> NumObjects;
 
-/// Граница рабочей области
+///   
 UProperty<UBRect,UBAVideoSimulator, ptPubParameter> WorkArea;
 
-/// Включить отображение сетки
-ULProperty<bool, UBAVideoSimulator> ShowGrid;
+///   
+UProperty<bool, UBAVideoSimulator, ptPubParameter> ShowGrid;
 
-/// Шаг отрисовки сетки (в пикселях)
-ULProperty<int, UBAVideoSimulator> PixelGridStep;
+///    ( )
+UProperty<int, UBAVideoSimulator, ptPubParameter> PixelGridStep;
 
-/// Цвет сетки
-ULProperty<UColorT, UBAVideoSimulator> PixelGridColor;
+///  
+UProperty<UColorT, UBAVideoSimulator, ptPubParameter> PixelGridColor;
 
-/// Толщина линии сетки
-ULProperty<int, UBAVideoSimulator> PixelGridWidth;
+///   
+UProperty<int, UBAVideoSimulator, ptPubParameter> PixelGridWidth;
 
-protected: // Входные и выходные данные
-UPropertyInputData<UBitmap, UBAVideoSimulator, ptPubInput | ptState> InputData;
+protected: //    
+UProperty<UBitmap, UBAVideoSimulator, ptPubInput | ptState> InputData;
 
-/// Входное изображение
-UPropertyInputData<UBitmap, UBAVideoSimulator> Input;
+///  
+UProperty<UBitmap, UBAVideoSimulator, ptPubParameter> Input;
 
-/// Выходное изображение
-UPropertyOutputData<UBitmap, UBAVideoSimulator> Output;
+///  
+UProperty<UBitmap, UBAVideoSimulator, ptPubParameter> Output;
 
-/// Массив объектов
+///  
 UProperty<std::vector<UBVSObject>, UBAVideoSimulator, ptPubParameter> Objects;
 
-protected: // Данные
-/// Текущий управляемый объект
+protected: // 
+///   
 int CurrentObjectIndex;
 
-protected: // Временные переменные
+protected: //  
 UAGraphics *Graphics;
 
 UBitmap Canvas;
 
 
-public: // Методы
+public: // 
 // ---------------------
-// Конструкторы и деструкторы
+//   
 // ---------------------
 UBAVideoSimulator(void);
 virtual ~UBAVideoSimulator(void);
 // ---------------------
 
 // ---------------------
-// Методы управления параметрами
+//   
 // ---------------------
-/// Режим оформления фона эмулятора
-/// (не используется)
+///    
+/// ( )
 const int& GetBgMode(void) const;
 bool SetBgMode(const int &value);
 
-/// Флаг скрытия всех объектов с изображения
+///      
 const bool& GetHideAllFlag(void) const;
 bool SetHideAllFlag(const bool &value);
 
-/// Граница рабочей области
+///   
 const UBRect& GetWorkArea(void) const;
 bool SetWorkArea(const UBRect &value);
 // ---------------------
 
 // ---------------------
-// Методы управления данными
+//   
 // ---------------------
-/// Удаляет все объекты
+///   
 void ClearObjects(void);
 
-/// Число объектов
+///  
 const int& GetNumObjects(void) const;
 bool SetNumObjects(const int &value);
 
-/// Массив объектов
+///  
 const UBVSObject& GetObjectData(int index) const;
 bool SetObjectData(int index, const UBVSObject &data);
 const UBVSObject& GetCurrentObjectData(void) const;
 bool SetCurrentObjectData(const UBVSObject &data);
 
-/// Текущий управляемый объект
+///   
 int GetCurrentObjectIndex(void) const;
 bool SetCurrentObjectIndex(int value);
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров
+//     
 // --------------------------
 protected:
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool ADefault(void);
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool ABuild(void);
 
-/// Сброс процесса счета без потери настроек
+///      
 virtual bool AReset(void);
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool ACalculate(void);
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров симуляторов
+//      
 // --------------------------
 protected:
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool AFSDefault(void);
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool AFSBuild(void);
 
-/// Сброс процесса счета без потери настроек
+///      
 virtual bool AFSReset(void);
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool AFSCalculate(void);
 // --------------------------
 };
 
-/// Осуществляет симуляцию простых двумерных сцен
+///     
 class RDK_LIB_TYPE UBAVideoSimulatorSimple: public UBAVideoSimulator
 {
-protected: // Параметры
+protected: // 
 
 
-public: // Методы
+public: // 
 // ---------------------
-// Конструкторы и деструкторы
+//   
 // ---------------------
 UBAVideoSimulatorSimple(void);
 virtual ~UBAVideoSimulatorSimple(void);
 // ---------------------
 
 // ---------------------
-// Методы счета
+//  
 // ---------------------
-/// Создание новой копии этого объекта
+///     
 virtual UBAVideoSimulatorSimple* New(void);
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров симуляторов
+//      
 // --------------------------
 protected:
 void CreateFillBackground(UBitmap &canvas);
 
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool AFSDefault(void);
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool AFSBuild(void);
 
-/// Сброс процесса счета без потери настроек
+///      
 virtual bool AFSReset(void);
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool AFSCalculate(void);
 // --------------------------
 };
 
-/// Осуществляет симуляцию простых двумерных сцен и создает еще один выход с верным бинарным кадром
+///              
 class RDK_LIB_TYPE UBAVideoSimulatorSimpleBin: public UBAVideoSimulator
 {
-protected: // Параметры
-    /// Выходное бинкарное изображение
-    UPropertyOutputData<UBitmap, UBAVideoSimulatorSimpleBin> BinarOutput;
-    ///количесво первых кадров, считающихся фоном
-    ULProperty<int, UBAVideoSimulatorSimpleBin> countFirstCleanBgFrame;
-    ///счетчик того, что выше
+protected: // 
+    ///   
+    UProperty<UBitmap, UBAVideoSimulatorSimpleBin, ptPubParameter> BinarOutput;
+    ///  ,  
+    UProperty<int, UBAVideoSimulatorSimpleBin, ptPubParameter> countFirstCleanBgFrame;
+    /// ,  
     int nCounterBG;
     UBitmap CanvasBin;
 
 
-public: // Методы
+public: // 
 // ---------------------
-// Конструкторы и деструкторы
+//   
 // ---------------------
 UBAVideoSimulatorSimpleBin(void);
 virtual ~UBAVideoSimulatorSimpleBin(void);
 // ---------------------
 
 // ---------------------
-// Методы счета
+//  
 // ---------------------
-/// Создание новой копии этого объекта
+///     
 virtual UBAVideoSimulatorSimpleBin* New(void);
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров симуляторов
+//      
 // --------------------------
 protected:
 void CreateFillBackground(UBitmap &canvas);
 
 
-///Функцмия рисования
+/// 
 void DrawSimple(UBitmap &canvas, int isBin);
 
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool AFSDefault(void);
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool AFSBuild(void);
 
-/// Сброс процесса счета без потери настроек
+///      
 virtual bool AFSReset(void);
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool AFSCalculate(void);
 // --------------------------
 };

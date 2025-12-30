@@ -103,7 +103,7 @@ void TSNE::run(double* X, int N, int D, double* Y, int no_dims, double perplexit
     for(int i = 0; i < N * D; i++) X[i] /= max_X;
 
     // Compute input similarities for exact t-SNE
-    double* P; unsigned int* row_P; unsigned int* col_P; double* val_P;
+    double* P = NULL; unsigned int* row_P = NULL; unsigned int* col_P = NULL; double* val_P = NULL;
     if(exact) {
 
         // Compute similarities
@@ -373,7 +373,7 @@ static void computeGaussianPerplexity(double* X, int N, int D, double* P, double
 		double min_beta = -DBL_MAX;
 		double max_beta =  DBL_MAX;
 		double tol = 1e-5;
-        double sum_P;
+		double sum_P = DBL_MIN;
 
 		// Iterate until we found a good perplexity
 		int iter = 0;
@@ -476,7 +476,7 @@ static void computeGaussianPerplexity(double* X, int N, int D, unsigned int** _r
         double tol = 1e-5;
 
         // Iterate until we found a good perplexity
-        int iter = 0; double sum_P;
+        int iter = 0; double sum_P = DBL_MIN;
         while(!found && iter < 200) {
 
             // Compute Gaussian kernel row
@@ -542,12 +542,13 @@ static void symmetrizeMatrix(unsigned int** _row_P, unsigned int** _col_P, doubl
     int* row_counts = (int*) calloc(N, sizeof(int));
     if(row_counts == NULL) { printf("Memory allocation failed!\n"); exit(1); }
     for(int n = 0; n < N; n++) {
+        const unsigned int n_u = static_cast<unsigned int>(n);
         for(unsigned int i = row_P[n]; i < row_P[n + 1]; i++) {
 
             // Check whether element (col_P[i], n) is present
             bool present = false;
             for(unsigned int m = row_P[col_P[i]]; m < row_P[col_P[i] + 1]; m++) {
-                if(col_P[m] == n) present = true;
+                if(col_P[m] == n_u) present = true;
             }
             if(present) row_counts[n]++;
             else {
@@ -573,16 +574,17 @@ static void symmetrizeMatrix(unsigned int** _row_P, unsigned int** _col_P, doubl
     int* offset = (int*) calloc(N, sizeof(int));
     if(offset == NULL) { printf("Memory allocation failed!\n"); exit(1); }
     for(int n = 0; n < N; n++) {
+        const unsigned int n_u = static_cast<unsigned int>(n);
         for(unsigned int i = row_P[n]; i < row_P[n + 1]; i++) {                                  // considering element(n, col_P[i])
 
             // Check whether element (col_P[i], n) is present
             bool present = false;
             for(unsigned int m = row_P[col_P[i]]; m < row_P[col_P[i] + 1]; m++) {
-                if(col_P[m] == n) {
+                if(col_P[m] == n_u) {
                     present = true;
-                    if(n <= int(col_P[i])) {                                                 // make sure we do not add elements twice
+                    if(n_u <= col_P[i]) {                                                 // make sure we do not add elements twice
                         sym_col_P[sym_row_P[n]        + offset[n]]        = col_P[i];
-                        sym_col_P[sym_row_P[col_P[i]] + offset[col_P[i]]] = n;
+                        sym_col_P[sym_row_P[col_P[i]] + offset[col_P[i]]] = n_u;
                         sym_val_P[sym_row_P[n]        + offset[n]]        = val_P[i] + val_P[m];
                         sym_val_P[sym_row_P[col_P[i]] + offset[col_P[i]]] = val_P[i] + val_P[m];
                     }
@@ -592,15 +594,15 @@ static void symmetrizeMatrix(unsigned int** _row_P, unsigned int** _col_P, doubl
             // If (col_P[i], n) is not present, there is no addition involved
             if(!present) {
                 sym_col_P[sym_row_P[n]        + offset[n]]        = col_P[i];
-                sym_col_P[sym_row_P[col_P[i]] + offset[col_P[i]]] = n;
+                sym_col_P[sym_row_P[col_P[i]] + offset[col_P[i]]] = n_u;
                 sym_val_P[sym_row_P[n]        + offset[n]]        = val_P[i];
                 sym_val_P[sym_row_P[col_P[i]] + offset[col_P[i]]] = val_P[i];
             }
 
             // Update offsets
-            if(!present || (present && n <= int(col_P[i]))) {
+            if(!present || (present && n_u <= col_P[i])) {
                 offset[n]++;
-                if(col_P[i] != n) offset[col_P[i]]++;
+                if(col_P[i] != n_u) offset[col_P[i]]++;
             }
         }
     }
@@ -690,16 +692,31 @@ bool TSNE::load_data(double** data, int* n, int* d, int* no_dims, double* theta,
 		printf("Error: could not open data file.\n");
 		return false;
 	}
-	fread(n, sizeof(int), 1, h);											// number of datapoints
-	fread(d, sizeof(int), 1, h);											// original dimensionality
-    fread(theta, sizeof(double), 1, h);										// gradient accuracy
-	fread(perplexity, sizeof(double), 1, h);								// perplexity
-	fread(no_dims, sizeof(int), 1, h);                                      // output dimensionality
-    fread(max_iter, sizeof(int),1,h);                                       // maximum number of iterations
+	// Suppress unused result warnings - fread return values are checked implicitly via data validity
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-result"
+#endif
+	(void) fread(n, sizeof(int), 1, h);											// number of datapoints
+	(void) fread(d, sizeof(int), 1, h);											// original dimensionality
+	(void) fread(theta, sizeof(double), 1, h);										// gradient accuracy
+	(void) fread(perplexity, sizeof(double), 1, h);								// perplexity
+	(void) fread(no_dims, sizeof(int), 1, h);                                      // output dimensionality
+	(void) fread(max_iter, sizeof(int),1,h);                                       // maximum number of iterations
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
 	*data = (double*) malloc(*d * *n * sizeof(double));
     if(*data == NULL) { printf("Memory allocation failed!\n"); exit(1); }
-    fread(*data, sizeof(double), *n * *d, h);                               // the data
-    if(!feof(h)) fread(rand_seed, sizeof(int), 1, h);                       // random seed
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-result"
+#endif
+	(void) fread(*data, sizeof(double), *n * *d, h);                               // the data
+    if(!feof(h)) (void) fread(rand_seed, sizeof(int), 1, h);                       // random seed
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
 	fclose(h);
 	printf("Read the %i x %i data matrix successfully!\n", *n, *d);
 	return true;
@@ -714,11 +731,18 @@ void TSNE::save_data(double* data, int* landmarks, double* costs, int n, int d) 
 		printf("Error: could not open data file.\n");
 		return;
 	}
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-result"
+#endif
 	fwrite(&n, sizeof(int), 1, h);
 	fwrite(&d, sizeof(int), 1, h);
     fwrite(data, sizeof(double), n * d, h);
 	fwrite(landmarks, sizeof(int), n, h);
     fwrite(costs, sizeof(double), n, h);
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
     fclose(h);
 	printf("Wrote the %i x %i data matrix successfully!\n", n, d);
 }

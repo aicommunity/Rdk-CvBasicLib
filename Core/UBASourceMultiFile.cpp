@@ -16,9 +16,9 @@ See file license.txt for more information
 
 namespace RDK {
 
-// Методы
+// 
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 UBASourceMultiFile::UBASourceMultiFile(void)
  : FileNames("FileNames",this, &UBASourceMultiFile::SetFileNames)
@@ -35,7 +35,7 @@ UBASourceMultiFile::~UBASourceMultiFile(void)
 // --------------------------
 
 // --------------------------
-// Методы управления параметрами
+//   
 // --------------------------
 bool UBASourceMultiFile::SetFileNames(const std::vector<std::string> &value)
 {
@@ -45,9 +45,9 @@ bool UBASourceMultiFile::SetFileNames(const std::vector<std::string> &value)
 // --------------------------
 
 // --------------------------
-// Методы управления данными
+//   
 // --------------------------
-/// Проверяет были ли загружены изображения
+///     
 bool UBASourceMultiFile::IsLoad(void) const
 {
  return LoadFlag;
@@ -55,9 +55,9 @@ bool UBASourceMultiFile::IsLoad(void) const
 // --------------------------
 
 // --------------------------
-// Системные методы управления объектом
+//    
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+//         
 UBASourceMultiFile* UBASourceMultiFile::New(void)
 {
  return new UBASourceMultiFile;
@@ -65,9 +65,9 @@ UBASourceMultiFile* UBASourceMultiFile::New(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+//        
 bool UBASourceMultiFile::ADefault(void)
 {
  return true;
@@ -88,7 +88,7 @@ bool UBASourceMultiFile::ABuild(void)
 
  for(size_t i=DynamicOutputs.size();i<FileNames->size();i++)
  {
-  UPropertyOutputData<UBitmap,UBASourceMultiFile> *output=new UPropertyOutputData<UBitmap,UBASourceMultiFile>(std::string("Output")+sntoa(i+1),this);
+  UProperty<UBitmap,UBASourceMultiFile, ptPubOutput> *output=new UProperty<UBitmap,UBASourceMultiFile, ptPubOutput>(std::string("Output")+sntoa(i+1),this);
   DynamicOutputs.push_back(output);
  }
  DynamicOutputs.resize(FileNames->size());
@@ -98,7 +98,7 @@ bool UBASourceMultiFile::ABuild(void)
 }
 
 
-// Сброс процесса счета.
+//   .
 bool UBASourceMultiFile::AReset(void)
 {
  LoadFlags.assign(FileNames->size(),false);
@@ -106,7 +106,7 @@ bool UBASourceMultiFile::AReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта
+//    
 bool UBASourceMultiFile::ACalculate(void)
 {
  if(!IsLoad())
