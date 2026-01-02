@@ -386,7 +386,7 @@ bool UCRConvolutionNetwork::ACRDefault(void)
 // в случае успешной сборки
 bool UCRConvolutionNetwork::ACRBuild(void)
 {
- SetOutputDataSize(0,MMatrixSize(1,NumClasses.v));
+ SetOutputDataSize(0,MMatrixSize(1,NumClasses.GetData()));
  CVNetwork.Build();
 
  return true;

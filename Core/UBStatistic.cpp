@@ -151,15 +151,15 @@ bool UBStatistic::ACalculate(void)
 
  if(SubFolderAfterResetFlag && ResetFlag)
  {
-  if(RDK::CreateNewDirectory((Environment->GetCurrentDataDir()+SavePath.v).c_str()))
+  if(RDK::CreateNewDirectory((Environment->GetCurrentDataDir()+SavePath.GetData()).c_str()))
    return false; // Заглушка!! здесь исключение
 
   time_t time_data;
   time(&time_data);
   if(!PrefixName->empty())
-   CurrentPath=Environment->GetCurrentDataDir()+SavePath.v+std::string("/")+PrefixName.v+std::string(" ")+get_text_time(time_data,'.','-');
+   CurrentPath=Environment->GetCurrentDataDir()+SavePath.GetData()+std::string("/")+PrefixName.GetData()+std::string(" ")+get_text_time(time_data,'.','-');
   else
-   CurrentPath=Environment->GetCurrentDataDir()+SavePath.v+std::string("/")+get_text_time(time_data,'.','-');
+   CurrentPath=Environment->GetCurrentDataDir()+SavePath.GetData()+std::string("/")+get_text_time(time_data,'.','-');
   if(RDK::CreateNewDirectory(CurrentPath.c_str()))
    return false; // Заглушка!! здесь исключение
  }

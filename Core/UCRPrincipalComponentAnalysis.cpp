@@ -72,7 +72,7 @@ bool UCRPrincipalComponentAnalysis::AReset(void)
 bool UCRPrincipalComponentAnalysis::ACalculate(void)
 {
 
-    if(RetrainFlag.v == true)
+    if(RetrainFlag.GetData() == true)
     {
         if(!TrainingData.IsConnected())
         {
@@ -140,7 +140,7 @@ bool UCRPrincipalComponentAnalysis::TrainPCA(void)
         }
     }
 
-    RetrainFlag.v = false;
+    RetrainFlag = false;
 
     //Очистка
     for(int i=0; i<N; i++)
@@ -179,7 +179,7 @@ bool UCRPrincipalComponentAnalysis::ApplyPCA(void)
     }
 
     //Расчет
-    int nc = OutComponents.v;
+    int nc = OutComponents.GetData();
     if(nc<=0 || nc>M)
     {
         LogMessageEx(RDK_EX_WARNING, __FUNCTION__, std::string("PCA: OutComponents is <=0 or >M"));

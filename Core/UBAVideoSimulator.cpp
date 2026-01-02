@@ -250,10 +250,12 @@ UBAVideoSimulator::UBAVideoSimulator(void)
 
  Graphics=0;
 
- WorkArea.v.X=0;
- WorkArea.v.Y=0;
- WorkArea.v.X2(360-1);
- WorkArea.v.Y2(240-1);
+ UBRect workArea = WorkArea.GetData();
+ workArea.X=0;
+ workArea.Y=0;
+ workArea.X2(360-1);
+ workArea.Y2(240-1);
+ WorkArea = workArea;
 }
 
 UBAVideoSimulator::~UBAVideoSimulator(void)
@@ -269,7 +271,7 @@ UBAVideoSimulator::~UBAVideoSimulator(void)
 // (не используется)
 const int& UBAVideoSimulator::GetBgMode(void) const
 {
- return BgMode.v;
+ return BgMode.GetData();
 }
 
 bool UBAVideoSimulator::SetBgMode(const int &value)
@@ -284,7 +286,7 @@ bool UBAVideoSimulator::SetBgMode(const int &value)
 // Флаг скрытия всех объектов с изображения
 const bool& UBAVideoSimulator::GetHideAllFlag(void) const
 {
- return HideAllFlag.v;
+ return HideAllFlag.GetData();
 }
 
 bool UBAVideoSimulator::SetHideAllFlag(const bool &value)
@@ -299,12 +301,12 @@ bool UBAVideoSimulator::SetHideAllFlag(const bool &value)
 // Граница рабочей области
 const UBRect& UBAVideoSimulator::GetWorkArea(void) const
 {
- return WorkArea.v;
+ return WorkArea.GetData();
 }
 
 bool UBAVideoSimulator::SetWorkArea(const UBRect &value)
 {
- if(WorkArea.v == value)
+ if(WorkArea.GetData() == value)
   return true;
 
  WorkArea = value;
@@ -325,7 +327,7 @@ void UBAVideoSimulator::ClearObjects(void)
 // Число объектов
 const int& UBAVideoSimulator::GetNumObjects(void) const
 {
- return NumObjects.v;
+ return NumObjects.GetData();
 }
 
 bool UBAVideoSimulator::SetNumObjects(const int &value)
@@ -636,9 +638,10 @@ bool UBAVideoSimulatorSimple::AFSCalculate(void)
   }
 
   object.ObjectX+=object.XShift; object.ObjectY+=object.YShift;
-  if((object.ObjectX>=WorkArea.v.X+WorkArea.v.Width && object.XShift>0) || (object.ObjectX<WorkArea.v.X && object.XShift<0) )
+  UBRect workArea = WorkArea.GetData();
+  if((object.ObjectX>=workArea.X+workArea.Width && object.XShift>0) || (object.ObjectX<workArea.X && object.XShift<0) )
    object.XShift=-object.XShift;
-  if((object.ObjectY>=WorkArea.v.Y+WorkArea.v.Height && object.YShift>0) || (object.ObjectY<WorkArea.v.Y && object.YShift<0))
+  if((object.ObjectY>=workArea.Y+workArea.Height && object.YShift>0) || (object.ObjectY<workArea.Y && object.YShift<0))
    object.YShift=-object.YShift;
  }
 
@@ -854,9 +857,10 @@ void UBAVideoSimulatorSimpleBin::DrawSimple (UBitmap &canvas, int isBin)
      }
 
      object.ObjectX+=object.XShift; object.ObjectY+=object.YShift;
-     if((object.ObjectX>=WorkArea.v.X+WorkArea.v.Width && object.XShift>0) || (object.ObjectX<WorkArea.v.X && object.XShift<0) )
+     UBRect workArea = WorkArea.GetData();
+     if((object.ObjectX>=workArea.X+workArea.Width && object.XShift>0) || (object.ObjectX<workArea.X && object.XShift<0) )
       object.XShift=-object.XShift;
-     if((object.ObjectY>=WorkArea.v.Y+WorkArea.v.Height && object.YShift>0) || (object.ObjectY<WorkArea.v.Y && object.YShift<0))
+     if((object.ObjectY>=workArea.Y+workArea.Height && object.YShift>0) || (object.ObjectY<workArea.Y && object.YShift<0))
       object.YShift=-object.YShift;
     }
 

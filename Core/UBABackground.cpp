@@ -256,13 +256,14 @@ bool UBABackgroundExponnential::BCalculate(UBitmap &input, UBitmap &background)
 //а - темп обновления 0<a<1
  UBColor *bg=background.GetData();
  UBColor *inp=input.GetData();
+ double tempoUpdateVal = tempoUpdate.GetData();
  for(int j=0;j<background.GetByteLength();j++)
  {
-  //int tmp=static_cast<int>(double(*bg)*(1.0-tempoUpdate.v));
-  double tmp2=double(*bg)*(1.0-tempoUpdate.v);
+  //int tmp=static_cast<int>(double(*bg)*(1.0-tempoUpdateVal));
+  double tmp2=double(*bg)*(1.0-tempoUpdateVal);
 
-  //int tmp3=tempoUpdate.v*double((*inp));
-  double tmp4=tempoUpdate.v*double((*inp));
+  //int tmp3=tempoUpdateVal*double((*inp));
+  double tmp4=tempoUpdateVal*double((*inp));
 
   *bg=static_cast<unsigned char>(tmp2+tmp4);
   CurrentHistorySize++;
@@ -365,13 +366,14 @@ bool UBADeltaBackgroundExponnential::BCalculate(UBitmap &input, UBitmap &backgro
 //а - темп обновления 0<a<1
  UBColor *bg=background.GetData();
  UBColor *inp=input.GetData();
+ double tempoUpdateVal = tempoUpdate.GetData();
  for(int j=0;j<background.GetByteLength();j++)
  {
-  int tmp=static_cast<int>(static_cast<double>(*bg)*(1.0-tempoUpdate.v));
-  double tmp2=double(*bg)*(1.0-tempoUpdate.v);
+  int tmp=static_cast<int>(static_cast<double>(*bg)*(1.0-tempoUpdateVal));
+  double tmp2=double(*bg)*(1.0-tempoUpdateVal);
 
-  int tmp3=static_cast<int>(tempoUpdate.v*double((*inp)));
-  double tmp4=tempoUpdate.v*double((*inp));
+  int tmp3=static_cast<int>(tempoUpdateVal*double((*inp)));
+  double tmp4=tempoUpdateVal*double((*inp));
 
   tmp = tmp+tmp3;
   tmp2 = tmp2+tmp4;
@@ -492,12 +494,13 @@ bool UBABackgroundSimpleAdaptive::BCalculateExp(UBitmap &input, UBitmap &backgro
     //а - темп обновления 0<a<1
     UBColor *bg=background.GetData();
     UBColor *inp=input.GetData();
+    double tempoUpdateVal = tempoUpdate.GetData();
     for(int j=0;j<background.GetByteLength();j++)
     {
-        //int tmp=double(*bg)*(1.0-tempoUpdate.v);
-        double tmp2=double(*bg)*(1.0-tempoUpdate.v);
-        //int tmp3=tempoUpdate.v*double((*inp));
-        double tmp4=tempoUpdate.v*double((*inp));
+        //int tmp=double(*bg)*(1.0-tempoUpdateVal);
+        double tmp2=double(*bg)*(1.0-tempoUpdateVal);
+        //int tmp3=tempoUpdateVal*double((*inp));
+        double tmp4=tempoUpdateVal*double((*inp));
         *bg=static_cast<unsigned char>(tmp2+tmp4);
         CurrentHistorySize++;
         ++bg; ++inp;
@@ -524,10 +527,11 @@ bool UBABackgroundSimpleAdaptive::BCalculateSimplAdaptive
     if(input.GetWidth() != lastBinarization_param.GetWidth() ||
        input.GetHeight() != lastBinarization_param.GetHeight())
     {
+        double tempoUpdateVal = tempoUpdate.GetData();
         for(int j=0;j<background.GetByteLength();j++)
         {
-            double tmp2=double(*bg)*(1.0-tempoUpdate.v);
-            double tmp4=tempoUpdate.v*double((*inp));
+            double tmp2=double(*bg)*(1.0-tempoUpdateVal);
+            double tmp4=tempoUpdateVal*double((*inp));
             *bg=static_cast<unsigned char>(tmp2+tmp4);
 
             CurrentHistorySize++;
@@ -541,21 +545,23 @@ bool UBABackgroundSimpleAdaptive::BCalculateSimplAdaptive
     {
         UBColor *bin=lastBinarization_param.GetData();
         //Идем попиксельно по кадру
+        double tempoUpdateFGVal = tempoUpdateFG.GetData();
+        double tempoUpdateBGVal = tempoUpdateBG.GetData();
         for(int j=0;j<background.GetByteLength();j++)
         {
             double tmp2, tmp4;
             //Если текущий пиксель относится к переднему плану
             if ((*bin)==255)
             {
-                tmp2=double(*bg)*(1.0-tempoUpdateFG.v);
-                tmp4=tempoUpdateFG.v*double((*inp));
+                tmp2=double(*bg)*(1.0-tempoUpdateFGVal);
+                tmp4=tempoUpdateFGVal*double((*inp));
                 *bg=static_cast<unsigned char>(tmp2+tmp4);
             }
             //Если текущий пиксель относится к фону
             else
             {
-                tmp2=double(*bg)*(1.0-tempoUpdateBG.v);
-                tmp4=tempoUpdateBG.v*double((*inp));
+                tmp2=double(*bg)*(1.0-tempoUpdateBGVal);
+                tmp4=tempoUpdateBGVal*double((*inp));
                 *bg=static_cast<unsigned char>(tmp2+tmp4);
             }
 
@@ -585,10 +591,11 @@ bool UBABackgroundSimpleAdaptive::BCalculateStabilityIndicator(UBitmap &input, U
     if(input.GetWidth() != lastBinarization_param.GetWidth() ||
        input.GetHeight() != lastBinarization_param.GetHeight())
     {
+        double tempoUpdateVal = tempoUpdate.GetData();
         for(int j=0;j<background.GetByteLength();j++)
         {
-            double tmp2=double(*bg)*(1.0-tempoUpdate.v);
-            double tmp4=tempoUpdate.v*double((*inp));
+            double tmp2=double(*bg)*(1.0-tempoUpdateVal);
+            double tmp4=tempoUpdateVal*double((*inp));
             *bg=static_cast<unsigned char>(tmp2+tmp4);
 
             CurrentHistorySize++;
@@ -602,6 +609,9 @@ bool UBABackgroundSimpleAdaptive::BCalculateStabilityIndicator(UBitmap &input, U
     {
         UBColor *bin=lastBinarization_param.GetData();
         UBColor *lin=lastInput_param.GetData();
+        double tempoUpdateFGVal = tempoUpdateFG.GetData();
+        double tempoUpdateBGVal = tempoUpdateBG.GetData();
+        double delayVal = delay.GetData();
         for(int j=0;j<background.GetByteLength();j++)
         {
             double tmp2, tmp4;
@@ -613,21 +623,21 @@ bool UBABackgroundSimpleAdaptive::BCalculateStabilityIndicator(UBitmap &input, U
                     //Если Индикатор стабильности дошел до стабильности
                     if(*updateflag >=zeroingUpdateFlag)
                     {
-                        tmp2=double(*bg)*(1.0-tempoUpdateFG.v);
-                        tmp4=tempoUpdateFG.v*double((*inp));
+                        tmp2=double(*bg)*(1.0-tempoUpdateFGVal);
+                        tmp4=tempoUpdateFGVal*double((*inp));
                         *bg=static_cast<unsigned char>(tmp2+tmp4);
                         *updateflag=0;
                     }
                     else
-                        *updateflag+=delay.v;
+                        *updateflag+=delayVal;
 
                 }
             }
             //Если текущий пиксель относится к фону
             else
             {
-                tmp2=double(*bg)*(1.0-tempoUpdateBG.v);
-                tmp4=tempoUpdateBG.v*double((*inp));
+                tmp2=double(*bg)*(1.0-tempoUpdateBGVal);
+                tmp4=tempoUpdateBGVal*double((*inp));
                 *bg=static_cast<unsigned char>(tmp2+tmp4);
                 *updateflag=0;
             }

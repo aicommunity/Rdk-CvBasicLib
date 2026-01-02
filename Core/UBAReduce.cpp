@@ -64,7 +64,7 @@ bool UBAReduce::ACalculate(void)
  if(!Input->GetData())
   return true;
 
- Input->Reduce(NumCols, NumRows, &Output.v);
+ Input->Reduce(NumCols, NumRows, const_cast<UBitmap*>(&Output.GetData()));
  return true;
 }
 // --------------------------

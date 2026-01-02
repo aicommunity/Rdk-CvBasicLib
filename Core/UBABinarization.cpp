@@ -287,12 +287,14 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate1
                 else
                 {
                     double th_res(0.0);
+                    double kAlphaVal = KAlpha.GetData();
+                    double kGammaVal = KGamma.GetData();
                     //фон черный
                     //изменяется порог
                     if((int(*in)-int(*bg))>0)
-                        th_res=KAlpha*double(*th)+(1.0-KAlpha.v)*KGamma.v*double(*in-*bg);
+                        th_res=KAlpha*double(*th)+(1.0-kAlphaVal)*kGammaVal*double(*in-*bg);
                     else
-                        th_res=KAlpha*double(*th)+(1.0-KAlpha.v)*KGamma.v*double(*bg-*in);
+                        th_res=KAlpha*double(*th)+(1.0-kAlphaVal)*kGammaVal*double(*bg-*in);
 
                     if(th_res<0)
                         th_res=0;
@@ -401,12 +403,14 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate2
                 else
                 {
                     double th_res(0.0);
+                    double kAlphaVal = KAlpha.GetData();
+                    double kGammaVal = KGamma.GetData();
                     //фон черный
                     //изменяется порог
                     if((int(*in)-int(*bg))>0)
-                        th_res=KAlpha*double(*th)+(1.0-KAlpha.v)*KGamma.v*double(*in-*bg);
+                        th_res=KAlpha*double(*th)+(1.0-kAlphaVal)*kGammaVal*double(*in-*bg);
                     else
-                        th_res=KAlpha*double(*th)+(1.0-KAlpha.v)*KGamma.v*double(*bg-*in);
+                        th_res=KAlpha*double(*th)+(1.0-kAlphaVal)*kGammaVal*double(*bg-*in);
 
                     if(th_res<0)
                         th_res=0;
@@ -501,10 +505,12 @@ bool UBABinarizationSimpleAdaptiveThreshold::BCalculate3
                     //else
                     //{
 
+                        double kAlphaVal = KAlpha.GetData();
+                        double kGammaVal = KGamma.GetData();
                         if((int(*in)-int(*bg))>0)
-                            th_res=KAlpha*double(*th)+(1.0-KAlpha.v)*KGamma.v*double(*in-*bg);
+                            th_res=KAlpha*double(*th)+(1.0-kAlphaVal)*kGammaVal*double(*in-*bg);
                         else
-                            th_res=KAlpha*double(*th)+(1.0-KAlpha.v)*KGamma.v*double(*bg-*in);
+                            th_res=KAlpha*double(*th)+(1.0-kAlphaVal)*kGammaVal*double(*bg-*in);
                     //}
                     //сбор статистики по разнице в значениях пикселей фона и текущего кадра
                     //от 1 до 15
@@ -799,7 +805,7 @@ bool UBABinarizationSimpleAdaptiveThreshold::AFBgCalculate(void)
     {
         //Вывод чисел в видеопоток инвертированного порога
         invThreshold->SetColorModel(ubmRGB24,true);
-        UGraphics graph(&invThreshold.v);
+        UGraphics graph(const_cast<UBitmap*>(&invThreshold.GetData()));
 
         graph.SetFont(GetDefaultFont());
         graph.SetFont(GetFont("Tahoma",16));

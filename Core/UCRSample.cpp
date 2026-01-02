@@ -103,8 +103,8 @@ bool UCRSample::Add(int class_index)
  if(!NumInputs)
   return false;
 
- ++SampleSize.v;
- SampleData.resize(SampleSize);
+ ++SampleSize;
+ SampleData.resize(SampleSize.GetData());
 
 // SampleData[SampleSize-1].first.SetDataSize(sizeof(double));
  SampleData[SampleSize-1].first.Resize(1,0);
@@ -117,8 +117,8 @@ bool UCRSample::Add(int class_index)
 
  if(SampleData[SampleSize-1].first.GetSize() != int(VectorSize))
  {
-  --SampleSize.v;
-  SampleData.resize(SampleSize);
+  --SampleSize;
+  SampleData.resize(SampleSize.GetData());
   return false;
  }
 
@@ -135,8 +135,8 @@ bool UCRSample::Add(int class_index)
 // Пополняет выборку заданным вектором входов
 bool UCRSample::Add(const vector<double> &data, int class_index)
 {
- ++SampleSize.v;
- SampleData.resize(SampleSize);
+ ++SampleSize;
+ SampleData.resize(SampleSize.GetData());
 // SampleData[SampleSize-1].first.SetDataSize(sizeof(double));
  SampleData[SampleSize-1].first.Resize(1,int(data.size()));
  for(size_t i=0;i<data.size();i++)
@@ -177,7 +177,7 @@ void UCRSample::Clear(void)
 // Возвращает индекс класса текущего вектора обучающей выборки
 int UCRSample::GetCurrentClassIndex(void) const
 {
- if(CurrentSample.v<0 || CurrentSample.v>=SampleSize)
+ if(CurrentSample.GetData()<0 || CurrentSample.GetData()>=SampleSize.GetData())
   return -1;
 
  return SampleData[CurrentSample].second;
@@ -319,17 +319,17 @@ bool UCRSample::AReset(void)
  if(GetEnvironment())
   path=GetEnvironment()->GetCurrentDataDir()+"/";
 
- switch(Type.v)
+ switch(Type.GetData())
  {
  case 0:
   Clear();
-   if(!LoadTextSample(path+SampleFileName.v))
+   if(!LoadTextSample(path+SampleFileName.GetData()))
 	return false;
  break;
 
  case 1:
   Clear();
-  if(!LoadBitmapSample(path+SampleFileName.v))
+  if(!LoadBitmapSample(path+SampleFileName.GetData()))
    return false;
  break;
  }
@@ -362,23 +362,23 @@ bool UCRSample::ACalculate(void)
  {
   if(SampleSize == 0)
   {
-   SetOutputDataSize(0,MMatrixSize(1,VectorSize.v));
-   for(int i=0;i<VectorSize.v;i++)
+   SetOutputDataSize(0,MMatrixSize(1,VectorSize.GetData()));
+   for(int i=0;i<VectorSize.GetData();i++)
 	POutputData[0].Double[i]=0;
    return true;
   }
 
-  ++CurrentSample.v;
-  if(CurrentSample>=int(SampleSize.v))
+  ++CurrentSample;
+  if(CurrentSample.GetData()>=int(SampleSize.GetData()))
   {
    CurrentSample=0;
-   ++CurrentSampleIteration.v;
+   ++CurrentSampleIteration;
   }
 
-  SetOutputDataSize(0,MMatrixSize(1,VectorSize.v));
-  const RDK::UItemData &data=SampleData[CurrentSample].first;
+  SetOutputDataSize(0,MMatrixSize(1,VectorSize.GetData()));
+  const RDK::UItemData &data=SampleData[CurrentSample.GetData()].first;
 
-  for(int i=0;i<VectorSize.v;i++)
+  for(int i=0;i<VectorSize.GetData();i++)
    POutputData[0].Double[i]=data.Double[i];
  }
  break;
