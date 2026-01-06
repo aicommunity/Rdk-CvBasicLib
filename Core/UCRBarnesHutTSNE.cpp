@@ -94,7 +94,7 @@ bool UCRBarnesHutTSNE::AReset(void)
 bool UCRBarnesHutTSNE::ACalculate(void)
 {
 
-    if(RetrainFlag.v == true)
+    if(RetrainFlag.GetData() == true)
     {
         if(!InputComponents.IsConnected())
         {
@@ -113,7 +113,7 @@ bool UCRBarnesHutTSNE::ACalculate(void)
     if(!TSNECalcInProcess)
     {
         //Ничего нет или есть желание пересчитать
-        if(OutputComponents->GetRows()==0 || RetrainFlag.v==true)
+        if(OutputComponents->GetRows()==0 || RetrainFlag.GetData()==true)
         {
             RunTSNECalculation();
         }
@@ -184,8 +184,8 @@ void UCRBarnesHutTSNE::TSNECalculationThread()
     //Выставить флаг
 
     TSNECalcInProcess = false;
-    RetrainFlag.v = false;
-    CalcActive.v = false;
+    RetrainFlag = false;
+    CalcActive = false;
 
     (*OutputComponents).Resize(N, no_dims);
 
@@ -213,7 +213,7 @@ void UCRBarnesHutTSNE::TSNECalculationThread()
 
 void UCRBarnesHutTSNE::UpdateCalculationState()
 {
-    CalcActive.v = TSNECalcInProcess;
+    CalcActive = TSNECalcInProcess;
 }
 }
 #endif

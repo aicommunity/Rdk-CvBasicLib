@@ -94,7 +94,7 @@ bool UDetectorBase::ACalculate(void)
         DebugImage->SetColorModel(ubmRGB24,false);
         InputImage->ConvertTo(*DebugImage);
 
-        Graph.SetCanvas(&DebugImage.v);
+        Graph.SetCanvas(const_cast<UBitmap*>(&DebugImage.GetData()));
 
         UAFont *class_font=GetFont("Tahoma",20);
 

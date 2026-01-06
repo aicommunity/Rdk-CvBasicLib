@@ -315,11 +315,11 @@ bool UCRPerseptron::ACRCalculate(void)
  switch(Mode)
  {
  case 0:
-  CalcNetwork(Inputs.v);
+  CalcNetwork(Inputs.GetData());
  break;
 
  case 1:
-  CalcDeepNetwork(Inputs.v);
+  CalcDeepNetwork(Inputs.GetData());
  break;
  }
  if(GetOutputDataSize(0)[1] > 0 && Outputs->size()>0 && int(Outputs[int(Outputs->size())-1].size())>=GetOutputDataSize(0)[1])

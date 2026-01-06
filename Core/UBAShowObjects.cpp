@@ -64,7 +64,9 @@ bool UBAShowObjects::SetActivity(const bool &activity)
 bool UBAShowObjects::ADefault(void)
 {
  // Цвет рамки
- PenColor.v.c=0x00FF0000;
+ RDK::UColorT penColor = PenColor.GetData();
+ penColor.c=0x00FF0000;
+ PenColor = penColor;
 
  EnableShowFlag=true;
 

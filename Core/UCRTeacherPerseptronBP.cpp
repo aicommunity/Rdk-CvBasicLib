@@ -142,8 +142,8 @@ double UCRTeacherPerseptronBP::ACrTrainStep(size_t exp_class)
  vector<vector<double> > weights_prev;
  vector<vector<vector<double> > > &weights=Perseptron->Weights;
  vector<vector<vector<double> > > &dweights=Perseptron->dWeights;
- vector<vector<double> > &outputs=Perseptron->Outputs.v;
- vector<double> &inputs=Perseptron->Inputs.v;
+ vector<vector<double> > &outputs=Perseptron->Outputs.GetData();
+ vector<double> &inputs=Perseptron->Inputs.GetData();
 
  Perseptron->Mode=0;
  if(!Perseptron->IsReady())

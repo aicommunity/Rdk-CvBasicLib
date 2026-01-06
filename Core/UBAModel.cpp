@@ -49,8 +49,8 @@ UBAModel* UBAModel::New(void)
 // Восстановление настроек по умолчанию и сброс процесса счета
 bool UBAModel::ADefault(void)
 {
- WorkHeight.v = 0;
- WorkWidth.v = 0;
+ WorkHeight = 0;
+ WorkWidth = 0;
 
  return AMDefault();
 }

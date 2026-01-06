@@ -203,7 +203,7 @@ bool UCRClassifier::ACRDefault(void)
 bool UCRClassifier::ABuild(void)
 {
  int output_size=GetOutputDataSize(0)[1];
- SetOutputDataSize(0,MMatrixSize(1,NumClasses.v));
+ SetOutputDataSize(0,MMatrixSize(1,NumClasses.GetData()));
  ScaledResult->resize(output_size);
 
  int sz=int(MinQualityRate->size());
