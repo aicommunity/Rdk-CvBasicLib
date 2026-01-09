@@ -129,14 +129,22 @@ bool UMDMatrixMux<T>::AReset(void)
 template<class T>
 bool UMDMatrixMux<T>::ACalculate(void)
 {
- if(InputMatrixData->size() == 0)
+ // Безопасное получение размеров и данных
+ size_t input_matrix_size = InputMatrixData->size();
+ if(input_matrix_size == 0)
  {
   OutputMatrixData->Resize(0,0);
   return true;
  }
 
- if(InputActivities->size()<InputMatrixData->size())
-  InputActivities->resize(InputMatrixData->size(),true);
+ size_t input_activities_size = InputActivities->size();
+ if(input_activities_size < input_matrix_size)
+  InputActivities->resize(input_matrix_size, true);
+
+ // Получаем копию данных InputActivities для безопасного доступа
+ // (std::vector<bool> имеет специальную реализацию с proxy объектами)
+ std::vector<bool> activities_copy = *InputActivities;
+ size_t activities_size = activities_copy.size();
 
  size_t i=0;
  switch(Mode)
@@ -150,21 +158,33 @@ bool UMDMatrixMux<T>::ACalculate(void)
    do
 //   for(size_t i=1;i<InputMatrixData->size();i++)
    {
-    if(InputActivities[i])
+    // Проверка границ перед доступом
+    if(i >= activities_size || i >= input_matrix_size)
+     break;
+     
+    if(activities_copy[i])
     {
      new_rows+=InputMatrixData[i].GetRows();
      if(new_cols>InputMatrixData[i].GetCols() || new_cols<0)
       new_cols=InputMatrixData[i].GetCols();
     }
     ++i;
-   } while(i<InputMatrixData->size());
+   } while(i < input_matrix_size);
+   
+   // Проверка: если нет активных входов или некорректные размеры, выходим
+   if(new_rows <= 0 || new_cols <= 0)
+   {
+    OutputMatrixData->Resize(0,0);
+    return true;
+   }
+   
    OutputMatrixData->Resize(new_rows, new_cols);
 
    MDMatrix<T> &output=*OutputMatrixData;
    int row=0;
-   for(size_t i2=0;i2<InputMatrixData->size();i2++)
+   for(size_t i2=0;i2<input_matrix_size;i2++)
    {
-    if(InputActivities[i2])
+    if(i2 < activities_size && activities_copy[i2])
     {
      const MDMatrix<T> &input=InputMatrixData[i2];
      for(int j=0;j<input.GetRows();j++)
@@ -188,21 +208,33 @@ bool UMDMatrixMux<T>::ACalculate(void)
    do
 //   for(size_t i=1;i<InputMatrixData->size();i++)
    {
-    if(InputActivities[i])
+    // Проверка границ перед доступом
+    if(i >= activities_size || i >= input_matrix_size)
+     break;
+     
+    if(activities_copy[i])
     {
      new_cols+=InputMatrixData[i].GetCols();
      if(new_rows>InputMatrixData[i].GetRows() || new_rows<0)
       new_rows=InputMatrixData[i].GetRows();
     }
     ++i;
-   } while(i<InputMatrixData->size());
+   } while(i < input_matrix_size);
+   
+   // Проверка: если нет активных входов или некорректные размеры, выходим
+   if(new_rows <= 0 || new_cols <= 0)
+   {
+    OutputMatrixData->Resize(0,0);
+    return true;
+   }
+   
    OutputMatrixData->Resize(new_rows, new_cols);
 
    MDMatrix<T> &output=*OutputMatrixData;
    int col=0;
-   for(size_t i2=0;i2<InputMatrixData->size();i2++)
+   for(size_t i2=0;i2<input_matrix_size;i2++)
    {
-    if(InputActivities[i2])
+    if(i2 < activities_size && activities_copy[i2])
     {
      const MDMatrix<T> &input=InputMatrixData[i2];
      for(int j=0;j<input.GetCols();j++)
@@ -225,14 +257,26 @@ bool UMDMatrixMux<T>::ACalculate(void)
 
    do
    {
-    if(InputActivities[i])
+    // Проверка границ перед доступом
+    if(i >= activities_size || i >= input_matrix_size)
+     break;
+     
+    if(activities_copy[i])
     {
      new_cols+=InputMatrixData[i].GetCols();
      if(new_rows>InputMatrixData[i].GetRows() || new_rows<0)
       new_rows=InputMatrixData[i].GetRows();
     }
     ++i;
-   } while(i<InputMatrixData->size());
+   } while(i < input_matrix_size);
+   
+   // Проверка: если нет активных входов или некорректные размеры, выходим
+   if(new_rows <= 0 || new_cols <= 0)
+   {
+    OutputMatrixData->Resize(0,0);
+    return true;
+   }
+   
    OutputMatrixData->Resize(new_rows, new_cols);
 
    MDMatrix<T> &output=*OutputMatrixData;
@@ -240,9 +284,9 @@ bool UMDMatrixMux<T>::ACalculate(void)
    int col=0;
    int j=0;
    do {
-    for(size_t i2=0;i2<InputMatrixData->size();i2++)
+    for(size_t i2=0;i2<input_matrix_size;i2++)
     {
-     if(InputActivities[i2])
+     if(i2 < activities_size && activities_copy[i2])
      {
       const MDMatrix<T> &input=InputMatrixData[i2];
 
