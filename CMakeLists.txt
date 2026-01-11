@@ -38,9 +38,17 @@ target_compile_definitions(${TARGET_NAME} PUBLIC RDK_QT RDK_LIB_CVS_REVISION=0)
 
 find_package(Qt5 REQUIRED COMPONENTS Core)
 target_link_libraries(${TARGET_NAME} PUBLIC Qt5::Core Threads::Threads rdk.static.qt Rdk-BasicLib.qt)
+# Используем MODULE режим для всех платформ (FindBoost.cmake правильно определяет имена библиотек)
 find_package(Boost QUIET COMPONENTS filesystem system)
 if(Boost_FOUND)
-  target_link_libraries(${TARGET_NAME} PUBLIC Boost::filesystem Boost::system)
+  # Используем современные target'ы, если доступны, иначе используем переменные
+  if(TARGET Boost::filesystem)
+    target_link_libraries(${TARGET_NAME} PUBLIC Boost::filesystem Boost::system)
+  else()
+    # Fallback на старый способ, если target'ы не доступны
+    target_link_libraries(${TARGET_NAME} PUBLIC ${Boost_LIBRARIES})
+    target_include_directories(${TARGET_NAME} PUBLIC ${Boost_INCLUDE_DIRS})
+  endif()
 endif()
 
 if (RDK_USE_OPENCV AND OpenCV_FOUND)
