@@ -629,7 +629,7 @@ bool UBABackgroundSimpleAdaptive::BCalculateStabilityIndicator(UBitmap &input, U
                         *updateflag=0;
                     }
                     else
-                        *updateflag+=delayVal;
+                        *updateflag+=static_cast<unsigned int>(delayVal);
 
                 }
             }
@@ -914,7 +914,7 @@ double UBABackgroundDependDiff::BCalculate1
         //на самом деле коэф это 1-альфа
         double alfa = *delta;
         //alfa +=(255-StateTempoDif);
-        alfa /= 255.0;        
+        alfa /= 255.0;
         if (alfa > 1)
             alfa =1;
         if (alfa<0)
