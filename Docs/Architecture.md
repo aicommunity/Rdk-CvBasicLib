@@ -94,6 +94,42 @@ Rdk-CvBasicLib is built on OpenCV and provides a component interface for compute
 
 ### Library Structure
 
+```mermaid
+flowchart TB
+    subgraph Capture
+        TCapture_EN[TCapture]
+        TCaptureCamera_EN[TCaptureCamera]
+        TCaptureCameraIp_EN[TCaptureCameraIp]
+    end
+    
+    subgraph ImageProcessing
+        UBAColorConvert_EN[UBAColorConvert]
+        UBAResize_EN[UBAResize]
+        UBABackground_EN[UBABackground]
+    end
+    
+    subgraph Detection
+        UDetectorBase_EN[UDetectorBase]
+        UBAObjectDetector_EN[UBAObjectDetector]
+    end
+    
+    subgraph Classification
+        UCRClassifier_EN[UCRClassifier]
+        UCRPerseptron_EN[UCRPerseptron]
+    end
+    
+    subgraph Segmentation
+        USegmentatorBase_EN[USegmentatorBase]
+    end
+    
+    TCapture_EN --> UBAColorConvert_EN
+    UBAColorConvert_EN --> UBAResize_EN
+    UBAResize_EN --> UDetectorBase_EN
+    UDetectorBase_EN --> UCRClassifier_EN
+```
+
+The diagram reflects a typical pipeline: capture → preprocessing → detection → classification. In practice, components exchange images and detection results via properties (e.g., bitmap inputs/outputs and object lists).
+
 ### Main Modules
 
 #### Video and Image Capture
