@@ -52,7 +52,6 @@
 
 ### См. также
 
-- [Reports/04-Rdk-CvBasicLib.md](../../../Reports/04-Rdk-CvBasicLib.md) - детальное описание
 - Исходный код: `Libraries/Rdk-CvBasicLib/Core/`
 
 ---
@@ -109,5 +108,4 @@ Base image classifier.
 
 ### See Also
 
-- [Reports/04-Rdk-CvBasicLib.md](../../../Reports/04-Rdk-CvBasicLib.md) - detailed description
 - Source code: `Libraries/Rdk-CvBasicLib/Core/`
