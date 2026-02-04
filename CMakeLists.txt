@@ -36,8 +36,13 @@ target_sources(${TARGET_NAME}
 
 target_compile_definitions(${TARGET_NAME} PUBLIC RDK_QT RDK_LIB_CVS_REVISION=0)
 
-find_package(Qt5 REQUIRED COMPONENTS Core)
-target_link_libraries(${TARGET_NAME} PUBLIC Qt5::Core Threads::Threads rdk.static.qt Rdk-BasicLib.qt)
+include(${CMAKE_SOURCE_DIR}/cmake/SelectQt.cmake)
+target_link_libraries(${TARGET_NAME} PUBLIC
+  Nmsdk::Qt::Core
+  Threads::Threads
+  rdk.static.qt
+  Rdk-BasicLib.qt
+)
 # Используем MODULE режим для всех платформ (FindBoost.cmake правильно определяет имена библиотек)
 find_package(Boost QUIET COMPONENTS filesystem system)
 if(Boost_FOUND)
