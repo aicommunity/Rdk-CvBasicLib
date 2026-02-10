@@ -18,8 +18,8 @@ file(GLOB CV_SOURCES
   ${CMAKE_SOURCE_DIR}/Libraries/Rdk-CvBasicLib/Core/*.cpp
 )
 
-# UBAGuiSelection.cpp нужен для реализации UMouse, которая используется в Basic.h
-# Файл возвращен в компиляцию для обеспечения наличия символов UMouse
+# UBAGuiSelection.cpp is needed for the UMouse implementation, which is used in Basic.h
+# The file is returned to compilation to ensure UMouse symbols are available
 list(FILTER CV_SOURCES EXCLUDE REGEX "/Libraries/Rdk-CvBasicLib/Core/UCR.*\\.cpp$")
 list(FILTER CV_SOURCES EXCLUDE REGEX "/Libraries/Rdk-CvBasicLib/Core/TCapture.*\\.cpp$")
 
@@ -43,14 +43,14 @@ target_link_libraries(${TARGET_NAME} PUBLIC
   rdk.static.qt
   Rdk-BasicLib.qt
 )
-# Используем MODULE режим для всех платформ (FindBoost.cmake правильно определяет имена библиотек)
+# Use MODULE mode on all platforms (FindBoost.cmake correctly determines library names)
 find_package(Boost QUIET COMPONENTS filesystem system)
 if(Boost_FOUND)
-  # Используем современные target'ы, если доступны, иначе используем переменные
+  # Use modern targets if available, otherwise fall back to variables
   if(TARGET Boost::filesystem)
     target_link_libraries(${TARGET_NAME} PUBLIC Boost::filesystem Boost::system)
   else()
-    # Fallback на старый способ, если target'ы не доступны
+    # Fallback to the legacy approach if targets are not available
     target_link_libraries(${TARGET_NAME} PUBLIC ${Boost_LIBRARIES})
     target_include_directories(${TARGET_NAME} PUBLIC ${Boost_INCLUDE_DIRS})
   endif()
