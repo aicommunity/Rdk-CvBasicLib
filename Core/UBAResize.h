@@ -39,16 +39,20 @@ UBitmap Buffer;
 
 public: // 
 // ---------------------
-//   
+// ---------------------
+// Конструкторы и деструкторы
+// ---------------------
 // ---------------------
 UBAResize(void);
 virtual ~UBAResize(void);
 // ---------------------
 
 // ---------------------
-//   
 // ---------------------
-///  
+// Методы управления параметрами
+// ---------------------
+// Новый размер
+// ---------------------
 int GetNewWidth(void) const;
 int GetNewHeight(void) const;
 bool SetNewWidth(int value);
@@ -64,7 +68,9 @@ bool BCalculate(UBitmap &input, UBitmap &output, int width, int height);
 // ---------------------
 
 // ---------------------
-// 
+// ---------------------
+// Операторы
+// ---------------------
 // ---------------------
 bool operator () (UBitmap &input, UBitmap &output);
 bool operator () (UBitmap &input, int width, int height);
@@ -118,9 +124,11 @@ class RDK_LIB_TYPE UBAResizeEdges: public UBAResize
 {
 public: // 
 // ---------------------
-//  
 // ---------------------
-///     
+// Методы счета
+// ---------------------
+// Создание новой копии этого объекта
+// ---------------------
 virtual UBAResizeEdges* New(void);
 
 bool BCalculate(UBitmap &input, UBitmap &output);

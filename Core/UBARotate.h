@@ -25,7 +25,7 @@ public: //
 ///   ()
 UProperty<float, UBARotate, ptPubParameter> Angle;
 
-///    ( ,  !)
+// Флаг расширения
 //UProperty<bool, UBARotate, ptPubParameter> Enlarge;
 bool Enlarge;
 
@@ -41,26 +41,32 @@ UBitmap Buffer;
 
 public: // 
 // ---------------------
-//   
+// ---------------------
+// Конструкторы и деструкторы
+// ---------------------
 // ---------------------
 UBARotate(void);
 virtual ~UBARotate(void);
 // ---------------------
 
 // ---------------------
-//   
 // ---------------------
-///   ()
+// Методы управления параметрами
+// ---------------------
+// Угол поворота (градусы)
+// ---------------------
 float GetAngle(void) const;
 bool SetAngle(const float &angle);
 
-///  
+// Флаг расширения
 bool GetEnlarge(void) const;
 bool SetEnlarge(const bool &enlarge);
 // ---------------------
 
 // ---------------------
-// 
+// ---------------------
+// Операторы
+// ---------------------
 // ---------------------
 bool operator () (UBitmap &input, UBitmap &output);
 bool operator () (UBitmap &input, UBitmap &output, float angle, bool enlarge=false);
@@ -114,9 +120,11 @@ class RDK_LIB_TYPE UBARotateSimple: public UBARotate
 {
 public: // 
 // ---------------------
-//  
 // ---------------------
-///     
+// Методы счета
+// ---------------------
+// Создание новой копии этого объекта
+// ---------------------
 virtual UBARotateSimple* New(void);
 
 virtual bool BCalculate(UBitmap &input, UBitmap &output);
