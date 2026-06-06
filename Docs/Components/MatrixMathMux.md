@@ -165,7 +165,7 @@ auto concat = mux->OutputMatrixData;
         <!-- InputActivities задаются через свойства или код -->
     </Parameters>
 </Component>
-``>
+```
 
 ### Связь с конфигурационными проектами (`Bin/Configs`)
 
