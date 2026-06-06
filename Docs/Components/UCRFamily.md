@@ -65,10 +65,10 @@ stateDiagram-v2
 
 ```mermaid
 flowchart TD
-    Start([Start]) --> ReadInput[Прочитать входные признаки<br/>из свойств/матриц]
+    Start([Start]) --> ReadInput["Прочитать входные признаки<br/>из свойств/матриц"]
     ReadInput --> Forward[Прямое распространение по слоям сети]
     Forward --> Argmax[Определить класс с макс. скором]
-    Argmax --> WriteOut[Записать OutputClasses<br/>и OutputConfidences]
+    Argmax --> WriteOut["Записать OutputClasses<br/>и OutputConfidences"]
     WriteOut --> End([End])
 ```
 

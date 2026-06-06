@@ -70,7 +70,7 @@ flowchart TD
     Start([Start ACalculate]) --> CheckInput{Есть Input?}
     CheckInput -->|Нет| Skip[Пропустить расчет]
     CheckInput -->|Да| ReadCfg[Прочитать NewColorModel]
-    ReadCfg --> Convert[Выполнить cv::cvtColor<br/>в соответствии с NewColorModel]
+    ReadCfg --> Convert["Выполнить cv::cvtColor<br/>в соответствии с NewColorModel"]
     Convert --> WriteOutput[Записать результат в Output]
     WriteOutput --> End([End])
     Skip --> End
@@ -86,7 +86,7 @@ graph LR
 
     subgraph Processing["Обработка изображений"]
         CC[UBAColorConvert]
-        Next[Следующий UBA-компонент<br/>(Resize/Binarization/...)]
+        Next["Следующий UBA-компонент<br/>(Resize/Binarization/...)"]
     end
 
     Cam --> CC

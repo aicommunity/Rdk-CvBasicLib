@@ -78,7 +78,7 @@ graph TB
 
 ```mermaid
 flowchart LR
-    Src[Camera/Source/Simulator] --> Pre[UBA Preprocessing<br/>(ColorConvert, Crop, Reduce,...)]
+    Src[Camera/Source/Simulator] --> Pre["UBA Preprocessing<br/>(ColorConvert, Crop, Reduce,...)"]
     Pre --> Feats[Matrix/Scalar Math & Mux]
     Feats --> DetSeg[Detectors/Segmentators]
     Feats --> Cls[UCR* Classifiers]

@@ -138,12 +138,12 @@ stateDiagram-v2
 ```mermaid
 flowchart TD
     Start([Start]) --> ReadInput[Прочитать Input]
-    ReadInput --> ShiftHistory[HistoryShift()<br/>обновление буфера истории]
-    ShiftHistory --> CalcLocalContrast[CalcLocalContrasting()<br/>вычисление локального контраста]
-    CalcLocalContrast --> CalcLocalMap[CalcLocalMap()<br/>построение карты локальной зависимости]
-    CalcLocalMap --> CalcMoved[CalcMovedObjects()<br/>обнаружение движущихся объектов]
-    CalcMoved --> CalcAdaptive[CalcAdaptiveThreshold()<br/>расчёт адаптивного порога]
-    CalcAdaptive --> FillOutput[Заполнить MovedObjects<br/>и MovedImage]
+    ReadInput --> ShiftHistory["HistoryShift()<br/>обновление буфера истории"]
+    ShiftHistory --> CalcLocalContrast["CalcLocalContrasting()<br/>вычисление локального контраста"]
+    CalcLocalContrast --> CalcLocalMap["CalcLocalMap()<br/>построение карты локальной зависимости"]
+    CalcLocalMap --> CalcMoved["CalcMovedObjects()<br/>обнаружение движущихся объектов"]
+    CalcMoved --> CalcAdaptive["CalcAdaptiveThreshold()<br/>расчёт адаптивного порога"]
+    CalcAdaptive --> FillOutput["Заполнить MovedObjects<br/>и MovedImage"]
     FillOutput --> End([End])
 ```
 

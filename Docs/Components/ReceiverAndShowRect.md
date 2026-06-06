@@ -116,13 +116,13 @@ flowchart TD
     Start([Start]) --> CheckEnable{EnableShowFlag?}
     CheckEnable -->|Нет| Skip[Output = Input (копия)]
     CheckEnable -->|Да| ReadInput[Прочитать Input]
-    ReadInput --> ReadZones[Прочитать MatrixZones<br/>или RectZones]
-    ReadZones --> ReadParams[Прочитать PenColor, PenWidth<br/>ObjectsColor, ObjectsName]
+    ReadInput --> ReadZones["Прочитать MatrixZones<br/>или RectZones"]
+    ReadZones --> ReadParams["Прочитать PenColor, PenWidth<br/>ObjectsColor, ObjectsName"]
     ReadParams --> InitCanvas[Инициализировать Canvas = Input]
     InitCanvas --> LoopZones[Цикл по зонам]
     LoopZones --> CheckFlag{ShowFlags задан?}
     CheckFlag -->|Да| CheckShow{ShowFlags[i] > 0?}
-    CheckFlag -->|Нет| DrawRect[Отрисовать прямоугольник<br/>с цветом из ObjectsColor<br/>или PenColor]
+    CheckFlag -->|Нет| DrawRect["Отрисовать прямоугольник<br/>с цветом из ObjectsColor<br/>или PenColor"]
     CheckShow -->|Да| DrawRect
     CheckShow -->|Нет| SkipRect[Пропустить зону]
     DrawRect --> DrawLabel{ObjectsName задан?}

@@ -98,8 +98,8 @@ flowchart TD
     CheckInput -->|Нет| Skip[Вернуть true без детекции]
     CheckInput -->|Да| Preprocess[Подготовка ProcessedBmp]
     Preprocess --> CallDetect[Вызов Detect(bmp,...)]
-    CallDetect --> FillOutputs[Заполнить OutputRects,<br/>OutputClasses,OutputReliability]
-    FillOutputs --> OptionalDebug[При UseDebugImage<br/>заполнить DebugImage]
+    CallDetect --> FillOutputs["Заполнить OutputRects,<br/>OutputClasses,OutputReliability"]
+    FillOutputs --> OptionalDebug["При UseDebugImage<br/>заполнить DebugImage"]
     OptionalDebug --> End([End])
     Skip --> End
 ```

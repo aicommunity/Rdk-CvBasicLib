@@ -91,7 +91,7 @@ flowchart TD
     Start([Start]) --> ReadParams[Прочитать NewWidth, NewHeight]
     ReadParams --> CheckSize{Размеры > 0?}
     CheckSize -->|Нет| ZeroOut[Output = пустое изображение]
-    CheckSize -->|Да| Resize[Выполнить cv::resize<br/>с сохранением пропорций<br/>или с обрезкой до NewWidth x NewHeight]
+    CheckSize -->|Да| Resize["Выполнить cv::resize<br/>с сохранением пропорций<br/>или с обрезкой до NewWidth x NewHeight"]
     Resize --> WriteOut[Записать в Output]
     WriteOut --> End([End])
     ZeroOut --> End
@@ -131,11 +131,11 @@ sequenceDiagram
 flowchart TD
     Start([Start]) --> ReadParams[Прочитать Angle, Enlarge]
     ReadParams --> CheckEnlarge{Enlarge?}
-    CheckEnlarge -->|Да| CalcNewSize[Вычислить размеры<br/>с учётом поворота]
+    CheckEnlarge -->|Да| CalcNewSize["Вычислить размеры<br/>с учётом поворота"]
     CheckEnlarge -->|Нет| KeepSize[Сохранить исходный размер]
-    CalcNewSize --> Rotate[Выполнить cv::warpAffine<br/>с матрицей поворота на Angle]
+    CalcNewSize --> Rotate["Выполнить cv::warpAffine<br/>с матрицей поворота на Angle"]
     KeepSize --> Rotate
-    Rotate --> Crop[При необходимости обрезать<br/>выходное изображение]
+    Rotate --> Crop["При необходимости обрезать<br/>выходное изображение"]
     Crop --> WriteOut[Записать в Output]
     WriteOut --> End([End])
 ```
@@ -174,9 +174,9 @@ sequenceDiagram
 flowchart TD
     Start([Start]) --> ReadMode[Прочитать Mode]
     ReadMode --> SwitchMode{Mode?}
-    SwitchMode -->|0 (горизонтально)| FlipH[Выполнить cv::flip<br/>с флагом 1]
-    SwitchMode -->|1 (вертикально)| FlipV[Выполнить cv::flip<br/>с флагом 0]
-    SwitchMode -->|2 (оба)| FlipBoth[Выполнить cv::flip<br/>с флагом -1]
+    SwitchMode -->|0 (горизонтально)| FlipH["Выполнить cv::flip<br/>с флагом 1"]
+    SwitchMode -->|1 (вертикально)| FlipV["Выполнить cv::flip<br/>с флагом 0"]
+    SwitchMode -->|2 (оба)| FlipBoth["Выполнить cv::flip<br/>с флагом -1"]
     FlipH --> WriteOut
     FlipV --> WriteOut
     FlipBoth --> WriteOut

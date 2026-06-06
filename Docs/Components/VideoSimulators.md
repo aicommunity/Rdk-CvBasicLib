@@ -95,12 +95,12 @@ stateDiagram-v2
 
 ```mermaid
 flowchart TD
-    Start([Start AFSCalculate]) --> ReadParams[Прочитать ViewResizeCoef,<br/>XSpeedCoef,YSpeedCoef]
+    Start([Start AFSCalculate]) --> ReadParams["Прочитать ViewResizeCoef,<br/>XSpeedCoef,YSpeedCoef"]
     ReadParams --> ReadSignals[Прочитать Move*Signal]
     ReadSignals --> UpdateShift[Обновить ViewShiftX/Y по сигналам и коэффициентам]
     UpdateShift --> Clamp[Ограничить окно ViewX/Y рамками WorkArea]
     Clamp --> Render[Отрисовать сцену на Canvas]
-    Render --> Resize[Масштабировать Canvas в ViewOutput<br/>с учётом ViewResizeCoef]
+    Render --> Resize["Масштабировать Canvas в ViewOutput<br/>с учётом ViewResizeCoef"]
     Resize --> DrawBorder[Сформировать BorderOutput]
     DrawBorder --> End([End])
 ```
