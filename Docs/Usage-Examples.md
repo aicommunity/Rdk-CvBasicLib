@@ -228,7 +228,7 @@ resize->Calculate();
 normalize->Calculate();
 
 // Теперь нормализованное изображение готово для ML модели
-// (например, из Rdk-TensorflowLib или Rdk-PyMachineLearningLib)
+// Historical note: optional ML libs are deprecated — see Docs/Libraries/Optional-ML-Libraries.md
 auto preprocessedImage = normalize->OutputImage;
 
 // Использование в ML компоненте
@@ -477,7 +477,7 @@ resize->Calculate();
 normalize->Calculate();
 
 // Now normalized image is ready for ML model
-// (e.g., from Rdk-TensorflowLib or Rdk-PyMachineLearningLib)
+// Historical: optional ML libs are deprecated — see Docs/Libraries/Optional-ML-Libraries.md
 auto preprocessedImage = normalize->OutputImage;
 
 // Using in ML component
