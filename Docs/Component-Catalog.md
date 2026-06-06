@@ -33,4 +33,4 @@
   См. [`Receiver & ShowRect`](Components/ReceiverAndShowRect.md).
 
 ## Использование (приоритет)
-Часто встречаются в `Bin/Configs`: `ColorConvert`, `Crop`, `Reduce`, `TBinarizationSimple`, `UMatrix*`, `UCR*`, `VideoSimulator*`, `RotCameraSimulator`, `BStatisticSimple`, `UMD*Mux`.
+Часто встречаются в `Bin/Configs`: `ColorConvert`, `Crop`, `Reduce`, `TBinarizationSimple`, `TBinarizationSimpleAdaptiveThreshold`, `UMatrix*`, `UCR*`, `VideoSimulator*`, `RotCameraSimulator`, `BStatisticSimple`, `UMD*Mux`.

@@ -131,6 +131,8 @@ classDiagram
     }
 ```
 
+Конфигурационный алиас `TBinarizationSimpleAdaptiveThreshold` соответствует `UBABinarizationSimpleAdaptiveThreshold` (адаптивный порог).
+
 `UBABinarizationSimpleAdaptiveThreshold` добавляет адаптивный порог с учётом фона, статистик и карт счётчиков переднего/заднего плана.
 
 ---
