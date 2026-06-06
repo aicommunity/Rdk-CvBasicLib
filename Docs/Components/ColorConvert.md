@@ -1,3 +1,5 @@
+## RU
+
 ## ColorConvert — преобразование цветовых пространств (Rdk-CvBasicLib)
 
 **Класс**: `UBAColorConvert` (реализация в `UBAColorConvert.cpp`) — компонент конвейера, который конвертирует изображения между цветовыми пространствами (BGR/RGB/GRAY и т.п.).  
@@ -154,6 +156,8 @@ UBitmap gray = color->Output;
 
 ---
 
+## EN
+
 ## ColorConvert — color space converter (Rdk-CvBasicLib)
 
 **Class**: `UBAColorConvert` — converts `UBitmap` between color spaces (e.g. BGR→GRAY) as part of UBA pipelines.  
@@ -171,4 +175,3 @@ classDiagram
         +ACalculate() bool
     }
 ```
-

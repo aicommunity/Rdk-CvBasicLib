@@ -1,3 +1,5 @@
+## RU
+
 ## Video/Camera Simulators — видеосимуляторы (Rdk-CvBasicLib)
 
 **Классы**: `UBAVideoSimulator`, `UBAVideoSimulatorSimple`, `UBAVideoSimulatorSimpleBin`, `UBARotCameraSimulator`, `UBADataSimulator`, `UBADataSimulatorSimple` — генерация синтетических видеопотоков и данных для тестов/демо.  
@@ -212,8 +214,9 @@ auto screenPts = dataSim->ScreenPoints;
 
 ---
 
+## EN
+
 ## Video/Camera Simulators — video generators (Rdk-CvBasicLib)
 
 **Classes**: `UBAVideoSimulator*`, `UBARotCameraSimulator`, `UBADataSimulator*` — synthetic video/data generators feeding UBA pipelines.  
 They replace real capture sources in configs and allow stable, repeatable test scenarios for detectors and classifiers.
-

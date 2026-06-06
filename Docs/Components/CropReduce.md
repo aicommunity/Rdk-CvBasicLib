@@ -1,3 +1,5 @@
+## RU
+
 ## Crop / Reduce — обрезка и уменьшение изображений (Rdk-CvBasicLib)
 
 **Классы**: `UBACrop` (`UBACrop.cpp`), `UBAReduce` (`UBAReduce.cpp`) — компоненты конвейера для пространственной обрезки (ROI) и уменьшения размерности изображений.  
@@ -215,8 +217,9 @@ UBitmap small = reduce->Output;
 
 ---
 
+## EN
+
 ## Crop / Reduce — crop & downscale (Rdk-CvBasicLib)
 
 **Classes**: `UBACrop`, `UBAReduce` — ROI cropping and image downscaling operators in CV pipelines.  
 They operate on `UBitmap` frames, are registered as `Class="Crop"` / `Class="Reduce"` in XML configs, and are usually placed before detectors/classifiers.
-

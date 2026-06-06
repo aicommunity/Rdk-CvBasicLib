@@ -1,5 +1,7 @@
 # Статус документации Rdk-CvBasicLib
 
+## RU
+
 Краткий статус документации библиотеки Rdk-CvBasicLib и чеклист синхронизации с кодом.
 
 **Аудит:** 2026-06-06 — [Component-Gap-Report.md](../../../Docs/Audit/Component-Gap-Report.md), [Code-Inventory.json](../../../Docs/Audit/Code-Inventory.json)

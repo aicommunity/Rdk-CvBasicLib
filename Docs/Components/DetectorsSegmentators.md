@@ -1,3 +1,5 @@
+## RU
+
 ## Detectors / Segmentators / Savers — детекторы, сегментаторы и сохранение результатов (Rdk-CvBasicLib)
 
 **Классы**: `UDetectorBase`, `USegmentatorBase`, `UClassifierBase`, `UClassifierResSaver`, `UDetResSaverPVOC` и связанные компоненты визуализации (`UBShowRect`, `UBAShowObjects`, `UBALabeling`).  
@@ -210,8 +212,9 @@ saver->Calculate();
 
 ---
 
+## EN
+
 ## Detectors / Segmentators / Savers (Rdk-CvBasicLib)
 
 **Classes**: base detector/segmentator/classifier and result saver components forming the output end of CV pipelines.  
 They consume preprocessed images/features and produce bounding boxes, masks, class labels and saved results on disk.
-

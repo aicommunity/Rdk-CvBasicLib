@@ -1,3 +1,5 @@
+## RU
+
 ## Matrix/Scalar Math & Mux — математика и мультиплексоры (Rdk-CvBasicLib)
 
 **Классы**: `UBMathOperator`, `UMatrixMath<T>`, `UMDMatrixMux<T>`, `UMDScalarMux<T>` — выполняют арифметику над матрицами/скалярами и объединение/разделение потоков данных.
@@ -172,8 +174,9 @@ auto concat = mux->OutputMatrixData;
 
 ---
 
+## EN
+
 ## Matrix/Scalar Math & Mux — math operators and multiplexers (Rdk-CvBasicLib)
 
 **Classes**: matrix/scalar operations and mux components used to build complex feature pipelines.  
 They are configured via `ClassName = "UMatrix*"` / `"UMD*"` entries and provide reusable building blocks for feature engineering.
-

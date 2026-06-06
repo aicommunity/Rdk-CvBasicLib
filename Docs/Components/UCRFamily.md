@@ -1,3 +1,5 @@
+## RU
+
 ## UCR* — классификаторы и учителя (Rdk-CvBasicLib)
 
 Семейство компонентов `UCR*` реализует классификаторы, учителей и вспомогательные блоки для обучения и инференса.
@@ -166,8 +168,9 @@ auto confs = cls->OutputConfidences;
 
 ---
 
+## EN
+
 ## UCR* — classifiers/teachers family (Rdk-CvBasicLib)
 
 **Classes**: `UCRPerseptron`, `UCRDirectCompare`, `UCRDistance`, `UCRFusion`, `UCRSample`, `UCRTeacher*`, `UCRConvolutionNetwork`, `UCRTeacherCVNetworkBP`, `UCRPCA`, `UCRBarnesHutTSNE` — core of learning/classification in CV pipelines.  
 They implement both training and inference stages and are configured from XML via `ClassName = "UCR*"` entries in configs.
-
