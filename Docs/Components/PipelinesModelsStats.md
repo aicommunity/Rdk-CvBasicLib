@@ -13,9 +13,11 @@
 
 ## EN
 
-### UBPipeline / UBParallelPipeline — конвейеры обработки
+## Pipelines, Models & Statistics — pipelines, models, and statistics (Rdk-CvBasicLib)
 
-#### UML-диаграмма классов
+### UBPipeline / UBParallelPipeline — pipelines processing
+
+#### Class diagram
 
 ```mermaid
 classDiagram
@@ -37,9 +39,9 @@ classDiagram
     }
 ```
 
-`UBPipeline` управляет набором дочерних компонентов `UNet` и определяет, какие типы разрешено включать в конвейер. `UBParallelPipeline` реализует параллельную схему исполнения.
+`UBPipeline` manages set child components `UNet` и defines, which types allowed include в pipeline. `UBParallelPipeline` implements parallel execution scheme.
 
-#### UML-диаграмма компонентов
+#### Component diagram
 
 ```mermaid
 graph LR
@@ -52,9 +54,9 @@ graph LR
     Pipe --> STAT[UBStatistic*]
 ```
 
-#### Жизненный цикл
+#### Lifecycle cycle
 
-Конкретные методы `ADefault/ABuild/ACalculate` зависят от реализации `UNet`, но типичный жизненный цикл пайплайна:
+Specific methods `ADefault/ABuild/ACalculate` depend от implementation `UNet`, но typical lifecycle cycle pipeline:
 
 ```mermaid
 sequenceDiagram
@@ -78,7 +80,7 @@ sequenceDiagram
 
 ---
 
-### UBAModel — модель обработки
+### UBAModel — model processing
 
 ```mermaid
 classDiagram
@@ -98,13 +100,13 @@ classDiagram
     }
 ```
 
-`UBAModel` служит контейнером для составных моделей обработки (например, совокупность нескольких пайплайнов/веток), предоставляя единый выход `Output` и рабочее разрешение (`WorkWidth`, `WorkHeight`).
+`UBAModel` serves as a container for composite model processing (for example, a collection of several pipelines/branches), providing a single output `Output` and working resolution (`WorkWidth`, `WorkHeight`).
 
 ---
 
-### UBStatistic / UBStatisticSimple — статистика и сохранение кадров
+### UBStatistic / UBStatisticSimple — statistics и saving frames
 
-#### UML-диаграмма классов
+#### Class diagram
 
 ```mermaid
 classDiagram
@@ -142,20 +144,20 @@ classDiagram
     }
 ```
 
-#### Входы/выходы и поведение
+#### Inputs/outputs и behavior
 
-- **Вход**: `Input` — вектор изображений (`UBitmap`), которые нужно сохранять/анализировать.  
-- **Параметры сохранения**:
+- **Input**: `Input` — vector images (`UBitmap`), which need save/analyze.  
+- **Parameters saves**:
   - `SavePath`, `PrefixName`, `FileFormat` (`0` — bmp, `1` — jpeg), `FileNameSuffix`.  
-  - `TimeToFileNameFlag`, `OrderIndexToFileNameFlag` — добавление времени/индекса в имя файла.  
-  - `NumSkipSteps` — пропуск шагов между сохранениями.  
-  - `UseManualStatistic` + `ManualStatisticSwitch` — ручкое включение/выключение сбора.
+  - `TimeToFileNameFlag`, `OrderIndexToFileNameFlag` — addition time/index в имя file.  
+  - `NumSkipSteps` — skip steps between saves.  
+  - `UseManualStatistic` + `ManualStatisticSwitch` — manual enable/disable collection.
 - **UBStatisticSimple**:
-  - `TimeInterval` — минимальный интервал между сохранениями (или число шагов).  
-  - `Mode` — режим работы (автоматический/ручной).  
-  - `WriteSignal` — флаг разового сохранения в момент вызова `Calculate`.
+  - `TimeInterval` — minimum interval between saves (или number steps).  
+  - `Mode` — mode work (automatic/manual).  
+  - `WriteSignal` — one-shot save flag at the moment `Calculate` is called.
 
-#### UML-диаграмма последовательности
+#### Sequence diagram
 
 ```mermaid
 sequenceDiagram
@@ -172,7 +174,7 @@ sequenceDiagram
 
 ---
 
-### Примеры использования (C++)
+### Usage Examples (C++)
 
 ```cpp
 // Пайплайн
@@ -199,7 +201,7 @@ for (int step = 0; step < 1000; ++step) {
 
 ---
 
-### Пример конфигурации XML
+### Example configuration XML
 
 ```xml
 <Component Id="MainPipeline" Class="UBPipeline">
@@ -223,7 +225,7 @@ for (int step = 0; step < 1000; ++step) {
 
 ---
 
-### Поток данных высокого уровня
+### Flow data high level
 
 ```mermaid
 flowchart LR
@@ -234,4 +236,4 @@ flowchart LR
     Stat --> Files[Saved images/stats]
 ```
 
-Эти компоненты связывают вместе цепочки обработки, логически оформляя “модель обработки” и обеспечивая сохранение промежуточных и финальных результатов в проектах `Bin/Configs/*`.
+Эти components link together chain processing, logically structuring “model processing” и ensuring saving intermediate и final results в projectх `Bin/Configs/*`.

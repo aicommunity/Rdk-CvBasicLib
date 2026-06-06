@@ -12,7 +12,9 @@
 
 ## EN
 
-### UML-диаграмма классов
+## Receiver & ShowRect — receiver and rectangle visualization (Rdk-CvBasicLib)
+
+### Class diagram
 
 ```mermaid
 classDiagram
@@ -51,14 +53,14 @@ classDiagram
     }
 ```
 
-**Иерархия наследования:**
-- `UBShowRect` наследуется от `UBAShowObjects`, который предоставляет базовую функциональность отрисовки объектов.
+**Inheritance hierarchy:**
+- `UBShowRect` inherits от `UBAShowObjects`, which provides basic functionality rendering objects.
 
 ---
 
-### UBAReceiver — приёмник изображений
+### UBAReceiver — receiver images
 
-#### UML-диаграмма последовательности
+#### Sequence diagram
 
 ```mermaid
 sequenceDiagram
@@ -72,7 +74,7 @@ sequenceDiagram
     Recv-->>Next: Output (UBitmap)
 ```
 
-#### UML-диаграмма активности
+#### Activity diagram
 
 ```mermaid
 flowchart TD
@@ -81,23 +83,23 @@ flowchart TD
     Copy --> End([End])
 ```
 
-#### Свойства и методы
+#### Properties and methods
 
-| Свойство/Метод | Тип | Назначение |
+| Property/Method | Тип | Purpose |
 |----------------|-----|------------|
-| `Input` | `UBitmap` | Входное изображение |
-| `Output` | `UBitmap` | Выходное изображение (копия Input) |
-| `ADefault()` | `bool` | Инициализация по умолчанию |
-| `AReset()` | `bool` | Сброс состояний |
-| `ACalculate()` | `bool` | Копирование Input в Output |
+| `Input` | `UBitmap` | Input image |
+| `Output` | `UBitmap` | Outputное image (copy Input) |
+| `ADefault()` | `bool` | Initialization default |
+| `AReset()` | `bool` | Reset states |
+| `ACalculate()` | `bool` | Copying Input в Output |
 
-**Назначение:** Простой компонент для проброса изображений в пайплайнах, когда требуется явное разделение этапов обработки или синхронизация потоков данных.
+**Purpose:** Simple component для forwarding images в pipelines, when is required explicit separation stages processing или synchronization flows data.
 
 ---
 
-### UBShowRect — визуализация прямоугольных зон
+### UBShowRect — visualization rectangular зон
 
-#### UML-диаграмма последовательности
+#### Sequence diagram
 
 ```mermaid
 sequenceDiagram
@@ -113,7 +115,7 @@ sequenceDiagram
     Show-->>Display: Output (UBitmap с нарисованными зонами)
 ```
 
-#### UML-диаграмма активности (UBShowRect::AFSCalculate)
+#### Activity diagram (UBShowRect::AFSCalculate)
 
 ```mermaid
 flowchart TD
@@ -141,26 +143,26 @@ flowchart TD
     Skip --> End
 ```
 
-#### Свойства и методы
+#### Properties and methods
 
-| Свойство/Метод | Тип | Назначение |
+| Property/Method | Тип | Purpose |
 |----------------|-----|------------|
-| `Input` | `UBitmap` | Входное изображение, на которое наносятся зоны |
-| `Output` | `UBitmap` | Результирующее изображение с нарисованными прямоугольниками |
-| `MatrixZones` | `MDMatrix<double>` | Матрица зон (каждая строка: x, y, width, height или left, top, right, bottom) |
-| `RectZones` | `vector<UBRect>` | Вектор прямоугольных зон |
-| `ShowFlags` | `MDMatrix<int>` | Флаги видимости для каждой зоны (опционально) |
-| `PenColor` | `UColorT` | Цвет линий прямоугольников (по умолчанию) |
-| `PenWidth` | `int` | Толщина линий |
-| `EnableShowFlag` | `bool` | Включить/выключить отрисовку |
-| `ObjectsColor` | `vector<UColorT>` | Цвета для каждой зоны (если задано, переопределяет PenColor) |
-| `ObjectsName` | `vector<string>` | Текстовые метки для зон |
-| `ObjectsId` | `MDMatrix<int>` | Идентификаторы объектов (для связи с метками) |
-| `SetActivity(bool)` | `bool` | Установить флаг активности (аналог EnableShowFlag) |
+| `Input` | `UBitmap` | Input image, на which are drawn zones |
+| `Output` | `UBitmap` | Resulting image с drawn rectangles |
+| `MatrixZones` | `MDMatrix<double>` | Matrix зон (each row: x, y, width, height или left, top, right, bottom) |
+| `RectZones` | `vector<UBRect>` | Vector rectangular зон |
+| `ShowFlags` | `MDMatrix<int>` | Flags visibility для each zones (optionally) |
+| `PenColor` | `UColorT` | Color lines rectangles (default) |
+| `PenWidth` | `int` | Thickness lines |
+| `EnableShowFlag` | `bool` | Enable/disable rendering |
+| `ObjectsColor` | `vector<UColorT>` | Colors для each zones (if specified, overrides PenColor) |
+| `ObjectsName` | `vector<string>` | Text labels для зон |
+| `ObjectsId` | `MDMatrix<int>` | Identifiers objects (для relationships с labels) |
+| `SetActivity(bool)` | `bool` | Set activity flag (analog of EnableShowFlag) |
 
 ---
 
-### UML-диаграмма компонентов
+### Component diagram
 
 ```mermaid
 graph LR
@@ -173,7 +175,7 @@ graph LR
 
 ---
 
-### Примеры использования (C++)
+### Usage Examples (C++)
 
 ```cpp
 // Приёмник
@@ -204,7 +206,7 @@ UBitmap annotated = show->Output;
 
 ---
 
-### Примеры конфигурации XML
+### XML configuration examples
 
 ```xml
 <!-- Приёмник -->
@@ -224,15 +226,11 @@ UBitmap annotated = show->Output;
 
 ---
 
-### Связь с конфигурационными проектами (`Bin/Configs`)
+### Link с configuration projectми (`Bin/Configs`)
 
-- **UBAReceiver** используется как промежуточный компонент в пайплайнах для явного разделения этапов обработки или синхронизации потоков данных.
-- **UBShowRect** является финальным компонентом в большинстве пайплайнов детекции, отображая результаты детекции (`UDetectorBase`, `UBAMovingDetector*`, `UBALabeling*`) поверх исходного изображения перед сохранением или выводом на экран.
+- **UBAReceiver** is used as an intermediate component in pipelines for explicit separation of processing stages or synchronized data flows.
+- **UBShowRect** is the final component in most detection pipelines, displaying detection results (`UDetectorBase`, `UBAMovingDetector*`, `UBALabeling*`) over source images before saving or on-screen output.
 
-Оба компонента часто встречаются в конфигурациях `Bin/Configs/*` для задач видеонаблюдения и анализа движения.
+Оба component often appear в configurations `Bin/Configs/*` для tasks video surveillance и analysis motion.
 
 ---
-
-## Receiver & ShowRect — receiver and rectangle visualization (Rdk-CvBasicLib)
-
-**Classes**: `UBAReceiver`, `UBShowRect` — simple image receiver/forwarder and rectangle zone visualization component for displaying detection results (bounding boxes) on images.

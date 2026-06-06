@@ -39,9 +39,31 @@
 
 ### Purpose
 
-Diagrams of Rdk-CvBasicLib library structure and main image processing sequences.
+Diagrams of the Rdk-CvBasicLib library structure and main image processing sequences.
 
 ### Diagrams
 
 - [Image-Processing-Pipeline.md](Image-Processing-Pipeline.md) - image processing pipeline
 - [Object-Detection-Flow.md](Object-Detection-Flow.md) - object detection flow
+
+### UML Conventions (Mermaid)
+
+- **Class diagrams** (`classDiagram`)  
+  - Show inheritance hierarchy (`UNet <|-- MyComponent`) and key properties/methods.  
+  - Rdk-CvBasicLib components always include lifecycle methods: `New`, `ADefault`, `ABuild`, `AReset`, `ACalculate`.
+
+- **Sequence diagrams** (`sequenceDiagram`)  
+  - Describe the component lifecycle: creation, initialization, build, repeated `ACalculate` calls, reset.  
+  - Participants: `UStorage`, the component itself, sources (`TCapture`/`UBASource*`), and downstream pipeline components.
+
+- **State diagrams** (`stateDiagram-v2`)  
+  - Used for components with explicit states (`Uninitialized`, `Defaulted`, `Built`, `Ready`, `Calculating`, `Resetting`).  
+  - Transitions are tied to calls to `ADefault`, `ABuild`, `ACalculate`, `AReset`.
+
+- **Activity diagrams** (`flowchart TD/LR`)  
+  - Reveal the algorithm inside `ACalculate`/`ABuild`: data flow, branches (`if/else`), and loops.  
+  - Nodes describe processing steps (read input properties, compute, write outputs).
+
+- **Component diagrams** (`graph TB/LR`)  
+  - Show connections between components (sources, processors, detectors, classifiers, result storage).  
+  - Nodes are components (`TCapture*`, `UBA*`, `UDetectorBase`, `UCR*`, etc.); edges are data/signal flow.

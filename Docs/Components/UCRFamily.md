@@ -174,3 +174,64 @@ auto confs = cls->OutputConfidences;
 
 **Classes**: `UCRPerseptron`, `UCRDirectCompare`, `UCRDistance`, `UCRFusion`, `UCRSample`, `UCRTeacher*`, `UCRConvolutionNetwork`, `UCRTeacherCVNetworkBP`, `UCRPCA`, `UCRBarnesHutTSNE` — core of learning/classification in CV pipelines.  
 They implement both training and inference stages and are configured from XML via `ClassName = "UCR*"` entries in configs.
+
+```mermaid
+classDiagram
+    UNet <|-- UCRClassifier
+    UCRClassifier <|-- UCRPerseptron
+    UCRClassifier <|-- UCRDirectCompare
+    UCRClassifier <|-- UCRDistance
+    UCRClassifier <|-- UCRFusion
+
+    UNet <|-- UCRSample
+    UNet <|-- UCRTeacher
+    UCRTeacher <|-- UCRTeacherPerseptronBP
+    UCRTeacher <|-- UCRTeacherPerseptronDL
+    UCRTeacher <|-- UCRTeacherCVNetworkBP
+
+    UNet <|-- UCRConvolutionNetwork
+    UNet <|-- UCRPrincipalComponentAnalysis
+    UNet <|-- UCRBarnesHutTSNE
+```
+
+```mermaid
+sequenceDiagram
+    participant Data as UCRSample
+    participant Cls as UCRPerseptron/UCRClassifier
+    participant Teacher as UCRTeacher*
+
+    loop Эпоха обучения
+        Data-->>Teacher: Обучающие выборки
+        Teacher->>Cls: Обновление весов
+    end
+
+    Data-->>Cls: Валидационные/тестовые выборки
+    Cls->>Cls: ACalculate()/Classify
+    Cls-->>Data: Классы/скор
+```
+
+```mermaid
+stateDiagram-v2
+    [*] --> Init: New()
+    Init --> Configured: Параметры загружены
+    Configured --> Trained: Обучение завершено
+    Trained --> Inference: ACalculate()
+    Inference --> Trained: Классы посчитаны
+```
+
+```mermaid
+flowchart TD
+    Start([Start]) --> ReadInput["Прочитать входные признаки<br/>из свойств/матриц"]
+    ReadInput --> Forward[Прямое распространение по слоям сети]
+    Forward --> Argmax[Определить класс с макс. скором]
+    Argmax --> WriteOut["Записать OutputClasses<br/>и OutputConfidences"]
+    WriteOut --> End([End])
+```
+
+```mermaid
+graph LR
+    Feats[Features] --> Cls[UCR*Classifier]
+    Cls --> Res[Class/Score]
+    Feats2[High-dim Features] --> PCA[UCRPCA/UCRBarnesHutTSNE]
+    PCA --> LowDim[2D/3D embedding]
+```

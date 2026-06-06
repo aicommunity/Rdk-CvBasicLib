@@ -10,7 +10,9 @@
 
 ## EN
 
-### UML-диаграмма классов
+## Moving Detectors — motion detectors (Rdk-CvBasicLib)
+
+### Class diagram
 
 ```mermaid
 classDiagram
@@ -100,9 +102,9 @@ classDiagram
 
 ---
 
-### UBAMovingDetector — базовый детектор движения
+### UBAMovingDetector — base motion detector
 
-#### UML-диаграмма последовательности
+#### Sequence diagram
 
 ```mermaid
 sequenceDiagram
@@ -115,13 +117,13 @@ sequenceDiagram
         Src-->>Det: Input (UBitmap)
         Det->>Det: ACalculate() / AFCCalculate()
         Det->>Hist: Обновление истории кадров
-        Det->>Det: Вычисление разности/контраста
+        Det->>Det: Calculate разности/контраста
         Det->>Det: Обнаружение движущихся объектов
         Det-->>Next: MovedObjects (UBRect*)
     end
 ```
 
-#### UML-диаграмма состояний
+#### State diagram
 
 ```mermaid
 stateDiagram-v2
@@ -137,7 +139,7 @@ stateDiagram-v2
     Resetting --> Ready: История очищена
 ```
 
-#### UML-диаграмма активности (UBANightMovingDetector::AFCCalculate)
+#### Activity diagram (UBANightMovingDetector::AFCCalculate)
 
 ```mermaid
 flowchart TD
@@ -151,60 +153,60 @@ flowchart TD
     FillOutput --> End([End])
 ```
 
-#### Свойства и методы
+#### Properties and methods
 
-| Свойство/Метод | Тип | Назначение |
+| Property/Method | Тип | Purpose |
 |----------------|-----|------------|
-| `HistorySize` | `int` | Размер истории кадров для анализа движения |
-| `Input` | `UBitmap` | Входное изображение |
-| `MovedObjects` | `UBRect*` | Массив обнаруженных движущихся объектов (защищённое поле) |
-| `LocalContrastedImages` | `UBitmap*` | Буфер изображений с локальным контрастом |
-| `GetMovedObjects()` | `const UBRect*` | Получить массив обнаруженных объектов |
-| `HistoryShift()` | `void` | Сдвиг буфера истории |
+| `HistorySize` | `int` | Size history frames для analysis motion |
+| `Input` | `UBitmap` | Input image |
+| `MovedObjects` | `UBRect*` | Array detected moving objects (protected field) |
+| `LocalContrastedImages` | `UBitmap*` | Buffer images с local contrast |
+| `GetMovedObjects()` | `const UBRect*` | Get array detected objects |
+| `HistoryShift()` | `void` | Shift history buffer |
 
 ---
 
-### UBANightMovingDetector — детектор движения для ночных условий
+### UBANightMovingDetector — motion detector для night conditions
 
-#### Алгоритм
+#### Algorithm
 
-Реализует алгоритм из статьи "A real-time object detecting and tracking system for outdoor night surveillance" (Kaiqi Huang et al.):
+Implements algorithm из paper "A real-time object detecting and tracking system for outdoor night surveillance" (Kaiqi Huang et al.):
 
-1. **Локальный контраст** — вычисление контраста в блоках изображения.
-2. **Карта локальной зависимости** — построение карты изменений между кадрами.
-3. **Адаптивный порог** — динамический порог для выделения движущихся объектов.
-4. **Обнаружение движения** — идентификация блоков с движением выше порога.
+1. **Local contrast** — computation contrast в blockах images.
+2. **Local dependency map** — building map changes between frames.
+3. **Adaptive threshold** — dynamicallyй threshold для highlighting moving objects.
+4. **Detection motion** — identification blockов с motion above threshold.
 
-#### Свойства и методы
+#### Properties and methods
 
-| Свойство/Метод | Тип | Назначение |
+| Property/Method | Тип | Purpose |
 |----------------|-----|------------|
-| `BlockWidth`, `BlockHeight` | `int` | Размер блока для анализа локального контраста |
-| `AdaptiveThresholdPercent` | `double` | Процент для вычисления адаптивного порога |
-| `MoveDetectionPercent` | `double` | Процент пикселей, преодолевших порог, для обнаружения |
-| `T1`, `Tr` | `double` | Пороги для фильтрации ложных срабатываний |
-| `MovingDetectionMode` | `int` | Режим детекции движения (`0` — стандартный, `1` — нормализованный) |
-| `HistLeftRange`, `HistRightRange` | `int` | Диапазон гистограммы для анализа |
-| `MovingFrameMode` | `int` | Режим обработки кадров (`0` — стандартный, `1` — альтернативный) |
-| `GetMovedImage()` | `const UBitmap&` | Получить изображение с выделенными движущимися объектами |
-| `GetContrastGrid()` | `const UBRect*` | Получить сетку контрастных объектов |
-| `GetMovedGrid()` | `const UBRect*` | Получить сетку движущихся объектов |
+| `BlockWidth`, `BlockHeight` | `int` | Size blockа для analysis local contrast |
+| `AdaptiveThresholdPercent` | `double` | Percent для computation adaptive threshold |
+| `MoveDetectionPercent` | `double` | Percent pixels, exceeding threshold, для detection |
+| `T1`, `Tr` | `double` | Thresholds for false-positive filtering |
+| `MovingDetectionMode` | `int` | Mode detection motion (`0` — standard, `1` — normalized) |
+| `HistLeftRange`, `HistRightRange` | `int` | Histogram range for analysis |
+| `MovingFrameMode` | `int` | Mode processing frames (`0` — standard, `1` — alternative) |
+| `GetMovedImage()` | `const UBitmap&` | Get image с highlighted moving objects |
+| `GetContrastGrid()` | `const UBRect*` | Get grid contrast objects |
+| `GetMovedGrid()` | `const UBRect*` | Get grid moving objects |
 
 ---
 
-### UBACollateMovingDetector — упрощённый детектор движения
+### UBACollateMovingDetector — simplified motion detector
 
-#### Особенности
+#### Features
 
-- Более простая реализация детекции движения на основе разностного кадра.
-- Публичное поле `DiffImage` для визуализации разности.
-- Используется в случаях, когда не требуется сложный анализ локального контраста.
+- More simple implementation detection motion на basis difference frame.
+- Public field `DiffImage` для visualization difference.
+- Used в cases, when complex local contrast analysis is not required.
 
 ---
 
-### UBAObjectDetector / UBANightDetector — интерфейс детекции объектов
+### UBAObjectDetector / UBANightDetector — interface detection objects
 
-#### UML-диаграмма компонентов
+#### Component diagram
 
 ```mermaid
 graph LR
@@ -217,7 +219,7 @@ graph LR
 
 ---
 
-### Примеры использования (C++)
+### Usage Examples (C++)
 
 ```cpp
 // Ночной детектор движения
@@ -241,7 +243,7 @@ for (int step = 0; step < 1000; ++step) {
 
 ---
 
-### Примеры конфигурации XML
+### XML configuration examples
 
 ```xml
 <Component Id="NightMovingDet" Class="NightMovingDetector">
@@ -261,17 +263,13 @@ for (int step = 0; step < 1000; ++step) {
 
 ---
 
-### Связь с конфигурационными проектами (`Bin/Configs`)
+### Link с configuration projectми (`Bin/Configs`)
 
-Компоненты детекции движения используются в пайплайнах видеонаблюдения:
-- **UBAMovingDetector** — базовый класс для различных алгоритмов детекции движения.
-- **UBANightMovingDetector** — специализированный алгоритм для ночных условий с анализом локального контраста.
-- **UBACollateMovingDetector** — упрощённая реализация для быстрой детекции движения.
+Components detection motion used in video surveillance pipelines:
+- **UBAMovingDetector** — base class для various algorithms detection motion.
+- **UBANightMovingDetector** — specialized algorithm for night conditions with local contrast analysis.
+- **UBACollateMovingDetector** — simplified implementation для fast detection motion.
 
-Они обычно размещаются после компонентов фона (`UBABackground*`) и разностных кадров (`UBADifferenceFrame*`) в конфигурациях `Bin/Configs/*`.
+They are usually placed after background components (`UBABackground*`) и difference frames (`UBADifferenceFrame*`) в configurations `Bin/Configs/*`.
 
 ---
-
-## Moving Detectors — motion detection components (Rdk-CvBasicLib)
-
-**Classes**: `UBAMovingDetector*`, `UBAObjectDetector*`, `UBANightDetector` — motion detection algorithms for video surveillance pipelines, including specialized night-time detection with local contrast analysis.

@@ -218,3 +218,105 @@ saver->Calculate();
 
 **Classes**: base detector/segmentator/classifier and result saver components forming the output end of CV pipelines.  
 They consume preprocessed images/features and produce bounding boxes, masks, class labels and saved results on disk.
+
+```mermaid
+classDiagram
+    UNet <|-- UDetectorBase
+    UNet <|-- USegmentatorBase
+    UNet <|-- UClassifierBase
+    UNet <|-- UClassifierResSaver
+    UNet <|-- UDetResSaverPVOC
+    UNet <|-- UBShowRect
+
+    class UDetectorBase {
+        +ConfidenceThreshold : double
+        +NMSthreshold : double
+        +UseDebugImage : bool
+        +InputImage : UBitmap
+        +DebugImage : UBitmap
+        +OutputObjects : MDMatrix<double>
+        +OutputRects : MDMatrix<double>
+        +OutputClasses : MDMatrix<int>
+        +OutputReliability : MDMatrix<double>
+        +ACalculate() bool
+        +Detect(...) bool
+    }
+
+    class USegmentatorBase {
+        +InputImage : UBitmap
+        +OutputImage : UBitmap
+        +ClassColors : vector<UColorT>
+        +ACalculate() bool
+        +Inference(...) bool
+    }
+
+    class UClassifierBase {
+        +ConfidenceThreshold : double
+        +NumClasses : int
+        +InputImage : UBitmap
+        +InputImages : vector<UBitmap>
+        +OutputClasses : MDMatrix<int>
+        +OutputConfidences : MDMatrix<double>
+        +ClassificationTime : double
+        +ACalculate() bool
+        +ClassifyBitmap(...) bool
+    }
+
+    class UClassifierResSaver {
+        +SaveDirectory : string
+        +OverwriteSaveDirectory : bool
+        +ObjectsName : map<int,string>
+        +InputImage : UBitmap
+        +ImageName : UBitmap
+        +InputImages : vector<UBitmap>
+        +InputClasses : MDMatrix<int>
+        +InputConfidences : MDMatrix<double>
+        +CalculateFlag : bool
+        +New() UClassifierResSaver*
+        +ACalculate() bool
+        +SaveImage(...) bool
+    }
+```
+
+```mermaid
+sequenceDiagram
+    participant Src as Source/Preprocessing
+    participant Det as UDetectorBase
+    participant Saver as UDetResSaverPVOC/UClassifierResSaver
+    participant Vis as UBShowRect
+
+    Src-->>Det: InputImage (UBitmap)
+    Det->>Det: ACalculate()/Detect()
+    Det-->>Saver: OutputRects, OutputClasses, OutputReliability
+    Det-->>Vis: OutputRects, InputImage
+    Saver->>Saver: ACalculate()/SaveImage()
+    Vis->>Vis: ACalculate() (отрисовка прямоугольников)
+```
+
+```mermaid
+stateDiagram-v2
+    [*] --> Ready: Конфигурация загружена
+    Ready --> Processing: ACalculate()
+    Processing --> Ready: Результаты рассчитаны/сохранены
+```
+
+```mermaid
+flowchart TD
+    Start([Start ACalculate]) --> CheckInput{Есть InputImage?}
+    CheckInput -->|Нет| Skip[Вернуть true без детекции]
+    CheckInput -->|Да| Preprocess[Подготовка ProcessedBmp]
+    Preprocess --> CallDetect[Вызов Detect(bmp,...)]
+    CallDetect --> FillOutputs["Заполнить OutputRects,<br/>OutputClasses,OutputReliability"]
+    FillOutputs --> OptionalDebug["При UseDebugImage<br/>заполнить DebugImage"]
+    OptionalDebug --> End([End])
+    Skip --> End
+```
+
+```mermaid
+graph LR
+    Img[Preprocessed UBitmap] --> Det[UDetectorBase]
+    Det --> Cls[UClassifierBase]
+    Cls --> Saver[UClassifierResSaver]
+    Det --> DSaver[UDetResSaverPVOC]
+    Det --> Vis[UBShowRect]
+```

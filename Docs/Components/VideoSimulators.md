@@ -220,3 +220,104 @@ auto screenPts = dataSim->ScreenPoints;
 
 **Classes**: `UBAVideoSimulator*`, `UBARotCameraSimulator`, `UBADataSimulator*` — synthetic video/data generators feeding UBA pipelines.  
 They replace real capture sources in configs and allow stable, repeatable test scenarios for detectors and classifiers.
+
+```mermaid
+classDiagram
+    UNet <|-- UBAVideoSimulator
+    UBAVideoSimulator <|-- UBAVideoSimulatorSimple
+    UBAVideoSimulator <|-- UBAVideoSimulatorSimpleBin
+    UBAVideoSimulatorSimple <|-- UBARotCameraSimulator
+    UNet <|-- UBADataSimulator
+    UBADataSimulator <|-- UBADataSimulatorSimple
+
+    class UBAVideoSimulator {
+        +BgMode : int
+        +BgColor : UColorT
+        +HideAllFlag : bool
+        +NumObjects : int
+        +WorkArea : UBRect
+        +ShowGrid : bool
+        +PixelGridStep : int
+        +PixelGridColor : UColorT
+        +PixelGridWidth : int
+        +Input : UBitmap
+        +Output : UBitmap
+        +Objects : vector<UBVSObject>
+        +ADefault() bool
+        +ABuild() bool
+        +AReset() bool
+        +ACalculate() bool
+    }
+
+    class UBARotCameraSimulator {
+        +ViewOutput : UBitmap
+        +BorderOutput : UBitmap
+        +ViewResizeCoef : double
+        +XSpeedCoef : double
+        +YSpeedCoef : double
+        +MoveLeftSignal : MDMatrix<double>
+        +MoveRightSignal : MDMatrix<double>
+        +MoveTopSignal : MDMatrix<double>
+        +MoveBottomSignal : MDMatrix<double>
+        +AFSDefault() bool
+        +AFSBuild() bool
+        +AFSReset() bool
+        +AFSCalculate() bool
+    }
+
+    class UBADataSimulatorSimple {
+        +ScreenPoints : vector<MVector<double,2>>
+        +PlanePoints : vector<MVector<double,3>>
+        +SpacePoints : vector<MVector<double,4>>
+    }
+```
+
+```mermaid
+sequenceDiagram
+    participant Storage as UStorage
+    participant Sim as UBAVideoSimulatorSimple
+    participant Pipeline as UBAPipeline
+
+    Storage->>Sim: New()
+    Storage->>Sim: ADefault()
+    Note over Sim: Initialization BgMode, WorkArea,<br/>NumObjects и параметров сетки
+    Storage->>Sim: ABuild()
+
+    loop каждый кадр
+        Storage->>Sim: ACalculate()
+        Sim-->>Pipeline: Output (синтетический кадр)
+    end
+
+    Storage->>Sim: AReset()
+```
+
+```mermaid
+stateDiagram-v2
+    [*] --> Uninitialized: New()
+    Uninitialized --> Defaulted: ADefault()/AFSDefault()
+    Defaulted --> Built: ABuild()/AFSBuild()
+    Built --> Ready: Ready = true
+    Ready --> Simulating: ACalculate()/AFSCalculate()
+    Simulating --> Ready: Кадр сгенерирован
+    Ready --> Resetting: AReset()/AFSReset()
+    Resetting --> Ready
+```
+
+```mermaid
+flowchart TD
+    Start([Start AFSCalculate]) --> ReadParams["Прочитать ViewResizeCoef,<br/>XSpeedCoef,YSpeedCoef"]
+    ReadParams --> ReadSignals[Прочитать Move*Signal]
+    ReadSignals --> UpdateShift[Обновить ViewShiftX/Y по сигналам и коэффициентам]
+    UpdateShift --> Clamp[Ограничить окно ViewX/Y рамками WorkArea]
+    Clamp --> Render[Отрисовать сцену на Canvas]
+    Render --> Resize["Масштабировать Canvas в ViewOutput<br/>с учётом ViewResizeCoef"]
+    Resize --> DrawBorder[Сформировать BorderOutput]
+    DrawBorder --> End([End])
+```
+
+```mermaid
+graph LR
+    Cfg[Config] --> Sim[UBAVideoSimulator*/UBADataSimulator*]
+    Sim --> Pipeline[UBA/CV pipeline]
+    Pipeline --> Det[UDetectorBase/UCR*]
+```

@@ -10,7 +10,9 @@
 
 ## EN
 
-### UML-диаграмма классов
+## Capture & Sources — capture and image sources (Rdk-CvBasicLib)
+
+### Class diagram
 
 ```mermaid
 classDiagram
@@ -30,13 +32,13 @@ classDiagram
     UBASource <|-- UBASourceFreezeFrame
 ```
 
-**TCapture** — абстрактный базовый класс захвата кадров (камеры/файлы), управляющий состояниями `Created / Initialization / Connected / Active / Paused / Disconnected`.
+**TCapture** — abstract base class for frame capture (cameras/files), managing states `Created / Initialization / Connected / Active / Paused / Disconnected`.
 
 ---
 
 ### TCapture / TCaptureCamera / TCaptureCameraIp / TCaptureImageSequence
 
-#### UML (основные свойства и методы)
+#### UML (main properties and methods)
 
 ```mermaid
 classDiagram
@@ -104,7 +106,7 @@ classDiagram
     }
 ```
 
-#### UML-диаграмма последовательности (типичный цикл захвата)
+#### Sequence diagram (typical cycle captureа)
 
 ```mermaid
 sequenceDiagram
@@ -125,7 +127,7 @@ sequenceDiagram
     Storage->>Cap: StopCapture()
 ```
 
-#### UML-диаграмма состояний TCapture
+#### State diagram TCapture
 
 ```mermaid
 stateDiagram-v2
@@ -140,21 +142,21 @@ stateDiagram-v2
     Reconnect --> Active: StartCapture()
 ```
 
-#### Входы/выходы и свойства
+#### Inputs/outputs and properties
 
-- **Выход**: `OutputImage` — текущий кадр `UBitmap`.  
-- **Основные параметры**:
+- **Output**: `OutputImage` — current frame `UBitmap`.  
+- **Main parameters**:
   - `DesiredFps`, `CaptureTimeout`, `CloseTimeout`, `ReconnectTimeout`, `RestartMode`.  
   - `DesiredWidth`, `DesiredHeight`, `DesiredResolutionFlag`.  
   - `EnableCapture`, `Paused`, `FlipX`, `FlipY`, `RotationAngle`, `FixedRotation`.
-- **Состояние**:
+- **State**:
   - `CaptureState`, `NumFrames`, `CaptureFps`, `RealFps`, `FramePosition`, `FrameTime`.
 - **TCaptureCameraIp**:
-  - `Address`, `Login`, `Password` — параметры подключения к IP‑камере.
+  - `Address`, `Login`, `Password` — IP camera connection parameters.
 - **TCaptureImageSequence**:
   - `Path`, `IsPathRelativeFromConfig`, `RepeatFlag`, `CaptureDelay`.  
 
-#### Пример использования (C++)
+#### Usage example (C++)
 
 ```cpp
 auto cap = storage->CreateComponent<RDK::TCaptureImageSequence>();
@@ -177,7 +179,7 @@ cap->StopCapture();
 
 ### UBASource / UBASourceFile / UBASourceMultiFile / UBABitmapSource* / UBASourceFreezeFrame
 
-#### UML (основные связи)
+#### UML (main relationships)
 
 ```mermaid
 classDiagram
@@ -228,7 +230,7 @@ classDiagram
     }
 ```
 
-#### UML-диаграмма последовательности (пример для UBASourceFile)
+#### Sequence diagram (example for UBASourceFile)
 
 ```mermaid
 sequenceDiagram
@@ -246,21 +248,21 @@ sequenceDiagram
     end
 ```
 
-#### Входы/выходы и свойства
+#### Inputs/outputs and properties
 
 - **UBASource**
-  - `Input` / `Output` (`UBitmap`) — базовый источник, который может пробрасывать или переопределять данные.
+  - `Input` / `Output` (`UBitmap`) — base source that can forward or override data.
 - **UBASourceFile**
-  - `FileName` — путь к единичному файлу; `IsLoad()` — индикатор успешной загрузки.
+  - `FileName` — path to a single file; `IsLoad()` — successful load indicator.
 - **UBASourceMultiFile**
-  - `FileNames` — список путей; динамически создаёт выходные свойства `Output[i]` для каждого файла.
+  - `FileNames` — path list; dynamically creates output properties `Output[i]` for each file.
 - **UBABitmapSource / UBABitmapSourceSimple / UBABitmapSourceFile**
-  - `SourceParamaters` — параметры генерации/хранения bitmap‑данных.  
-  - `Output` — результирующий кадр.
+  - `SourceParamaters` — bitmap generation/storage parameters.  
+  - `Output` — resulting frame.
 - **UBASourceFreezeFrame**
-  - `FreezeFlag` — при `true` удерживает последний кадр на выходе, даже если вход меняется.
+  - `FreezeFlag` — when `true`, holds the last output frame even if the input changes.
 
-#### Примеры XML‑конфигурации
+#### XML configuration examples
 
 ```xml
 <!-- Источник одного файла -->
@@ -283,7 +285,7 @@ sequenceDiagram
 
 ---
 
-### Компонентная диаграмма (захват и источники в пайплайне)
+### Component diagram (capture and sources in pipeline)
 
 ```mermaid
 graph LR
@@ -293,4 +295,4 @@ graph LR
     Freeze[UBASourceFreezeFrame] --> Pre
 ```
 
-Источники и захваты образуют начальное звено большинства конфигураций в `Bin/Configs/*`, подавая `UBitmap` кадры в UBA‑конвейеры (`ColorConvert`, `Crop`, `Reduce`, фон, бинаризация, детекция и т.д.).
+Sources and capture components form the entry point of most configurations в `Bin/Configs/*`, feeding `UBitmap` frames into UBA pipelines (`ColorConvert`, `Crop`, `Reduce`, фон, binarization, detection, etc.).

@@ -10,7 +10,9 @@
 
 ## EN
 
-### UML-диаграмма классов (обзор)
+## Background / Difference / Binarization / Labeling / Looping / GUI — фон, difference, binarization, and labeling (Rdk-CvBasicLib)
+
+### Class diagram (overview)
 
 ```mermaid
 classDiagram
@@ -45,9 +47,9 @@ classDiagram
 
 ---
 
-### UBABackground* — оценка фона
+### UBABackground* — estimation background
 
-#### UML (базовый класс и примеры наследников)
+#### UML (base class и examples descendants)
 
 ```mermaid
 classDiagram
@@ -77,14 +79,14 @@ classDiagram
     }
 ```
 
-#### Идея
+#### Idea
 
-- `UBABackground` хранит текущий фон (`Background`) и признак готовности (`IsBGReady`).  
-- Наследники реализуют разные стратегии обновления фона: скользящее среднее, экспоненциальное сглаживание, адаптивные модели с учётом переднего плана.
+- `UBABackground` stores current фон (`Background`) и readiness flag (`IsBGReady`).  
+- Descendants implement different strategies update background: moving average, exponential smoothing, adaptive models с accounting foreground plan.
 
 ---
 
-### UBADifferenceFrame* — разность кадров
+### UBADifferenceFrame* — difference frames
 
 ```mermaid
 classDiagram
@@ -104,11 +106,11 @@ classDiagram
     }
 ```
 
-Компоненты вычисляют покадровую разность (`Input1 - Input2`) и используются как часть цепочки детекции движения и вычисления фона.
+Components compute per-frame difference (`Input1 - Input2`) и are used как part chain detection motion и computation background.
 
 ---
 
-### UBABinarization* — бинаризация
+### UBABinarization* — binarization
 
 ```mermaid
 classDiagram
@@ -135,13 +137,13 @@ classDiagram
     }
 ```
 
-Конфигурационный алиас `TBinarizationSimpleAdaptiveThreshold` соответствует `UBABinarizationSimpleAdaptiveThreshold` (адаптивный порог).
+Configuration alias `TBinarizationSimpleAdaptiveThreshold` matches `UBABinarizationSimpleAdaptiveThreshold` (adaptive threshold).
 
-`UBABinarizationSimpleAdaptiveThreshold` добавляет адаптивный порог с учётом фона, статистик и карт счётчиков переднего/заднего плана.
+`UBABinarizationSimpleAdaptiveThreshold` adds adaptive threshold с accounting background, statistics и maps counters foreground/background plan.
 
 ---
 
-### UBALabeling* — разметка компонент
+### UBALabeling* — labeling component
 
 ```mermaid
 classDiagram
@@ -160,11 +162,11 @@ classDiagram
     }
 ```
 
-`Zones` содержит метки/описание связных компонент (координаты, площади и т.п.), используемых последующими детекторами/визуализаторами.
+`Zones` contains labels/description of connected components (coordinates, areas, etc.), used downstream by detectors/visualizers.
 
 ---
 
-### UBALooping* — циклическая обработка
+### UBALooping* — cyclic processing
 
 ```mermaid
 class UBALooping {
@@ -187,11 +189,11 @@ class UBALoopingSobel {
 }
 ```
 
-Обеспечивают повторяющееся применение простых операторов (в т.ч. Sobel‑фильтра) к последовательности кадров.
+Provide repeated application simple operators (в т.ч. Sobel‑filter) к sequence frames.
 
 ---
 
-### UBAGuiSelection* и UBAShowObjects* — GUI и визуализация
+### UBAGuiSelection* и UBAShowObjects* — GUI и visualization
 
 ```mermaid
 classDiagram
@@ -237,11 +239,11 @@ classDiagram
     }
 ```
 
-Используются для интерактивного выбора прямоугольников, отображения зон детекции и подписей объектов поверх исходного изображения.
+Are used для interactive selection rectangles, display зон detection и labels objects over source images.
 
 ---
 
-### UML-диаграмма последовательности (фон → разность → бинаризация → разметка)
+### Sequence diagram (фон → difference → binarization → labeling)
 
 ```mermaid
 sequenceDiagram
@@ -269,7 +271,7 @@ sequenceDiagram
 
 ---
 
-### Пример конфигурации XML (упрощённый)
+### Example configuration XML (simplified)
 
 ```xml
 <Component Id="Background" Class="BackgroundAvg">
@@ -302,7 +304,7 @@ sequenceDiagram
 
 ---
 
-### Поток данных компонента в библиотеке
+### Flow data component в library
 
 ```mermaid
 flowchart LR
@@ -314,4 +316,4 @@ flowchart LR
     Vis --> Out[Display/Recorder]
 ```
 
-Эти компоненты формируют типичный контур “фон + движение + бинаризация + разметка”, используемый во множестве конфигураций `Bin/Configs/*` для задач детекции движения, сегментации по порогу и визуализации результатов.
+Эти components form typical pipeline “фон + motion + binarization + labeling”, used во many configurations `Bin/Configs/*` для tasks detection motion, segmentation по threshold и visualization results.

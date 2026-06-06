@@ -180,3 +180,91 @@ auto concat = mux->OutputMatrixData;
 
 **Classes**: matrix/scalar operations and mux components used to build complex feature pipelines.  
 They are configured via `ClassName = "UMatrix*"` / `"UMD*"` entries and provide reusable building blocks for feature engineering.
+
+```mermaid
+classDiagram
+    UNet <|-- UBMathOperator
+    UNet <|-- UMatrixMath~T~
+    UNet <|-- UMDMatrixMux~T~
+    UNet <|-- UMDScalarMux~T~
+
+    class UBMathOperator {
+        +OperatorId : int
+        +Input1 : UBitmap
+        +Input2 : UBitmap
+        +Output : UBitmap
+        +New() UBMathOperator*
+        +And(...) void
+        +Or(...) void
+        +Sub(...) void
+        +Sum(...) void
+        +ADefault() bool
+        +ABuild() bool
+        +AReset() bool
+        +ACalculate() bool
+    }
+
+    class UMatrixMath~T~ {
+        +InputMatrixData : vector<MDMatrix<T>>
+        +Mode : int
+        +OutputMatrixData : MDMatrix<T>
+        +New() UMatrixMath<T>*
+        +ADefault() bool
+        +ABuild() bool
+        +AReset() bool
+        +ACalculate() bool
+    }
+
+    class UMDMatrixMux~T~ {
+        +InputActivities : vector<bool>
+        +InputMatrixData : vector<MDMatrix<T>>
+        +Mode : int
+        +OutputMatrixData : MDMatrix<T>
+        +New() UMDMatrixMux<T>*
+        +ADefault() bool
+        +ABuild() bool
+        +AReset() bool
+        +ACalculate() bool
+    }
+```
+
+```mermaid
+sequenceDiagram
+    participant Src1 as FeatureBlock1
+    participant Src2 as FeatureBlock2
+    participant Mux as UMDMatrixMux<double>
+    participant Math as UMatrixMath<double>
+
+    Src1-->>Mux: Matrix A
+    Src2-->>Mux: Matrix B
+    Mux->>Mux: ACalculate() (объединение по Mode)
+    Mux-->>Math: OutputMatrixData (C)
+    Math->>Math: ACalculate() (сумма/разность/умн.)
+    Math-->>Next: OutputMatrixData (Result)
+```
+
+```mermaid
+flowchart TD
+    Start([Start]) --> CheckInput{InputMatrixData пуст?}
+    CheckInput -->|Да| ZeroOut[Output 0x0] --> End([End])
+    CheckInput -->|Нет| SwitchMode{Mode}
+    SwitchMode -->|0 (Sum)| DoSum[Покомпонентная сумма матриц]
+    SwitchMode -->|1 (Sub)| DoSub[Покомпонентная разность]
+    SwitchMode -->|2 (Mul)| DoMul[Последовательное матричное умножение]
+    SwitchMode -->|10 (Neg)| DoNeg[Умножение на -1]
+    SwitchMode -->|11 (Transpose)| DoTr[Транспонирование первой матрицы]
+    DoSum --> WriteOut
+    DoSub --> WriteOut
+    DoMul --> WriteOut
+    DoNeg --> WriteOut
+    DoTr --> WriteOut
+    WriteOut[Записать в OutputMatrixData] --> End
+```
+
+```mermaid
+graph LR
+    F1[Feature extractor 1] --> M1[UMatrixMath/UBMathOperator]
+    F2[Feature extractor 2] --> M1
+    M1 --> Mux[UMDMatrixMux/UMDScalarMux]
+    Mux --> Cls[UCR*Classifier]
+```

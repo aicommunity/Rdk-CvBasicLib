@@ -10,7 +10,9 @@
 
 ## EN
 
-### UML-диаграмма классов
+## Geometric Transformations — geometric transformations (Rdk-CvBasicLib)
+
+### Class diagram
 
 ```mermaid
 classDiagram
@@ -72,9 +74,9 @@ classDiagram
 
 ---
 
-### UBAResize / UBAResizeEdges — изменение размера
+### UBAResize / UBAResizeEdges — change size
 
-#### UML-диаграмма последовательности
+#### Sequence diagram
 
 ```mermaid
 sequenceDiagram
@@ -88,7 +90,7 @@ sequenceDiagram
     Resize-->>Next: Output (resized UBitmap)
 ```
 
-#### UML-диаграмма активности (UBAResizeEdges::BCalculate)
+#### Activity diagram (UBAResizeEdges::BCalculate)
 
 ```mermaid
 flowchart TD
@@ -101,21 +103,21 @@ flowchart TD
     ZeroOut --> End
 ```
 
-#### Свойства и методы
+#### Properties and methods
 
-| Свойство/Метод | Тип | Назначение |
+| Property/Method | Тип | Purpose |
 |----------------|-----|------------|
-| `NewWidth` | `int` | Желаемая ширина выходного изображения |
-| `NewHeight` | `int` | Желаемая высота выходного изображения |
-| `Input` | `UBitmap` | Входное изображение |
-| `Output` | `UBitmap` | Изменённое по размеру изображение |
-| `BCalculate(UBitmap&, UBitmap&)` | `bool` | Виртуальный метод, реализуемый в `UBAResizeEdges` |
+| `NewWidth` | `int` | Desired width output images |
+| `NewHeight` | `int` | Desired height output images |
+| `Input` | `UBitmap` | Input image |
+| `Output` | `UBitmap` | Resized image |
+| `BCalculate(UBitmap&, UBitmap&)` | `bool` | Virtual method, implemented в `UBAResizeEdges` |
 
 ---
 
-### UBARotate / UBARotateSimple — поворот изображения
+### UBARotate / UBARotateSimple — rotation images
 
-#### UML-диаграмма последовательности
+#### Sequence diagram
 
 ```mermaid
 sequenceDiagram
@@ -129,7 +131,7 @@ sequenceDiagram
     Rot-->>Next: Output (rotated UBitmap)
 ```
 
-#### UML-диаграмма активности (UBARotateSimple::BCalculate)
+#### Activity diagram (UBARotateSimple::BCalculate)
 
 ```mermaid
 flowchart TD
@@ -144,21 +146,21 @@ flowchart TD
     WriteOut --> End([End])
 ```
 
-#### Свойства и методы
+#### Properties and methods
 
-| Свойство/Метод | Тип | Назначение |
+| Property/Method | Тип | Purpose |
 |----------------|-----|------------|
-| `Angle` | `float` | Угол поворота в градусах |
-| `Enlarge` | `bool` | Увеличивать ли размер изображения, чтобы вместить повёрнутое |
-| `Input` | `UBitmap` | Входное изображение |
-| `Output` | `UBitmap` | Повёрнутое изображение |
-| `BCalculate(UBitmap&, UBitmap&)` | `bool` | Виртуальный метод, реализуемый в `UBARotateSimple` |
+| `Angle` | `float` | Rotation angle в degrees |
+| `Enlarge` | `bool` | Enlarge ли size images, whatбы fit rotated |
+| `Input` | `UBitmap` | Input image |
+| `Output` | `UBitmap` | Rotated image |
+| `BCalculate(UBitmap&, UBitmap&)` | `bool` | Virtual method, implemented в `UBARotateSimple` |
 
 ---
 
-### UBAFlipImage / UBAFlipImageSimple — отражение изображения
+### UBAFlipImage / UBAFlipImageSimple — reflection images
 
-#### UML-диаграмма последовательности
+#### Sequence diagram
 
 ```mermaid
 sequenceDiagram
@@ -172,7 +174,7 @@ sequenceDiagram
     Flip-->>Next: Output (flipped UBitmap)
 ```
 
-#### UML-диаграмма активности (UBAFlipImageSimple::BCalculate)
+#### Activity diagram (UBAFlipImageSimple::BCalculate)
 
 ```mermaid
 flowchart TD
@@ -187,18 +189,18 @@ flowchart TD
     WriteOut[Записать в Output] --> End([End])
 ```
 
-#### Свойства и методы
+#### Properties and methods
 
-| Свойство/Метод | Тип | Назначение |
+| Property/Method | Тип | Purpose |
 |----------------|-----|------------|
-| `Mode` | `int` | Режим отражения: `0` — горизонтально, `1` — вертикально, `2` — оба |
-| `Input` | `UBitmap` | Входное изображение |
-| `Output` | `UBitmap` | Отражённое изображение |
-| `BCalculate(UBitmap&, UBitmap&)` | `bool` | Виртуальный метод, реализуемый в `UBAFlipImageSimple` |
+| `Mode` | `int` | Mode reflection: `0` — horizontally, `1` — vertically, `2` — оба |
+| `Input` | `UBitmap` | Input image |
+| `Output` | `UBitmap` | Reflected image |
+| `BCalculate(UBitmap&, UBitmap&)` | `bool` | Virtual method, implemented в `UBAFlipImageSimple` |
 
 ---
 
-### UML-диаграмма компонентов
+### Component diagram
 
 ```mermaid
 graph LR
@@ -210,7 +212,7 @@ graph LR
 
 ---
 
-### Примеры использования (C++)
+### Usage Examples (C++)
 
 ```cpp
 // Изменение размера
@@ -245,7 +247,7 @@ UBitmap flipped = flip->Output;
 
 ---
 
-### Примеры конфигурации XML
+### XML configuration examples
 
 ```xml
 <Component Id="Resize" Class="ResizeEdges">
@@ -271,17 +273,13 @@ UBitmap flipped = flip->Output;
 
 ---
 
-### Связь с конфигурационными проектами (`Bin/Configs`)
+### Link с configuration projectми (`Bin/Configs`)
 
-Компоненты геометрических преобразований часто используются в пайплайнах предобработки:
-- **UBAResize** — приведение входных кадров к фиксированному разрешению, требуемому детекторами/классификаторами.
-- **UBARotate** — коррекция ориентации камеры или подготовка данных для обучения с аугментацией.
-- **UBAFlipImage** — аугментация данных или коррекция зеркального отражения камеры.
+Components geometric transformations often are used в pipelines preprocessing:
+- **UBAResize** — bring input frames to fixed resolution, required by detectors/classifiers.
+- **UBARotate** — correction orientation cameras или preparation data для training с augmentation.
+- **UBAFlipImage** — augmentation data или correction mirror reflection cameras.
 
-Они обычно размещаются между источниками (`TCapture*`, `UBASource*`) и блоками детекции/классификации в конфигурациях `Bin/Configs/*`.
+Они usually are placed between sources (`TCapture*`, `UBASource*`) и blockами detection/classification в configurations `Bin/Configs/*`.
 
 ---
-
-## Geometric Transformations — image transformations (Rdk-CvBasicLib)
-
-**Classes**: `UBAResize*`, `UBARotate*`, `UBAFlipImage*` — geometric image transformations (resize, rotation, flipping) used in preprocessing pipelines before detection/classification.

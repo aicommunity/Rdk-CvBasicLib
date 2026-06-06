@@ -62,3 +62,20 @@ The diagram represents a typical computer vision chain: acquire frame → conver
 ### Processing Sequence
 
 The sequence diagram in the RU section shows the per-frame execution order and data handoff between components through their output/input properties.
+
+```mermaid
+sequenceDiagram
+    participant Camera as TCaptureCamera
+    participant Convert as UBAColorConvert
+    participant Resize as UBAResize
+    participant Process as UBABackground
+    
+    Camera->>Camera: CaptureFrame()
+    Camera->>Convert: OutputFrame
+    Convert->>Convert: ConvertToGrayscale()
+    Convert->>Resize: OutputImage
+    Resize->>Resize: Resize(640x480)
+    Resize->>Process: OutputImage
+    Process->>Process: SubtractBackground()
+    Process->>Process: ProcessedImage
+```

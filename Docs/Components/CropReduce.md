@@ -223,3 +223,98 @@ UBitmap small = reduce->Output;
 
 **Classes**: `UBACrop`, `UBAReduce` — ROI cropping and image downscaling operators in CV pipelines.  
 They operate on `UBitmap` frames, are registered as `Class="Crop"` / `Class="Reduce"` in XML configs, and are usually placed before detectors/classifiers.
+
+```mermaid
+classDiagram
+    UNet <|-- UBACrop
+    UNet <|-- UBAReduce
+
+    class UBACrop {
+        +Input : UBitmap
+        +CropRect : MDMatrix<int>
+        +Output : UBitmap
+        +New() UBACrop*
+        +ADefault() bool
+        +ABuild() bool
+        +AReset() bool
+        +ACalculate() bool
+    }
+
+    class UBAReduce {
+        +NumCols : int
+        +NumRows : int
+        +Input : UBitmap
+        +Output : UBitmap
+        +New() UBAReduce*
+        +ADefault() bool
+        +ABuild() bool
+        +AReset() bool
+        +ACalculate() bool
+    }
+```
+
+```mermaid
+sequenceDiagram
+    participant Storage as UStorage
+    participant Src as Source
+    participant Crop as UBACrop
+    participant Red as UBAReduce
+    participant Next as NextUBAComponent
+
+    Storage->>Crop: New() + ADefault() + ABuild()
+    Storage->>Red: New() + ADefault() + ABuild()
+
+    loop каждый кадр
+        Src-->>Crop: Input (UBitmap)
+        Storage->>Crop: ACalculate()
+        Crop-->>Red: Output (cropped UBitmap)
+
+        Storage->>Red: ACalculate()
+        Red-->>Next: Output (reduced UBitmap)
+    end
+
+    Storage->>Crop: AReset()
+    Storage->>Red: AReset()
+```
+
+```mermaid
+stateDiagram-v2
+    [*] --> Uninitialized: New()
+    Uninitialized --> Defaulted: ADefault()
+    Defaulted --> Built: ABuild()
+    Built --> Ready: Ready = true
+    Ready --> Calculating: ACalculate()
+    Calculating --> Ready: Кадр обработан
+    Ready --> Resetting: AReset()
+    Resetting --> Ready
+```
+
+```mermaid
+flowchart TD
+    subgraph CropPath["UBACrop::ACalculate"]
+        CStart([Start]) --> CheckRect{CropRect задан?}
+        CheckRect -->|Нет| CSkip[Выход = вход (копия/пусто)]
+        CheckRect -->|Да| CRead[Прочитать ROI (left,top,right,bottom)]
+        CRead --> CCrop[Вырезать ROI в Buffer]
+        CCrop --> CWrite[Записать Buffer в Output]
+        CWrite --> CEnd([End])
+        CSkip --> CEnd
+    end
+
+    subgraph ReducePath["UBAReduce::ACalculate"]
+        RStart([Start]) --> ReadSize[Прочитать NumCols/NumRows]
+        ReadSize --> CheckSize{Размеры > 0?}
+        CheckSize -->|Нет| RSkip[Выход 0x0]
+        CheckSize -->|Да| RResize[Преобразовать Input к (NumCols,NumRows)]
+        RResize --> RWrite[Записать в Output]
+        RWrite --> REnd([End])
+        RSkip --> REnd
+    end
+```
+
+```mermaid
+graph LR
+    Src[TCapture/UBASource*] --> Crop[UBACrop]
+    Crop --> Red[UBAReduce]
+    Red --> Next[Detector/Classifier]
+```

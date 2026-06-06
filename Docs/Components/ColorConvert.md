@@ -175,3 +175,63 @@ classDiagram
         +ACalculate() bool
     }
 ```
+
+```mermaid
+sequenceDiagram
+    participant Storage as UStorage
+    participant Src as Source/Camera
+    participant CC as UBAColorConvert
+    participant Next as NextUBAComponent
+
+    Storage->>CC: New()
+    Storage->>CC: ADefault()
+    Note over CC: Initialization параметров<br/>NewColorModel = BGR2GRAY (пример)
+    Storage->>CC: ABuild()
+
+    loop каждый кадр
+        Src-->>CC: Input (UBitmap)
+        Storage->>CC: ACalculate()
+        CC-->>Next: Output (UBitmap в новом цветовом пространстве)
+    end
+
+    Storage->>CC: AReset()
+    CC-->>Storage: Ready = true
+```
+
+```mermaid
+stateDiagram-v2
+    [*] --> Uninitialized: New()
+    Uninitialized --> Defaulted: ADefault()
+    Defaulted --> Built: ABuild()
+    Built --> Ready: Ready = true
+    Ready --> Calculating: ACalculate()
+    Calculating --> Ready: Кадр обработан
+    Ready --> Resetting: AReset()
+    Resetting --> Ready: Состояния сброшены
+```
+
+```mermaid
+flowchart TD
+    Start([Start ACalculate]) --> CheckInput{Есть Input?}
+    CheckInput -->|Нет| Skip[Пропустить расчет]
+    CheckInput -->|Да| ReadCfg[Прочитать NewColorModel]
+    ReadCfg --> Convert["Выполнить cv::cvtColor<br/>в соответствии с NewColorModel"]
+    Convert --> WriteOutput[Записать результат в Output]
+    WriteOutput --> End([End])
+    Skip --> End
+```
+
+```mermaid
+graph LR
+    subgraph Capture["Захват"]
+        Cam[TCapture/UBASource*]
+    end
+
+    subgraph Processing["Processing изображений"]
+        CC[UBAColorConvert]
+        Next["Следующий UBA-компонент<br/>(Resize/Binarization/...)"]
+    end
+
+    Cam --> CC
+    CC --> Next
+```
