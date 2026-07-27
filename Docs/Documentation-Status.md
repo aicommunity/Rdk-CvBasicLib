@@ -5,7 +5,7 @@
 Краткий статус документации библиотеки Rdk-CvBasicLib и чеклист синхронизации с кодом.
 
 **Аудит:** 2026-06-06 — [Component-Gap-Report.md](../../../Docs/Audit/Component-Gap-Report.md), [Code-Inventory.json](../../../Docs/Audit/Code-Inventory.json)  
-**Обновление Track 3:** 2026-07-27 — сгенерированы per-class страницы для всех `UploadClass`
+**Обновление Track 3:** 2026-07-27 — сгенерированы per-class страницы для всех `UploadClass`; добавлен пропущенный `TCaptureImageSequence` (57/57).
 
 ---
 
@@ -13,15 +13,15 @@
 
 | Метрика | Значение |
 |---------|----------|
-| Зарегистрированных классов (`UploadClass`) | **56** |
-| Файлов `Docs/Components/*.md` | **67** (56 per-class + 11 групповых) |
-| Классов с doc-файлом по имени класса | **56** |
+| Зарегистрированных классов (`UploadClass`) | **57** |
+| Файлов `Docs/Components/*.md` | **68** (57 per-class + 11 групповых) |
+| Классов с doc-файлом по имени класса | **57** |
 | Классов без отдельного doc-файла | **0** |
-| Orphan/group docs | **11** (тематические обзоры) |
+| Orphan/group docs | **11** (тематические обзоры; `MovingDetectors` — без UploadClass в `Basic.cpp`) |
 | Отсутствуют в Component-Catalog | **0** |
 | Регистрация | `Core/Basic.cpp` |
 
-**Прогресс по классам:** 56/56 (100%) ✅ — per-class; групповые документы сохранены как обзоры.
+**Прогресс по классам:** 57/57 (100%) ✅ — per-class; групповые документы сохранены как обзоры.
 
 ---
 
@@ -34,12 +34,12 @@
 - ✅ **API-Overview.md** — обзор API (RU/EN)
 - ✅ **Usage-Examples.md** — примеры (RU/EN)
 - ✅ **FAQ.md** — FAQ (RU/EN)
-- ✅ **Component-Catalog.md** — каталог всех 56 `UploadClass` (RU/EN)
+- ✅ **Component-Catalog.md** — каталог всех 57 `UploadClass` (RU/EN)
 - ✅ **Component-Documentation-Template.md** — шаблон per-class страницы
 - ✅ **Diagrams/** — Image-Processing-Pipeline, Object-Detection-Flow (RU/EN)
 
 ### Компоненты
-- ✅ **56** per-class файлов `Docs/Components/[ClassName].md` (включая `ColorConvert` и все UCR*/UBA*/sources/simulators/math/pipelines)
+- ✅ **57** per-class файлов `Docs/Components/[ClassName].md` (включая `TCaptureImageSequence`, `ColorConvert` и все UCR*/UBA*/sources/simulators/math/pipelines)
 - ✅ **11** групповых обзоров: CaptureAndSources, BackgroundBinarizationLabeling, GeometricTransformations, CropReduce, MatrixMathMux, PipelinesModelsStats, UCRFamily, DetectorsSegmentators, MovingDetectors, ReceiverAndShowRect, VideoSimulators
 
 ---
@@ -61,7 +61,7 @@
 
 Регистрация: `Libraries/Rdk-CvBasicLib/Core/Basic.cpp`.
 
-Все **56** классов имеют per-class doc и строку в [Component-Catalog.md](Component-Catalog.md). Групповые docs остаются как тематические обзоры.
+Все **57** классов имеют per-class doc и строку в [Component-Catalog.md](Component-Catalog.md). Групповые docs остаются как тематические обзоры.
 
 | Группа | Примеры ClassName | Per-class | Статус |
 |--------|-------------------|-----------|--------|
@@ -81,7 +81,7 @@
 Brief documentation status for the Rdk-CvBasicLib library and a code-sync checklist.
 
 **Audit:** 2026-06-06 — [Component-Gap-Report.md](../../../Docs/Audit/Component-Gap-Report.md), [Code-Inventory.json](../../../Docs/Audit/Code-Inventory.json)  
-**Track 3 update:** 2026-07-27 — generated per-class pages for all `UploadClass`
+**Track 3 update:** 2026-07-27 — generated per-class pages for all `UploadClass`; added missing `TCaptureImageSequence` (57/57).
 
 ---
 
@@ -89,15 +89,15 @@ Brief documentation status for the Rdk-CvBasicLib library and a code-sync checkl
 
 | Metric | Value |
 |--------|-------|
-| Registered classes (`UploadClass`) | **56** |
-| Files `Docs/Components/*.md` | **67** (56 per-class + 11 group) |
-| Classes with per-class doc file | **56** |
+| Registered classes (`UploadClass`) | **57** |
+| Files `Docs/Components/*.md` | **68** (57 per-class + 11 group) |
+| Classes with per-class doc file | **57** |
 | Classes without a dedicated doc file | **0** |
-| Orphan/group docs | **11** (thematic overviews) |
+| Orphan/group docs | **11** (thematic overviews; `MovingDetectors` has no UploadClass in `Basic.cpp`) |
 | Missing from Component-Catalog | **0** |
 | Registration | `Core/Basic.cpp` |
 
-**Class progress:** 56/56 (100%) ✅ — per-class; group documents retained as overviews.
+**Class progress:** 57/57 (100%) ✅ — per-class; group documents retained as overviews.
 
 ---
 
@@ -105,12 +105,12 @@ Brief documentation status for the Rdk-CvBasicLib library and a code-sync checkl
 
 ### General documentation
 - ✅ **README.md**, **Architecture.md**, **API-Overview.md**, **Usage-Examples.md**, **FAQ.md** (RU/EN)
-- ✅ **Component-Catalog.md** — all 56 `UploadClass` (RU/EN)
+- ✅ **Component-Catalog.md** — all 57 `UploadClass` (RU/EN)
 - ✅ **Component-Documentation-Template.md**
 - ✅ **Diagrams/**
 
 ### Components
-- ✅ **56** per-class `Docs/Components/[ClassName].md` pages
+- ✅ **57** per-class `Docs/Components/[ClassName].md` pages (includes `TCaptureImageSequence`)
 - ✅ **11** thematic group docs retained
 
 ---
@@ -128,8 +128,8 @@ Brief documentation status for the Rdk-CvBasicLib library and a code-sync checkl
 
 ## Class checklist (`UploadClass`)
 
-All **56** classes have a per-class doc and a row in [Component-Catalog.md](Component-Catalog.md). See the RU section table for group coverage.
+All **57** classes have a per-class doc and a row in [Component-Catalog.md](Component-Catalog.md). See the RU section table for group coverage.
 
-**Total:** 56 ✅ per-class; 11 group docs.
+**Total:** 57 ✅ per-class; 11 group docs.
 
 ---

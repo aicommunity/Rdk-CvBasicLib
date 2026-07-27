@@ -14,6 +14,7 @@
 | `SourceFile` | [`SourceFile.md`](Components/SourceFile.md) | [`CaptureAndSources`](Components/CaptureAndSources.md) |
 | `SourceMultiFile` | [`SourceMultiFile.md`](Components/SourceMultiFile.md) | [`CaptureAndSources`](Components/CaptureAndSources.md) |
 | `Receiver` | [`Receiver.md`](Components/Receiver.md) | [`CaptureAndSources`](Components/CaptureAndSources.md) |
+| `TCaptureImageSequence` | [`TCaptureImageSequence.md`](Components/TCaptureImageSequence.md) | [`CaptureAndSources`](Components/CaptureAndSources.md) |
 | `Crop` | [`Crop.md`](Components/Crop.md) | [`GeometricTransformations`](Components/GeometricTransformations.md) |
 | `Reduce` | [`Reduce.md`](Components/Reduce.md) | [`GeometricTransformations`](Components/GeometricTransformations.md) |
 | `UBAFlipImageSimple` | [`UBAFlipImageSimple.md`](Components/UBAFlipImageSimple.md) | [`GeometricTransformations`](Components/GeometricTransformations.md) |
@@ -77,6 +78,7 @@
 | `SourceFile` | [`SourceFile.md`](Components/SourceFile.md) | [`CaptureAndSources`](Components/CaptureAndSources.md) |
 | `SourceMultiFile` | [`SourceMultiFile.md`](Components/SourceMultiFile.md) | [`CaptureAndSources`](Components/CaptureAndSources.md) |
 | `Receiver` | [`Receiver.md`](Components/Receiver.md) | [`CaptureAndSources`](Components/CaptureAndSources.md) |
+| `TCaptureImageSequence` | [`TCaptureImageSequence.md`](Components/TCaptureImageSequence.md) | [`CaptureAndSources`](Components/CaptureAndSources.md) |
 | `Crop` | [`Crop.md`](Components/Crop.md) | [`GeometricTransformations`](Components/GeometricTransformations.md) |
 | `Reduce` | [`Reduce.md`](Components/Reduce.md) | [`GeometricTransformations`](Components/GeometricTransformations.md) |
 | `UBAFlipImageSimple` | [`UBAFlipImageSimple.md`](Components/UBAFlipImageSimple.md) | [`GeometricTransformations`](Components/GeometricTransformations.md) |
