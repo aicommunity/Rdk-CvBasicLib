@@ -65,14 +65,14 @@
 
 | Группа | Примеры ClassName | Per-class | Статус |
 |--------|-------------------|-----------|--------|
-| Capture / Sources | `Source`, `SourceFile`, `BitmapSource*`, … | ✅ | ✅ |
+| Capture / Sources | `Source`, `SourceFile`, `BitmapSource*`, `TCaptureImageSequence`, … | ✅ | ✅ |
 | Image processing | `ColorConvert`, `Crop`, `TBinarization*`, `UBA*`, … | ✅ | ✅ |
 | Simulators | `VideoSimulator*`, `DataSimulatorSimple`, … | ✅ | ✅ |
 | Math / Matrix | `UMatrix*Math`, `UMD*Mux`, `BMathOperator` | ✅ | ✅ |
 | Pipelines / Models | `Pipeline`, `ParallelPipeline`, `Model`, `BStatisticSimple` | ✅ | ✅ |
 | Classification / Detection | `UCR*`, `UClassifier*`, `UDetector*`, `USegmentator*` | ✅ | ✅ |
 
-**Итого:** 56 ✅ per-class; 11 групповых docs.
+**Итого:** 57 ✅ per-class; 11 групповых docs.
 
 ---
 
