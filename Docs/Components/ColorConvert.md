@@ -156,6 +156,15 @@ UBitmap gray = color->Output;
 
 ---
 
+### Ключевые свойства / Favorites
+
+| Свойство | Роль |
+|----------|------|
+| `NewColorModel` | Целевое цветовое пространство |
+| `Input` / `Output` | I/O |
+
+ClDesc: `Bin/ClDesc/CvBasicLib/ru-RU/ColorConvert.xml`.
+
 ## EN
 
 ## ColorConvert — color space converter (Rdk-CvBasicLib)

@@ -9,6 +9,9 @@
 ### Свойства / методы
 Сверяйте таблицы с заголовками `Core/*.h` при доработке.
 
+### Ключевые свойства / Favorites
+Таблица primary-свойств для `Bin/ClDesc/.../Favorites` (`{CompName}:Prop`). Secondary (`Activity`, `Coord`, `Name`, `TimeStep`, debug…) не включать. См. `Docs/ClDesc-Detailed-Methodology.md`.
+
 ### Использование
 См. [Usage-Examples.md](Usage-Examples.md) и `Bin/Configs/` при наличии.
 

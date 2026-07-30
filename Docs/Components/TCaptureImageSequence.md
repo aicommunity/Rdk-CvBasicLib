@@ -27,6 +27,17 @@
 
 ---
 
+### Ключевые свойства / Favorites
+
+| Свойство | Роль |
+|----------|------|
+| `Path` / `IsPathRelativeFromConfig` | Каталог кадров |
+| `EnableCapture` / `RepeatFlag` / `CaptureDelay` | Захват |
+| `DesiredFps` / `DesiredWidth` / `DesiredHeight` | Параметры потока |
+| `NumImages` / `CurrentImageIndex` | Состояние последовательности |
+
+ClDesc: `Bin/ClDesc/CvBasicLib/ru-RU/TCaptureImageSequence.xml` (уже мог иметь таблицу свойств — Favorites синхронизированы).
+
 ## EN
 
 **Class**: `TCaptureImageSequence` — capture an image sequence from files (directory/path pattern).

@@ -13,6 +13,16 @@
 
 ---
 
+### Ключевые свойства / Favorites
+
+| Свойство | Роль |
+|----------|------|
+| `NumObjects` / `WorkArea` / `BgMode` | Сцена |
+| `ShowGrid` | Визуализация |
+| `Input` / `Output` | I/O |
+
+ClDesc: `Bin/ClDesc/CvBasicLib/ru-RU/VideoSimulatorSimple.xml`.
+
 ## EN
 
 **Class**: `VideoSimulatorSimple` — Rdk-CvBasicLib computer-vision / OpenCV component.

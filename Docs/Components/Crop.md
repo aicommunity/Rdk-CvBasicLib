@@ -13,6 +13,15 @@
 
 ---
 
+### Ключевые свойства / Favorites
+
+| Свойство | Роль |
+|----------|------|
+| `CropRect` | Область обрезки |
+| `Input` / `Output` | I/O |
+
+ClDesc: `Bin/ClDesc/CvBasicLib/ru-RU/Crop.xml`.
+
 ## EN
 
 **Class**: `Crop` — Rdk-CvBasicLib computer-vision / OpenCV component.

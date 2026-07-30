@@ -13,6 +13,15 @@
 
 ---
 
+### Ключевые свойства / Favorites
+
+| Свойство | Роль |
+|----------|------|
+| `NumRows` / `NumCols` | Целевой размер |
+| `Input` / `Output` | I/O изображения |
+
+ClDesc: `Bin/ClDesc/CvBasicLib/ru-RU/Reduce.xml`.
+
 ## EN
 
 **Class**: `Reduce` — Rdk-CvBasicLib computer-vision / OpenCV component.
