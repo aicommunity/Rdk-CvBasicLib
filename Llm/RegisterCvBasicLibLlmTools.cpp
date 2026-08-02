@@ -5,6 +5,7 @@
 
 #include "../../../Rdk/LLM/Core/Context/ILLMProjectContextProvider.h"
 #include "../../../Rdk/LLM/Core/Context/UDocSearchIndex.h"
+#include "../../../Rdk/LLM/Core/Context/ULLMDocOpenPolicy.h"
 #include "../../../Rdk/LLM/Core/Domain/URdkDomainAccess.h"
 #include "../../../Rdk/LLM/Core/LlmPublicApi.h"
 #include "../../../Rdk/LLM/Core/Tools/ULLMToolRegistry.h"
@@ -60,8 +61,14 @@ void RegisterCvBasicLibLlmTools(RDK::LLM::ULLMToolRegistry& registry,
             r.result["library"] = "Rdk-CvBasicLib";
             for(const auto& s : snippets)
             {
-                r.result["snippets"].push_back(
-                    {{"path", s.path}, {"title", s.title}, {"excerpt", s.excerpt}, {"score", s.score}});
+                nlohmann::json row = {{"path", s.path},
+                                      {"title", s.title},
+                                      {"excerpt", s.excerpt},
+                                      {"score", s.score}};
+                if(project_context)
+                    RDK::LLM::enrichSnippetDocUri(row, s.path,
+                                                  project_context->paths().repository_root);
+                r.result["snippets"].push_back(std::move(row));
             }
             r.ok = true;
             return r;
