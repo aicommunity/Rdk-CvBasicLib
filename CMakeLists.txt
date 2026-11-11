@@ -11,10 +11,10 @@ target_include_directories(${TARGET_NAME}
     ${CMAKE_SOURCE_DIR}/Libraries/Rdk-CvBasicLib/Core
 )
 
-file(GLOB CV_HEADERS
+file(GLOB CV_HEADERS CONFIGURE_DEPENDS
   ${CMAKE_SOURCE_DIR}/Libraries/Rdk-CvBasicLib/Core/*.h
 )
-file(GLOB CV_SOURCES
+file(GLOB CV_SOURCES CONFIGURE_DEPENDS
   ${CMAKE_SOURCE_DIR}/Libraries/Rdk-CvBasicLib/Core/*.cpp
 )
 
@@ -43,18 +43,7 @@ target_link_libraries(${TARGET_NAME} PUBLIC
   rdk.static.qt
   Rdk-BasicLib.qt
 )
-# Use MODULE mode on all platforms (FindBoost.cmake correctly determines library names)
-find_package(Boost QUIET COMPONENTS filesystem system)
-if(Boost_FOUND)
-  # Use modern targets if available, otherwise fall back to variables
-  if(TARGET Boost::filesystem)
-    target_link_libraries(${TARGET_NAME} PUBLIC Boost::filesystem Boost::system)
-  else()
-    # Fallback to the legacy approach if targets are not available
-    target_link_libraries(${TARGET_NAME} PUBLIC ${Boost_LIBRARIES})
-    target_include_directories(${TARGET_NAME} PUBLIC ${Boost_INCLUDE_DIRS})
-  endif()
-endif()
+target_link_libraries(${TARGET_NAME} PUBLIC Nmsdk::Boost)
 
 if (RDK_USE_OPENCV AND OpenCV_FOUND)
   target_link_libraries(${TARGET_NAME} PUBLIC ${OpenCV_LIBS})
