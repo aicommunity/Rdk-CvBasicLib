@@ -273,7 +273,7 @@ void SPTree::subdivide() {
         for(unsigned int j = 0; j < no_children; j++) {
             if(!success) success = children[j]->insert(index[i]);
         }
-        index[i] = -1;
+        index[i] = static_cast<unsigned int>(-1);
     }
     
     // Empty parent node

@@ -22,7 +22,7 @@ See file license.txt for more information
 namespace RDK {
 
 // ---------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // ---------------------
 UBARotCameraSimulator::UBARotCameraSimulator(void)
 : ViewOutput("ViewOutput",this),
@@ -36,7 +36,7 @@ UBARotCameraSimulator::UBARotCameraSimulator(void)
   MoveBottomSignal("MoveBottomSignal",this)
 {
  Graphics=new UGraphics;
- /// Счётчик кадров
+ /// РЎС‡С‘С‚С‡РёРє РєР°РґСЂРѕРІ
  frame_counter = 0;
 }
 
@@ -51,10 +51,10 @@ UBARotCameraSimulator::~UBARotCameraSimulator(void)
 // ---------------------
 
 // ---------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // ---------------------
-/// Размер окна обзора, относительно окна сцены
-/// Например ViewOutputX = Input / ViewResizeCoef
+/// Р Р°Р·РјРµСЂ РѕРєРЅР° РѕР±Р·РѕСЂР°, РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РѕРєРЅР° СЃС†РµРЅС‹
+/// РќР°РїСЂРёРјРµСЂ ViewOutputX = Input / ViewResizeCoef
 bool UBARotCameraSimulator::SetViewResizeCoef(const double &new_vol)
 {
 	if(new_vol < 1)
@@ -65,10 +65,10 @@ bool UBARotCameraSimulator::SetViewResizeCoef(const double &new_vol)
 
 	return true;
 }
-/// Скорость движения окна обзора по окну сцены
-/// В настоящий момент предполагается изменение по линейному закону,
-/// Независимо от характера управляющего сигнала
-/// (радианы, длина мышцы)
+/// РЎРєРѕСЂРѕСЃС‚СЊ РґРІРёР¶РµРЅРёСЏ РѕРєРЅР° РѕР±Р·РѕСЂР° РїРѕ РѕРєРЅСѓ СЃС†РµРЅС‹
+/// Р’ РЅР°СЃС‚РѕСЏС‰РёР№ РјРѕРјРµРЅС‚ РїСЂРµРґРїРѕР»Р°РіР°РµС‚СЃСЏ РёР·РјРµРЅРµРЅРёРµ РїРѕ Р»РёРЅРµР№РЅРѕРјСѓ Р·Р°РєРѕРЅСѓ,
+/// РќРµР·Р°РІРёСЃРёРјРѕ РѕС‚ С…Р°СЂР°РєС‚РµСЂР° СѓРїСЂР°РІР»СЏСЋС‰РµРіРѕ СЃРёРіРЅР°Р»Р°
+/// (СЂР°РґРёР°РЅС‹, РґР»РёРЅР° РјС‹С€С†С‹)
 bool UBARotCameraSimulator::SetXSpeedCoef(double const &new_vol)
 {
 	//XSpeedCoef = new_vol;
@@ -84,9 +84,9 @@ bool UBARotCameraSimulator::SetYSpeedCoef(double const &new_vol)
 // ---------------------
 
 // ---------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ---------------------
-// Создание новой копии этого объекта
+// РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РєРѕРїРёРё СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 UBARotCameraSimulator *UBARotCameraSimulator::New(void)
 {
  return new UBARotCameraSimulator;
@@ -95,38 +95,38 @@ UBARotCameraSimulator *UBARotCameraSimulator::New(void)
 
 
 // --------------------------
-// Скрытые методы управления счетом фильтров симуляторов
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј С„РёР»СЊС‚СЂРѕРІ СЃРёРјСѓР»СЏС‚РѕСЂРѕРІ
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UBARotCameraSimulator::AFSDefault(void)
 {
  if(!UBAVideoSimulatorSimple::AFSDefault())
 	return false;
 
- // Размер окна обзора, относительно окна сцены
- // Например ViewOutputX = Input / ViewResizeCoef
+ // Р Р°Р·РјРµСЂ РѕРєРЅР° РѕР±Р·РѕСЂР°, РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РѕРєРЅР° СЃС†РµРЅС‹
+ // РќР°РїСЂРёРјРµСЂ ViewOutputX = Input / ViewResizeCoef
  ViewResizeCoef = 2.0;
- // Скорость движения окна обзора по окну сцены
- // В настоящий момент предполагается изменение по линейному закону,
- // Независимо от характера управляющего сигнала
- // (радианы, длина мышцы)
+ // РЎРєРѕСЂРѕСЃС‚СЊ РґРІРёР¶РµРЅРёСЏ РѕРєРЅР° РѕР±Р·РѕСЂР° РїРѕ РѕРєРЅСѓ СЃС†РµРЅС‹
+ // Р’ РЅР°СЃС‚РѕСЏС‰РёР№ РјРѕРјРµРЅС‚ РїСЂРµРґРїРѕР»Р°РіР°РµС‚СЃСЏ РёР·РјРµРЅРµРЅРёРµ РїРѕ Р»РёРЅРµР№РЅРѕРјСѓ Р·Р°РєРѕРЅСѓ,
+ // РќРµР·Р°РІРёСЃРёРјРѕ РѕС‚ С…Р°СЂР°РєС‚РµСЂР° СѓРїСЂР°РІР»СЏСЋС‰РµРіРѕ СЃРёРіРЅР°Р»Р°
+ // (СЂР°РґРёР°РЅС‹, РґР»РёРЅР° РјС‹С€С†С‹)
  XSpeedCoef = 1.2;
  YSpeedCoef = 1.2;
 
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UBARotCameraSimulator::AFSBuild(void)
 {
  if(!UBAVideoSimulatorSimple::AFSBuild())
 	return false;
 
- // Размер окна обзора, относительно окна сцены
- // Например ViewOutputX = Input / ViewResizeCoef
+ // Р Р°Р·РјРµСЂ РѕРєРЅР° РѕР±Р·РѕСЂР°, РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РѕРєРЅР° СЃС†РµРЅС‹
+ // РќР°РїСЂРёРјРµСЂ ViewOutputX = Input / ViewResizeCoef
  // --->
  ViewY = 100;//int(double(Input->GetHeight()) / ViewResizeCoef);
  //ViewX = int(double(Input->GetWidth()) / ViewResizeCoef);
@@ -137,13 +137,13 @@ bool UBARotCameraSimulator::AFSBuild(void)
  return true;
 }
 
-// Сброс процесса счета без потери настроек
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р° Р±РµР· РїРѕС‚РµСЂРё РЅР°СЃС‚СЂРѕРµРє
 bool UBARotCameraSimulator::AFSReset(void)
 {
  if(!UBAVideoSimulatorSimple::AFSReset())
 	return false;
 
- /// Сдвиг окна обзора относительно окна сцены в пикселях
+ /// РЎРґРІРёРі РѕРєРЅР° РѕР±Р·РѕСЂР° РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РѕРєРЅР° СЃС†РµРЅС‹ РІ РїРёРєСЃРµР»СЏС…
  ViewShiftX = 0;
  ViewShiftY = 0;
 
@@ -153,13 +153,13 @@ bool UBARotCameraSimulator::AFSReset(void)
 #ifdef __BORLANDC__
 #pragma warn -8058
 #endif
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool UBARotCameraSimulator::AFSCalculate(void)
 {
  if(!UBAVideoSimulatorSimple::AFSCalculate())
 	return false;
 
- // Вычисляем новые сдвиги окошка обзора на окошке сцены
+ // Р’С‹С‡РёСЃР»СЏРµРј РЅРѕРІС‹Рµ СЃРґРІРёРіРё РѕРєРѕС€РєР° РѕР±Р·РѕСЂР° РЅР° РѕРєРѕС€РєРµ СЃС†РµРЅС‹
  ViewShiftX += int(((*MoveRightSignal)(0,0) - (*MoveLeftSignal)(0,0))*XSpeedCoef);
  ViewShiftY += int(((*MoveBottomSignal)(0,0) - (*MoveTopSignal)(0,0))*YSpeedCoef);
 
@@ -175,7 +175,7 @@ bool UBARotCameraSimulator::AFSCalculate(void)
  	}
  }
 
- // Вычисляеи точку привязки окошка обзора к окошку сцены
+ // Р’С‹С‡РёСЃР»СЏРµРё С‚РѕС‡РєСѓ РїСЂРёРІСЏР·РєРё РѕРєРѕС€РєР° РѕР±Р·РѕСЂР° Рє РѕРєРѕС€РєСѓ СЃС†РµРЅС‹
  int start_x, start_y;
  start_x = (Input->GetWidth() - ViewX) / 2;
  start_x += ViewShiftX;
@@ -188,13 +188,13 @@ bool UBARotCameraSimulator::AFSCalculate(void)
  if(start_y < 0) start_y = 0;
  if(start_y > Input->GetHeight() - ViewY - 1) start_x = Input->GetHeight() - ViewY - 1;
 
- // Вырезаем окно обзора
+ // Р’С‹СЂРµР·Р°РµРј РѕРєРЅРѕ РѕР±Р·РѕСЂР°
  Output->GetRect(start_x,start_y,*ViewOutput);
 
- // Счётчик кадров
+ // РЎС‡С‘С‚С‡РёРє РєР°РґСЂРѕРІ
  frame_counter++;
 
- // Выход с рамкой
+ // Р’С‹С…РѕРґ СЃ СЂР°РјРєРѕР№
  *BorderOutput = *Output;
  const UBRect rect1(start_x,start_y,ViewX,2);
  const UBRect rect2(start_x,start_y+ViewY,ViewX,2);

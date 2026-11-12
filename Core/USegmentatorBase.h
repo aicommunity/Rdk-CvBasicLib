@@ -4,54 +4,54 @@
 
 
 namespace RDK {
-/// Базовый сегментатор.  Имеет ACalculate с необходимой обработкой.
-/// Потомки обязаны определить метод Inference. Метод возвращает bool в зависимости от успешности исполнения
-/// Потомки не могут переопределять ACalculate. Все дополнительные действия стоит осуществлять в ABeforeCalculate() и AAfterCalculate()
+///  .   ACalculate   .
+///     Inference.   bool     
+///     ACalculate.       ABeforeCalculate()  AAfterCalculate()
 class RDK_LIB_TYPE USegmentatorBase: virtual public RDK::UNet
 {
-protected: // Входы и выходы
-/// Входное изображение
-UPropertyInputData<UBitmap, USegmentatorBase> InputImage;
+protected: //   
+///  
+UProperty<UBitmap, USegmentatorBase, ptPubParameter> InputImage;
 
-/// Выходное изображение c результирующей маской
-UPropertyOutputData<UBitmap, USegmentatorBase> OutputImage;
-
-
-protected: // Переменные состояния
-/// Соответствие классов и цветов
-ULProperty<std::vector< UColorT>,USegmentatorBase, ptPubParameter> ClassColors;
+///   c  
+UProperty<UBitmap, USegmentatorBase, ptPubParameter> OutputImage;
 
 
-protected: // Временные переменные
+protected: //  
+///    
+UProperty<std::vector< UColorT>,USegmentatorBase, ptPubParameter> ClassColors;
+
+
+protected: //  
 UBitmap ProcessedBmp;
 
-public: // Методы
+public: // 
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 USegmentatorBase(void);
 virtual ~USegmentatorBase(void);
 // --------------------------
 
 // ---------------------
-// Методы управления параметрами
+//   
 // ---------------------
 // ---------------------
 
 
 // ---------------------
-// Методы управления переменными состояния
+//    
 // ---------------------
 // ---------------------
 
 // --------------------------
-// Системные методы управления объектом
+//    
 // --------------------------
 
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
 virtual bool ACalculate(void);
 

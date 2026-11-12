@@ -6,7 +6,7 @@
 
 
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 CNetwork::CNetwork(void)
 {
@@ -18,9 +18,9 @@ CNetwork::~CNetwork(void)
 // --------------------------
 
 // --------------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // --------------------------
-// Число слоев сети
+// Р§РёСЃР»Рѕ СЃР»РѕРµРІ СЃРµС‚Рё
 const int& CNetwork::GetNumLayers(void) const
 {
  return NumLayers;
@@ -97,7 +97,7 @@ bool CNetwork::SetNetworkNumFields(const vector<int>& value)
  return true;
 }
 
-// Размеры входного изображения
+// Р Р°Р·РјРµСЂС‹ РІС…РѕРґРЅРѕРіРѕ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
 const int& CNetwork::GetInputWidth(void) const
 {
  return InputWidth;
@@ -128,7 +128,7 @@ bool CNetwork::SetInputHeight(const int &value)
  return true;
 }
 
-// Скорость обучения
+// РЎРєРѕСЂРѕСЃС‚СЊ РѕР±СѓС‡РµРЅРёСЏ
 const double& CNetwork::GetEta(void) const
 {
  return Eta;
@@ -144,7 +144,7 @@ bool CNetwork::SetEta(const double& value)
  return true;
 }
 
-//Средняя энергия ошибки
+//РЎСЂРµРґРЅСЏСЏ СЌРЅРµСЂРіРёСЏ РѕС€РёР±РєРё
 const double& CNetwork::GetError(void) const
 {
  return Error;
@@ -159,7 +159,7 @@ bool CNetwork::SetError(double value)
  return true;
 }
 
-// Порядок весов
+// РџРѕСЂСЏРґРѕРє РІРµСЃРѕРІ
 const double& CNetwork::GetDegWeights(void) const
 {
  return DegWeights;
@@ -176,9 +176,9 @@ bool CNetwork::SetDegWeights(double value)
 // --------------------------
 
 // --------------------------
-// Методы управления данными
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РґР°РЅРЅС‹РјРё
 // --------------------------
-// Возвращает слой по индексу
+// Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃР»РѕР№ РїРѕ РёРЅРґРµРєСЃСѓ
 CNLayer& CNetwork::GetLayer(int index)
 {
  return Layers[index];
@@ -186,7 +186,7 @@ CNLayer& CNetwork::GetLayer(int index)
 // --------------------------
 
 // --------------------------
-// Методы управления счетом
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
 /*
 bool CNetwork::SetInputImage(const UBitmap &input)
@@ -216,9 +216,9 @@ bool CNetwork::SetFieldOutput(int layer, int field, vector<vector<double> > &out
 
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool CNetwork::ADefault(void)
 {
  DegWeights=0.1;
@@ -227,10 +227,10 @@ bool CNetwork::ADefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool CNetwork::ABuild(void)
 {
  Layers.resize(NumLayers);
@@ -269,11 +269,11 @@ bool CNetwork::ABuild(void)
    return false;
  }
  /*
- // Цикл по слоям
- // инициализируем слои
+ // Р¦РёРєР» РїРѕ СЃР»РѕСЏРј
+ // РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј СЃР»РѕРё
  for(int i=0;i<NumLayers;i++)
  {
-  // Задаем параметры слоев
+  // Р—Р°РґР°РµРј РїР°СЂР°РјРµС‚СЂС‹ СЃР»РѕРµРІ
 
   if(i==0)
   {
@@ -290,7 +290,7 @@ bool CNetwork::ABuild(void)
    Layers[i].SetConvolutionStep(1);
    Layers[i].SetConvHeight(5);
    Layers[i].SetConvWidth(5);
-   Layers[i].SetNumFields(6); // Тут нужен параметр 6
+   Layers[i].SetNumFields(6); // РўСѓС‚ РЅСѓР¶РµРЅ РїР°СЂР°РјРµС‚СЂ 6
    Layers[i].SetSourceLayer(&Layers[i-1]);
    Layers[i].SetLayerFlag(0);
    //Layers[i].GetField(0).SetConvolutionStep(2);
@@ -300,7 +300,7 @@ bool CNetwork::ABuild(void)
    Layers[i].SetConvolutionStep(2);
    Layers[i].SetConvHeight(2);
    Layers[i].SetConvWidth(2);
-   Layers[i].SetNumFields(6); // Тут нужен параметр 6
+   Layers[i].SetNumFields(6); // РўСѓС‚ РЅСѓР¶РµРЅ РїР°СЂР°РјРµС‚СЂ 6
    Layers[i].SetSourceLayer(&Layers[i-1]);
    Layers[i].SetLayerFlag(0);
   // Layers[i].GetField(0).SetConvolutionStep(2);
@@ -310,7 +310,7 @@ bool CNetwork::ABuild(void)
    Layers[i].SetConvolutionStep(1);
    Layers[i].SetConvHeight(5);
    Layers[i].SetConvWidth(5);
-   Layers[i].SetNumFields(16); // Тут нужен параметр  16
+   Layers[i].SetNumFields(16); // РўСѓС‚ РЅСѓР¶РµРЅ РїР°СЂР°РјРµС‚СЂ  16
    Layers[i].SetSourceLayer(&Layers[i-1]);
    Layers[i].SetLayerFlag(0);
    //Layers[i].GetField(0).SetConvolutionStep(1);
@@ -320,7 +320,7 @@ bool CNetwork::ABuild(void)
    Layers[i].SetConvolutionStep(2);
    Layers[i].SetConvHeight(2);
    Layers[i].SetConvWidth(2);
-   Layers[i].SetNumFields(6); // Тут нужен параметр    6
+   Layers[i].SetNumFields(6); // РўСѓС‚ РЅСѓР¶РµРЅ РїР°СЂР°РјРµС‚СЂ    6
    Layers[i].SetSourceLayer(&Layers[i-1]);
    Layers[i].SetLayerFlag(0);
    //Layers[i].GetField(0).SetConvolutionStep(1);
@@ -330,7 +330,7 @@ bool CNetwork::ABuild(void)
    Layers[i].SetConvolutionStep(1);
    Layers[i].SetConvHeight(5);
    Layers[i].SetConvWidth(5);
-   Layers[i].SetNumFields(5); // Тут нужен параметр
+   Layers[i].SetNumFields(5); // РўСѓС‚ РЅСѓР¶РµРЅ РїР°СЂР°РјРµС‚СЂ
    Layers[i].SetSourceLayer(&Layers[i-1]);
    Layers[i].SetLayerFlag(0);
    //Layers[i].GetField(0).SetConvolutionStep(1);
@@ -339,7 +339,7 @@ bool CNetwork::ABuild(void)
  return true;
 }
 
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool CNetwork::AReset(void)
 {
  for(int i=0;i<NumLayers;i++)
@@ -350,7 +350,7 @@ bool CNetwork::AReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool CNetwork::ACalculate(void)
 {
  for(int i=1;i<NumLayers;i++)
@@ -358,7 +358,7 @@ bool CNetwork::ACalculate(void)
   if(!Layers[i].Calculate())
    return false;
 
-// Запись весов в лог файл по слоям
+// Р—Р°РїРёСЃСЊ РІРµСЃРѕРІ РІ Р»РѕРі С„Р°Р№Р» РїРѕ СЃР»РѕСЏРј
  /*
   string filename="layer";
   filename+=sntoa(i);
@@ -400,19 +400,19 @@ void CNetwork::ResetTraining(void)
  }
 }
 
-// Обучение
+// РћР±СѓС‡РµРЅРёРµ
 double CNetwork::ATrain(int exp_class)
 {
  if(!Ready)
   return false;
 
-  //Прямой ход
+  //РџСЂСЏРјРѕР№ С…РѕРґ
   Calculate();
 
  if(!NumLayers)
   return true;
 
-  //Расчет поправок к выходному слою
+  //Р Р°СЃС‡РµС‚ РїРѕРїСЂР°РІРѕРє Рє РІС‹С…РѕРґРЅРѕРјСѓ СЃР»РѕСЋ
 {
  int lastLayerNumFields=GetLayer(NumLayers-1).GetNumFields();
  int lastLayerFieldWidth=GetLayer(NumLayers-1).GetField(0).GetWidthField();
@@ -442,7 +442,7 @@ double CNetwork::ATrain(int exp_class)
  }
 }
 
-  //Коррекция весов по всем слоям
+  //РљРѕСЂСЂРµРєС†РёСЏ РІРµСЃРѕРІ РїРѕ РІСЃРµРј СЃР»РѕСЏРј
   for(int l=NumLayers-1; l>0; l--)
    {
 	if(l == NumLayers-1)
@@ -474,7 +474,7 @@ double CNetwork::ATrain(int exp_class)
 	 }
 	else
 	 {
-	  //Расчет поправок к скрытому слою
+	  //Р Р°СЃС‡РµС‚ РїРѕРїСЂР°РІРѕРє Рє СЃРєСЂС‹С‚РѕРјСѓ СЃР»РѕСЋ
 	  int LayerNumFields=GetLayer(l).GetNumFields();
 	  int LayerFieldWidth=GetLayer(l).GetField(0).GetWidthField();
 	  int LayerFieldHeight=GetLayer(l).GetField(0).GetHeightField();
@@ -526,13 +526,13 @@ double CNetwork::ATrain(int exp_class)
 	   }
 	 }
    }
- // Вычисление ошибки
+ // Р’С‹С‡РёСЃР»РµРЅРёРµ РѕС€РёР±РєРё
 {
  int lastLayerNumFields=GetLayer(NumLayers-1).GetNumFields();
  int lastLayerFieldWidth=GetLayer(NumLayers-1).GetField(0).GetWidthField();
  int lastLayerFieldHeight=GetLayer(NumLayers-1).GetField(0).GetHeightField();
 
- double err=0; // Общая энергия ошибки сети
+ double err=0; // РћР±С‰Р°СЏ СЌРЅРµСЂРіРёСЏ РѕС€РёР±РєРё СЃРµС‚Рё
 
  for(int i=0; i<lastLayerNumFields; i++)
  {

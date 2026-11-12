@@ -6,56 +6,56 @@
 
 
 namespace RDK {
-/// Компонент для сохранения результатов классификации
+///     
 
 class RDK_LIB_TYPE UCRBarnesHutTSNE: virtual public RDK::UNet
 {
-protected: // Параметры
+protected: // 
 
-///Флаг переобучения, выставляется при ресете или управляющими компонентами, чтобы переобучить метод, если
-/// поменялись какие-то параметры
-/// Метод учится долго, так что переключать нужно с умом
-ULProperty<bool, UCRBarnesHutTSNE> RetrainFlag;
+/// ,      ,   , 
+///  - 
+///   ,      
+UProperty<bool, UCRBarnesHutTSNE, ptPubParameter> RetrainFlag;
 
-///Число выходных компонент (от 0 до TrainingData.GetCols())
-ULProperty<int, UCRBarnesHutTSNE> NumOutCoords;
+///   ( 0  TrainingData.GetCols())
+UProperty<int, UCRBarnesHutTSNE, ptPubParameter> NumOutCoords;
 
-/// Соответствующий параметр описан в статье
-/// Не более чем число точек/3 согласно коду
-ULProperty<double, UCRBarnesHutTSNE> Perplexity;
+///     
+///     /3  
+UProperty<double, UCRBarnesHutTSNE, ptPubParameter> Perplexity;
 
-/// Соответствующий параметр описан в статье
-ULProperty<double, UCRBarnesHutTSNE> Theta;
+///     
+UProperty<double, UCRBarnesHutTSNE, ptPubParameter> Theta;
 
-/// Максимальное число итераций метода подбора положений точек
-ULProperty<int, UCRBarnesHutTSNE> MaxIterations;
+///       
+UProperty<int, UCRBarnesHutTSNE, ptPubParameter> MaxIterations;
 
-/// Задать число инициализации ГСЧ для полной повторяемости эксперимента
-/// Оставьте равным -1 для случайной инициализации
-ULProperty<int, UCRBarnesHutTSNE> RandomSeed;
-
-
-/// Задать число инициализации ГСЧ для полной повторяемости эксперимента
-/// Оставьте равным -1 для случайной инициализации
-ULProperty<int, UCRBarnesHutTSNE, ptPubState> CalcActive;
-protected: // Входы и выходы
-
-/// Входные вектора заданного размера
-UPropertyInputData<MDMatrix<double>,UCRBarnesHutTSNE, ptPubInput> InputComponents;
-
-/// Выходные вектора (все) после применения t-SNE
-UPropertyOutputData<MDMatrix<double>,UCRBarnesHutTSNE, ptPubOutput> OutputComponents;
+///        
+///   -1   
+UProperty<int, UCRBarnesHutTSNE, ptPubParameter> RandomSeed;
 
 
-protected: // Переменные состояния
+///        
+///   -1   
+UProperty<int, UCRBarnesHutTSNE, ptPubState> CalcActive;
+protected: //   
 
-/// Матрица double - результат применения PCA
-//UPropertyOutputData<MDMatrix<double>, UCRBarnesHutTSNE, ptPubState | ptOutput> ...;
+///    
+UProperty<MDMatrix<double>,UCRBarnesHutTSNE, ptPubInput> InputComponents;
 
-/// Матрица преобразования размерности (МхМ) и вектор собственных чисел (Мх1 правый столбец) в одном флаконе
-//UPropertyOutputData<MDMatrix<double>, UCRBarnesHutTSNE, ptPubState> ...;
+///   ()   t-SNE
+UProperty<MDMatrix<double>,UCRBarnesHutTSNE, ptPubOutput> OutputComponents;
 
-protected: // Временные переменные
+
+protected: //  
+
+///  double -   PCA
+//UProperty<MDMatrix<double>, UCRBarnesHutTSNE, ptPubState | ptOutput> ...;
+
+///    ()     (1  )   
+//UProperty<MDMatrix<double>, UCRBarnesHutTSNE, ptPubState> ...;
+
+protected: //  
 
 bool TSNECalcInProcess;
 float CalcProgress;
@@ -69,34 +69,34 @@ double* costs;
 
 std::thread *m_thread;
 
-public: // Методы
+public: // 
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 UCRBarnesHutTSNE(void);
 virtual ~UCRBarnesHutTSNE(void);
 // --------------------------
 
 // ---------------------
-// Методы управления параметрами
+//   
 // ---------------------
 // ---------------------
 
 
 // ---------------------
-// Методы управления переменными состояния
+//    
 // ---------------------
 // ---------------------
 
 // --------------------------
-// Системные методы управления объектом
+//    
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+//         
 virtual UCRBarnesHutTSNE* New(void);
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
 
 virtual bool ACalculate(void);

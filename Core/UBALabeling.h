@@ -17,84 +17,84 @@ See file license.txt for more information
 
 namespace RDK {
 
-/// Базовый класс построения разнострого кадра
+///     
 class RDK_LIB_TYPE UBALabeling: public UNet
 {
-protected: // Входные и выходные данные
-UPropertyInputData<UBitmap, UBALabeling> Input;
+protected: //    
+UProperty<UBitmap, UBALabeling, ptPubParameter> Input;
 
-/// Выходное изображение
-UPropertyOutputData<MDMatrix<double>, UBALabeling, ptPubOutput | ptState> Zones;
+///  
+UProperty<MDMatrix<double>, UBALabeling, ptPubOutput | ptState> Zones;
 
 
-public: // Методы
+public: // 
 // ---------------------
-// Конструкторы и деструкторы
+//   
 // ---------------------
 UBALabeling(void);
 virtual ~UBALabeling(void);
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров
+//     
 // --------------------------
 protected:
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool ADefault(void);
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool ABuild(void);
 
-/// Сброс процесса счета без потери настроек
+///      
 virtual bool AReset(void);
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool ACalculate(void);
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров разностных кадров
+//       
 // --------------------------
 protected:
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool AFBgDefault(void);
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool AFBgBuild(void);
 
-/// Сброс процесса счета без потери настроек
+///      
 virtual bool AFBgReset(void);
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool AFBgCalculate(void);
 // --------------------------
 };
 
-/// Вычисляет простой разностный кадр
+///    
 class RDK_LIB_TYPE UBALabelingSimple: public UBALabeling
 {
-protected: // Параметры
+protected: // 
 
-protected: // Временные переменные
+protected: //  
 
-public: // Методы
+public: // 
 // ---------------------
-// Конструкторы и деструкторы
+//   
 // ---------------------
 UBALabelingSimple(void);
 virtual ~UBALabelingSimple(void);
 // ---------------------
 
 // ---------------------
-// Методы счета
+//  
 // ---------------------
-// Создание новой копии этого объекта
+//     
 virtual UBALabelingSimple* New(void);
 
 void LCalculate(UBitmap &bmp, MDMatrix<double> &output);
@@ -103,22 +103,22 @@ void LCalculate(UBitmap &bmp, MDMatrix<double> &output);
 // ---------------------
 
 // --------------------------
-// Скрытые методы управления счетом фильтров разностных кадров
+//       
 // --------------------------
 protected:
-/// Восстановление настроек по умолчанию и сброс процесса счета
+///        
 virtual bool AFBgDefault(void);
 
-/// Обеспечивает сборку внутренней структуры объекта
-/// после настройки параметров
-/// Автоматически вызывает метод Reset() и выставляет Ready в true
-/// в случае успешной сборки
+///     
+///   
+///    Reset()   Ready  true
+///    
 virtual bool AFBgBuild(void);
 
-/// Сброс процесса счета без потери настроек
+///      
 virtual bool AFBgReset(void);
 
-/// Выполняет расчет этого объекта
+///    
 virtual bool AFBgCalculate(void);
 // --------------------------
 };

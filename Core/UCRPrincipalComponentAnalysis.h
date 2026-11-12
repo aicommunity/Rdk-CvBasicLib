@@ -6,66 +6,66 @@
 #define CLASS_LOWQUAL -3
 
 namespace RDK {
-/// Компонент для сохранения результатов классификации
+///     
 
 class RDK_LIB_TYPE UCRPrincipalComponentAnalysis: virtual public RDK::UNet
 {
-public: // Параметры
+public: // 
 
-///Флаг переобучения, выставляется при ресете или управляющими компонентами, чтобы переобучить PCA если
-/// поменялись какие-то параметры
-ULProperty<bool, UCRPrincipalComponentAnalysis> RetrainFlag;
+/// ,      ,   PCA 
+///  - 
+UProperty<bool, UCRPrincipalComponentAnalysis, ptPubParameter> RetrainFlag;
 
-///Число выходных компонент (от 0 до TrainingData.GetCols())
-ULProperty<int, UCRPrincipalComponentAnalysis> OutComponents;
+///   ( 0  TrainingData.GetCols())
+UProperty<int, UCRPrincipalComponentAnalysis, ptPubParameter> OutComponents;
 
-protected: // Входы и выходы
+protected: //   
 
-/// Входная матрица со стандартизованными данными для обучения PCA
-UPropertyInputData<MDMatrix<double>,UCRPrincipalComponentAnalysis, ptPubInput> TrainingData;
+///        PCA
+UProperty<MDMatrix<double>,UCRPrincipalComponentAnalysis, ptPubInput> TrainingData;
 
-/// Входная строка для применения PCA, по ширине идентичная TrainingData
-UPropertyInputData<MDMatrix<double>,UCRPrincipalComponentAnalysis, ptPubInput> EncodingData;
+///     PCA,    TrainingData
+UProperty<MDMatrix<double>,UCRPrincipalComponentAnalysis, ptPubInput> EncodingData;
 
 
-public: // Переменные состояния
+public: //  
 
-/// Матрица double - результат применения PCA
-UPropertyOutputData<MDMatrix<double>, UCRPrincipalComponentAnalysis, ptPubState | ptOutput> PCAResult;
+///  double -   PCA
+UProperty<MDMatrix<double>, UCRPrincipalComponentAnalysis, ptPubState | ptOutput> PCAResult;
 
-/// Матрица преобразования размерности (МхМ) и вектор собственных чисел (Мх1 правый столбец) в одном флаконе
-UPropertyOutputData<MDMatrix<double>, UCRPrincipalComponentAnalysis, ptPubState> PCA_X;
+///    ()     (1  )   
+UProperty<MDMatrix<double>, UCRPrincipalComponentAnalysis, ptPubState> PCA_X;
 
-protected: // Временные переменные
+protected: //  
 
-public: // Методы
+public: // 
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 UCRPrincipalComponentAnalysis(void);
 virtual ~UCRPrincipalComponentAnalysis(void);
 // --------------------------
 
 // ---------------------
-// Методы управления параметрами
+//   
 // ---------------------
 // ---------------------
 
 
 // ---------------------
-// Методы управления переменными состояния
+//    
 // ---------------------
 // ---------------------
 
 // --------------------------
-// Системные методы управления объектом
+//    
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+//         
 virtual UCRPrincipalComponentAnalysis* New(void);
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
 
 virtual bool ACalculate(void);

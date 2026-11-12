@@ -10,7 +10,7 @@
 namespace RDK
 {
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 TCapture::TCapture(void)
 : DesiredFps("DesiredFps",this,&TCapture::SetDesiredFps),
@@ -47,9 +47,9 @@ TCapture::~TCapture(void)
 
 }
 // --------------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // --------------------------
-/// Установка желаемой частоты кадров
+/// РЈСЃС‚Р°РЅРѕРІРєР° Р¶РµР»Р°РµРјРѕР№ С‡Р°СЃС‚РѕС‚С‹ РєР°РґСЂРѕРІ
 bool TCapture::SetDesiredFps(const double &value)
 {
  return ASetDesiredFps(value);
@@ -60,7 +60,7 @@ bool TCapture::ASetDesiredFps(const double &value)
  return true;
 }
 
-/// Установка флага запуска захвата
+/// РЈСЃС‚Р°РЅРѕРІРєР° С„Р»Р°РіР° Р·Р°РїСѓСЃРєР° Р·Р°С…РІР°С‚Р°
 bool TCapture::SetCameraType(const int &value)
 {
  return ASetCameraType(value);
@@ -72,7 +72,7 @@ bool TCapture::ASetCameraType(const int &value)
 }
 
 
-/// Таймаут на ожидание завершения захвата, мс
+/// РўР°Р№РјР°СѓС‚ РЅР° РѕР¶РёРґР°РЅРёРµ Р·Р°РІРµСЂС€РµРЅРёСЏ Р·Р°С…РІР°С‚Р°, РјСЃ
 bool TCapture::SetCloseTimeout(const int &value)
 {
  return ASetCloseTimeout(value);
@@ -83,7 +83,7 @@ bool TCapture::ASetCloseTimeout(const double &value)
  return true;
 }
 
-/// Таймаут между переподключениями
+/// РўР°Р№РјР°СѓС‚ РјРµР¶РґСѓ РїРµСЂРµРїРѕРґРєР»СЋС‡РµРЅРёСЏРјРё
 bool TCapture::SetReconnectTimeout(const int &value)
 {
  return ASetReconnectTimeout(value);
@@ -104,10 +104,10 @@ bool TCapture::ASetCaptureTimeout(const double &value)
  return true;
 }
 
-/// Режим восстановления после сбоя захвата
-/// 0 - не делать ничего
-/// 1 - попытаться восстановить захват
-/// 2 - вызвать метод останова захвата
+/// Р РµР¶РёРј РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёСЏ РїРѕСЃР»Рµ СЃР±РѕСЏ Р·Р°С…РІР°С‚Р°
+/// 0 - РЅРµ РґРµР»Р°С‚СЊ РЅРёС‡РµРіРѕ
+/// 1 - РїРѕРїС‹С‚Р°С‚СЊСЃСЏ РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ Р·Р°С…РІР°С‚
+/// 2 - РІС‹Р·РІР°С‚СЊ РјРµС‚РѕРґ РѕСЃС‚Р°РЅРѕРІР° Р·Р°С…РІР°С‚Р°
 bool TCapture::SetRestartMode(const int &value)
 {
  return ASetRestartMode(value);
@@ -118,7 +118,7 @@ bool TCapture::ASetRestartMode(const double &value)
  return true;
 }
 
-/// Желаемое разрешение захвата
+/// Р–РµР»Р°РµРјРѕРµ СЂР°Р·СЂРµС€РµРЅРёРµ Р·Р°С…РІР°С‚Р°
 bool TCapture::SetDesiredWidth(const int &value)
 {
  return ASetDesiredWidth(value);
@@ -139,7 +139,7 @@ bool TCapture::ASetDesiredHeight(const double &value)
  return true;
 }
 
-/// Флаг включения выбора желаемого разрешения захвата
+/// Р¤Р»Р°Рі РІРєР»СЋС‡РµРЅРёСЏ РІС‹Р±РѕСЂР° Р¶РµР»Р°РµРјРѕРіРѕ СЂР°Р·СЂРµС€РµРЅРёСЏ Р·Р°С…РІР°С‚Р°
 bool TCapture::SetDesiredResolutionFlag(const bool &value)
 {
  return ASetDesiredResolutionFlag(value);
@@ -150,13 +150,13 @@ bool TCapture::ASetDesiredResolutionFlag(const bool &value)
  return true;
 }
 
-/// Установка флага запуска захвата
+/// РЈСЃС‚Р°РЅРѕРІРєР° С„Р»Р°РіР° Р·Р°РїСѓСЃРєР° Р·Р°С…РІР°С‚Р°
 bool TCapture::SetEnableCapture(const bool &value)
 {
  return ASetEnableCapture(value);
 }
 
-/// Установка Флага приостановки захвата
+/// РЈСЃС‚Р°РЅРѕРІРєР° Р¤Р»Р°РіР° РїСЂРёРѕСЃС‚Р°РЅРѕРІРєРё Р·Р°С…РІР°С‚Р°
 bool TCapture::SetPaused(const bool &value)
 {
  return ASetPaused(value);
@@ -167,7 +167,7 @@ bool TCapture::ASetPaused(const bool &value)
  return true;
 }
 
-/// Инверсия по оси X
+/// РРЅРІРµСЂСЃРёСЏ РїРѕ РѕСЃРё X
 bool TCapture::SetFlipX(const bool &value)
 {
  return ASetFlipX(value);
@@ -178,7 +178,7 @@ bool TCapture::ASetFlipX(const bool &value)
  return true;
 }
 
-/// Инверсия по оси Y
+/// РРЅРІРµСЂСЃРёСЏ РїРѕ РѕСЃРё Y
 bool TCapture::SetFlipY(const bool &value)
 {
  return ASetFlipY(value);
@@ -189,7 +189,7 @@ bool TCapture::ASetFlipY(const bool &value)
  return true;
 }
 
-/// Установка угла поворота
+/// РЈСЃС‚Р°РЅРѕРІРєР° СѓРіР»Р° РїРѕРІРѕСЂРѕС‚Р°
 bool TCapture::SetRotationAngle(const double &value)
 {
  return ASetRotationAngle(value);
@@ -200,14 +200,14 @@ bool TCapture::ASetRotationAngle(const double &value)
  return true;
 }
 
-/// Проверка актуальности данных
+/// РџСЂРѕРІРµСЂРєР° Р°РєС‚СѓР°Р»СЊРЅРѕСЃС‚Рё РґР°РЅРЅС‹С…
 bool TCapture::SetRelevData(const bool &value)
 {
  return true;
 }
 
-/// Поворот изображения на фиксированный угол
-/// 0 - нет поворота
+/// РџРѕРІРѕСЂРѕС‚ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РЅР° С„РёРєСЃРёСЂРѕРІР°РЅРЅС‹Р№ СѓРіРѕР»
+/// 0 - РЅРµС‚ РїРѕРІРѕСЂРѕС‚Р°
 /// 1 - 90
 /// 2 - 180
 /// 3 - 270
@@ -227,21 +227,21 @@ int TCapture::GetCaptureState(void)
 }
 
 // --------------------------
-// Методы
+// РњРµС‚РѕРґС‹
 // --------------------------
-/// Запуск захвата
+/// Р—Р°РїСѓСЃРє Р·Р°С…РІР°С‚Р°
 bool TCapture::StartCapture(void)
 {
 // Paused=false;
  return AStartCapture();
 }
-/// Останов захвата
+/// РћСЃС‚Р°РЅРѕРІ Р·Р°С…РІР°С‚Р°
 bool TCapture::StopCapture(void)
 {
  return AStopCapture();
 }
 
-/// Пауза захвата
+/// РџР°СѓР·Р° Р·Р°С…РІР°С‚Р°
 bool TCapture::PauseCapture(void)
 {
 // Paused=true;
@@ -254,25 +254,25 @@ bool TCapture::APauseCapture(void)
 }
 
 
-/// Возвращает общее число кадров в источнике
+/// Р’РѕР·РІСЂР°С‰Р°РµС‚ РѕР±С‰РµРµ С‡РёСЃР»Рѕ РєР°РґСЂРѕРІ РІ РёСЃС‚РѕС‡РЅРёРєРµ
 unsigned long long TCapture::GetNumFrames(void) const
 {
  return NumFrames;
 }
 
-/// Возвращает индекс текущего кадра в источнике
+/// Р’РѕР·РІСЂР°С‰Р°РµС‚ РёРЅРґРµРєСЃ С‚РµРєСѓС‰РµРіРѕ РєР°РґСЂР° РІ РёСЃС‚РѕС‡РЅРёРєРµ
 unsigned long long TCapture::GetFramePosition(void) const
 {
  return FramePosition;
 }
 
-/// Устанавливает имя текущего кадра в источнике
+/// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РёРјСЏ С‚РµРєСѓС‰РµРіРѕ РєР°РґСЂР° РІ РёСЃС‚РѕС‡РЅРёРєРµ
 void TCapture::SetFramePosition(unsigned long long value)
 {
 }
 
 
-/// Возвращает общее число секунд в источнике
+/// Р’РѕР·РІСЂР°С‰Р°РµС‚ РѕР±С‰РµРµ С‡РёСЃР»Рѕ СЃРµРєСѓРЅРґ РІ РёСЃС‚РѕС‡РЅРёРєРµ
 double TCapture::GetTimeDuration(void) const
 {
  if(CaptureFps>0)
@@ -280,7 +280,7 @@ double TCapture::GetTimeDuration(void) const
  return 0;
 }
 
-/// Возвращает текущую секунду в источнике
+/// Р’РѕР·РІСЂР°С‰Р°РµС‚ С‚РµРєСѓС‰СѓСЋ СЃРµРєСѓРЅРґСѓ РІ РёСЃС‚РѕС‡РЅРёРєРµ
 double TCapture::GetTimePosition(void) const
 {
  if(RealFps>0)
@@ -288,13 +288,13 @@ double TCapture::GetTimePosition(void) const
  return 0;
 }
 
-/// Устанавливает текущую секунду в источнике
+/// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ С‚РµРєСѓС‰СѓСЋ СЃРµРєСѓРЅРґСѓ РІ РёСЃС‚РѕС‡РЅРёРєРµ
 void TCapture::SetTimePosition(double value)
 {
  SetFramePosition(static_cast<unsigned long long >(value*CaptureFps));
 }
 
-/// Перемещает позицию в источнике на value кадров
+/// РџРµСЂРµРјРµС‰Р°РµС‚ РїРѕР·РёС†РёСЋ РІ РёСЃС‚РѕС‡РЅРёРєРµ РЅР° value РєР°РґСЂРѕРІ
 void TCapture::ChangeRelativeFramePosition(long long value)
 {
  unsigned long long position(GetFramePosition());
@@ -307,14 +307,14 @@ void TCapture::ChangeRelativeFramePosition(long long value)
   SetFramePosition(position-(unsigned long long)(-value));
 }
 
-/// Перемещает позицию в источнике на value секунд
+/// РџРµСЂРµРјРµС‰Р°РµС‚ РїРѕР·РёС†РёСЋ РІ РёСЃС‚РѕС‡РЅРёРєРµ РЅР° value СЃРµРєСѓРЅРґ
 void TCapture::ChangeRelativeTimePosition(double value)
 {
  ChangeRelativeFramePosition(static_cast<unsigned long long >(value*CaptureFps));
 }
 
 // --------------------------
-// Скрытые методы
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹
 // --------------------------
 bool TCapture::ADefault(void)
 {

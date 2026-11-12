@@ -26,7 +26,7 @@ See file license.txt for more information
 namespace RDK {
 //---------------------------------------------------------------------------
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 UCRSample::UCRSample(void)
 // : NADItem(name),
@@ -56,9 +56,9 @@ UCRSample::~UCRSample(void)
 // --------------------------
 
 // --------------------------
-// Методы управления общедоступными свойствами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РѕР±С‰РµРґРѕСЃС‚СѓРїРЅС‹РјРё СЃРІРѕР№СЃС‚РІР°РјРё
 // --------------------------
-// Текущий элемент выборки
+// РўРµРєСѓС‰РёР№ СЌР»РµРјРµРЅС‚ РІС‹Р±РѕСЂРєРё
 bool UCRSample::SetCurrentSample(const int &value)
 {
  if(value<-1 || value >= int(SampleSize))
@@ -67,7 +67,7 @@ bool UCRSample::SetCurrentSample(const int &value)
  return true;
 }
 
-// Изменение размера выборки
+// РР·РјРµРЅРµРЅРёРµ СЂР°Р·РјРµСЂР° РІС‹Р±РѕСЂРєРё
 bool UCRSample::SetSampleSize(const int &value)
 {
  if(value < SampleSize)
@@ -79,14 +79,14 @@ bool UCRSample::SetSampleSize(const int &value)
  return true;
 }
 
-// Изменение размера вектора выборки
+// РР·РјРµРЅРµРЅРёРµ СЂР°Р·РјРµСЂР° РІРµРєС‚РѕСЂР° РІС‹Р±РѕСЂРєРё
 bool UCRSample::SetVectorSize(const int &value)
 {
  SetOutputDataSize(0,MMatrixSize(1,value));
  return true;
 }
 
-// Имя файла выборки
+// РРјСЏ С„Р°Р№Р»Р° РІС‹Р±РѕСЂРєРё
 bool UCRSample::SetSampleFileName(const string &value)
 {
  Ready=false;
@@ -95,16 +95,16 @@ bool UCRSample::SetSampleFileName(const string &value)
 // --------------------------
 
 // --------------------------
-// Методы управления выборкой
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РІС‹Р±РѕСЂРєРѕР№
 // --------------------------
-// Пополняет выборку текущим вектором входов
+// РџРѕРїРѕР»РЅСЏРµС‚ РІС‹Р±РѕСЂРєСѓ С‚РµРєСѓС‰РёРј РІРµРєС‚РѕСЂРѕРј РІС…РѕРґРѕРІ
 bool UCRSample::Add(int class_index)
 {
  if(!NumInputs)
   return false;
 
- ++SampleSize.v;
- SampleData.resize(SampleSize);
+ ++SampleSize;
+ SampleData.resize(SampleSize.GetData());
 
 // SampleData[SampleSize-1].first.SetDataSize(sizeof(double));
  SampleData[SampleSize-1].first.Resize(1,0);
@@ -117,8 +117,8 @@ bool UCRSample::Add(int class_index)
 
  if(SampleData[SampleSize-1].first.GetSize() != int(VectorSize))
  {
-  --SampleSize.v;
-  SampleData.resize(SampleSize);
+  --SampleSize;
+  SampleData.resize(SampleSize.GetData());
   return false;
  }
 
@@ -132,11 +132,11 @@ bool UCRSample::Add(int class_index)
  return true;
 }
 
-// Пополняет выборку заданным вектором входов
+// РџРѕРїРѕР»РЅСЏРµС‚ РІС‹Р±РѕСЂРєСѓ Р·Р°РґР°РЅРЅС‹Рј РІРµРєС‚РѕСЂРѕРј РІС…РѕРґРѕРІ
 bool UCRSample::Add(const vector<double> &data, int class_index)
 {
- ++SampleSize.v;
- SampleData.resize(SampleSize);
+ ++SampleSize;
+ SampleData.resize(SampleSize.GetData());
 // SampleData[SampleSize-1].first.SetDataSize(sizeof(double));
  SampleData[SampleSize-1].first.Resize(1,int(data.size()));
  for(size_t i=0;i<data.size();i++)
@@ -159,13 +159,13 @@ bool UCRSample::Add(const vector<double> &data, int class_index)
 }
 
 
-// Удаляет заданный элемент вектора входов по индексу
+// РЈРґР°Р»СЏРµС‚ Р·Р°РґР°РЅРЅС‹Р№ СЌР»РµРјРµРЅС‚ РІРµРєС‚РѕСЂР° РІС…РѕРґРѕРІ РїРѕ РёРЅРґРµРєСЃСѓ
 bool UCRSample::Del(size_t index)
 {
  return true;
 }
 
-// Очищает выборку
+// РћС‡РёС‰Р°РµС‚ РІС‹Р±РѕСЂРєСѓ
 void UCRSample::Clear(void)
 {
  SampleSize=0;
@@ -174,16 +174,16 @@ void UCRSample::Clear(void)
  NumClasses=0;
 }
 
-// Возвращает индекс класса текущего вектора обучающей выборки
+// Р’РѕР·РІСЂР°С‰Р°РµС‚ РёРЅРґРµРєСЃ РєР»Р°СЃСЃР° С‚РµРєСѓС‰РµРіРѕ РІРµРєС‚РѕСЂР° РѕР±СѓС‡Р°СЋС‰РµР№ РІС‹Р±РѕСЂРєРё
 int UCRSample::GetCurrentClassIndex(void) const
 {
- if(CurrentSample.v<0 || CurrentSample.v>=SampleSize)
+ if(CurrentSample.GetData()<0 || CurrentSample.GetData()>=SampleSize.GetData())
   return -1;
 
  return SampleData[CurrentSample].second;
 }
 
-// Возвращает массив обучающей выборки
+// Р’РѕР·РІСЂР°С‰Р°РµС‚ РјР°СЃСЃРёРІ РѕР±СѓС‡Р°СЋС‰РµР№ РІС‹Р±РѕСЂРєРё
 const vector<pair<RDK::UItemData,int> >& UCRSample::GetSampleData(void) const
 {
  return SampleData;
@@ -194,7 +194,7 @@ const vector<pair<RDK::UBitmap,int> >& UCRSample::GetBitmapSampleData(void) cons
  return BitmapSampleData;
 }
 
-// Устанавливает как выход выборки данные изображения
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РєР°Рє РІС‹С…РѕРґ РІС‹Р±РѕСЂРєРё РґР°РЅРЅС‹Рµ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
 bool UCRSample::SetSampleData(const RDK::UBitmap &image)
 {
  vector<double> data;
@@ -223,9 +223,9 @@ RDK::UBitmap& UCRSample::GetCurrentBitmapSampleData(void)
 }
 
 
-// Загружает выборку как набор изображений по списку
-// Имена файлов должны быть вида xxxx_classindex.bmp
-// Уже имеющиеся данные в выборке не будут изменены
+// Р—Р°РіСЂСѓР¶Р°РµС‚ РІС‹Р±РѕСЂРєСѓ РєР°Рє РЅР°Р±РѕСЂ РёР·РѕР±СЂР°Р¶РµРЅРёР№ РїРѕ СЃРїРёСЃРєСѓ
+// РРјРµРЅР° С„Р°Р№Р»РѕРІ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІРёРґР° xxxx_classindex.bmp
+// РЈР¶Рµ РёРјРµСЋС‰РёРµСЃСЏ РґР°РЅРЅС‹Рµ РІ РІС‹Р±РѕСЂРєРµ РЅРµ Р±СѓРґСѓС‚ РёР·РјРµРЅРµРЅС‹
 bool UCRSample::LoadBitmapSample(const string &file_path)
 {
  vector<string> file_names;
@@ -253,11 +253,11 @@ bool UCRSample::LoadBitmapSample(const string &file_path)
 }
 
 
-// Загружает выборку как содержимое текстового файла
-// каждая строка - один элемент выборки
-// первое число в строке - индекс класса, остальные - данные вектора выборки
-// разделитель: табуляция или пробел
-// Уже имеющиеся данные в выборке не будут изменены
+// Р—Р°РіСЂСѓР¶Р°РµС‚ РІС‹Р±РѕСЂРєСѓ РєР°Рє СЃРѕРґРµСЂР¶РёРјРѕРµ С‚РµРєСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р°
+// РєР°Р¶РґР°СЏ СЃС‚СЂРѕРєР° - РѕРґРёРЅ СЌР»РµРјРµРЅС‚ РІС‹Р±РѕСЂРєРё
+// РїРµСЂРІРѕРµ С‡РёСЃР»Рѕ РІ СЃС‚СЂРѕРєРµ - РёРЅРґРµРєСЃ РєР»Р°СЃСЃР°, РѕСЃС‚Р°Р»СЊРЅС‹Рµ - РґР°РЅРЅС‹Рµ РІРµРєС‚РѕСЂР° РІС‹Р±РѕСЂРєРё
+// СЂР°Р·РґРµР»РёС‚РµР»СЊ: С‚Р°Р±СѓР»СЏС†РёСЏ РёР»Рё РїСЂРѕР±РµР»
+// РЈР¶Рµ РёРјРµСЋС‰РёРµСЃСЏ РґР°РЅРЅС‹Рµ РІ РІС‹Р±РѕСЂРєРµ РЅРµ Р±СѓРґСѓС‚ РёР·РјРµРЅРµРЅС‹
 bool UCRSample::LoadTextSample(const string &file_name)
 {
  return true;
@@ -265,9 +265,9 @@ bool UCRSample::LoadTextSample(const string &file_name)
 // --------------------------
 
 // --------------------------
-// Системные методы управления объектом
+// РЎРёСЃС‚РµРјРЅС‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРј
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+// Р’С‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РґР»СЏ РЅРѕРІРѕР№ С‡РёСЃС‚РѕР№ РєРѕРїРёРё РѕР±СЉРµРєС‚Р° СЌС‚РѕРіРѕ РєР»Р°СЃСЃР°
 UContainer* UCRSample::New(void)
 {
  return new UCRSample;
@@ -276,9 +276,9 @@ UContainer* UCRSample::New(void)
 
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UCRSample::ADefault(void)
 {
  SetNumOutputs(1);
@@ -302,16 +302,16 @@ bool UCRSample::ADefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UCRSample::ABuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UCRSample::AReset(void)
 {
  string path;
@@ -319,17 +319,17 @@ bool UCRSample::AReset(void)
  if(GetEnvironment())
   path=GetEnvironment()->GetCurrentDataDir()+"/";
 
- switch(Type.v)
+ switch(Type.GetData())
  {
  case 0:
   Clear();
-   if(!LoadTextSample(path+SampleFileName.v))
+   if(!LoadTextSample(path+SampleFileName.GetData()))
 	return false;
  break;
 
  case 1:
   Clear();
-  if(!LoadBitmapSample(path+SampleFileName.v))
+  if(!LoadBitmapSample(path+SampleFileName.GetData()))
    return false;
  break;
  }
@@ -340,7 +340,7 @@ bool UCRSample::AReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта на текущем шаге
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р° РЅР° С‚РµРєСѓС‰РµРј С€Р°РіРµ
 bool UCRSample::ACalculate(void)
 {
  size_t k=0;
@@ -362,23 +362,23 @@ bool UCRSample::ACalculate(void)
  {
   if(SampleSize == 0)
   {
-   SetOutputDataSize(0,MMatrixSize(1,VectorSize.v));
-   for(int i=0;i<VectorSize.v;i++)
+   SetOutputDataSize(0,MMatrixSize(1,VectorSize.GetData()));
+   for(int i=0;i<VectorSize.GetData();i++)
 	POutputData[0].Double[i]=0;
    return true;
   }
 
-  ++CurrentSample.v;
-  if(CurrentSample>=int(SampleSize.v))
+  ++CurrentSample;
+  if(CurrentSample.GetData()>=int(SampleSize.GetData()))
   {
    CurrentSample=0;
-   ++CurrentSampleIteration.v;
+   ++CurrentSampleIteration;
   }
 
-  SetOutputDataSize(0,MMatrixSize(1,VectorSize.v));
-  const RDK::UItemData &data=SampleData[CurrentSample].first;
+  SetOutputDataSize(0,MMatrixSize(1,VectorSize.GetData()));
+  const RDK::UItemData &data=SampleData[CurrentSample.GetData()].first;
 
-  for(int i=0;i<VectorSize.v;i++)
+  for(int i=0;i<VectorSize.GetData();i++)
    POutputData[0].Double[i]=data.Double[i];
  }
  break;

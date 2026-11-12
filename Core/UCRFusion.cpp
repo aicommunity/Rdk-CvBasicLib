@@ -25,7 +25,7 @@ namespace RDK {
 
 using namespace std;
 
-// Функция расчета факториала
+// Р¤СѓРЅРєС†РёСЏ СЂР°СЃС‡РµС‚Р° С„Р°РєС‚РѕСЂРёР°Р»Р°
 unsigned int fact(unsigned int n)
 {
  unsigned int res=1;
@@ -37,7 +37,7 @@ unsigned int fact(unsigned int n)
 }
 
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 UCRFusion::UCRFusion(void)
 //: UCRClassifier(name),
@@ -55,7 +55,7 @@ UCRFusion::~UCRFusion(void)
 // --------------------------
 
 // -----------------------------
-// Методы управления общедоступными свойствами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РѕР±С‰РµРґРѕСЃС‚СѓРїРЅС‹РјРё СЃРІРѕР№СЃС‚РІР°РјРё
 // -----------------------------
 bool UCRFusion::SetFusionMode(const int &value)
 {
@@ -66,14 +66,14 @@ bool UCRFusion::SetFusionMode(const int &value)
 // -----------------------------
 
 // -----------------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // -----------------------------
 // -----------------------------
 
 // -----------------------------
-// Методы доступа к данным модели
+// РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР° Рє РґР°РЅРЅС‹Рј РјРѕРґРµР»Рё
 // -----------------------------
-// Текущее значение накоплений
+// РўРµРєСѓС‰РµРµ Р·РЅР°С‡РµРЅРёРµ РЅР°РєРѕРїР»РµРЅРёР№
 int UCRFusion::GetCurrentAttempt(void) const
 {
  return CurrentAttempt;
@@ -81,15 +81,15 @@ int UCRFusion::GetCurrentAttempt(void) const
 // -----------------------------
 
 // ------------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ------------------------
-// Загружает настройки из файла
+// Р—Р°РіСЂСѓР¶Р°РµС‚ РЅР°СЃС‚СЂРѕР№РєРё РёР· С„Р°Р№Р»Р°
 bool UCRFusion::AFileLoad(fstream &file)
 {
  return true;
 }
 
-// Сохраняет настройки в файл
+// РЎРѕС…СЂР°РЅСЏРµС‚ РЅР°СЃС‚СЂРѕР№РєРё РІ С„Р°Р№Р»
 bool UCRFusion::AFileSave(fstream &file)
 {
  return true;
@@ -97,9 +97,9 @@ bool UCRFusion::AFileSave(fstream &file)
 // ------------------------
 
 // --------------------------
-// Системные методы управления объектом
+// РЎРёСЃС‚РµРјРЅС‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРј
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+// Р’С‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РґР»СЏ РЅРѕРІРѕР№ С‡РёСЃС‚РѕР№ РєРѕРїРёРё РѕР±СЉРµРєС‚Р° СЌС‚РѕРіРѕ РєР»Р°СЃСЃР°
 UCRFusion* UCRFusion::New(void)
 {
  return new UCRFusion;
@@ -107,9 +107,9 @@ UCRFusion* UCRFusion::New(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UCRFusion::ACRDefault(void)
 {
  SetOutputDataSize(0,MMatrixSize(1,2));
@@ -136,17 +136,17 @@ bool UCRFusion::ACRDefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UCRFusion::ACRBuild(void)
 {
  return true;
 }
 
 
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool UCRFusion::ACRReset(void)
 {
  AccumOutput.resize(0);
@@ -300,14 +300,14 @@ bool UCRFusion::ACRCalculate(void)
 
 
 // --------------------------
-// Скрытые методы обучения сети
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ РѕР±СѓС‡РµРЅРёСЏ СЃРµС‚Рё
 // --------------------------
-// Сброс настроек обучение в исходное состояние
+// РЎР±СЂРѕСЃ РЅР°СЃС‚СЂРѕРµРє РѕР±СѓС‡РµРЅРёРµ РІ РёСЃС…РѕРґРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 void UCRFusion::AResetTraining(void)
 {
 }
 
-// Однократное обучение на заданном примере
+// РћРґРЅРѕРєСЂР°С‚РЅРѕРµ РѕР±СѓС‡РµРЅРёРµ РЅР° Р·Р°РґР°РЅРЅРѕРј РїСЂРёРјРµСЂРµ
 double UCRFusion::ATrain(size_t exp_class)
 {
  double E=0;
@@ -318,9 +318,9 @@ double UCRFusion::ATrain(size_t exp_class)
 
 
 // ------------------------
-// Скрытые методы счета
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ------------------------
-// Вычисление результата как среднего по показателю качества
+// Р’С‹С‡РёСЃР»РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚Р° РєР°Рє СЃСЂРµРґРЅРµРіРѕ РїРѕ РїРѕРєР°Р·Р°С‚РµР»СЋ РєР°С‡РµСЃС‚РІР°
 bool UCRFusion::AverageQualityCalculate(void)
 {
  vector<UCRClassifier*> classifiers;
@@ -342,10 +342,10 @@ bool UCRFusion::AverageQualityCalculate(void)
    minoutputsize=classifiers[0]->GetOutputDataSize(0)[1];
  }
 
- // Вектор числа попаданий на определенный класс
+ // Р’РµРєС‚РѕСЂ С‡РёСЃР»Р° РїРѕРїР°РґР°РЅРёР№ РЅР° РѕРїСЂРµРґРµР»РµРЅРЅС‹Р№ РєР»Р°СЃСЃ
  vector<double> classcounter;
 
- // Вектор суммарного показателя качества
+ // Р’РµРєС‚РѕСЂ СЃСѓРјРјР°СЂРЅРѕРіРѕ РїРѕРєР°Р·Р°С‚РµР»СЏ РєР°С‡РµСЃС‚РІР°
  vector<double> classquality;
 
  classcounter.assign(minoutputsize,0);
@@ -380,7 +380,7 @@ double maxcounter=0;
  return true;
 }
 
-// Вычисление результата как среднего по входам
+// Р’С‹С‡РёСЃР»РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚Р° РєР°Рє СЃСЂРµРґРЅРµРіРѕ РїРѕ РІС…РѕРґР°Рј
 bool UCRFusion::AverageInputCalculate(void)
 {
  vector<UCRClassifier*> classifiers;
@@ -402,10 +402,10 @@ bool UCRFusion::AverageInputCalculate(void)
    minoutputsize=classifiers[0]->GetOutputDataSize(0)[1];
  }
 
- // Вектор числа попаданий на определенный класс
+ // Р’РµРєС‚РѕСЂ С‡РёСЃР»Р° РїРѕРїР°РґР°РЅРёР№ РЅР° РѕРїСЂРµРґРµР»РµРЅРЅС‹Р№ РєР»Р°СЃСЃ
  vector<double> classcounter;
 
- // Вектор суммарного показателя качества
+ // Р’РµРєС‚РѕСЂ СЃСѓРјРјР°СЂРЅРѕРіРѕ РїРѕРєР°Р·Р°С‚РµР»СЏ РєР°С‡РµСЃС‚РІР°
  vector<double> classquality;
 
  classcounter.assign(minoutputsize,0);
@@ -443,7 +443,7 @@ bool UCRFusion::AverageInputCalculate(void)
  return true;
 }
 
-// Вычисление результата как суммы по входам
+// Р’С‹С‡РёСЃР»РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚Р° РєР°Рє СЃСѓРјРјС‹ РїРѕ РІС…РѕРґР°Рј
 bool UCRFusion::SumInputCalculate(void)
 {
  vector<UCRClassifier*> classifiers;
@@ -465,7 +465,7 @@ bool UCRFusion::SumInputCalculate(void)
    minoutputsize=classifiers[0]->GetOutputDataSize(0)[1];
  }
 
- // Вектор суммарного показателя качества
+ // Р’РµРєС‚РѕСЂ СЃСѓРјРјР°СЂРЅРѕРіРѕ РїРѕРєР°Р·Р°С‚РµР»СЏ РєР°С‡РµСЃС‚РІР°
  vector<double> classquality;
 
  classquality.assign(minoutputsize,0);
@@ -488,7 +488,7 @@ bool UCRFusion::SumInputCalculate(void)
 }
 
 
-// Вычисление результата через попарное сравнение
+// Р’С‹С‡РёСЃР»РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚Р° С‡РµСЂРµР· РїРѕРїР°СЂРЅРѕРµ СЃСЂР°РІРЅРµРЅРёРµ
 bool UCRFusion::PairCalculate(void)
 {
 /* int classindex;
@@ -524,16 +524,16 @@ bool UCRFusion::PairCalculate(void)
    minoutputsize=classifiers[0]->GetOutputDataSize(0);
  }
 
- // Вектор числа попаданий на определенный класс
+ // Р’РµРєС‚РѕСЂ С‡РёСЃР»Р° РїРѕРїР°РґР°РЅРёР№ РЅР° РѕРїСЂРµРґРµР»РµРЅРЅС‹Р№ РєР»Р°СЃСЃ
  vector<double> classcounter;
 
- // Вектор суммарного показателя качества
+ // Р’РµРєС‚РѕСЂ СЃСѓРјРјР°СЂРЅРѕРіРѕ РїРѕРєР°Р·Р°С‚РµР»СЏ РєР°С‡РµСЃС‚РІР°
  vector<double> classquality;
 
- // Вектор результатов предварительной попарной классификации
+ // Р’РµРєС‚РѕСЂ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕР№ РїРѕРїР°СЂРЅРѕР№ РєР»Р°СЃСЃРёС„РёРєР°С†РёРё
  vector<UCRFPreResult> preresults;
 
- // Число вариантов предварительной классификации (число сочетаний)
+ // Р§РёСЃР»Рѕ РІР°СЂРёР°РЅС‚РѕРІ РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕР№ РєР»Р°СЃСЃРёС„РёРєР°С†РёРё (С‡РёСЃР»Рѕ СЃРѕС‡РµС‚Р°РЅРёР№)
  int numpreresults=fact(minoutputsize)/(fact(2)*fact(minoutputsize-2));
 
  preresults.resize(numpreresults);
@@ -595,7 +595,7 @@ bool UCRFusion::PairCalculate(void)
  return true;
 }
 
-// Вычисление результата по числу обнаружений класса
+// Р’С‹С‡РёСЃР»РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚Р° РїРѕ С‡РёСЃР»Сѓ РѕР±РЅР°СЂСѓР¶РµРЅРёР№ РєР»Р°СЃСЃР°
 bool UCRFusion::RecognitionCounterCalculate(void)
 {
  vector<UCRClassifier*> classifiers;
@@ -617,10 +617,10 @@ bool UCRFusion::RecognitionCounterCalculate(void)
    minoutputsize=classifiers[0]->GetOutputDataSize(0)[1];
  }
 
- // Вектор числа попаданий на определенный класс
+ // Р’РµРєС‚РѕСЂ С‡РёСЃР»Р° РїРѕРїР°РґР°РЅРёР№ РЅР° РѕРїСЂРµРґРµР»РµРЅРЅС‹Р№ РєР»Р°СЃСЃ
  vector<double> classcounter;
 
- // Вектор суммарного показателя качества
+ // Р’РµРєС‚РѕСЂ СЃСѓРјРјР°СЂРЅРѕРіРѕ РїРѕРєР°Р·Р°С‚РµР»СЏ РєР°С‡РµСЃС‚РІР°
  vector<double> classquality;
 
  classcounter.assign(minoutputsize,0);
@@ -655,7 +655,7 @@ double maxcounter=0;
  return true;
 }
 
-// Вычисление результата по числу обнаружений класса по входам
+// Р’С‹С‡РёСЃР»РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚Р° РїРѕ С‡РёСЃР»Сѓ РѕР±РЅР°СЂСѓР¶РµРЅРёР№ РєР»Р°СЃСЃР° РїРѕ РІС…РѕРґР°Рј
 bool UCRFusion::InputRecognitionCounterCalculate(void)
 {
  vector<UCRClassifier*> classifiers;
@@ -677,10 +677,10 @@ bool UCRFusion::InputRecognitionCounterCalculate(void)
    minoutputsize=classifiers[0]->GetOutputDataSize(0)[1];
  }
 
- // Вектор числа попаданий на определенный класс
+ // Р’РµРєС‚РѕСЂ С‡РёСЃР»Р° РїРѕРїР°РґР°РЅРёР№ РЅР° РѕРїСЂРµРґРµР»РµРЅРЅС‹Р№ РєР»Р°СЃСЃ
  vector<double> classcounter;
 
- // Вектор суммарного показателя качества
+ // Р’РµРєС‚РѕСЂ СЃСѓРјРјР°СЂРЅРѕРіРѕ РїРѕРєР°Р·Р°С‚РµР»СЏ РєР°С‡РµСЃС‚РІР°
  vector<double> classquality;
 
  classcounter.assign(minoutputsize,0);
@@ -720,7 +720,7 @@ bool UCRFusion::InputRecognitionCounterCalculate(void)
  return true;
 }
 
-// Вычисление результата по сумме входов-победителей
+// Р’С‹С‡РёСЃР»РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚Р° РїРѕ СЃСѓРјРјРµ РІС…РѕРґРѕРІ-РїРѕР±РµРґРёС‚РµР»РµР№
 bool UCRFusion::SumInputRecognitionCounterCalculate(void)
 {
  vector<UCRClassifier*> classifiers;
@@ -742,10 +742,10 @@ bool UCRFusion::SumInputRecognitionCounterCalculate(void)
    minoutputsize=classifiers[0]->GetOutputDataSize(0)[1];
  }
 
- // Вектор числа попаданий на определенный класс
+ // Р’РµРєС‚РѕСЂ С‡РёСЃР»Р° РїРѕРїР°РґР°РЅРёР№ РЅР° РѕРїСЂРµРґРµР»РµРЅРЅС‹Р№ РєР»Р°СЃСЃ
  vector<double> classcounter;
 
- // Вектор суммарного показателя качества
+ // Р’РµРєС‚РѕСЂ СЃСѓРјРјР°СЂРЅРѕРіРѕ РїРѕРєР°Р·Р°С‚РµР»СЏ РєР°С‡РµСЃС‚РІР°
  vector<double> classquality;
 
  classcounter.assign(minoutputsize,0);
@@ -785,7 +785,7 @@ bool UCRFusion::SumInputRecognitionCounterCalculate(void)
  return true;
 }
 
-// Устанавливает значения входного вектора для распознавания
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ Р·РЅР°С‡РµРЅРёСЏ РІС…РѕРґРЅРѕРіРѕ РІРµРєС‚РѕСЂР° РґР»СЏ СЂР°СЃРїРѕР·РЅР°РІР°РЅРёСЏ
 bool UCRFusion::SetInput(const vector<double> &input)
 {
 

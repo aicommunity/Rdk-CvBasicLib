@@ -8,65 +8,65 @@ namespace RDK{
 template<class T>
 class UMDMatrixMux: public UNet
 {
-protected: // Параметры
-/// Массив флагов, описывающих какие входы использовать, а какие нет
-ULProperty<std::vector<bool>,UMDMatrixMux<T> > InputActivities;
+protected: // 
+///  ,    ,   
+UProperty<std::vector<bool>,UMDMatrixMux<T>, ptPubParameter> InputActivities;
 
-public: // Данные
-/// Входной вектор матриц
-UPropertyInputCData<MDMatrix<T>,UMDMatrixMux<T> > InputMatrixData;
+public: // 
+///   
+UProperty<std::vector<MDMatrix<T>>,UMDMatrixMux<T>, ptPubInput> InputMatrixData;
 
-/// Режим работы
-/// 0 - сборка матриц в высоту
-/// 1 - сборка матриц в ширину
-/// 2 - сборка матриц в ширину с чередованием столбцов
-/// 3 - сборка матриц в высоту с чередованием строк
+///  
+/// 0 -    
+/// 1 -    
+/// 2 -       
+/// 3 -       
 UProperty<int,UMDMatrixMux<T>, ptPubParameter> Mode;
 
-public: // Данные
-// Выходой вектор матриц
-UPropertyOutputData<MDMatrix<T>,UMDMatrixMux<T>, ptPubOutput | ptState> OutputMatrixData;
+public: // 
+//   
+UProperty<MDMatrix<T>,UMDMatrixMux<T>, ptPubOutput | ptState> OutputMatrixData;
 
-public: // Методы
+public: // 
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 UMDMatrixMux(void);
 virtual ~UMDMatrixMux(void);
 
 
 // --------------------------
-// Системные методы управления объектом
+//    
 // --------------------------
 public:
-// Выделяет память для новой чистой копии объекта этого класса
+//         
 virtual UMDMatrixMux<T>* New(void);
 // --------------------------
 
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
 protected:
-// Восстановление настроек по умолчанию и сброс процесса счета
+//        
 virtual bool ADefault(void);
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+//     
+//   
+//    Reset()   Ready  true
+//    
 virtual bool ABuild(void);
 
-// Сброс процесса счета.
+//   .
 virtual bool AReset(void);
 
-// Выполняет расчет этого объекта
+//    
 virtual bool ACalculate(void);
 // --------------------------
 };
 
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 template<class T>
 UMDMatrixMux<T>::UMDMatrixMux(void)
@@ -85,9 +85,9 @@ UMDMatrixMux<T>::~UMDMatrixMux(void)
 }
 
 // --------------------------
-// Системные методы управления объектом
+//    
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+//         
 template<class T>
 UMDMatrixMux<T>* UMDMatrixMux<T>::New(void)
 {
@@ -96,9 +96,9 @@ UMDMatrixMux<T>* UMDMatrixMux<T>::New(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+//        
 template<class T>
 bool UMDMatrixMux<T>::ADefault(void)
 {
@@ -107,17 +107,17 @@ bool UMDMatrixMux<T>::ADefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+//     
+//   
+//    Reset()   Ready  true
+//    
 template<class T>
 bool UMDMatrixMux<T>::ABuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета.
+//   .
 template<class T>
 bool UMDMatrixMux<T>::AReset(void)
 {
@@ -125,23 +125,31 @@ bool UMDMatrixMux<T>::AReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта
+//    
 template<class T>
 bool UMDMatrixMux<T>::ACalculate(void)
 {
- if(InputMatrixData->size() == 0)
+ // Р‘РµР·РѕРїР°СЃРЅРѕРµ РїРѕР»СѓС‡РµРЅРёРµ СЂР°Р·РјРµСЂРѕРІ Рё РґР°РЅРЅС‹С…
+ size_t input_matrix_size = InputMatrixData->size();
+ if(input_matrix_size == 0)
  {
   OutputMatrixData->Resize(0,0);
   return true;
  }
 
- if(InputActivities->size()<InputMatrixData->size())
-  InputActivities->resize(InputMatrixData->size(),true);
+ size_t input_activities_size = InputActivities->size();
+ if(input_activities_size < input_matrix_size)
+  InputActivities->resize(input_matrix_size, true);
+
+ // РџРѕР»СѓС‡Р°РµРј РєРѕРїРёСЋ РґР°РЅРЅС‹С… InputActivities РґР»СЏ Р±РµР·РѕРїР°СЃРЅРѕРіРѕ РґРѕСЃС‚СѓРїР°
+ // (std::vector<bool> РёРјРµРµС‚ СЃРїРµС†РёР°Р»СЊРЅСѓСЋ СЂРµР°Р»РёР·Р°С†РёСЋ СЃ proxy РѕР±СЉРµРєС‚Р°РјРё)
+ std::vector<bool> activities_copy = *InputActivities;
+ size_t activities_size = activities_copy.size();
 
  size_t i=0;
  switch(Mode)
  {
-  // Сборка в высоту
+  //   
   case 0:
   {
    int new_rows=0;//((*InputMatrixData)[0])?(*InputMatrixData)[0]->GetRows():0;
@@ -150,23 +158,35 @@ bool UMDMatrixMux<T>::ACalculate(void)
    do
 //   for(size_t i=1;i<InputMatrixData->size();i++)
    {
-    if(InputActivities[i])
+    // РџСЂРѕРІРµСЂРєР° РіСЂР°РЅРёС† РїРµСЂРµРґ РґРѕСЃС‚СѓРїРѕРј
+    if(i >= activities_size || i >= input_matrix_size)
+     break;
+     
+    if(activities_copy[i])
     {
      new_rows+=InputMatrixData[i].GetRows();
      if(new_cols>InputMatrixData[i].GetCols() || new_cols<0)
       new_cols=InputMatrixData[i].GetCols();
     }
     ++i;
-   } while(i<InputMatrixData->size());
+   } while(i < input_matrix_size);
+   
+   // РџСЂРѕРІРµСЂРєР°: РµСЃР»Рё РЅРµС‚ Р°РєС‚РёРІРЅС‹С… РІС…РѕРґРѕРІ РёР»Рё РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Рµ СЂР°Р·РјРµСЂС‹, РІС‹С…РѕРґРёРј
+   if(new_rows <= 0 || new_cols <= 0)
+   {
+    OutputMatrixData->Resize(0,0);
+    return true;
+   }
+   
    OutputMatrixData->Resize(new_rows, new_cols);
 
    MDMatrix<T> &output=*OutputMatrixData;
    int row=0;
-   for(size_t i=0;i<InputMatrixData->size();i++)
+   for(size_t i2=0;i2<input_matrix_size;i2++)
    {
-    if(InputActivities[i])
+    if(i2 < activities_size && activities_copy[i2])
     {
-     const MDMatrix<T> &input=InputMatrixData[i];
+     const MDMatrix<T> &input=InputMatrixData[i2];
      for(int j=0;j<input.GetRows();j++)
      {
       for(int k=0;k<new_cols;k++)
@@ -179,7 +199,7 @@ bool UMDMatrixMux<T>::ACalculate(void)
   }
   break;
 
-  // Сборка в ширину
+  //   
   case 1:
   {
    int new_rows=-1;//((*InputMatrixData)[0])?(*InputMatrixData)[0]->GetRows():0;
@@ -188,23 +208,35 @@ bool UMDMatrixMux<T>::ACalculate(void)
    do
 //   for(size_t i=1;i<InputMatrixData->size();i++)
    {
-    if(InputActivities[i])
+    // РџСЂРѕРІРµСЂРєР° РіСЂР°РЅРёС† РїРµСЂРµРґ РґРѕСЃС‚СѓРїРѕРј
+    if(i >= activities_size || i >= input_matrix_size)
+     break;
+     
+    if(activities_copy[i])
     {
      new_cols+=InputMatrixData[i].GetCols();
      if(new_rows>InputMatrixData[i].GetRows() || new_rows<0)
       new_rows=InputMatrixData[i].GetRows();
     }
     ++i;
-   } while(i<InputMatrixData->size());
+   } while(i < input_matrix_size);
+   
+   // РџСЂРѕРІРµСЂРєР°: РµСЃР»Рё РЅРµС‚ Р°РєС‚РёРІРЅС‹С… РІС…РѕРґРѕРІ РёР»Рё РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Рµ СЂР°Р·РјРµСЂС‹, РІС‹С…РѕРґРёРј
+   if(new_rows <= 0 || new_cols <= 0)
+   {
+    OutputMatrixData->Resize(0,0);
+    return true;
+   }
+   
    OutputMatrixData->Resize(new_rows, new_cols);
 
    MDMatrix<T> &output=*OutputMatrixData;
    int col=0;
-   for(size_t i=0;i<InputMatrixData->size();i++)
+   for(size_t i2=0;i2<input_matrix_size;i2++)
    {
-    if(InputActivities[i])
+    if(i2 < activities_size && activities_copy[i2])
     {
-     const MDMatrix<T> &input=InputMatrixData[i];
+     const MDMatrix<T> &input=InputMatrixData[i2];
      for(int j=0;j<input.GetCols();j++)
      {
       for(int k=0;k<new_rows;k++)
@@ -217,7 +249,7 @@ bool UMDMatrixMux<T>::ACalculate(void)
   }
   break;
 
-  /// 2 - сборка матриц в ширину с чередованием столбцов
+  /// 2 -       
   case 2:
   {
    int new_rows=-1;
@@ -225,14 +257,26 @@ bool UMDMatrixMux<T>::ACalculate(void)
 
    do
    {
-    if(InputActivities[i])
+    // РџСЂРѕРІРµСЂРєР° РіСЂР°РЅРёС† РїРµСЂРµРґ РґРѕСЃС‚СѓРїРѕРј
+    if(i >= activities_size || i >= input_matrix_size)
+     break;
+     
+    if(activities_copy[i])
     {
      new_cols+=InputMatrixData[i].GetCols();
      if(new_rows>InputMatrixData[i].GetRows() || new_rows<0)
       new_rows=InputMatrixData[i].GetRows();
     }
     ++i;
-   } while(i<InputMatrixData->size());
+   } while(i < input_matrix_size);
+   
+   // РџСЂРѕРІРµСЂРєР°: РµСЃР»Рё РЅРµС‚ Р°РєС‚РёРІРЅС‹С… РІС…РѕРґРѕРІ РёР»Рё РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Рµ СЂР°Р·РјРµСЂС‹, РІС‹С…РѕРґРёРј
+   if(new_rows <= 0 || new_cols <= 0)
+   {
+    OutputMatrixData->Resize(0,0);
+    return true;
+   }
+   
    OutputMatrixData->Resize(new_rows, new_cols);
 
    MDMatrix<T> &output=*OutputMatrixData;
@@ -240,11 +284,11 @@ bool UMDMatrixMux<T>::ACalculate(void)
    int col=0;
    int j=0;
    do {
-    for(size_t i=0;i<InputMatrixData->size();i++)
+    for(size_t i2=0;i2<input_matrix_size;i2++)
     {
-     if(InputActivities[i])
+     if(i2 < activities_size && activities_copy[i2])
      {
-      const MDMatrix<T> &input=InputMatrixData[i];
+      const MDMatrix<T> &input=InputMatrixData[i2];
 
       for(int k=0;k<new_rows;k++)
        output(k,col)=input(k,j);
@@ -257,7 +301,7 @@ bool UMDMatrixMux<T>::ACalculate(void)
   }
   break;
 
-  /// 3 - сборка матриц в высоту с чередованием строк
+  /// 3 -       
   case 3:
   {
 
@@ -273,64 +317,64 @@ bool UMDMatrixMux<T>::ACalculate(void)
 template<class T>
 class UMDScalarMux: public UNet
 {
-protected: // Параметры
-/// Массив флагов, описывающих какие входы использовать, а какие нет
-ULProperty<std::vector<bool>,UMDScalarMux<T> > InputActivities;
+protected: // Input activities
+/// Input activities vector
+UProperty<std::vector<bool>,UMDScalarMux<T>, ptPubParameter> InputActivities;
 
-protected: // Данные
-/// Входной вектор матриц
-UPropertyInputCData<T,UMDScalarMux<T> > InputMatrixData;
+protected: // 
+///   
+UProperty<std::vector<T>,UMDScalarMux<T>, ptPubInput> InputMatrixData;
 
-/// Режим работы
-/// 0 - сборка матриц в высоту
-/// 1 - сборка матриц в ширину
-/// 2 - сборка матриц в ширину с чередованием столбцов
-/// 3 - сборка матриц в высоту с чередованием строк
+///  
+/// 0 -    
+/// 1 -    
+/// 2 -       
+/// 3 -       
 UProperty<int,UMDScalarMux<T>, ptPubParameter> Mode;
 
-public: // Данные
-// Выходой вектор матриц
-UPropertyOutputData<MDMatrix<T>,UMDScalarMux<T>, ptPubOutput | ptState> OutputMatrixData;
+public: // 
+//   
+UProperty<MDMatrix<T>,UMDScalarMux<T>, ptPubOutput | ptState> OutputMatrixData;
 
-public: // Методы
+public: // 
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 UMDScalarMux(void);
 virtual ~UMDScalarMux(void);
 
 // --------------------------
-// Системные методы управления объектом
+//    
 // --------------------------
 public:
-// Выделяет память для новой чистой копии объекта этого класса
+//         
 virtual UMDScalarMux<T>* New(void);
 // --------------------------
 
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
 protected:
-// Восстановление настроек по умолчанию и сброс процесса счета
+//        
 virtual bool ADefault(void);
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+//     
+//   
+//    Reset()   Ready  true
+//    
 virtual bool ABuild(void);
 
-// Сброс процесса счета.
+//   .
 virtual bool AReset(void);
 
-// Выполняет расчет этого объекта
+//    
 virtual bool ACalculate(void);
 // --------------------------
 };
 
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 template<class T>
 UMDScalarMux<T>::UMDScalarMux(void)
@@ -349,9 +393,9 @@ UMDScalarMux<T>::~UMDScalarMux(void)
 }
 
 // --------------------------
-// Системные методы управления объектом
+//    
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+//         
 template<class T>
 UMDScalarMux<T>* UMDScalarMux<T>::New(void)
 {
@@ -360,9 +404,9 @@ UMDScalarMux<T>* UMDScalarMux<T>::New(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+//        
 template<class T>
 bool UMDScalarMux<T>::ADefault(void)
 {
@@ -371,17 +415,17 @@ bool UMDScalarMux<T>::ADefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+//     
+//   
+//    Reset()   Ready  true
+//    
 template<class T>
 bool UMDScalarMux<T>::ABuild(void)
 {
  return true;
 }
 
-// Сброс процесса счета.
+//   .
 template<class T>
 bool UMDScalarMux<T>::AReset(void)
 {
@@ -389,7 +433,7 @@ bool UMDScalarMux<T>::AReset(void)
  return true;
 }
 
-// Выполняет расчет этого объекта
+//    
 template<class T>
 bool UMDScalarMux<T>::ACalculate(void)
 {
@@ -405,7 +449,7 @@ bool UMDScalarMux<T>::ACalculate(void)
  size_t i=0;
  switch(Mode)
  {
-  // Сборка в высоту
+  //   
   case 0:
   {
    int new_rows=0;
@@ -424,18 +468,18 @@ bool UMDScalarMux<T>::ACalculate(void)
 
    MDMatrix<T> &output=*OutputMatrixData;
    int row=0;
-   for(size_t i=0;i<InputMatrixData->size();i++)
+   for(size_t i2=0;i2<InputMatrixData->size();i2++)
    {
-    if(InputActivities[i])
+    if(InputActivities[i2])
     {
-     output(row,0)=InputMatrixData[i];
+     output(row,0)=InputMatrixData[i2];
      ++row;
     }
    }
   }
   break;
 
-  // Сборка в ширину
+  //   
   case 1:
   {
    int new_rows=-1;
@@ -454,18 +498,18 @@ bool UMDScalarMux<T>::ACalculate(void)
 
    MDMatrix<T> &output=*OutputMatrixData;
    int col=0;
-   for(size_t i=0;i<InputMatrixData->size();i++)
+   for(size_t i2=0;i2<InputMatrixData->size();i2++)
    {
-    if(InputActivities[i])
+    if(InputActivities[i2])
     {
-     output(0,col)=InputMatrixData[i];
+     output(0,col)=InputMatrixData[i2];
      ++col;
     }
    }
   }
   break;
 
-  /// 2 - сборка матриц в ширину с чередованием столбцов
+  /// 2 -       
   case 2:
   {
    int new_rows=-1;
@@ -487,11 +531,11 @@ bool UMDScalarMux<T>::ACalculate(void)
    int col=0;
    int j=0;
    do {
-    for(size_t i=0;i<InputMatrixData->size();i++)
+    for(size_t i2=0;i2<InputMatrixData->size();i2++)
     {
-     if(InputActivities[i])
+     if(InputActivities[i2])
      {
-      output(0,col)=InputMatrixData[i];
+      output(0,col)=InputMatrixData[i2];
       ++col;
      }
     }
@@ -500,7 +544,7 @@ bool UMDScalarMux<T>::ACalculate(void)
   }
   break;
 
-  /// 3 - сборка матриц в высоту с чередованием строк
+  /// 3 -       
   case 3:
   {
 

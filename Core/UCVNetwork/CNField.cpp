@@ -6,14 +6,14 @@
 #include "CNLayer.h"
 //#include "CNeuron.cpp"
 
-//Шаг свертки
+//РЁР°Рі СЃРІРµСЂС‚РєРё
 //int CNField::ConvolutionStep=3;
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 CNField::CNField(void)
 {
- //Шаг свертки
+ //РЁР°Рі СЃРІРµСЂС‚РєРё
  //ConvolutionStep=4;
 }
 
@@ -23,10 +23,10 @@ CNField::~CNField(void)
 // --------------------------
 
 // --------------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // --------------------------
 
-// Размеры поля слоя сети
+// Р Р°Р·РјРµСЂС‹ РїРѕР»СЏ СЃР»РѕСЏ СЃРµС‚Рё
 int CNField::GetWidthField(void) const
 {
  return WidthField;
@@ -59,7 +59,7 @@ bool CNField::SetHeightField(int height)
  return true;
 }
 /*
-//Шаг свертки
+//РЁР°Рі СЃРІРµСЂС‚РєРё
 int CNField::GetConvolutionStep(void) const
 {
 	return  ConvolutionStep;
@@ -74,15 +74,15 @@ bool CNField::SetConvolutionStep(int value)
 	return true;
 } */
 // --------------------------
-// Методы управления данными
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РґР°РЅРЅС‹РјРё
 // --------------------------
-// Возвращает ссылку на нейрон
+// Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃСЃС‹Р»РєСѓ РЅР° РЅРµР№СЂРѕРЅ
 CNeuron& CNField::GetNeuron(int i,int j)
 {
  return Neurons[i][j];
 }
 
-// Указатель на родительский слой
+// РЈРєР°Р·Р°С‚РµР»СЊ РЅР° СЂРѕРґРёС‚РµР»СЊСЃРєРёР№ СЃР»РѕР№
 CNLayer* CNField::GetOwner(void) const
 {
  return Owner;
@@ -121,9 +121,9 @@ bool CNField::SetOutput(vector<vector<double> > &output)
 // --------------------------
 
 // --------------------------
-// Методы управления счетом
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-// Сбрасывает веса всех нейронов в случайные значения
+// РЎР±СЂР°СЃС‹РІР°РµС‚ РІРµСЃР° РІСЃРµС… РЅРµР№СЂРѕРЅРѕРІ РІ СЃР»СѓС‡Р°Р№РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ
 void CNField::ResetTrainig(void)
 {
  for(size_t i=0;i<Neurons.size();i++)
@@ -133,12 +133,12 @@ void CNField::ResetTrainig(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool CNField::ABuild(void)
 {
  Neurons.resize(WidthField);
@@ -149,7 +149,7 @@ bool CNField::ABuild(void)
 
  if(Owner->GetSourceLayer())
  {
-  // Цикл по нейронам
+  // Р¦РёРєР» РїРѕ РЅРµР№СЂРѕРЅР°Рј
   int y=0;
 //  int height=0;
 
@@ -160,14 +160,14 @@ bool CNField::ABuild(void)
    for(int j=0;j<WidthField;j++)
    {
 	Neurons[i][j].SetNumSourceField(Owner->GetSourceLayer()->GetNumFields());
-	Neurons[i][j].SetWidth(Owner->GetConvWidth());   // Это параметры CNetwork
-	Neurons[i][j].SetHeight(Owner->GetConvHeight());  // Это параметры CNetwork
+	Neurons[i][j].SetWidth(Owner->GetConvWidth());   // Р­С‚Рѕ РїР°СЂР°РјРµС‚СЂС‹ CNetwork
+	Neurons[i][j].SetHeight(Owner->GetConvHeight());  // Р­С‚Рѕ РїР°СЂР°РјРµС‚СЂС‹ CNetwork
 
 	Neurons[i][j].SetNetworkOwner(Owner->GetNetwork());
 	if(!Neurons[i][j].Build())
 	 return false;
 
-	// Тут мы связываем нейрон с источником данных
+	// РўСѓС‚ РјС‹ СЃРІСЏР·С‹РІР°РµРј РЅРµР№СЂРѕРЅ СЃ РёСЃС‚РѕС‡РЅРёРєРѕРј РґР°РЅРЅС‹С…
     for(int k=0;k<int(Neurons[i][j].SourceField.size());k++)
 	{
 	 Neurons[i][j].SourceField[k]=&(Owner->GetSourceLayer()->GetField(k));
@@ -187,7 +187,7 @@ bool CNField::ABuild(void)
 	  }
 	}
 
-	// Тут вычисляем x,y...
+	// РўСѓС‚ РІС‹С‡РёСЃР»СЏРµРј x,y...
 	Neurons[i][j].SetX(y);
 	Neurons[i][j].SetY(x);
   //	width=Neurons[i][j].GetWidth();
@@ -197,9 +197,9 @@ bool CNField::ABuild(void)
    y=y+aConvolutionStep;
   }
  }
- else // иначе мы на 0 слое
+ else // РёРЅР°С‡Рµ РјС‹ РЅР° 0 СЃР»РѕРµ
  {
-  // Цикл по нейронам
+  // Р¦РёРєР» РїРѕ РЅРµР№СЂРѕРЅР°Рј
   int y=0;
 //  int height=0;
   for(int i=0;i<WidthField;i++)
@@ -209,20 +209,20 @@ bool CNField::ABuild(void)
    for(int j=0;j<HeightField;j++)
    {
 	Neurons[i][j].SetNumSourceField(1);
-	Neurons[i][j].SetWidth(Owner->GetConvWidth());   // Здесь размеры ядра свертки
-	Neurons[i][j].SetHeight(Owner->GetConvHeight());  // Здесь размеры ядра свертки
+	Neurons[i][j].SetWidth(Owner->GetConvWidth());   // Р—РґРµСЃСЊ СЂР°Р·РјРµСЂС‹ СЏРґСЂР° СЃРІРµСЂС‚РєРё
+	Neurons[i][j].SetHeight(Owner->GetConvHeight());  // Р—РґРµСЃСЊ СЂР°Р·РјРµСЂС‹ СЏРґСЂР° СЃРІРµСЂС‚РєРё
 
 	Neurons[i][j].SetNetworkOwner(Owner->GetNetwork());
 	if(!Neurons[i][j].Build())
 	 return false;
 
-	// Тут мы связываем нейрон с источником данных
+	// РўСѓС‚ РјС‹ СЃРІСЏР·С‹РІР°РµРј РЅРµР№СЂРѕРЅ СЃ РёСЃС‚РѕС‡РЅРёРєРѕРј РґР°РЅРЅС‹С…
 	for(size_t k=0;k<Neurons[i][j].SourceField.size();k++)
 	{
 	 Neurons[i][j].SourceField[k]=0;
 	}
 
-	// Тут вычисляем x,y...
+	// РўСѓС‚ РІС‹С‡РёСЃР»СЏРµРј x,y...
 	Neurons[i][j].SetX(y);
 	Neurons[i][j].SetY(x);
 	x=x+aConvolutionStep;
@@ -238,17 +238,17 @@ bool CNField::ABuild(void)
 
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool CNField::ADefault(void)
 {
- //Шаг свертки
+ //РЁР°Рі СЃРІРµСЂС‚РєРё
  //ConvolutionStep=4;
 
  return true;
 }
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool CNField::AReset(void)
 {
  for(int i=0;i<WidthField;i++)
@@ -259,7 +259,7 @@ bool CNField::AReset(void)
  }
  return true;
 }
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool CNField::ACalculate(void)
 {
  for(int i=0;i<WidthField;i++)

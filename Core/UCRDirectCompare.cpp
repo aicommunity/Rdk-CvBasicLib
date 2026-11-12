@@ -22,7 +22,7 @@ namespace RDK {
 using namespace std;
 
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 UCRDirectCompare::UCRDirectCompare(void)
 //: UCRClassifier(name),
@@ -49,9 +49,9 @@ UCRDirectCompare::~UCRDirectCompare(void)
 // --------------------------
 
 // -----------------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // -----------------------------
-// Устанавливает число входов всех скрытых слоев
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ С‡РёСЃР»Рѕ РІС…РѕРґРѕРІ РІСЃРµС… СЃРєСЂС‹С‚С‹С… СЃР»РѕРµРІ
 /*bool UCRDirectCompare::SetNumInputs(size_t numinputs)
 {
 // NumInputs=numinputs;
@@ -61,7 +61,7 @@ UCRDirectCompare::~UCRDirectCompare(void)
  return true;
 }     */
 
-// Порог распознавания по максимуму суммы превышения
+// РџРѕСЂРѕРі СЂР°СЃРїРѕР·РЅР°РІР°РЅРёСЏ РїРѕ РјР°РєСЃРёРјСѓРјСѓ СЃСѓРјРјС‹ РїСЂРµРІС‹С€РµРЅРёСЏ
 bool UCRDirectCompare::SetMaxRecThreshold(const double &value)
 {
  ModifiedFlag=true;
@@ -70,21 +70,21 @@ bool UCRDirectCompare::SetMaxRecThreshold(const double &value)
 // -----------------------------
 
 // -----------------------------
-// Методы доступа к данным модели
+// РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР° Рє РґР°РЅРЅС‹Рј РјРѕРґРµР»Рё
 // -----------------------------
-// Вектор выборки
+// Р’РµРєС‚РѕСЂ РІС‹Р±РѕСЂРєРё
 double UCRDirectCompare::GetSamples(int i, int j, int k) const
 {
  return Samples[i][j][k];
 }
 
-// Вектор оригинальных выходов слоев сети
+// Р’РµРєС‚РѕСЂ РѕСЂРёРіРёРЅР°Р»СЊРЅС‹С… РІС‹С…РѕРґРѕРІ СЃР»РѕРµРІ СЃРµС‚Рё
 const vector<double>& UCRDirectCompare::GetNativeOutput(void) const
 {
  return NativeOutput;
 }
 
-// Вектор входов
+// Р’РµРєС‚РѕСЂ РІС…РѕРґРѕРІ
 /*const vector<double>& UCRDirectCompare::GetInputs(void) const
 {
  return Inputs;
@@ -92,9 +92,9 @@ const vector<double>& UCRDirectCompare::GetNativeOutput(void) const
 // -----------------------------
 
 // ------------------------
-// Методы счета
+// РњРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ------------------------
-// Загружает настройки из файла
+// Р—Р°РіСЂСѓР¶Р°РµС‚ РЅР°СЃС‚СЂРѕР№РєРё РёР· С„Р°Р№Р»Р°
 bool UCRDirectCompare::AFileLoad(fstream &file)
 {
  int i,j,k;
@@ -118,8 +118,8 @@ bool UCRDirectCompare::AFileLoad(fstream &file)
  file.read((char*)&rectype,sizeof(rectype));
  RecognitionType=rectype;
 
-// Порог распознавания по максимуму суммы превышения
-// в процентах от максимума входов (0,1)
+// РџРѕСЂРѕРі СЂР°СЃРїРѕР·РЅР°РІР°РЅРёСЏ РїРѕ РјР°РєСЃРёРјСѓРјСѓ СЃСѓРјРјС‹ РїСЂРµРІС‹С€РµРЅРёСЏ
+// РІ РїСЂРѕС†РµРЅС‚Р°С… РѕС‚ РјР°РєСЃРёРјСѓРјР° РІС…РѕРґРѕРІ (0,1)
  file.read((char*)&value,sizeof(value));
  MaxRecThreshold=value;
 
@@ -150,7 +150,7 @@ bool UCRDirectCompare::AFileLoad(fstream &file)
  return true;
 }
 
-// Сохраняет настройки в файл
+// РЎРѕС…СЂР°РЅСЏРµС‚ РЅР°СЃС‚СЂРѕР№РєРё РІ С„Р°Р№Р»
 bool UCRDirectCompare::AFileSave(fstream &file)
 {
  size_t i,j,k;
@@ -166,8 +166,8 @@ bool UCRDirectCompare::AFileSave(fstream &file)
  rectype=RecognitionType;
  file.write((char*)&rectype,sizeof(rectype));
 
- // Порог распознавания по максимуму суммы превышения
- // в процентах от максимума входов (0,1)
+ // РџРѕСЂРѕРі СЂР°СЃРїРѕР·РЅР°РІР°РЅРёСЏ РїРѕ РјР°РєСЃРёРјСѓРјСѓ СЃСѓРјРјС‹ РїСЂРµРІС‹С€РµРЅРёСЏ
+ // РІ РїСЂРѕС†РµРЅС‚Р°С… РѕС‚ РјР°РєСЃРёРјСѓРјР° РІС…РѕРґРѕРІ (0,1)
  value=MaxRecThreshold;
  file.write((char*)&value,sizeof(value));
 
@@ -201,9 +201,9 @@ bool UCRDirectCompare::AFileSave(fstream &file)
 // ------------------------
 
 // --------------------------
-// Системные методы управления объектом
+// РЎРёСЃС‚РµРјРЅС‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРј
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+// Р’С‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РґР»СЏ РЅРѕРІРѕР№ С‡РёСЃС‚РѕР№ РєРѕРїРёРё РѕР±СЉРµРєС‚Р° СЌС‚РѕРіРѕ РєР»Р°СЃСЃР°
 UCRDirectCompare* UCRDirectCompare::New(void)
 {
  return new UCRDirectCompare;
@@ -211,15 +211,15 @@ UCRDirectCompare* UCRDirectCompare::New(void)
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool UCRDirectCompare::ACRDefault(void)
 {
  SetOutputDataSize(0,MMatrixSize(1,2));
  if(!Build())
   return false;
-// PInputDataSize[0]=100;   // Заглушка!!! Что это
+// PInputDataSize[0]=100;   // Р—Р°РіР»СѓС€РєР°!!! Р§С‚Рѕ СЌС‚Рѕ
 
  vector<double> minrate,maxrate;
  minrate.assign(GetOutputDataSize(0)[1],10);
@@ -275,17 +275,17 @@ bool UCRDirectCompare::ACRDefault(void)
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool UCRDirectCompare::ACRBuild(void)
 {
  return true;
 }
 
 
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool UCRDirectCompare::ACRReset(void)
 {
  return true;
@@ -441,7 +441,7 @@ bool UCRDirectCompare::ACRCalculate(void)
    break;
   }
 
-  // Ищем абсолютный максимум
+  // РС‰РµРј Р°Р±СЃРѕР»СЋС‚РЅС‹Р№ РјР°РєСЃРёРјСѓРј
   if(maxinput>AbsoluteRecThreshold*(MaxInputValue()-MinInputValue()))
   {
    memcpy(&NativeOutput[0],&GetInputData(0)->Double[0],outputsize*sizeof(double));
@@ -471,7 +471,7 @@ bool UCRDirectCompare::ACRCalculate(void)
      POutputData[0].Double[k]=0;
   }
   else
-  // Если выше максимального порога то вычисляем результат по числу максимумов
+  // Р•СЃР»Рё РІС‹С€Рµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ РїРѕСЂРѕРіР° С‚Рѕ РІС‹С‡РёСЃР»СЏРµРј СЂРµР·СѓР»СЊС‚Р°С‚ РїРѕ С‡РёСЃР»Сѓ РјР°РєСЃРёРјСѓРјРѕРІ
   if(maxinput>MaxRecThreshold*(MaxInputValue()-MinInputValue()))
   {
    for(int i=0;i<inputsize;i++)
@@ -580,7 +580,7 @@ bool UCRDirectCompare::ACRCalculate(void)
    break;
   }
 
-  // Ищем абсолютный максимум
+  // РС‰РµРј Р°Р±СЃРѕР»СЋС‚РЅС‹Р№ РјР°РєСЃРёРјСѓРј
   memcpy(&NativeOutput[0],&GetInputData(0)->Double[0],outputsize*sizeof(double));
   for(int i=outputsize;i<inputsize;i++)
   {
@@ -593,7 +593,7 @@ bool UCRDirectCompare::ACRCalculate(void)
   for(int k=0;k<outputsize;k++)
    POutputData[0].Double[k]=NativeOutput[k];
 
-  // Масштабируем
+  // РњР°СЃС€С‚Р°Р±РёСЂСѓРµРј
    maxoutput=0;
    for(int k=0;k<outputsize;k++)
    {
@@ -774,9 +774,9 @@ bool UCRDirectCompare::ACRCalculate(void)
 
 
 // --------------------------
-// Скрытые методы обучения сети
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ РѕР±СѓС‡РµРЅРёСЏ СЃРµС‚Рё
 // --------------------------
-// Сброс настроек обучение в исходное состояние
+// РЎР±СЂРѕСЃ РЅР°СЃС‚СЂРѕРµРє РѕР±СѓС‡РµРЅРёРµ РІ РёСЃС…РѕРґРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 void UCRDirectCompare::AResetTraining(void)
 {
  Samples.resize(GetOutputDataSize(0)[1]);
@@ -788,7 +788,7 @@ void UCRDirectCompare::AResetTraining(void)
  }
 }
 
-// Однократное обучение на заданном примере
+// РћРґРЅРѕРєСЂР°С‚РЅРѕРµ РѕР±СѓС‡РµРЅРёРµ РЅР° Р·Р°РґР°РЅРЅРѕРј РїСЂРёРјРµСЂРµ
 double UCRDirectCompare::ATrain(size_t exp_class)
 {
  double E=0;
@@ -807,9 +807,9 @@ double UCRDirectCompare::ATrain(size_t exp_class)
 
 
 // ------------------------
-// Скрытые методы счета
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СЃС‡РµС‚Р°
 // ------------------------
-// Устанавливает значения входного вектора для распознавания
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ Р·РЅР°С‡РµРЅРёСЏ РІС…РѕРґРЅРѕРіРѕ РІРµРєС‚РѕСЂР° РґР»СЏ СЂР°СЃРїРѕР·РЅР°РІР°РЅРёСЏ
 /*bool UCRDirectCompare::SetInput(const Real &input)
 {
  size_t i;

@@ -81,25 +81,25 @@ namespace RDK{
 
 class RDK_LIB_TYPE CvBasicLib : public ULibrary
 {
-public: // Методы
+public: // РњРµС‚РѕРґС‹
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 CvBasicLib(void);
 // --------------------------
 
 // --------------------------
-// Методы заполенения бибилиотеки
+// РњРµС‚РѕРґС‹ Р·Р°РїРѕР»РµРЅРµРЅРёСЏ Р±РёР±РёР»РёРѕС‚РµРєРё
 // --------------------------
-// Заполняет массив ClassSamples готовыми экземплярами образцов и их именами.
-// Не требуется предварительная очистка массива и уборка памяти.
+// Р—Р°РїРѕР»РЅСЏРµС‚ РјР°СЃСЃРёРІ ClassSamples РіРѕС‚РѕРІС‹РјРё СЌРєР·РµРјРїР»СЏСЂР°РјРё РѕР±СЂР°Р·С†РѕРІ Рё РёС… РёРјРµРЅР°РјРё.
+// РќРµ С‚СЂРµР±СѓРµС‚СЃСЏ РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅР°СЏ РѕС‡РёСЃС‚РєР° РјР°СЃСЃРёРІР° Рё СѓР±РѕСЂРєР° РїР°РјСЏС‚Рё.
 virtual void CreateClassSamples(UStorage *storage);
 // --------------------------
 
-// Функция, добавляемая в Storage
+// Р¤СѓРЅРєС†РёСЏ, РґРѕР±Р°РІР»СЏРµРјР°СЏ РІ Storage
 static bool CvBasicLibCrPropMock(RDK::USerStorageXML* serstorage, RDK::UMockUNet* mock_unet);
 
-// Функция вызывает необходимые фукнции в зависимости от типа (строка) свойства
+// Р¤СѓРЅРєС†РёСЏ РІС‹Р·С‹РІР°РµС‚ РЅРµРѕР±С…РѕРґРёРјС‹Рµ С„СѓРєРЅС†РёРё РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ С‚РёРїР° (СЃС‚СЂРѕРєР°) СЃРІРѕР№СЃС‚РІР°
 template <template<typename, typename, unsigned int> class PropType, unsigned int TypeInt>
 static void CreateProperty(RDK::USerStorageXML* serstorage, RDK::UMockUNet* mock_unet, unsigned int ptype)
 {
@@ -110,22 +110,22 @@ static void CreateProperty(RDK::USerStorageXML* serstorage, RDK::UMockUNet* mock
     {
         int size=serstorage->GetNumNodes();
 
-        // если вектор пуст берем тип - elemType
-        // если есть элементы берем тип элементов
-        std::string type;
+        // РµСЃР»Рё РІРµРєС‚РѕСЂ РїСѓСЃС‚ Р±РµСЂРµРј С‚РёРї - elemType
+        // РµСЃР»Рё РµСЃС‚СЊ СЌР»РµРјРµРЅС‚С‹ Р±РµСЂРµРј С‚РёРї СЌР»РµРјРµРЅС‚РѕРІ
+        std::string elem_type;
         if(size == 0)
         {
-            type = serstorage->GetNodeAttribute("elemType");
+            elem_type = serstorage->GetNodeAttribute("elemType");
         }
         else
         {
             serstorage->SelectNode("elem",size-1);
-            type = serstorage->GetNodeAttribute("Type");
+            elem_type = serstorage->GetNodeAttribute("Type");
             serstorage->SelectUp();
         }
 
         // std::vector<UBVSObject>
-        if(type == "UBVSObject")
+        if(elem_type == "UBVSObject")
         {
             CreatorProperty<PropType, TypeInt, std::vector<UBVSObject> >::CreatePropertyByType(serstorage, mock_unet, ptype);
             return;

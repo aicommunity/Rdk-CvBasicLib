@@ -9,7 +9,7 @@
 
 
 // --------------------------
-// Конструкторы и деструкторы
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
 // --------------------------
 CNeuron::CNeuron(void)
 {
@@ -22,9 +22,9 @@ CNeuron::~CNeuron(void)
 
 
 // --------------------------
-// Методы управления параметрами
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°РјРё
 // --------------------------
-// Число слоев источников данных
+// Р§РёСЃР»Рѕ СЃР»РѕРµРІ РёСЃС‚РѕС‡РЅРёРєРѕРІ РґР°РЅРЅС‹С…
 int CNeuron::GetNumSourceField(void) const
 {
  return NumSourceField;
@@ -40,7 +40,7 @@ bool CNeuron::SetNumSourceField(int value)
  return true;
 }
 
-// Координаты рецептивной зоны
+// РљРѕРѕСЂРґРёРЅР°С‚С‹ СЂРµС†РµРїС‚РёРІРЅРѕР№ Р·РѕРЅС‹
 int CNeuron::GetX(void) const
 {
  return X;
@@ -94,21 +94,21 @@ bool CNeuron::SetHeight(int value)
 
 
 // --------------------------
-// Методы управления данными
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РґР°РЅРЅС‹РјРё
 // --------------------------
-// Функция активации
+// Р¤СѓРЅРєС†РёСЏ Р°РєС‚РёРІР°С†РёРё
 double CNeuron::ActivationFunc(double x)
 {
  return tanh(x);
 }
 
-// Производная функции активации по аргументу
+// РџСЂРѕРёР·РІРѕРґРЅР°СЏ С„СѓРЅРєС†РёРё Р°РєС‚РёРІР°С†РёРё РїРѕ Р°СЂРіСѓРјРµРЅС‚Сѓ
 double CNeuron::dActivationFunc(double x)
 {
 	return (1-x)*(1+x);
 }
 
-// Выход нейрона
+// Р’С‹С…РѕРґ РЅРµР№СЂРѕРЅР°
 double CNeuron::GetOutput(void) const
 {
  return Output;
@@ -122,7 +122,7 @@ bool CNeuron::SetOutput(double value)
  Output=value;
  return true;
 }
-//Вход нейрона
+//Р’С…РѕРґ РЅРµР№СЂРѕРЅР°
 double CNeuron::GetInput(void) const
 {
  return Input;
@@ -137,7 +137,7 @@ bool CNeuron::SetInput(double value)
  return true;
 }
 
-// Возвращает выход нейрона, подключенного к этому по заданному входу
+// Р’РѕР·РІСЂР°С‰Р°РµС‚ РІС‹С…РѕРґ РЅРµР№СЂРѕРЅР°, РїРѕРґРєР»СЋС‡РµРЅРЅРѕРіРѕ Рє СЌС‚РѕРјСѓ РїРѕ Р·Р°РґР°РЅРЅРѕРјСѓ РІС…РѕРґСѓ
 double CNeuron::GetInputData(int field, int x, int y) const
 {
  if(field < 0 || field >= int(SourceField.size()))
@@ -150,7 +150,7 @@ double CNeuron::GetInputData(int field, int x, int y) const
  return 0;
 }
 
-// Сбрасывает веса нейрона в случайные значения
+// РЎР±СЂР°СЃС‹РІР°РµС‚ РІРµСЃР° РЅРµР№СЂРѕРЅР° РІ СЃР»СѓС‡Р°Р№РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ
 void CNeuron::ResetTrainig(void)
 {
  size_t i,j,k;
@@ -173,7 +173,7 @@ void CNeuron::ResetTrainig(void)
 }
 
 
-//Принудительной назначение весов
+//РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕР№ РЅР°Р·РЅР°С‡РµРЅРёРµ РІРµСЃРѕРІ
 bool CNeuron::SetWeights(vector<vector<vector<double> > > weights)
 {
  if(Weights==weights)
@@ -183,29 +183,29 @@ bool CNeuron::SetWeights(vector<vector<vector<double> > > weights)
  return true;
 }
 
-// Доступ к массиву весов
+// Р”РѕСЃС‚СѓРї Рє РјР°СЃСЃРёРІСѓ РІРµСЃРѕРІ
 vector<vector<vector<double> > >& CNeuron::GetWeights(void)
 {
  return Weights;
 }
 
 
-// Возвращает число нейронов подключенных входами к выходу этого нейрона
+// Р’РѕР·РІСЂР°С‰Р°РµС‚ С‡РёСЃР»Рѕ РЅРµР№СЂРѕРЅРѕРІ РїРѕРґРєР»СЋС‡РµРЅРЅС‹С… РІС…РѕРґР°РјРё Рє РІС‹С…РѕРґСѓ СЌС‚РѕРіРѕ РЅРµР№СЂРѕРЅР°
 size_t CNeuron::GetNumConnectedNeurons(void) const
 {
  return ConnectedNeurons.size();
 }
 
-// Возвращает нейрон подключенный входами к выходу этого нейрона
+// Р’РѕР·РІСЂР°С‰Р°РµС‚ РЅРµР№СЂРѕРЅ РїРѕРґРєР»СЋС‡РµРЅРЅС‹Р№ РІС…РѕРґР°РјРё Рє РІС‹С…РѕРґСѓ СЌС‚РѕРіРѕ РЅРµР№СЂРѕРЅР°
 CNeuronCoord& CNeuron::GetConnectedNeuron(size_t index)
 {
  return ConnectedNeurons[index];
 }
 
 // --------------------------
-// Методы управления данными
+// РњРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ РґР°РЅРЅС‹РјРё
 // --------------------------
-// Указатель на родительскую сеть
+// РЈРєР°Р·Р°С‚РµР»СЊ РЅР° СЂРѕРґРёС‚РµР»СЊСЃРєСѓСЋ СЃРµС‚СЊ
 CNetwork* CNeuron::GetNetworkOwner(void) const
 {
  return NetworkOwner;
@@ -222,21 +222,21 @@ bool CNeuron::SetNetworkOwner(CNetwork* value)
  return true;
 }
 // --------------------------
-// Скрытые методы управления счетом
+// РЎРєСЂС‹С‚С‹Рµ РјРµС‚РѕРґС‹ СѓРїСЂР°РІР»РµРЅРёСЏ СЃС‡РµС‚РѕРј
 // --------------------------
-// Восстановление настроек по умолчанию и сброс процесса счета
+// Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё СЃР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°
 bool CNeuron::ADefault(void)
 {
  return true;
 }
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+// РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃР±РѕСЂРєСѓ РІРЅСѓС‚СЂРµРЅРЅРµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°
+// РїРѕСЃР»Рµ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹Р·С‹РІР°РµС‚ РјРµС‚РѕРґ Reset() Рё РІС‹СЃС‚Р°РІР»СЏРµС‚ Ready РІ true
+// РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ СЃР±РѕСЂРєРё
 bool CNeuron::ABuild(void)
 {
- // инициализируем нейрон
+ // РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РЅРµР№СЂРѕРЅ
  SourceField.assign(size_t(NumSourceField),0);
 
  ConnectedNeurons.clear();
@@ -260,7 +260,7 @@ bool CNeuron::ABuild(void)
  return true;
 }
 
-// Сброс процесса счета.
+// РЎР±СЂРѕСЃ РїСЂРѕС†РµСЃСЃР° СЃС‡РµС‚Р°.
 bool CNeuron::AReset(void)
 {
  Output=0;
@@ -268,12 +268,12 @@ bool CNeuron::AReset(void)
 }
 
 
-// Выполняет расчет этого объекта
+// Р’С‹РїРѕР»РЅСЏРµС‚ СЂР°СЃС‡РµС‚ СЌС‚РѕРіРѕ РѕР±СЉРµРєС‚Р°
 bool CNeuron::ACalculate(void)
 {
    int NumL=int(SourceField.size());
    double sum=0;
-   for(int k=0; k<NumL; k++) // слои
+   for(int k=0; k<NumL; k++) // СЃР»РѕРё
    {
 	CNField *src=SourceField[k];
 

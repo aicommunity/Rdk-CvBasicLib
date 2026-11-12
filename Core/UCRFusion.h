@@ -20,13 +20,13 @@ See file license.txt for more information
 
 namespace RDK {
 
-// Структура результата предварительной попарной классификации
+//     
 struct RDK_LIB_TYPE UCRFPreResult
 {
- // Индексы сравниваемых классов
+ //   
  int Ix1, Ix2;
 
- // Результат классификации
+ //  
  double Res1, Res2;
 
  UCRFPreResult(void)
@@ -40,42 +40,42 @@ struct RDK_LIB_TYPE UCRFPreResult
 
 class RDK_LIB_TYPE UCRFusion: public UCRClassifier
 {
-public: // Общедоступные свойства
-// Режим комплексирования классификаторов
-// 0 - по среднему показателей качества
-// 1 - по попарному сравнению
-// 2 - по среднему входов
-// 3 - по числу обнаружений класса
-// 4 - по сумме входов
-// 5 - по числу побед на входах
-// 6 - по сумме входов-победителей
-RDK::ULProperty<int, UCRFusion> FusionMode;
+public: //  
+//   
+// 0 -    
+// 1 -   
+// 2 -   
+// 3 -    
+// 4 -   
+// 5 -     
+// 6 -   -
+RDK::UProperty<int, UCRFusion, ptPubParameter> FusionMode;
 
-// Число шагов усреднения по времени
-RDK::ULProperty<int, UCRFusion> NumAttempts;
+//     
+RDK::UProperty<int, UCRFusion, ptPubParameter> NumAttempts;
 
-// Режим усреднения по времени
-// 1 - среднее всех выходов
-// 2 - среднее по максимумам показателей качества для класса
-// 3 - по числу обнаружений класса
-RDK::ULProperty<int, UCRFusion> AccumulateMode;
+//    
+// 1 -   
+// 2 -       
+// 3 -    
+RDK::UProperty<int, UCRFusion, ptPubParameter> AccumulateMode;
 
-// Параметры попарного сравнения
-RDK::UCLProperty<vector<vector<double> >, UCRFusion, ptPubState> PreResultsWeigths;
+//   
+RDK::UProperty<vector<vector<double> >, UCRFusion, ptPubState> PreResultsWeigths;
 
-protected: // Данные модели
-// Текущее значение накоплений
+protected: //  
+//   
 int CurrentAttempt;
 
 
-protected: // Данные и параметры обучения сети
+protected: //     
 
-protected: // Временные переменные
+protected: //  
 vector<RDK::UItemData> AccumOutput;
 
 public:
 // --------------------------
-// Конструкторы и деструкторы
+//   
 // --------------------------
 UCRFusion(void);
 ~UCRFusion(void);
@@ -83,95 +83,95 @@ UCRFusion(void);
 
 protected:
 // -----------------------------
-// Методы управления общедоступными свойствами
+//    
 // -----------------------------
 bool SetFusionMode(const int &value);
 // -----------------------------
 
 // -----------------------------
-// Методы доступа к данным модели
+//     
 // -----------------------------
 public:
-// Текущее значение накоплений
+//   
 int GetCurrentAttempt(void) const;
 // -----------------------------
 
 // ------------------------
-// Методы счета
+//  
 // ------------------------
 public:
-// Загружает настройки весов из файла с именем 'name'
+//        'name'
 virtual bool AFileLoad(fstream &file);
 
-// Сохраняет настройки весов в файл с именем 'name'
+//        'name'
 virtual bool AFileSave(fstream &file);
 // ------------------------
 
 // --------------------------
-// Системные методы управления объектом
+//    
 // --------------------------
-// Выделяет память для новой чистой копии объекта этого класса
+//         
 virtual UCRFusion* New(void);
 // --------------------------
 
 // --------------------------
-// Скрытые методы управления счетом
+//    
 // --------------------------
 protected:
-// Восстановление настроек по умолчанию и сброс процесса счета
+//        
 virtual bool ACRDefault(void);
 
-// Обеспечивает сборку внутренней структуры объекта
-// после настройки параметров
-// Автоматически вызывает метод Reset() и выставляет Ready в true
-// в случае успешной сборки
+//     
+//   
+//    Reset()   Ready  true
+//    
 virtual bool ACRBuild(void);
 
-// Сброс процесса счета.
+//   .
 virtual bool ACRReset(void);
 
-// Выполняет расчет этого объекта на текущем шаге.
+//       .
 virtual bool ACRCalculate(void);
 // --------------------------
 
 // --------------------------
-// Скрытые методы обучения сети
+//    
 // --------------------------
 protected:
-// Сброс настроек обучение в исходное состояние
+//      
 virtual void AResetTraining(void);
 
-// Однократное обучение на заданном примере
+//     
 virtual double ATrain(size_t exp_class);
 // --------------------------
 
 // ------------------------
-// Скрытые методы счета
+//   
 // ------------------------
 protected:
-// Вычисление результата как среднего по показателю качества
+//       
 bool AverageQualityCalculate(void);
 
-// Вычисление результата как среднего по входам
+//      
 bool AverageInputCalculate(void);
 
-// Вычисление результата как суммы по входам
+//      
 bool SumInputCalculate(void);
 
-// Вычисление результата по числу обнаружений класса по входам
+//        
 bool InputRecognitionCounterCalculate(void);
 
-// Вычисление результата по сумме входов-победителей
+//     -
 bool SumInputRecognitionCounterCalculate(void);
 
-// Вычисление результата через попарное сравнение
+//     
 bool PairCalculate(void);
 
-// Вычисление результата по числу обнаружений класса
+//      
 bool RecognitionCounterCalculate(void);
 
 public:
-// Устанавливает значения входного вектора для распознавания
+//      
 virtual bool SetInput(const vector<double> &input);
 // ------------------------
 };
